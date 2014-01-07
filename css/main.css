@@ -1,0 +1,43 @@
+body.homepage { 
+	/* pattern from subtle patterns */
+	background-image: url('/assets/fabric_1.png');
+}
+
+.container { margin-bottom: 40px;}
+
+.hero-unit {
+	background-color: inherit;
+	margin-top: 30px;
+}
+
+span.big {
+	vertical-align: bottom;
+	line-height: 60px;
+	font-size: 60px;
+	padding-right: 20px;
+	color: #999;
+}
+
+.page-header.cfg {
+	border-bottom: 2px solid #eee;
+}
+
+.hero-unit h1 {
+	line-height: 120px;
+	font-size: 120px;
+	vertical-align: bottom;
+	display: inline;
+	font-family: 'Titillium Web', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #29ABE2;
+	text-shadow: -1px 0 #0071bc, 0 1px #0071bc, 1px 0 #0071bc, 0 -1px #0071bc;
+	padding-left: 20px;
+}
+
+.hero-unit p {
+	font-family: 'Arvo', serif;
+	color: orange;
+	font-size: 40px;
+	line-height: 40px;
+	padding-left: 3px;
+	padding-top: 10px;
+}

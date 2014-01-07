@@ -1,0 +1,5 @@
+## Using these notes
+
+These notes are licensed under a creative commons attribution license. Use and modification of the notes is encouraged (even for commercial gain) but please acknowledge me as the original creator. Pull requests will be gratefully received. Full licence details are given below.
+
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The Code61 Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://code61.org" property="cc:attributionName" rel="cc:attributionURL">Tom Close</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.

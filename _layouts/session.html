@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+<div class="page-header">
+  <h1>{{page.title }} <small>{{ page.strapline}}</small></h1>
+</div>
+
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs" id="myTab">
+	{% for task in page.tasks %}
+		{% if forloop.first %}
+		<li class="active"><a href="#{{ task.name }}" data-toggle="tab">{{ task.title }} </a></li>
+		{% else %}
+		<li><a href="#{{ task.name }}" data-toggle="tab">{{ task.title }} </a></li>
+		{% endif %}
+	{% endfor %}
+</ul>
+
+<div class="tab-content">
+{% for task in page.tasks %}
+	{% if forloop.first %}
+	<div class="tab-pane active" id="{{ task.name }}">
+	{% else %}
+	<div class="tab-pane " id="{{ task.name }}">
+	{% endif %}
+
+		<h2>{{ task.title }}</h2>
+		{{ task.output }}
+	</div>
+{% endfor %}
+</div>
+
+</div>
+
