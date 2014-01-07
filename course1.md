@@ -21,7 +21,7 @@ layout: default
   + Install GitHub for Mac/Windows, (w. ssh keys?)
   + Watch DNS videos
   + Do GA Project 1
-- [Session 1](/c1s1)
+- [Session 1](c1s1)
   + Talk through the idea of a web host
   + Talk through DNS: the url, the DNS system, how to buy a domain name
   + Introduce to HTML and developer tools
@@ -31,7 +31,7 @@ layout: default
   + [hwk] Do GA Project 2
   + [hwk] Work on own site
   + [ext] Intro to command line
-- [Session 2](/c1s2)
+- [Session 2](c1s2)
   + Explain what git is - multiple versions of files
   + Push first_site to github and update
   + Introduce to CSS, CSS exercise1
@@ -39,12 +39,12 @@ layout: default
   + [hwk?] Publish site using gh_pages
   + [hwk] Do GA Project 3
   + [hwk] Finish exercises
-- [Session 3](/c1s3)
+- [Session 3](c1s3)
   + CSS in a separate file, different resource refs, CSS exercise
   + Twitter bootstrap, bootstrap exercise
   + [hwk] Finish bootstrap exercise
   + [hwk] Point domain name to first_site
-- [Session 4](/c1s4)
+- [Session 4](c1s4)
   + Google analytics - just how to put in the snippet and an example
   + Form submissions
   + Submitting to a google form
