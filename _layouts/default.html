@@ -4,10 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>{{ page.title }}</title>
+
+  {% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
+{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
   <meta name="viewport" content="width=device-width">
   <!-- Twitter bootstrap basic styles -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
+  <link rel="stylesheet" href="{{relative}}bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="{{relative}}bootstrap/css/bootstrap-responsive.css">
 
   <!-- syntax highlighting CSS -->
   <link rel="stylesheet" href="css/syntax.css">
@@ -18,10 +21,10 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/main.css">
 
-  <script src="/assets/jquery-1.10.0.js"></script>
+  <script src="{{relative}}assets/jquery-1.10.0.js"></script>
 
-  <script type="text/javascript" src='bootstrap/js/bootstrap.js'></script>
-  <script type="text/javascript" src='assets/custom.js'></script>
+  <script type="text/javascript" src='{{relative}}bootstrap/js/bootstrap.js'></script>
+  <script type="text/javascript" src='{{relative}}assets/custom.js'></script>
 
 </head>
 <body class="{{ page.cssclass }}">
