@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Web Fundamentals 5</title>
+
+  
+
+  <meta name="viewport" content="width=device-width">
+  <!-- Twitter bootstrap basic styles -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="css/syntax.css">
+  <!-- Google webfont link -->
+<link href='http://fonts.googleapis.com/css?family=Arvo:700|Titillium+Web:900' rel='stylesheet' type='text/css'>
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="../assets/jquery-1.10.0.js"></script>
+
+  <script type="text/javascript" src='../bootstrap/js/bootstrap.js'></script>
+  <script type="text/javascript" src='../assets/custom.js'></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+function name(d) {
+  return d.name;
+}
+
+var margin = {top: 0, right: 40, bottom: 0, left: 40},
+    width = 720,
+    step = 100;
+
+function tree(leftRoot, rightRoot, outerHeight) {
+  if (arguments.length < 3) outerHeight = rightRoot, rightRoot = null;
+
+  var height = outerHeight - margin.top - margin.bottom;
+
+  var tree = d3.layout.tree()
+      .size([height, 1])
+      .separation(function() { return 1; });
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .style("margin", "1em 0 1em " + -margin.left + "px");
+
+  var g = svg.selectAll("g")
+      .data([].concat(
+        leftRoot ? {type: "left", nodes: tree.nodes(leftRoot)} : [],
+        rightRoot ? {type: "right", nodes: tree.nodes(rightRoot).map(flip), flipped: true} : []
+      ))
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d) { return "translate(" + (!!d.flipped * width + margin.left) + "," + margin.top + ")"; });
+
+  var link = g.append("g")
+      .attr("class", "link")
+    .selectAll("path")
+      .data(function(d) { return tree.links(d.nodes); })
+    .enter().append("path")
+      .attr("class", linkType);
+
+  var node = g.append("g")
+      .attr("class", "node")
+    .selectAll("g")
+      .data(function(d) { return d.nodes; })
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; });
+
+  node.append("rect");
+
+  node.append("text")
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name; })
+      .each(function(d) { d.width = Math.max(32, this.getComputedTextLength() + 12); })
+      .attr("x", function(d) { return d.flipped ? 6 - d.width : 6; });
+
+  node.filter(function(d) { return "join" in d; }).insert("path", "text")
+      .attr("class", "join");
+
+  svg.call(reset);
+
+  function flip(d) {
+    d.depth *= -1;
+    d.flipped = true;
+    return d;
+  }
+
+  return svg;
+}
+
+function linkType(d) {
+  return d.target.type.split(/\s+/).map(function(t) { return "to-" + t; })
+      .concat(d.source.type.split(/\s+/).map(function(t) { return "from-" + t; }))
+      .join(" ");
+}
+
+function reset(svg) {
+  svg.selectAll("*")
+      .style("stroke-opacity", null)
+      .style("fill-opacity", null)
+      .style("display", null);
+
+  var node = svg.selectAll(".node g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d, i) { return "translate(" + d.depth * step + "," + d.x + ")"; });
+
+  node.select("rect")
+      .attr("ry", 6)
+      .attr("rx", 6)
+      .attr("y", -10)
+      .attr("height", 20)
+      .attr("width", function(d) { return d.width; })
+    .filter(function(d) { return d.flipped; })
+      .attr("x", function(d) { return -d.width; });
+
+  node.select(".join")
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.width, x: 0}; })
+        .target(function(d) { return {y: 88, x: d.join * 24}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+
+  svg.selectAll(".link path")
+      .attr("class", linkType)
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.source.depth * step + (d.source.flipped ? -1 : +1) * d.source.width, x: d.source.x}; })
+        .target(function(d) { return {y: d.target.depth * step, x: d.target.x}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+}
+
+
+
+</script>
+
+
+</head>
+<body class="">
+
+  <div class="container">
+
+    <div class="page-header">
+  <h1>Web Fundamentals 5 <small>HTML Forms</small></h1>
+</div>
+
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs" id="myTab">
+	
+		
+		<li class="active"><a href="#1_forms" data-toggle="tab">Basic forms </a></li>
+		
+	
+		
+		<li><a href="#2_form_submissions" data-toggle="tab">Form submissions </a></li>
+		
+	
+		
+		<li><a href="#2_google_analytics" data-toggle="tab">Google Analytics </a></li>
+		
+	
+		
+		<li><a href="#3_google_forms" data-toggle="tab">Google forms trick </a></li>
+		
+	
+		
+		<li><a href="#4_more_elements" data-toggle="tab">More form elements </a></li>
+		
+	
+		
+		<li><a href="#5_homework" data-toggle="tab">Homework </a></li>
+		
+	
+</ul>
+
+<div class="tab-content">
+
+	
+	<div class="tab-pane active" id="1_forms">
+	
+
+		<h2>Basic forms</h2>
+		
+<p>A basic html form looks like this:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;form&gt;</span>
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;name&#39;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;email&#39;</span><span class='nt'>&gt;</span>
+
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;submit&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;/form&gt;</span>
+</code></pre></div>
+<p>It has the following features:</p>
+
+<ul>
+<li>The whole form is contained with <code>&lt;form&gt;...&lt;/form&gt;</code> tags.</li>
+
+<li>It has two text fields, using <code>&lt;input&gt;</code> tags.</li>
+
+<li>The input tags are stand-alone tags: they have no closing <code>&lt;/input&gt;</code>.</li>
+
+<li>It has a submit button <code>&lt;input type='submit'&gt;</code>.</li>
+</ul>
+
+<h3 id="forms_with_labels">Forms with labels</h3>
+
+<p>The above form contains only text boxes. A user visiting the form would have no idea what to put in each box. We can fix this with some simple labels:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;form&gt;</span>
+    <span class='nt'>&lt;label&gt;</span>Name<span class='nt'>&lt;/label&gt;</span>
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;name&#39;</span><span class='nt'>&gt;</span>
+
+    <span class='nt'>&lt;label&gt;</span>Email<span class='nt'>&lt;/label&gt;</span>
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;email&#39;</span><span class='nt'>&gt;</span>
+
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;submit&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;/form&gt;</span>
+</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Clone the code for this session:</p>
+
+<p>git clone https://github.com/code61/html_forms.git</p>
+</li>
+
+<li>
+<p>Open ‘basic_form.html’ in Sublime Text and Chrome.</p>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="2_form_submissions">
+	
+
+		<h2>Form submissions</h2>
+		<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Open <code>basic_form.html</code> in Chrome.</li>
+
+<li>Fill in the name and email and click ‘Submit’.</li>
+
+<li>What, if anything, happens?</li>
+</ol>
+</div>
+<h3 id="the_name_property">The name property</h3>
+
+<p>When you clicked the submit button on the basic form, you probably noticed the url change to something like:</p>
+
+<pre><code>file:///Users/tomclose/Documents/Coding/html_forms/basic_form.html?name=tom&amp;email=tom%40example.com</code></pre>
+
+<p>the values that you entered into the form now appear in the url. (The strange <code>%40</code> is code for the <code>@</code> character, which isn’t allowed to appear in URLs.)</p>
+
+<p>The following things happened:</p>
+
+<ol>
+<li>The form packaged up the values you gave it. To do this it used the <code>name</code> property of each input tag.</li>
+
+<li>It submitted them to the <strong>same url</strong> you were on.</li>
+
+<li>It did this by appending them to the url as <em>query parameters</em>.</li>
+</ol>
+
+<p>The important thing in deciding how to package the values was the <code>name</code> property of the <code>&lt;input&gt;</code> tag. The tag</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;input</span> <span class='na'>name=</span><span class='s'>&#39;email&#39;</span><span class='nt'>&gt;</span>
+</code></pre></div>
+<p>was converted to the name-value pair <code>email=tom%40example.com</code> in the URL.</p>
+
+<p>You can get a better idea of these stages by looking at the ‘Network’ tab on Chrome’s developer tools:</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Open Chrome’s developer tools and go to the ‘Network’ tab.</li>
+
+<li>Put some new values into the form and press ‘Submit’ again.</li>
+
+<li>Look at the information in the ‘Network’ tab.</li>
+</ol>
+</div>
+<p>You should see something like the following: <img src="/assets/dev_tools_form_submit_get.png" alt="dev tools form submit get" /></p>
+
+<p>There are two <code>GET</code> requests. The first is to the same page, with the field names and their new values as query parameters. The second is to bootstrap - when your browser reloads the page with the new query paramenters, it finds the <code>&lt;link rel='stylesheet' http='bootstrap/css/bootsrap.css' &gt;</code> in the <code>&lt;head&gt;</code> and so fetches that file too.</p>
+
+<p>You can find out more about the first <code>GET</code> request by clicking on the <code>headers</code> tab: <img src="/assets/dev_tools_form_submit.png" alt="dev tools form submit" /></p>
+
+<p>You should be able to see the names and their values from the input elements.</p>
+
+<h3 id="get_and_post">GET and POST</h3>
+
+<p>In the above example we saw that the browser made two <code>GET</code> requests. <code>GET</code> is the most common <em>http verb</em>. It describes the normal way your browser asks for a webpage (and CSS files, js files, images etc.).</p>
+
+<p>The most important thing about <code>GET</code> requests is that they <strong>shouldn’t change any values on the server</strong>. For this reason they’re not usually used for form submissions, which are generally for providing new data to the server.</p>
+
+<p>We can change the form to submit using a <code>POST</code> request instead.</p>
+<div class='highlight'><pre><code class='html'>    <span class='nt'>&lt;form</span> <span class='na'>method=</span><span class='s'>&#39;post&#39;</span><span class='nt'>&gt;</span>
+</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Change <code>basic_form.html</code> to submit via a post request.</li>
+
+<li>Reload the page, fill in some new values and resubmit the form.</li>
+
+<li>What happens? Have a look in the ‘Network’ section of developer tools.</li>
+</ol>
+</div>
+<p>You should notice that this time <strong>the URL doesn’t change</strong>. When a form is submitted with a <code>POST</code> method the parameters are packaged up and sent along in the <code>headers</code>, instead of being put in the url. You can check this out in Developer tools:</p>
+
+<p><img src="/assets/dev_tools_form_submit_post.png" alt="dev tools form submit post" /></p>
+
+<p>You can see the name and values have been packaged into a payload.</p>
+
+<p><img src="/assets/dev_tools_post_payload.png" alt="form submit payload" /></p>
+
+<p><strong>Warning:</strong> Just because POST parameters aren’t sent in the URL <strong>doesn’t</strong> mean they are private. Unless you are using https, anyone watching your traffic can read all the information you’re submitting.</p>
+
+<h3 id="submitting_to_a_different_url">Submitting to a different url</h3>
+
+<p>So far all our requests have been to the URL we were on. On the whole, this isn’t too useful. It’s easy to change though:</p>
+<div class='highlight'><pre><code class='html'>    <span class='nt'>&lt;form</span> <span class='na'>method=</span><span class='s'>&#39;post&#39;</span> <span class='na'>action=</span><span class='s'>&#39;thanks.html&#39;</span><span class='nt'>&gt;</span>
+</code></pre></div>
+<p>By setting the <code>action</code> attribute of the <code>form</code> tag we specify the URL to submit the form to.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Set the form in <code>basic_form.html</code> to submit to <code>thanks.html</code>.</li>
+
+<li>Refresh and resubmit the form.</li>
+
+<li>What happens? Where has your data gone?</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="2_google_analytics">
+	
+
+		<h2>Google Analytics</h2>
+		
+<p>Google Analytics is an analytics service provided for free by Google. It allows you get an overview of how many people are visiting your site, where they come from, what they do, and much more.</p>
+
+<h3 id="google_analytics_vs_mixpanelkissmetrics">Google Analytics vs. Mixpanel/Kissmetrics</h3>
+
+<p>There are many other analytics services out there. <a href="https://mixpanel.com/">Mixpanel</a> and <a href="https://www.kissmetrics.com/">Kissmetrics</a> are two of the most well-known.</p>
+
+<p>Kissmetrics seems to be very advanced. They provide a lot of good material on how to use analytics (especially kissmetrics!) through the Kissmetrics blogs and through regular webinars. These are well worth having a look at/signing up for. Kissmetrics will allow you to track individuals from their first visit to your site, through to signing up and any subsequent actions. You can get excellent insights into where your most valuable users come from. Kissmetrics is expensive though - their cheapest plan is $150/month.</p>
+
+<p>Mixpanel also focusses on tracking individual users. It seems most suited to when you have an app with users who log in. You can add tracking events to certain user actions. Mixpanel has a handy free plan to get you started.</p>
+
+<p>Google Analytics seems to focus mostly on aggregated statistics rather than individual users: it’s perfect for a landing page, where you want to track numbers and percentages but doesn’t offer the same amount of control for tracking user interaction with your app.</p>
+
+<p>That said, Google Analytics is in the process of a major upgrade to ‘Universal Analytics’. This should make it possible to track on a user-level more like Mixpanel or Kissmetrics.</p>
+
+<h3 id="setting_up_google_analytics">Setting up Google Analytics</h3>
+
+<p>To use Google Analytics you need to place a snippet of javascript (that they provide) on each of the HTML pages on your site. When a user visits the page, the javascript sends a message to the Google Analytics site logging the visit.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>In your landing page team:</p>
+
+<ol>
+<li>Have one team member set up a <a href='http://www.google.com/analytics/'>Google Analytics</a> account. You want to choose the default ‘Universal Analytics’ option.</li>
+
+<li>In the Admin section, create a new account for your landing page.</li>
+
+<li>Following the instructions, install the analytics code on all the pages of your site.</li>
+
+<li>Push your changes up to the <code>gh-pages</code> branch on GitHub.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="3_google_forms">
+	
+
+		<h2>Google forms trick</h2>
+		
+<p>In order to have a working form on a website there needs to be somewhere for the information to go when the user clicks submit. So far we have only looked at <em>static</em> webpages: we have a dumb server that just hands out our hand-created HTML and CSS files. We have no way of accepting information from the user.</p>
+
+<p>Later in the course we will build <em>dynamic</em> sites, using Ruby on Rails. In a <em>dynamic</em> site the server builds the pages depending on information stored in a database and details provided by the user. When we have a dynamic site we will just submit the form information back to the server.</p>
+
+<p>In the meantime we will use a trick to submit the data from our form to a Google spreadsheet. We’ll be using our server (GitHub pages) to provide the form, but Google’s servers (for their spreadsheet) to collect the information. We’ll be roughly following the instructions from the <a href="http://morning.am/tutorials/how-to-style-google-forms/">morning.am google form post</a>. You might want to read this through first!</p>
+
+<h3 id="setting_up_a_google_form">Setting up a Google form</h3>
+
+<p>To set up a Google form you need a Google drive account. When you have one:</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Log in to Google drive.</li>
+
+<li>Create a form. <img alt='Create Google form.' src='/assets/google_drive_create_form.png' /></li>
+
+<li>Add a few text fields (e.g. name, email) to your form. <img alt='Google form add fields' src='/assets/google_form_add_questions.png' /></li>
+
+<li>Go to view the live form. <img alt='View live form' src='/assets/google_form_view_live.png' /></li>
+
+<li>Inspect the page source. Find the bit relating to the form.</li>
+</ol>
+</div>
+<p>The bit of source relating to the form should look something like this:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;form</span> <span class='na'>action=</span><span class='s'>&quot;https://docs.google.com/forms/d/16faBBpyeqEBbHDyhM2K6s0i6UXBckz9vOQGwKrJKyN0/formResponse&quot;</span> <span class='na'>method=</span><span class='s'>&quot;POST&quot;</span> <span class='na'>id=</span><span class='s'>&quot;ss-form&quot;</span> <span class='na'>target=</span><span class='s'>&quot;_self&quot;</span> <span class='na'>onsubmit=</span><span class='s'>&quot;&quot;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;ol</span> <span class='na'>style=</span><span class='s'>&quot;padding-left: 0&quot;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-form-question errorbox-good&quot;</span><span class='nt'>&gt;</span>
+      <span class='nt'>&lt;div</span> <span class='na'>dir=</span><span class='s'>&quot;ltr&quot;</span> <span class='na'>class=</span><span class='s'>&quot;ss-item  ss-text&quot;</span><span class='nt'>&gt;</span>
+        <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-form-entry&quot;</span><span class='nt'>&gt;</span>
+          <span class='nt'>&lt;label</span> <span class='na'>class=</span><span class='s'>&quot;ss-q-item-label&quot;</span> <span class='na'>for=</span><span class='s'>&quot;entry_1087713693&quot;</span><span class='nt'>&gt;</span>
+            <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-q-title&quot;</span><span class='nt'>&gt;</span>Name<span class='nt'>&lt;/div&gt;</span>
+            <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-q-help ss-secondary-text&quot;</span> <span class='na'>dir=</span><span class='s'>&quot;ltr&quot;</span><span class='nt'>&gt;</span>
+            <span class='nt'>&lt;/div&gt;</span>
+          <span class='nt'>&lt;/label&gt;</span>
+          <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;text&quot;</span> <span class='na'>name=</span><span class='s'>&quot;entry.1087713693&quot;</span> <span class='na'>value=</span><span class='s'>&quot;&quot;</span> <span class='na'>class=</span><span class='s'>&quot;ss-q-short&quot;</span> <span class='na'>id=</span><span class='s'>&quot;entry_1087713693&quot;</span> <span class='na'>dir=</span><span class='s'>&quot;auto&quot;</span><span class='nt'>&gt;</span>
+        <span class='nt'>&lt;/div&gt;</span>
+      <span class='nt'>&lt;/div&gt;</span>
+    <span class='nt'>&lt;/div&gt;</span>
+    <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-form-question errorbox-good&quot;</span><span class='nt'>&gt;</span>
+      <span class='nt'>&lt;div</span> <span class='na'>dir=</span><span class='s'>&quot;ltr&quot;</span> <span class='na'>class=</span><span class='s'>&quot;ss-item  ss-text&quot;</span><span class='nt'>&gt;</span>
+        <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-form-entry&quot;</span><span class='nt'>&gt;</span>
+          <span class='nt'>&lt;label</span> <span class='na'>class=</span><span class='s'>&quot;ss-q-item-label&quot;</span> <span class='na'>for=</span><span class='s'>&quot;entry_1239878056&quot;</span><span class='nt'>&gt;</span>
+            <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-q-title&quot;</span><span class='nt'>&gt;</span>Email
+            <span class='nt'>&lt;/div&gt;</span>
+            <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-q-help ss-secondary-text&quot;</span> <span class='na'>dir=</span><span class='s'>&quot;ltr&quot;</span><span class='nt'>&gt;&lt;/div&gt;</span>
+          <span class='nt'>&lt;/label&gt;</span>
+          <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;text&quot;</span> <span class='na'>name=</span><span class='s'>&quot;entry.1239878056&quot;</span> <span class='na'>value=</span><span class='s'>&quot;&quot;</span> <span class='na'>class=</span><span class='s'>&quot;ss-q-short&quot;</span> <span class='na'>id=</span><span class='s'>&quot;entry_1239878056&quot;</span> <span class='na'>dir=</span><span class='s'>&quot;auto&quot;</span><span class='nt'>&gt;</span>
+        <span class='nt'>&lt;/div&gt;</span>
+      <span class='nt'>&lt;/div&gt;</span>
+    <span class='nt'>&lt;/div&gt;</span>
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;hidden&quot;</span> <span class='na'>name=</span><span class='s'>&quot;draftResponse&quot;</span> <span class='na'>value=</span><span class='s'>&quot;[]&quot;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;hidden&quot;</span> <span class='na'>name=</span><span class='s'>&quot;pageHistory&quot;</span> <span class='na'>value=</span><span class='s'>&quot;0&quot;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-item ss-navigate&quot;</span><span class='nt'>&gt;</span>
+      <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-form-entry&quot;</span> <span class='na'>id=</span><span class='s'>&quot;navigation-buttons&quot;</span> <span class='na'>dir=</span><span class='s'>&quot;ltr&quot;</span> <span class='na'>style=</span><span class='s'>&quot;display: inline-block&quot;</span><span class='nt'>&gt;</span>
+        <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;submit&quot;</span> <span class='na'>name=</span><span class='s'>&quot;submit&quot;</span> <span class='na'>value=</span><span class='s'>&quot;Submit&quot;</span> <span class='na'>id=</span><span class='s'>&quot;ss-submit&quot;</span><span class='nt'>&gt;</span>
+        <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;ss-secondary-text&quot;</span><span class='nt'>&gt;</span>Never submit passwords through Google Forms.<span class='nt'>&lt;/div&gt;</span>
+      <span class='nt'>&lt;/div&gt;</span>
+    <span class='nt'>&lt;/div&gt;</span>
+  <span class='nt'>&lt;/ol&gt;</span>
+<span class='nt'>&lt;/form&gt;</span>
+</code></pre></div>
+<h3 id="create_your_own_form">Create your own form</h3>
+
+<p>You’re now going to take the important bits from the form that Google created and create your own form containing them. The important bits are:</p>
+
+<ul>
+<li>The form <code>action</code>.</li>
+
+<li>The form <code>method</code> (which should be ‘POST’).</li>
+
+<li>The <code>name</code>s (and <code>type</code>s) from each of the input elements.</li>
+</ul>
+
+<p>If we copy all of these we will end up submitting the same parameters to the same place and our responses will be recorded in the spreadsheet.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Create your own form using the ‘important bits’ of the Google form.</p>
+
+</div>
+<p>It should look something like this:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;form</span> <span class='na'>action=</span><span class='s'>&quot;https://docs.google.com/forms/d/16faBBpyeqEBbHDyhM2K6s0i6UXBckz9vOQGwKrJKyN0/formResponse&quot;</span> <span class='na'>method=</span><span class='s'>&quot;POST&quot;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;text&quot;</span> <span class='na'>name=</span><span class='s'>&quot;entry.1087713693&quot;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;text&quot;</span> <span class='na'>name=</span><span class='s'>&quot;entry.1239878056&quot;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;submit&quot;</span> <span class='na'>name=</span><span class='s'>&quot;submit&quot;</span> <span class='na'>value=</span><span class='s'>&quot;Submit&quot;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;/form&gt;</span>
+</code></pre></div>
+<p>When you submit this form from your browser, you should end up at the Google ‘form submitted’ screen and your response should be in the spreadsheet.</p>
+
+<p><img src="/assets/google_form_response.png" alt="Google form response" /></p>
+
+<h3 id="redirecting_the_submission">Redirecting the submission</h3>
+
+<p>It isn’t ideal that after the submission the user is sent to a Google ‘form submitted’ page. Fortunately it is possible to change this. Again, following the instructions from the <a href="http://morning.am/tutorials/how-to-style-google-forms/">morning.am google form post</a>:</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Add the required iframe and javascript snippet to redirect your form after submission, from the <a href='http://morning.am/tutorials/how-to-style-google-forms/'>morning.am google form post</a>.</p>
+
+</div>
+<p>It should be something like this:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;script </span><span class='na'>type=</span><span class='s'>&quot;text/javascript&quot;</span><span class='nt'>&gt;</span><span class='kd'>var</span> <span class='nx'>submitted</span><span class='o'>=</span><span class='kc'>false</span><span class='p'>;</span><span class='nt'>&lt;/script&gt;</span>
+<span class='nt'>&lt;iframe</span> <span class='na'>name=</span><span class='s'>&quot;hidden_iframe&quot;</span> <span class='na'>id=</span><span class='s'>&quot;hidden_iframe&quot;</span> <span class='na'>style=</span><span class='s'>&quot;display:none;&quot;</span> <span class='na'>onload=</span><span class='s'>&quot;if(submitted) {window.location=&#39;thanks.html&#39;;}&quot;</span><span class='nt'>&gt;&lt;/iframe&gt;</span>
+
+<span class='nt'>&lt;form</span> <span class='na'>action=</span><span class='s'>&quot;https://docs.google.com/forms/d/16faBBpyeqEBbHDyhM2K6s0i6UXBckz9vOQGwKrJKyN0/formResponse&quot;</span> <span class='na'>method=</span><span class='s'>&quot;POST&quot;</span> <span class='na'>target=</span><span class='s'>&quot;hidden_iframe&quot;</span> <span class='na'>onsubmit=</span><span class='s'>&quot;submitted=true;&quot;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;text&quot;</span> <span class='na'>name=</span><span class='s'>&quot;entry.1087713693&quot;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;text&quot;</span> <span class='na'>name=</span><span class='s'>&quot;entry.1239878056&quot;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;submit&quot;</span> <span class='na'>name=</span><span class='s'>&quot;submit&quot;</span> <span class='na'>value=</span><span class='s'>&quot;Submit&quot;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;/form&gt;</span>
+</code></pre></div>
+<p>Don’t worry about too much about how this works at this stage. When the user submits the form, they should now be sent to your <code>thanks.html</code> page.</p>
+
+<h3 id="a_few_things_about_google_forms">A few things about Google forms</h3>
+
+<p>Two things to know about Google forms:</p>
+
+<ol>
+<li>You need to check that your form is accepting responses. On Form &gt; Responses make sure that ‘Accepting Responses’ is ticked.</li>
+
+<li>You can set it up to notify you when someone fills in the form. On <em>the spreadsheet for</em> your form go to Tools &gt; Notification Rules.</li>
+</ol>
+
+	</div>
+
+	
+	<div class="tab-pane " id="4_more_elements">
+	
+
+		<h2>More form elements</h2>
+		<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Open <code>form_elements.html</code> in Sublime Text and in Chrome.</li>
+
+<li>Refer to both as you read through this page.</li>
+</ol>
+</div>
+<p>So far we have only looked at text field elements. As you’re probably aware from experience, there are many other options for html form fields. Here are some of the most common:</p>
+
+<h3 id="textarea">Textarea</h3>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;textarea</span> <span class='na'>name=</span><span class='s'>&#39;feedback&#39;</span> <span class='na'>rows=</span><span class='s'>&quot;3&quot;</span><span class='nt'>&gt;&lt;/textarea&gt;</span>
+</code></pre></div>
+<p>A textarea is like a text field, except is is expandable.</p>
+
+<h3 id="password_field">Password field</h3>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;password&#39;</span> <span class='na'>name=</span><span class='s'>&#39;user_password&#39;</span><span class='nt'>&gt;</span>
+</code></pre></div>
+<p>Password fields obscure your input as you type. They <strong>do not</strong> encrypt the value that was input - the password will be sent in plain text as a normal name-value pair in the payload. In particular, <strong>if you’re using http, anyone snooping on the line can read your password</strong>. If you want to be secure you have to use https.</p>
+
+<h3 id="radio_buttons_and_checkboxes">Radio buttons and checkboxes</h3>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- radio buttons --&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;radio&#39;</span> <span class='na'>name=</span><span class='s'>&#39;laptop-type&#39;</span> <span class='na'>value=</span><span class='s'>&#39;windows&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;radio&#39;</span> <span class='na'>name=</span><span class='s'>&#39;laptop-type&#39;</span> <span class='na'>value=</span><span class='s'>&#39;mac&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;radio&#39;</span> <span class='na'>name=</span><span class='s'>&#39;laptop-type&#39;</span> <span class='na'>value=</span><span class='s'>&#39;linux&#39;</span><span class='nt'>&gt;</span>
+
+<span class='c'>&lt;!-- checkboxes --&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;checkbox&#39;</span> <span class='na'>name=</span><span class='s'>&#39;languages-known&#39;</span> <span class='na'>value=</span><span class='s'>&#39;html&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;checkbox&#39;</span> <span class='na'>name=</span><span class='s'>&#39;languages-known&#39;</span> <span class='na'>value=</span><span class='s'>&#39;css&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;checkbox&#39;</span> <span class='na'>name=</span><span class='s'>&#39;languages-known&#39;</span> <span class='na'>value=</span><span class='s'>&#39;ruby&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;checkbox&#39;</span> <span class='na'>name=</span><span class='s'>&#39;languages-known&#39;</span> <span class='na'>value=</span><span class='s'>&#39;javascript&#39;</span><span class='nt'>&gt;</span>
+</code></pre></div>
+<p>Radio buttons and checkboxes are similar:</p>
+
+<ul>
+<li>You have multiple options linked by having the same name.</li>
+
+<li>Each option has a <code>value</code> which will be used in the name-value pair.</li>
+</ul>
+
+<p>They are different in that:</p>
+
+<ul>
+<li>In a group of radio buttons only one can be selected.</li>
+
+<li>In a group of checkboxes you can select zero, one or many.</li>
+
+<li>If you select multiple checkboxes a name-value pair will be created for each one.</li>
+</ul>
+
+<h3 id="select_boxes">Select boxes</h3>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;select</span> <span class='na'>name=</span><span class='s'>&#39;fruits&#39;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;option</span> <span class='na'>value=</span><span class='s'>&#39;banana&#39;</span><span class='nt'>&gt;</span>banana<span class='nt'>&lt;/option&gt;</span>
+    <span class='nt'>&lt;option</span> <span class='na'>value=</span><span class='s'>&#39;apple&#39;</span><span class='nt'>&gt;</span>apple<span class='nt'>&lt;/option&gt;</span>
+    <span class='nt'>&lt;option</span> <span class='na'>value=</span><span class='s'>&#39;pear&#39;</span><span class='nt'>&gt;</span>pear<span class='nt'>&lt;/option&gt;</span>
+    <span class='nt'>&lt;option</span> <span class='na'>value=</span><span class='s'>&#39;tomato&#39;</span><span class='nt'>&gt;</span>tomato<span class='nt'>&lt;/option&gt;</span>
+<span class='nt'>&lt;/select&gt;</span>
+</code></pre></div>
+<p>Select boxes provide a drop-down list of options. Note how the <code>&lt;select&gt;</code> contains the name and each <code>&lt;option&gt;</code> has a different <code>value</code>.</p>
+
+<h3 id="other_options">Other options</h3>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;color&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;date&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;time&#39;</span><span class='nt'>&gt;</span>
+</code></pre></div>
+<p>There are several other options for html input types. For a complete list see <a href="http://www.w3schools.com/tags/tag_input.asp">here</a>. I don’t know how well supported these ‘other’ types are across browsers - I think they’re probably new in <a href="http://www.html5rocks.com/en/">html5</a>. Probably worth testing in multiple browsers (or googling to find out which browsers support them) before you start relying on them!</p>
+
+<p>For more information about styling forms have a look at the <a href="http://getbootstrap.com/css/#forms">Twitter Bootstrap forms section</a>.</p>
+
+	</div>
+
+	
+	<div class="tab-pane " id="5_homework">
+	
+
+		<h2>Homework</h2>
+		
+<h3 id="add_a_contact_form_to_your_personal_site">Add a contact form to your personal site</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Add a form to collect the email address of people who visit your personal site. It should submit to a google form, which should then send you an email to let you know someone sent you their email address.</p>
+
+</div>
+<h3 id="start_on_the_landing_page_project">Start on the landing page project</h3>
+
+<p>For the final few weeks of the course you will be working on teams to design a landing page.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Form teams of 2-3 to work together.</li>
+
+<li>Read <a href='/ocl_project'>The Brief</a>, which directs you to build a landing page for the coding course. If you have a different idea that you’d rather work on, that’s fine - it just needs to be a landing page for something integrated with a form to collect people’s details.</li>
+
+<li>Make a start on your HTML, CSS and site copy. You’ll have the next two homeworks to work on this, but the more you get done now the better!</li>
+</ol>
+</div>
+	</div>
+
+</div>
+
+</div>
+
+
+
+
+  </div> <!-- /container -->
+
+
+</body>
+</html>

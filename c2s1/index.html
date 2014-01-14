@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Web Fundamentals 4</title>
+
+  
+
+  <meta name="viewport" content="width=device-width">
+  <!-- Twitter bootstrap basic styles -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="css/syntax.css">
+  <!-- Google webfont link -->
+<link href='http://fonts.googleapis.com/css?family=Arvo:700|Titillium+Web:900' rel='stylesheet' type='text/css'>
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="../assets/jquery-1.10.0.js"></script>
+
+  <script type="text/javascript" src='../bootstrap/js/bootstrap.js'></script>
+  <script type="text/javascript" src='../assets/custom.js'></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+function name(d) {
+  return d.name;
+}
+
+var margin = {top: 0, right: 40, bottom: 0, left: 40},
+    width = 720,
+    step = 100;
+
+function tree(leftRoot, rightRoot, outerHeight) {
+  if (arguments.length < 3) outerHeight = rightRoot, rightRoot = null;
+
+  var height = outerHeight - margin.top - margin.bottom;
+
+  var tree = d3.layout.tree()
+      .size([height, 1])
+      .separation(function() { return 1; });
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .style("margin", "1em 0 1em " + -margin.left + "px");
+
+  var g = svg.selectAll("g")
+      .data([].concat(
+        leftRoot ? {type: "left", nodes: tree.nodes(leftRoot)} : [],
+        rightRoot ? {type: "right", nodes: tree.nodes(rightRoot).map(flip), flipped: true} : []
+      ))
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d) { return "translate(" + (!!d.flipped * width + margin.left) + "," + margin.top + ")"; });
+
+  var link = g.append("g")
+      .attr("class", "link")
+    .selectAll("path")
+      .data(function(d) { return tree.links(d.nodes); })
+    .enter().append("path")
+      .attr("class", linkType);
+
+  var node = g.append("g")
+      .attr("class", "node")
+    .selectAll("g")
+      .data(function(d) { return d.nodes; })
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; });
+
+  node.append("rect");
+
+  node.append("text")
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name; })
+      .each(function(d) { d.width = Math.max(32, this.getComputedTextLength() + 12); })
+      .attr("x", function(d) { return d.flipped ? 6 - d.width : 6; });
+
+  node.filter(function(d) { return "join" in d; }).insert("path", "text")
+      .attr("class", "join");
+
+  svg.call(reset);
+
+  function flip(d) {
+    d.depth *= -1;
+    d.flipped = true;
+    return d;
+  }
+
+  return svg;
+}
+
+function linkType(d) {
+  return d.target.type.split(/\s+/).map(function(t) { return "to-" + t; })
+      .concat(d.source.type.split(/\s+/).map(function(t) { return "from-" + t; }))
+      .join(" ");
+}
+
+function reset(svg) {
+  svg.selectAll("*")
+      .style("stroke-opacity", null)
+      .style("fill-opacity", null)
+      .style("display", null);
+
+  var node = svg.selectAll(".node g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d, i) { return "translate(" + d.depth * step + "," + d.x + ")"; });
+
+  node.select("rect")
+      .attr("ry", 6)
+      .attr("rx", 6)
+      .attr("y", -10)
+      .attr("height", 20)
+      .attr("width", function(d) { return d.width; })
+    .filter(function(d) { return d.flipped; })
+      .attr("x", function(d) { return -d.width; });
+
+  node.select(".join")
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.width, x: 0}; })
+        .target(function(d) { return {y: 88, x: d.join * 24}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+
+  svg.selectAll(".link path")
+      .attr("class", linkType)
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.source.depth * step + (d.source.flipped ? -1 : +1) * d.source.width, x: d.source.x}; })
+        .target(function(d) { return {y: d.target.depth * step, x: d.target.x}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+}
+
+
+
+</script>
+
+
+</head>
+<body class="">
+
+  <div class="container">
+
+    <div class="page-header">
+  <h1>Web Fundamentals 4 <small>Collaborative Coding</small></h1>
+</div>
+
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs" id="myTab">
+	
+		
+		<li class="active"><a href="#1_collaboration_publishing" data-toggle="tab">Getting code from Github </a></li>
+		
+	
+		
+		<li><a href="#2_conflicts" data-toggle="tab">Conflicts </a></li>
+		
+	
+		
+		<li><a href="#3_collaborating_using_github" data-toggle="tab">Github collaboration </a></li>
+		
+	
+		
+		<li><a href="#4_joint_project" data-toggle="tab">Joint project </a></li>
+		
+	
+		
+		<li><a href="#5_homework" data-toggle="tab">Homework </a></li>
+		
+	
+</ul>
+
+<div class="tab-content">
+
+	
+	<div class="tab-pane active" id="1_collaboration_publishing">
+	
+
+		<h2>Getting code from Github</h2>
+		
+<h3 id="git_recap">Git recap</h3>
+
+<h3 id="getting_code_from_github">Getting code from github</h3>
+
+<p>In previous sessions we’ve used git to pull code down from github. We’re going to start this session by doing the same again:</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Go to the command line and navigate to your <code>coding_course</code> folder</p>
+</li>
+
+<li>
+<p>Clone the project <a href='https://github.com/tomclose/cfgmt2013_first_site'>https://github.com/tomclose/cfgmt2013_first_site</a>:</p>
+
+<pre><code> $ git clone https://github.com/tomclose/cfgmt2013_first_site toms_site</code></pre>
+</li>
+</ol>
+</div>
+<p>You should now see a new file called <code>toms_site</code> in your <code>coding_course</code> folder, and be able to open <code>toms_site/index.html</code> in your browser. The clone operation has copied a local version of the repository onto your computer.</p>
+
+<p>Git will help you keep this local copy updated. If I’ve made some changes and pushed them up to github, you just need to run</p>
+
+<pre><code>$ git pull</code></pre>
+
+<p>to pull them down onto your laptop.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Open <code>toms_site/index.html</code> in Sublime Text</p>
+</li>
+
+<li>
+<p>Wait for me to make a change and push it to gihub</p>
+</li>
+
+<li>
+<p>Pull down the changes and make sure you can see them in your browser:</p>
+
+<pre><code>$ git pull</code></pre>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="2_conflicts">
+	
+
+		<h2>Conflicts</h2>
+		<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Open <code>toms_site/index.html</code> in your code editor, and change the page heading (inside <code>&amp;lt;h1&amp;gt;</code>) to something of your choosing. (At the same time I’ll also make a change). When you’re done, commit your change to the local repository:</p>
+
+<pre><code> $ git add --all
+ $ git commit -m &amp;quot;Changed heading&amp;quot;</code></pre>
+</li>
+
+<li>
+<p>Wait while I push my own change to the <code>&amp;lt;h1&amp;gt;</code> element.</p>
+</li>
+
+<li>
+<p>Pull down my changes</p>
+
+<pre><code> $ git pull</code></pre>
+</li>
+</ol>
+</div>
+<p>You should now have a message telling you that you have a merge conflict. This is because our two changes have been made at the same time, so git is unabled to work out which is the up-to-date one to keep. If you look in your file you should see things that look like</p>
+
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    &lt;h1 class=&quot;special&quot;&gt;My Page&lt;/h1&gt;
+=======
+    &lt;h1 class=&quot;special&quot;&gt;Tom C's page&lt;/h1&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; d76d5a62894057f9c5a4dce0fe5f25110eddd24f</code></pre>
+
+<p>To fix the merge conflict you need to edit this by hand, picking the version you want and then do:</p>
+
+<pre><code>$ git add --all
+$ git commit -m &quot;Fixed conflicts&quot;</code></pre>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Delete the conflict markers (<code>&amp;lt;&amp;lt;&amp;lt;&amp;lt;</code>, <code>=====</code>, <code>&amp;gt;&amp;gt;&amp;gt;&amp;gt;</code>) from <code>index.html</code> (using Sublime text)</p>
+</li>
+
+<li>
+<p>Delete the version of the heading that you don’t want.</p>
+</li>
+
+<li>
+<p>On the command line:</p>
+
+<pre><code> $ git add --all
+ $ git commit -m &amp;quot;Fixed conflicts&amp;quot;</code></pre>
+</li>
+
+<li>
+<p>To have a look at what you’ve just done:</p>
+
+<pre><code> $ gitk --all</code></pre>
+
+<p>or</p>
+
+<pre><code> $ git log --pretty --graph --oneline</code></pre>
+
+<p>You should see how the two versions branched and came back together.</p>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="3_collaborating_using_github">
+	
+
+		<h2>Github collaboration</h2>
+		
+<p>There are a few options for collaborating with others using Git.</p>
+
+<h3 id="oneway_sharing"> One-way sharing</h3>
+
+<p>As we all know, one-way sharing isn’t really sharing at all. Even so, this is the easiest example to look at - in fact we’ve been doing it almost from the first session of the course.</p>
+
+<p>In one-way sharing, there is one ‘master’ repository on GitHub that everyone can read from, but only one person can write to:</p>
+<div class='row text-center' style='text-align: center;'>
+<img src='/assets/git_one_way_share.png' />
+</div>
+<h3 id="forking">Forking</h3>
+
+<p>One of the options for sharing your changes with me, is for you to publish your repository too. I can then pull your changes down just as you pulled mine.</p>
+<div class='row' style='text-align: center;'>
+<img src='/assets/git_forking.png' />
+</div>
+<p>Notice that this situation is symmetric - my repositories are equivalent to yours. This makes it a suitable model for many open source projects, where the project maintainer might change over time.</p>
+
+<p>Github makes this model easy by providing a ‘forking’ button. Forking is a quick an easy way make a copy of my repository on GitHub so that you can then pull and push to it.</p>
+
+<h3 id="sharing">Sharing</h3>
+
+<p>The other way or collaborating with git is the ‘sharing’ model: one person puts the repository on github and gives other people permissions, so you can all push to the same place.</p>
+<div class='row text-center' style='text-align: center;'>
+<img src='/assets/git_sharing.png' />
+</div>
+<p>To do this on github, go to your forked landing page repository and click on ‘Settings’ on the right hand side. Then go to ‘Collaborators’ and add your team members’ github usernames.</p>
+
+<p><br /></p>
+
+<p>You can find out more about these different workflow option from the <a href="http://git-scm.com/book/en/Distributed-Git-Distributed-Workflows">Git book</a>.</p>
+
+	</div>
+
+	
+	<div class="tab-pane " id="4_joint_project">
+	
+
+		<h2>Joint project</h2>
+		
+<p>The purpose of this project is to create a shared html page to serve as a ‘cheat sheet’ for all the different commands you’ve learnt in the course so far (e.g. <code>ls</code>, <code>git add --all</code> etc.). You will need to be in groups of three.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Person A should set up a new project on their laptop:</p>
+
+<ol>
+<li>Create a new folder called <code>group_cheatsheet</code> in your <code>coding_course</code> folder</li>
+
+<li>Create a file in that folder called <code>index.html</code> with some simple html in it.</li>
+</ol>
+</li>
+
+<li>
+<p>Person A should then set it up as a git repository</p>
+
+<pre><code>$ cd group_cheatsheet
+$ git init
+$ git add --all
+$ git commit -m &amp;quot;Initial import&amp;quot;</code></pre>
+</li>
+
+<li>
+<p>Person A creates a new repo on github. To do this you need to log in at <a href='http://github.com'>github.com</a> and select &quot;Create a new repo&quot;. You should call the repository <code>group_cheatsheet</code>.</p>
+</li>
+
+<li>
+<p>Person A should then push their code up to github following the instructions on github. You want to &quot;Push an existing repository from the command line&quot; - the instructions at the <strong>bottom</strong> of the page. You should end up pasting a command like</p>
+
+<pre><code># Warning: these commands won't work. You need copy the right ones from GitHub.
+git remote add origin https://github.com/username/blah.git
+git push -u origin master</code></pre>
+</li>
+
+<li>
+<p>Person A then needs to add everyone else as collaborators by going to <code>Settings &amp;gt; Collaborators</code> on the repo page</p>
+</li>
+
+<li>
+<p>Everyone else should then clone the project:</p>
+
+<ol>
+<li>
+<p>Go to the repo’s github page</p>
+</li>
+
+<li>
+<p>Copy the <code>ssh</code> link from the box on the page</p>
+</li>
+
+<li>
+<p>In your <code>coding_course</code> folder do</p>
+
+<pre><code>git clone paste_the_repo_link_here</code></pre>
+</li>
+</ol>
+</li>
+
+<li>
+<p>Person B should then download <a href='http://getbootstrap.com/'>Twitter Bootstrap</a> and put it in the <code>group_cheatsheet</code> folder</p>
+</li>
+
+<li>
+<p>Meanwhile Person C should add more content to the page’s html</p>
+</li>
+
+<li>
+<p>Person B should add their changes and push up to github:</p>
+
+<pre><code> git add .
+ git commit -m &amp;quot;Added twitter bootstrap&amp;quot;
+ git push</code></pre>
+</li>
+
+<li>
+<p>Person C should then add their changes and try and push up:</p>
+
+<pre><code> git add .
+ git commit -m &amp;quot;Edits to index.html&amp;quot;
+ git push</code></pre>
+</li>
+
+<li>
+<p>This will probably fail, as C won’t have B’s changes. To fix this Person C needs to pull and merge (the merge will probably happen automatically if you haven’t changed the same files). They should then push again:</p>
+
+<pre><code> git pull
+
+ # fix any merge conflicts if necessary, then add and commit the changes
+
+ git push</code></pre>
+</li>
+
+<li>
+<p>Continue to work on the cheatsheet together!</p>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="5_homework">
+	
+
+		<h2>Homework</h2>
+		
+<h3 id="tell_us_about_your_site">Tell us about your site</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Tell us about your first site by filling in <a href='https://docs.google.com/forms/d/1V8wA--rmXQ8KvPmpooLZEZPwl7Vp64-XRPlOea9rRlU/viewform'>this form</a>. If you’re still having problems getting it to display online or pointing your url to it, ask in the forum!</p>
+
+</div>
+<h3 id="work_on_your_group_cheatsheet">Work on your group cheatsheet</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>Continue to add information to your group cheatsheet. At the very least you should</p>
+
+<ol>
+<li>Have a section for the basic command line commands.</li>
+
+<li>Have a section for the basic git commands.</li>
+
+<li>Have each pushed to the shared repository at least twice by next week.</li>
+</ol>
+</div>
+<h3 id="learn_to_hate_your_track_pad">Learn to hate your track pad</h3>
+
+<p>From now on, try to touch your mouse/trackpad as little as often - it will make you quicker and more effective.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Practise using <code>Cmd-tab</code> (Mac) or <code>Ctrl-tab</code> (Windows) to move between programs.</li>
+
+<li>Practise using <code>Cmd-space</code> (Mac) or ?? (Windows) to open programs by typing their names.</li>
+
+<li>Practise using short cut keys:
+<ul>
+<li><code>Cmd-s</code> (Mac) or <code>Ctrl-s</code> (Windows) for saving</li>
+
+<li><code>Cmd-r</code> (Mac) or <code>Ctrl-r</code> (Windows) to refresh the browser</li>
+</ul>
+</li>
+</ol>
+</div>
+<h3 id="learn_to_love_your_editor">Learn to love your editor</h3>
+
+<p>Over the rest of the course you will be spending a lot of time in Sublime Text. Investing the time to learn to use it more effectively now will pay off!</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>(Optional) Take a look through the <a href='https://tutsplus.com/course/improve-workflow-in-sublime-text-2/'>Sublime text screencasts</a> at Tuts+.</p>
+
+</div>
+	</div>
+
+</div>
+
+</div>
+
+
+
+
+  </div> <!-- /container -->
+
+
+</body>
+</html>

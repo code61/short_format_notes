@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>c3s2</title>
+
+  
+
+  <meta name="viewport" content="width=device-width">
+  <!-- Twitter bootstrap basic styles -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="css/syntax.css">
+  <!-- Google webfont link -->
+<link href='http://fonts.googleapis.com/css?family=Arvo:700|Titillium+Web:900' rel='stylesheet' type='text/css'>
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="../assets/jquery-1.10.0.js"></script>
+
+  <script type="text/javascript" src='../bootstrap/js/bootstrap.js'></script>
+  <script type="text/javascript" src='../assets/custom.js'></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+function name(d) {
+  return d.name;
+}
+
+var margin = {top: 0, right: 40, bottom: 0, left: 40},
+    width = 720,
+    step = 100;
+
+function tree(leftRoot, rightRoot, outerHeight) {
+  if (arguments.length < 3) outerHeight = rightRoot, rightRoot = null;
+
+  var height = outerHeight - margin.top - margin.bottom;
+
+  var tree = d3.layout.tree()
+      .size([height, 1])
+      .separation(function() { return 1; });
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .style("margin", "1em 0 1em " + -margin.left + "px");
+
+  var g = svg.selectAll("g")
+      .data([].concat(
+        leftRoot ? {type: "left", nodes: tree.nodes(leftRoot)} : [],
+        rightRoot ? {type: "right", nodes: tree.nodes(rightRoot).map(flip), flipped: true} : []
+      ))
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d) { return "translate(" + (!!d.flipped * width + margin.left) + "," + margin.top + ")"; });
+
+  var link = g.append("g")
+      .attr("class", "link")
+    .selectAll("path")
+      .data(function(d) { return tree.links(d.nodes); })
+    .enter().append("path")
+      .attr("class", linkType);
+
+  var node = g.append("g")
+      .attr("class", "node")
+    .selectAll("g")
+      .data(function(d) { return d.nodes; })
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; });
+
+  node.append("rect");
+
+  node.append("text")
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name; })
+      .each(function(d) { d.width = Math.max(32, this.getComputedTextLength() + 12); })
+      .attr("x", function(d) { return d.flipped ? 6 - d.width : 6; });
+
+  node.filter(function(d) { return "join" in d; }).insert("path", "text")
+      .attr("class", "join");
+
+  svg.call(reset);
+
+  function flip(d) {
+    d.depth *= -1;
+    d.flipped = true;
+    return d;
+  }
+
+  return svg;
+}
+
+function linkType(d) {
+  return d.target.type.split(/\s+/).map(function(t) { return "to-" + t; })
+      .concat(d.source.type.split(/\s+/).map(function(t) { return "from-" + t; }))
+      .join(" ");
+}
+
+function reset(svg) {
+  svg.selectAll("*")
+      .style("stroke-opacity", null)
+      .style("fill-opacity", null)
+      .style("display", null);
+
+  var node = svg.selectAll(".node g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d, i) { return "translate(" + d.depth * step + "," + d.x + ")"; });
+
+  node.select("rect")
+      .attr("ry", 6)
+      .attr("rx", 6)
+      .attr("y", -10)
+      .attr("height", 20)
+      .attr("width", function(d) { return d.width; })
+    .filter(function(d) { return d.flipped; })
+      .attr("x", function(d) { return -d.width; });
+
+  node.select(".join")
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.width, x: 0}; })
+        .target(function(d) { return {y: 88, x: d.join * 24}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+
+  svg.selectAll(".link path")
+      .attr("class", linkType)
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.source.depth * step + (d.source.flipped ? -1 : +1) * d.source.width, x: d.source.x}; })
+        .target(function(d) { return {y: d.target.depth * step, x: d.target.x}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+}
+
+
+
+</script>
+
+
+</head>
+<body class="">
+
+  <div class="container">
+
+    <div class="page-header">
+  <h1>c3s2 <small></small></h1>
+</div>
+
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs" id="myTab">
+	
+		
+		<li class="active"><a href="#3_templates" data-toggle="tab">HTML templates </a></li>
+		
+	
+		
+		<li><a href="#4_project" data-toggle="tab">Project 1 </a></li>
+		
+	
+</ul>
+
+<div class="tab-content">
+
+	
+	<div class="tab-pane active" id="3_templates">
+	
+
+		<h2>HTML templates</h2>
+		
+<p>So far we’ve just returned text to the browser. It would be better if we could return proper HTML pages. We can do this by using HTML templates.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># in app.rb</span>
+
+<span class='nb'>require</span> <span class='s1'>&#39;sinatra&#39;</span>
+
+<span class='n'>get</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
+    <span class='n'>erb</span> <span class='ss'>:index</span>
+<span class='k'>end</span>
+</code></pre></div><div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/index.erb --&gt;</span>
+
+<span class='cp'>&lt;!DOCTYPE html&gt;</span>
+<span class='nt'>&lt;html&gt;</span>
+<span class='nt'>&lt;head&gt;</span>
+    <span class='nt'>&lt;title&gt;</span>hello<span class='nt'>&lt;/title&gt;</span>
+<span class='nt'>&lt;/head&gt;</span>
+<span class='nt'>&lt;body&gt;</span>
+    <span class='nt'>&lt;h1&gt;</span>hello<span class='nt'>&lt;/h1&gt;</span>
+<span class='nt'>&lt;/body&gt;</span>
+<span class='nt'>&lt;/html&gt;</span>
+</code></pre></div>
+<p>The line <code>erb :index</code> tells sinatra to look for a file called <code>index.erb</code> in a folder called <code>views</code>. It then processes that file using the <code>erb</code> (<strong>e</strong>mbedded <strong>r</strong>u<strong>b</strong>y) templating language and returns the result to the user.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Move into the <code>sinatra1/app2</code> folder.</li>
+
+<li>Run the app with <code>ruby app.rb</code>.</li>
+
+<li>Change the app so that the page it shows says &quot;Hello everyone!&quot; (inside the <code>h1</code>).</li>
+</ol>
+</div>
+<p>The <code>index.erb</code> above isn’t very interesting: it doesn’t have any ruby embedded in it. Let’s look at a slightly better example:</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># in app.rb</span>
+
+<span class='nb'>require</span> <span class='s1'>&#39;sinatra&#39;</span>
+
+<span class='n'>get</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
+    <span class='n'>erb</span> <span class='ss'>:index</span>
+<span class='k'>end</span>
+
+
+<span class='n'>get</span> <span class='s1'>&#39;/:name&#39;</span> <span class='k'>do</span>
+    <span class='vi'>@name</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:name</span><span class='o'>]</span>
+    <span class='n'>erb</span> <span class='ss'>:greet</span>
+<span class='k'>end</span>
+</code></pre></div><div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/greet.erb  --&gt;</span>
+
+<span class='cp'>&lt;!DOCTYPE html&gt;</span>
+<span class='nt'>&lt;html&gt;</span>
+<span class='nt'>&lt;head&gt;</span>
+    <span class='nt'>&lt;title&gt;</span>hello<span class='nt'>&lt;/title&gt;</span>
+<span class='nt'>&lt;/head&gt;</span>
+<span class='nt'>&lt;body&gt;</span>
+    <span class='nt'>&lt;h1&gt;</span>hello <span class='err'>&lt;</span>%= @name %&gt;<span class='nt'>&lt;/h1&gt;</span>
+<span class='nt'>&lt;/body&gt;</span>
+<span class='nt'>&lt;/html&gt;</span>
+</code></pre></div>
+<p>The important bits are:</p>
+
+<ul>
+<li>In <code>app.rb</code> we assign <code>params[:name]</code> to a special type of variable <code>@name</code>. The special type of variable is an <em>instance variable</em> which <strong>has to begin with a single <code>@</code></strong>.</li>
+
+<li>We use the instance variable in the <code>views/greet.erb</code> inside a special erb tag <code>&lt;%= ... %&gt;</code>. The erb templater looks for these tags and interprets the inside as ruby.</li>
+</ul>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Open <code>app2/views/greet.erb</code> and <code>app2/app.rb</code> in Sublime Text.</li>
+
+<li>Change it so that instead of saying &quot;hello tom&quot; it says &quot;Hello Tom!&quot; in the <code>h1</code> (when you visit <a href='http://localhost:4567/tom'>localhost:4567/tom</a>, and similarly for other names).</li>
+
+<li>Change it so that the page title (in the browser bar) is &quot;Greet Tom&quot; (and similarly for other names).</li>
+
+<li>Link twitter bootstrap into your page and add a <code>div class='container'</code> just inside the <code>body</code> so that things look nicer.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_project">
+	
+
+		<h2>Project 1</h2>
+		
+<p>Take a look at <a href="http://foaas.herokuapp.com/">Fuck Off as a Service - FOAAS</a> for example <a href="http://foaas.herokuapp.com/off/boris/dave">foaas.herokuapp.com/off/boris/dave</a> or <a href="http://foaas.herokuapp.com/shakespeare/boris/dave">foaas.herokuapp.com/shakespeare/boris/dave</a>.</p>
+
+<p>Your task is to implement something similar using Sinatra. For example:</p>
+
+<ul>
+<li>An alternative insult site.</li>
+
+<li>A complement site.</li>
+
+<li>.. use your imagination!</li>
+</ul>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Go to <a href='https://github.com/code61/sinatra_project_1'>https://github.com/code61/sinatra_project_1</a> and press the fork button. This will give you your own copy of the project on GitHub.</p>
+</li>
+
+<li>
+<p>Clone your forked version of the repo down onto your laptop (using the <strong>ssh</strong> clone URL on the bottom right of the repo page): in your <code>coding_course</code> folder run</p>
+
+<pre><code> $ git clone paste_the_clone_URL_here</code></pre>
+</li>
+
+<li>
+<p>Use the outline project as a starting point for your work.</p>
+</li>
+
+<li>
+<p>Once you’ve written a simple URL matcher, see if you can write a test for it in <code>tests.rb</code> (by copying examples from class).</p>
+</li>
+
+<li>
+<p>At each stage <code>add</code>, <code>commit</code> and <code>push</code> your changes. (It should have automatically set itself up to push back up to your forked version on github.)</p>
+</li>
+</ol>
+</div>
+<p>Please make this project as good as you can. We’ll be deploying it online next time, so it’ll be nice to have something to be proud of. You will probably want to consider adding bootstrap to your HTML templates and things.</p>
+
+	</div>
+
+</div>
+
+</div>
+
+
+
+
+  </div> <!-- /container -->
+
+
+</body>
+</html>

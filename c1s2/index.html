@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Web Fundamentals 2</title>
+
+  
+
+  <meta name="viewport" content="width=device-width">
+  <!-- Twitter bootstrap basic styles -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="css/syntax.css">
+  <!-- Google webfont link -->
+<link href='http://fonts.googleapis.com/css?family=Arvo:700|Titillium+Web:900' rel='stylesheet' type='text/css'>
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="../assets/jquery-1.10.0.js"></script>
+
+  <script type="text/javascript" src='../bootstrap/js/bootstrap.js'></script>
+  <script type="text/javascript" src='../assets/custom.js'></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+function name(d) {
+  return d.name;
+}
+
+var margin = {top: 0, right: 40, bottom: 0, left: 40},
+    width = 720,
+    step = 100;
+
+function tree(leftRoot, rightRoot, outerHeight) {
+  if (arguments.length < 3) outerHeight = rightRoot, rightRoot = null;
+
+  var height = outerHeight - margin.top - margin.bottom;
+
+  var tree = d3.layout.tree()
+      .size([height, 1])
+      .separation(function() { return 1; });
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .style("margin", "1em 0 1em " + -margin.left + "px");
+
+  var g = svg.selectAll("g")
+      .data([].concat(
+        leftRoot ? {type: "left", nodes: tree.nodes(leftRoot)} : [],
+        rightRoot ? {type: "right", nodes: tree.nodes(rightRoot).map(flip), flipped: true} : []
+      ))
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d) { return "translate(" + (!!d.flipped * width + margin.left) + "," + margin.top + ")"; });
+
+  var link = g.append("g")
+      .attr("class", "link")
+    .selectAll("path")
+      .data(function(d) { return tree.links(d.nodes); })
+    .enter().append("path")
+      .attr("class", linkType);
+
+  var node = g.append("g")
+      .attr("class", "node")
+    .selectAll("g")
+      .data(function(d) { return d.nodes; })
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; });
+
+  node.append("rect");
+
+  node.append("text")
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name; })
+      .each(function(d) { d.width = Math.max(32, this.getComputedTextLength() + 12); })
+      .attr("x", function(d) { return d.flipped ? 6 - d.width : 6; });
+
+  node.filter(function(d) { return "join" in d; }).insert("path", "text")
+      .attr("class", "join");
+
+  svg.call(reset);
+
+  function flip(d) {
+    d.depth *= -1;
+    d.flipped = true;
+    return d;
+  }
+
+  return svg;
+}
+
+function linkType(d) {
+  return d.target.type.split(/\s+/).map(function(t) { return "to-" + t; })
+      .concat(d.source.type.split(/\s+/).map(function(t) { return "from-" + t; }))
+      .join(" ");
+}
+
+function reset(svg) {
+  svg.selectAll("*")
+      .style("stroke-opacity", null)
+      .style("fill-opacity", null)
+      .style("display", null);
+
+  var node = svg.selectAll(".node g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d, i) { return "translate(" + d.depth * step + "," + d.x + ")"; });
+
+  node.select("rect")
+      .attr("ry", 6)
+      .attr("rx", 6)
+      .attr("y", -10)
+      .attr("height", 20)
+      .attr("width", function(d) { return d.width; })
+    .filter(function(d) { return d.flipped; })
+      .attr("x", function(d) { return -d.width; });
+
+  node.select(".join")
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.width, x: 0}; })
+        .target(function(d) { return {y: 88, x: d.join * 24}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+
+  svg.selectAll(".link path")
+      .attr("class", linkType)
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.source.depth * step + (d.source.flipped ? -1 : +1) * d.source.width, x: d.source.x}; })
+        .target(function(d) { return {y: d.target.depth * step, x: d.target.x}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+}
+
+
+
+</script>
+
+
+</head>
+<body class="">
+
+  <div class="container">
+
+    <div class="page-header">
+  <h1>Web Fundamentals 2 <small>Git and CSS</small></h1>
+</div>
+
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs" id="myTab">
+	
+		
+		<li class="active"><a href="#1_using_git" data-toggle="tab">Intro to Git </a></li>
+		
+	
+		
+		<li><a href="#2_pushing_to_github" data-toggle="tab">Pushing code to Github </a></li>
+		
+	
+		
+		<li><a href="#3_css" data-toggle="tab">CSS </a></li>
+		
+	
+		
+		<li><a href="#4_selectors" data-toggle="tab">Selectors and Attributes </a></li>
+		
+	
+		
+		<li><a href="#5_homework" data-toggle="tab">Homework </a></li>
+		
+	
+</ul>
+
+<div class="tab-content">
+
+	
+	<div class="tab-pane active" id="1_using_git">
+	
+
+		<h2>Intro to Git</h2>
+		
+<p>Git is a version control system. It allows you to keep the entire history of your code, and makes it easy to share and collaborate with others.</p>
+
+<h3 id="setting_up_a_git_repo">Setting up a git repo</h3>
+
+<p>Git works on a folder level. To set up a folder to work with git you need to navigate to that folder in the command line and run.</p>
+
+<pre><code>$ git init</code></pre>
+
+<p>To see what this has done do:</p>
+
+<pre><code>$ ls -a</code></pre>
+
+<p>The <code>-a</code> is a flag which tells the <code>ls</code> command to show hidden files and folders. You should see a folder called <code>.git</code> in the results. If you want you could move into this folder, and have a look around (and then move out again).</p>
+
+<pre><code>$ cd .git
+$ ls
+$ cd ..</code></pre>
+
+<p>All the data to allow git to version control your code will be stored inside this hidden folder. If you ever want to ‘un-version-control’ your code all you have to do is delete this folder.</p>
+
+<h3 id="excluding_some_files">Excluding some files</h3>
+
+<p>There are some other hidden files (e.g. those used by your operating system) that you don’t want to be version controlled. An example of these is the <code>.DS_Store</code> file on macs. We’ll talk more about this later - for now we’ll just quickly exclude them from our repository.</p>
+
+<p>To do this you need to create a file called <code>.gitignore</code> in your the folder containing your repo and put the line <code>.DS_Store</code> in it. You can do this with sublime text:</p>
+
+<ol>
+<li>Open Sublime Text and write <code>.DS_Store</code> in a new window.</li>
+
+<li>Save this file as <code>.gitignore</code> in your repo folder.</li>
+</ol>
+
+<p>If you’re on Windows you don’t need to worry about this.</p>
+
+<h3 id="adding_files_to_the_repository">Adding files to the repository</h3>
+
+<p>Suppose we’ve now created a file called <code>index.html</code> in the folder. It’s in the folder but currently isn’t being tracked by git. You can see this by doing <code>git status</code>:</p>
+
+<pre><code>$ git status
+
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+#
+#   index.html
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
+
+<p>Adding files to a git repository is actually a two-stage process: you have to <strong>add</strong> them and then <strong>commit</strong> them. This is useful when you get more advanced, but we’ll usually do those things together for the time being. To add the changes to the repository do:</p>
+
+<pre><code>$ git add --all
+$ git status
+
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+#
+#   new file:   index.html
+#</code></pre>
+
+<p>It is possible to add files one at a time - again, useful when you get more advanced. For the time being the <code>--all</code> flag tells git to add everything to the folder. In other tutorials you might see <code>git add .</code>. This also adds everything in the folder <strong>but doesn’t remove files you have deleted</strong>. I’d encourage you to stick with <code>git add --all</code> for the time being.</p>
+
+<p>We will now commit these changes to our repository, along with a description of the changes we have made.</p>
+
+<pre><code>$ git commit -m &quot;Created index.html&quot;
+
+[master (root-commit) e91b6be] Created index.html
+0 files changed
+create mode 100644 index.html</code></pre>
+<div class='alert alert-error'>
+<h4>How to get out of vim</h4>
+
+<p>If you forget to supply a message with the <code>-m</code> tag git will drop you into a text editor (probably vim) so that you can write one. If this happens you will need to do the following:</p>
+
+<ul>
+<li>Press <code>i</code> to get into insert mode, so you can write.</li>
+
+<li>Write your message.</li>
+
+<li>Press <code>esc</code> then <code>:</code> then <code>wq</code> then <code>Enter</code>.</li>
+
+<li>Never forget your message again</li>
+
+<li>… or make a note of these instructions!</li>
+</ul>
+</div>
+<p>You can check that the commit worked with git status:</p>
+
+<pre><code>$ git status
+
+# On branch master
+nothing to commit (working directory clean)</code></pre>
+
+<p>You can see your commit by doing</p>
+
+<pre><code>$ git log
+
+commit c63f9bbea211a0240fa1b13287a2aaf5a6d8d81a
+Author: Tom Close &lt;tom.close@example.com&gt;
+Date:   Tue Jul 2 14:19:30 2013 +0100
+
+    Created index.html</code></pre>
+
+<p>or you can get a nice diagram showing your repo by doing</p>
+
+<pre><code>$ gitk --all</code></pre>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>Enable your <code>first_site</code> folder as a git repository:</p>
+
+<ol>
+<li>
+<p>Navigate to the <code>first_site</code> folder in the command line</p>
+</li>
+
+<li>
+<p>Type</p>
+
+<pre><code> $ git init</code></pre>
+</li>
+
+<li>
+<p><strong>If you are on a mac</strong>, tell git to ignore your <code>.DS_Store</code> files:</p>
+
+<ol>
+<li>Open Sublime Text and write <code>.DS_Store</code> in a new window.</li>
+
+<li>Save this file as <code>.gitignore</code> in your <code>first_site</code> folder.</li>
+</ol>
+</li>
+
+<li>
+<p>Do a git status to see what it says</p>
+
+<pre><code> $ git status</code></pre>
+</li>
+
+<li>
+<p>Commit your changes to the repository:</p>
+
+<pre><code> $ git add --all
+ $ git commit -m &amp;quot;Created index.html&amp;quot;</code></pre>
+</li>
+
+<li>
+<p>Do a git status and then a git log to see what has happened:</p>
+
+<pre><code> $ git status
+ $ git log</code></pre>
+</li>
+
+<li>
+<p>Make some change to index.html (in Sublime Text)</p>
+</li>
+
+<li>
+<p>Go back to the command line and do a git status:</p>
+
+<pre><code> $ git status</code></pre>
+</li>
+
+<li>
+<p>Add and commit your changes but forget the <code>-m</code>:</p>
+
+<pre><code> $ git add --all
+ $ git commit</code></pre>
+</li>
+
+<li>
+<p>Use the warning above to add you commit message and escape from vim</p>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="2_pushing_to_github">
+	
+
+		<h2>Pushing code to Github</h2>
+		
+<p>Github is a site which will host a git repo online for you, making it easy to collaborate with others. We’ll now see how to put some code online.</p>
+
+<p>Go to github, login, and click “Create New Repo” in the top left hand corner.</p>
+
+<p><img src="/assets/create_repo.png" alt="Creating a repo on GitHub" /></p>
+
+<p>Follow the instructions, calling it something like <code>first_site</code>. <strong>Do not</strong> click the box which says ‘Create a readme with this repository’. You’ll get to a page when it’ll describe how to get your code online. You want to follow the instructions for “Pushing an existing repository to github”.</p>
+
+<p><img src="/assets/push_repo_github.png" alt="Push repo to GitHub" /></p>
+
+<p>If you’ve set up ssh keys, go for the ssh option, if not, go for https. You should end up doing something like:</p>
+
+<pre><code>$ git remote add origin git@github.com/yourusername/first_site.git
+$ git push -u origin master</code></pre>
+
+<p>You might now be prompted to add your github username and password (if you’re doing the https method). If all goes well, when you go to github you should see the <code>first_site</code> folder containing your html file.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>Push your <code>first_site</code> folder to GitHub!</p>
+
+<ol>
+<li>Create the new repository on GitHub. (<strong>Don’t</strong> create it with a README.)</li>
+
+<li>Follow the instructions for &quot;Pushing an existing repository to github&quot; to push your repository up.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="3_css">
+	
+
+		<h2>CSS</h2>
+		
+<p>Last time we looked at HTML, and saw how this was used to mark up the information in a webpage. Right now, your HTML pages don’t look very good, as you haven’t given any styling information. The way to do this is using CSS (Cascading Style Sheets).</p>
+
+<p>CSS is a way of separating the way your page looks from the content that it displays. As an extreme example of this check out <a href="http://www.csszengarden.com/">CSS Zen Garden</a> - by clicking on the links you completely change how the site looks, but the html remains unchanged.</p>
+
+<p>There are a few ways to include CSS in an HTML file:</p>
+
+<ol>
+<li>Put the css inline in the html.</li>
+
+<li>Put the css in a <code>&lt;style&gt;..&lt;/style&gt;</code> section in the <code>&lt;head&gt;</code></li>
+
+<li>Link to a separate <code>.css</code> file in the <code>&lt;head&gt;</code></li>
+</ol>
+
+<p>The first way is sometimes useful, but defeats the point of using CSS to separate presentation and information. The second way is a bit better and is what we’ll do now - it’s nice to have everything in a single file when you’re just starting. The third way is the best. We’ll look at how to do this next time.</p>
+
+<h3 id="css_in_the_">CSS in the <code>&lt;head&gt;</code></h3>
+
+<p>If you’re putting your CSS in the <code>&lt;head&gt;</code> of your html file (option 2) it should look something like this:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;head&gt;</span>
+  <span class='nt'>&lt;title&gt;</span>Some title<span class='nt'>&lt;/title&gt;</span>
+  <span class='nt'>&lt;style&gt;</span>
+    <span class='nt'>h1</span> <span class='p'>{</span> <span class='k'>color</span><span class='o'>:</span> <span class='nb'>red</span><span class='p'>;</span> <span class='p'>}</span>
+  <span class='nt'>&lt;/style&gt;</span>
+<span class='nt'>&lt;/head&gt;</span>
+</code></pre></div>
+<p>The bit inside the <code>&lt;style&gt;</code> tags is CSS. The <code>h1</code> bit specifies the tag that will be styled. The bit inside the <code>{ ... }</code> specifies the styles that will be applied. Here we change the colour of the <code>h1</code> text red.</p>
+
+<p>If you save the changes to the html file, then open (or refresh) the page in your browser you should see the changes. By opening the developer tools, and hovering over the <code>h1</code> you should be able to see your css rule at the side.</p>
+
+<h3 id="a_few_more_properties">A few more properties</h3>
+
+<p>In the example above we changed the color of the <code>h1</code> element. Here are a few examples of other simple properties you can try out while you’re getting the hang of css:</p>
+<div class='highlight'><pre><code class='css'><span class='nt'>p</span> <span class='p'>{</span> <span class='k'>font-family</span><span class='o'>:</span> <span class='s1'>&#39;Arial&#39;</span><span class='p'>;</span> <span class='p'>}</span>
+<span class='nt'>h2</span> <span class='p'>{</span> <span class='k'>font-size</span><span class='o'>:</span> <span class='m'>20px</span><span class='p'>;</span> <span class='p'>}</span>
+<span class='nt'>h3</span> <span class='p'>{</span>
+    <span class='k'>background-color</span><span class='o'>:</span> <span class='nb'>green</span><span class='p'>;</span>
+    <span class='k'>font-size</span><span class='o'>:</span> <span class='m'>2px</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>Note that you can specify multiple properties on one element. When you do this it’s nice to lay them out on multiple lines as done above.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Use git to clone the repo for this part of the session:</p>
+
+<pre><code> $ git clone https://github.com/code61/html2.git</code></pre>
+
+<p>As well as the code, this has given you a local copy of the git repository I’m storing the exercise in. You’ll be adding to this repo in a minute.</p>
+</li>
+
+<li>
+<p>Open <code>exercise1.html</code> in Sublime Text and in Chrome.</p>
+</li>
+
+<li>
+<p>Add some css in the <code>head</code> to make the <code>h1</code> turn red.</p>
+</li>
+
+<li>
+<p>Continue with the exercise until <code>exercise1.html</code> looks like <code>exercise1_solution.png</code>.</p>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_selectors">
+	
+
+		<h2>Selectors and Attributes</h2>
+		
+<p>So far you have used html tags to specify CSS rules. For example,</p>
+<div class='highlight'><pre><code class='css'><span class='nt'>h2</span> <span class='p'>{</span> 
+  <span class='k'>font-size</span><span class='o'>:</span> <span class='m'>40px</span><span class='p'>;</span>
+  <span class='k'>color</span><span class='o'>:</span> <span class='nb'>pink</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>will turn all your <code>&lt;h2&gt;</code> massive and pink.</p>
+
+<p>It is often useful to be able to make CSS rules more specific, so you can apply different styles to different parts of the page. One common way to do this is to target specific html attributes - in particular <code>id</code> and <code>class</code>.</p>
+
+<h3 id="the__and__attributes">The <code>id</code> and <code>class</code> attributes</h3>
+
+<p>HTML tags can have <em>attributes</em> which provide additional information about the element. You’ve aready seen some examples of this:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;a</span> <span class='na'>href=</span><span class='s'>&quot;http://www.facebook.com&quot;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;img</span> <span class='na'>src=</span><span class='s'>&quot;cat_pic.png&quot;</span><span class='nt'>&gt;</span>
+</code></pre></div>
+<p>Both <code>href</code> and <code>src</code> are examples of html attributes. They are written in pairs with their values: <code>attribute=&quot;value&quot;</code>.</p>
+
+<p>There are some attributes that can be added to any tag. Two examples of these are <code>id</code> and <code>class</code>:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;h2</span> <span class='na'>id=</span><span class='s'>&quot;products_title&quot;</span><span class='nt'>&gt;</span>Our scrumptious puddings<span class='nt'>&lt;/h2&gt;</span>
+
+<span class='nt'>&lt;ul</span> <span class='na'>id=</span><span class='s'>&quot;products_list&quot;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;li</span> <span class='na'>class=</span><span class='s'>&quot;product_item&quot;</span><span class='nt'>&gt;</span>Black forrest gateau<span class='nt'>&lt;/li&gt;</span>
+  <span class='nt'>&lt;li</span> <span class='na'>class=</span><span class='s'>&quot;product_item&quot;</span><span class='nt'>&gt;</span>Rasberry lemon swirl cheesecake<span class='nt'>&lt;/li&gt;</span>
+  <span class='nt'>&lt;li</span> <span class='na'>class=</span><span class='s'>&quot;product_item&quot;</span><span class='nt'>&gt;</span>Sticky toffee pudding<span class='nt'>&lt;/li&gt;</span>
+  <span class='nt'>&lt;li</span> <span class='na'>class=</span><span class='s'>&quot;product_item&quot;</span><span class='nt'>&gt;</span>Death-by-chocolate cake<span class='nt'>&lt;/li&gt;</span>
+<span class='nt'>&lt;/uk&gt;</span>
+</code></pre></div>
+<p>Both <code>id</code> and <code>class</code> are used to add some information to the HTML tags. The key difference is that <code>id</code> should specify a <em>unique element on the page</em>, whereas multiple elements can share the same <code>class</code>.</p>
+
+<p>CSS lets you target the <code>id</code> and <code>class</code> attributes in special ways:</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* make the h2 with id=&quot;products_title&quot; purple */</span>
+<span class='nt'>h2</span><span class='nf'>#products_title</span> <span class='p'>{</span> <span class='k'>color</span><span class='o'>:</span> <span class='nb'>purple</span><span class='p'>;</span> <span class='p'>}</span>
+
+<span class='c'>/* remove the bullets from all li with class=&quot;product_item&quot; */</span>
+<span class='nt'>li</span><span class='nc'>.product_item</span> <span class='p'>{</span> <span class='k'>list-style-type</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span> <span class='p'>}</span>
+</code></pre></div>
+<p>The <code>id</code> is targeted by adding <code>#id_value</code> to the tag and the <code>class</code> is targeted by adding <code>.class_value</code> to the tag.</p>
+
+<p>It is also possible to target any items with a given <code>class</code> or <code>id</code> by leaving out the HTML tag:</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* make any element with id=&quot;products_title&quot; purple */</span>
+<span class='nf'>#products_title</span> <span class='p'>{</span> <span class='k'>color</span><span class='o'>:</span> <span class='nb'>purple</span><span class='p'>;</span> <span class='p'>}</span>
+
+<span class='c'>/* make any element with class=&quot;product_item blue&quot; */</span>
+<span class='nc'>.product_item</span> <span class='p'>{</span> <span class='k'>color</span><span class='o'>:</span> <span class='nb'>blue</span><span class='p'>;</span> <span class='p'>}</span>
+</code></pre></div>
+<h3 id="divs_and_spans">Divs and spans</h3>
+
+<p>There are two important HTML tags, that we didn’t use last week: <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code>. Both are really useful when it comes to using HTML attributes to target CSS classes.</p>
+
+<p><code>&lt;div&gt;</code> stands for <em>division</em> and is used to break the page up into different parts. It is a ‘block-level’ element, which means that it will start a new line before and after it.</p>
+
+<p><code>&lt;span&gt;</code> can be used to apply classes and ids to certain bits of text. It is an ‘inline’ element, which won’t start a new paragrah before or after.</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;div</span> <span class='na'>id=</span><span class='s'>&#39;info_section&#39;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;p&gt;</span>This is a paragraph in the info section. We can use a span to target <span class='nt'>&lt;span</span> <span class='na'>class=</span><span class='s'>&#39;important&#39;</span><span class='nt'>&gt;</span>certain bits of important text<span class='nt'>&lt;/span&gt;</span>.<span class='nt'>&lt;p&gt;</span>
+<span class='nt'>&lt;/div&gt;</span>
+</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Open the file <code>html2/exercise2.html</code> in Sublime Text and Chrome.</li>
+
+<li>Continue until your page looks like <code>html2/exercise2_solution.png</code></li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="5_homework">
+	
+
+		<h2>Homework</h2>
+		
+<h3 id="finishing_off">Finishing off</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>Finish off both CSS exercises from class. Check your solutions online:</p>
+
+<ul>
+<li>Find the HTML2 repository on Code61’s github page.</li>
+
+<li>In the <code>branch</code> dropdown (just above the list of files) select the <code>solution</code> branch.</li>
+
+<li>Click on the files below to see the solution</li>
+</ul>
+</div>
+<h3 id="revisiting_git">Revisiting git</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Read through <a href='http://gitimmersion.com/lab_01.html'>Git Immersion</a> exercises 1 to 11. You don’t need to do anything - just check you vaguely understand what they’re talking about.</p>
+
+</div>
+<h3 id="more_htmlcss">More HTML/CSS</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Complete the whole of Project 3 on the <a href='https://dash.generalassemb.ly/projects'>General Assembly Dash</a> site.</p>
+</li>
+
+<li>
+<p>Make some changes to your <code>first_site</code> based on what you’ve learnt. Make sure you add them to git at each stage, and push them up to github:</p>
+
+<pre><code> $ git add --all
+ $ git commit -m &amp;quot;Message to describe the change you made&amp;quot;
+ $ git push</code></pre>
+</li>
+
+<li>
+<p>(Optional) Do the projects from the <a href='http://www.codecademy.com/tracks/web'>Codecademy Web Track</a> Sections 7, 8 &amp; 9.</p>
+</li>
+</ol>
+</div>
+<h3 id="get_your_site_online_with_github_pages">Get your site online with GitHub Pages</h3>
+
+<p>We’re now going to use GitHub Pages to publish your <code>first_site</code> folder as a webpage.</p>
+
+<p>Github will host an html site for free for you, through a service called <a href="http://pages.github.com/">GitHub Pages</a>. There are two possibilities for telling github to make your code into a website:</p>
+
+<ol>
+<li>Call your repo <code>yourusername.github.io</code> when you create it on GitHub</li>
+
+<li>Push your site to a branch called <code>gh-pages</code></li>
+</ol>
+
+<p>If you do either of these things GitHub will interpret you repo as a static website and serve it online.</p>
+
+<p>We’ll do the second option, even though you don’t know what branches are. For the moment, most of this won’t make much sense - hopefully it will at some point in the future!</p>
+
+<p>To do this we need to run the command</p>
+
+<pre><code>$ git push origin master:gh-pages</code></pre>
+
+<p>(and do this whenever you want changes you’ve made to show up on your site).</p>
+
+<p>After waiting a few minutes for github to get ready, you should be able to see your site at <code>yourusername.github.io/first_site</code>.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>Follow these instructions for your <code>first_site</code> folder. That is:</p>
+
+<ol>
+<li>
+<p>Set your repository up to push to the gh-pages branch. In your <code>first_site</code> folder run:</p>
+
+<pre><code> $ git push origin master:gh-pages</code></pre>
+</li>
+
+<li>
+<p>Check whether it worked:</p>
+
+<ol>
+<li>Go to your <code>first_site</code> repository on <code>GitHub.com</code>. Under the repo name, above the code, you’ll see a box that says <code>branch: master</code>. Click on the dropdown and check that you have a <code>branch: gh-pages</code> too.</li>
+
+<li>Try to visit your site: go to the settings section (bottom icon on RHS of page), there should be a <code>GitHub Pages</code> box where it will tell you where your site is published.</li>
+</ol>
+</li>
+</ol>
+</div>
+	</div>
+
+</div>
+
+</div>
+
+
+
+
+  </div> <!-- /container -->
+
+
+</body>
+</html>

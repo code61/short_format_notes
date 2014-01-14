@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Course 1</title>
+
+  
+
+  <meta name="viewport" content="width=device-width">
+  <!-- Twitter bootstrap basic styles -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="css/syntax.css">
+  <!-- Google webfont link -->
+<link href='http://fonts.googleapis.com/css?family=Arvo:700|Titillium+Web:900' rel='stylesheet' type='text/css'>
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="assets/jquery-1.10.0.js"></script>
+
+  <script type="text/javascript" src='bootstrap/js/bootstrap.js'></script>
+  <script type="text/javascript" src='assets/custom.js'></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+function name(d) {
+  return d.name;
+}
+
+var margin = {top: 0, right: 40, bottom: 0, left: 40},
+    width = 720,
+    step = 100;
+
+function tree(leftRoot, rightRoot, outerHeight) {
+  if (arguments.length < 3) outerHeight = rightRoot, rightRoot = null;
+
+  var height = outerHeight - margin.top - margin.bottom;
+
+  var tree = d3.layout.tree()
+      .size([height, 1])
+      .separation(function() { return 1; });
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .style("margin", "1em 0 1em " + -margin.left + "px");
+
+  var g = svg.selectAll("g")
+      .data([].concat(
+        leftRoot ? {type: "left", nodes: tree.nodes(leftRoot)} : [],
+        rightRoot ? {type: "right", nodes: tree.nodes(rightRoot).map(flip), flipped: true} : []
+      ))
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d) { return "translate(" + (!!d.flipped * width + margin.left) + "," + margin.top + ")"; });
+
+  var link = g.append("g")
+      .attr("class", "link")
+    .selectAll("path")
+      .data(function(d) { return tree.links(d.nodes); })
+    .enter().append("path")
+      .attr("class", linkType);
+
+  var node = g.append("g")
+      .attr("class", "node")
+    .selectAll("g")
+      .data(function(d) { return d.nodes; })
+    .enter().append("g")
+      .attr("class", function(d) { return d.type; });
+
+  node.append("rect");
+
+  node.append("text")
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name; })
+      .each(function(d) { d.width = Math.max(32, this.getComputedTextLength() + 12); })
+      .attr("x", function(d) { return d.flipped ? 6 - d.width : 6; });
+
+  node.filter(function(d) { return "join" in d; }).insert("path", "text")
+      .attr("class", "join");
+
+  svg.call(reset);
+
+  function flip(d) {
+    d.depth *= -1;
+    d.flipped = true;
+    return d;
+  }
+
+  return svg;
+}
+
+function linkType(d) {
+  return d.target.type.split(/\s+/).map(function(t) { return "to-" + t; })
+      .concat(d.source.type.split(/\s+/).map(function(t) { return "from-" + t; }))
+      .join(" ");
+}
+
+function reset(svg) {
+  svg.selectAll("*")
+      .style("stroke-opacity", null)
+      .style("fill-opacity", null)
+      .style("display", null);
+
+  var node = svg.selectAll(".node g")
+      .attr("class", function(d) { return d.type; })
+      .attr("transform", function(d, i) { return "translate(" + d.depth * step + "," + d.x + ")"; });
+
+  node.select("rect")
+      .attr("ry", 6)
+      .attr("rx", 6)
+      .attr("y", -10)
+      .attr("height", 20)
+      .attr("width", function(d) { return d.width; })
+    .filter(function(d) { return d.flipped; })
+      .attr("x", function(d) { return -d.width; });
+
+  node.select(".join")
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.width, x: 0}; })
+        .target(function(d) { return {y: 88, x: d.join * 24}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+
+  svg.selectAll(".link path")
+      .attr("class", linkType)
+      .attr("d", d3.svg.diagonal()
+        .source(function(d) { return {y: d.source.depth * step + (d.source.flipped ? -1 : +1) * d.source.width, x: d.source.x}; })
+        .target(function(d) { return {y: d.target.depth * step, x: d.target.x}; })
+        .projection(function(d) { return [d.y, d.x]; }));
+}
+
+
+
+</script>
+
+
+</head>
+<body class="">
+
+  <div class="container">
+
+    
+<h2 id="overall_aims">Overall aims</h2>
+
+<ul>
+<li>Understanding web technologies: hosting, DNS, server-side/client-side distintion</li>
+
+<li>Basic HTML and CSS</li>
+
+<li>Git (through github git gui)</li>
+
+<li>Data submission to a google form</li>
+
+<li>Basic analytics (through google analytics)</li>
+
+<li>Deploying site to github pages</li>
+</ul>
+
+<h2 id="sessions">Sessions</h2>
+
+<ul>
+<li>[Preparation]
+<ul>
+<li>Install Chrome</li>
+
+<li>Install Sublime text</li>
+
+<li>Create Github account</li>
+
+<li>Install GitHub for Mac/Windows, (w. ssh keys?)</li>
+
+<li>Watch DNS videos</li>
+
+<li>Do GA Project 1</li>
+</ul>
+</li>
+
+<li><a href="c1s1">Session 1</a>
+<ul>
+<li>Talk through the idea of a web host</li>
+
+<li>Talk through DNS: the url, the DNS system, how to buy a domain name</li>
+
+<li>Introduce to HTML and developer tools</li>
+
+<li>Show how to create file and view it in browser</li>
+
+<li>HTML exercise</li>
+
+<li>[hwk] Buy a domain name</li>
+
+<li>[hwk] Do GA Project 2</li>
+
+<li>[hwk] Work on own site</li>
+
+<li>[ext] Intro to command line</li>
+</ul>
+</li>
+
+<li><a href="c1s2">Session 2</a>
+<ul>
+<li>Explain what git is - multiple versions of files</li>
+
+<li>Push first_site to github and update</li>
+
+<li>Introduce to CSS, CSS exercise1</li>
+
+<li>Introduce to CSS class/id selectors, CSS exercise2</li>
+
+<li>[hwk?] Publish site using gh_pages</li>
+
+<li>[hwk] Do GA Project 3</li>
+
+<li>[hwk] Finish exercises</li>
+</ul>
+</li>
+
+<li><a href="c1s3">Session 3</a>
+<ul>
+<li>CSS in a separate file, different resource refs, CSS exercise</li>
+
+<li>https://www.inkling.com/read/dreamweaver-cs6-missing-manual-david-sawyer-mcfarland-1st/chapter-4/understanding-links</li>
+
+<li>Twitter bootstrap, bootstrap exercise</li>
+
+<li>[hwk] Finish bootstrap exercise</li>
+
+<li>[hwk] Point domain name to first_site</li>
+</ul>
+</li>
+
+<li><a href="c1s4">Session 4</a>
+<ul>
+<li>Google analytics - just how to put in the snippet and an example</li>
+
+<li>Form submissions</li>
+
+<li>Submitting to a google form</li>
+
+<li>[hmk] Finish (add google analytics) and submit first_site</li>
+</ul>
+</li>
+</ul>
+
+
+
+  </div> <!-- /container -->
+
+
+</body>
+</html>
