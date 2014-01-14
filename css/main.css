@@ -1,6 +1,6 @@
 body.homepage { 
 	/* pattern from subtle patterns */
-	background-image: url('{{relative}}assets/fabric_1.png');
+	background-image: url('./assets/fabric_1.png');
 }
 
 .container { margin-bottom: 40px;}
