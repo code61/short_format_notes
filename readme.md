@@ -2,7 +2,7 @@
 
 If you are using these notes to run a course, we recommend that you host a copy yourself. The easiest way to do this is to use github pages and follow the instructions below.
 
-## Downloading the notes
+## Downloading the notes: fork first!
 
 We recommend that you fork the [code61 repository](https://github.com/code61/short_format_notes) and then clone your fork, instead of cloning the code61 repository directly. This helps us see how the notes are being used and makes it easier to incorporate any modifications you make back into the central version.
 
@@ -22,6 +22,7 @@ Once you have jekyll installed you can build and view the notes by running:
 Although jekyll is the system used to compile and generate github pages sites, these notes won't work if you just push them to github as they rely on a custom build plugin (so that files in the `_sessions` folder compile correctly). Instead you need to generate the html version of the site locally.
 
 The general idea is
+
 1. Have a separate deployment repo, whose sole purpose is to serve the github pages version of the site.
 2. Build the site locally.
 3. Copy this build into a gitignored `_gh-pages` directory inside the project.
