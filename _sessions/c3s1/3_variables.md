@@ -104,29 +104,31 @@ b = "hello"
 
 b
 
-b.capitalize
+c = b.capitalize
 
 b
 
-b = b.capitalize
-
-c = "hello"
-
-c.capitalize!
-
 c
+
+d = "hello"
+
+e = d.capitalize!
+
+d
+
+e
 
 name = "Dave"
 
-d = "Hello #{name}! "
+f = "Hello #{name}! "
 
-d
+f
 
 name = "Sarah"
 
-d
+f
 
-d * 5
+f * 5
 {% endhighlight %}
 
 {% endexercise %}

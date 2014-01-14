@@ -41,3 +41,5 @@ from (irb):1:in `+'
 
 Oh dear! Turns out that you can't add a string to an integer. Have another read of the message that irb gave you. Can you figure out what it is saying? When something goes wrong, ruby tries to be as helpful as it can. Learning to interpret the errors that ruby gives is an important part of learning to become a programmer.
 
+<small markdown="1">The ^ operator in the optional challenge is [bitwise exclusive or](http://en.wikipedia.org/wiki/Bitwise_operation#XOR).</small>
+
