@@ -21,6 +21,17 @@ If you are using them for your own course you should host your own copy of the n
     2. Copy this across to the `_gh-pages` folder.
     3. Force push the contents of the `_gh-pages` folder to the `gh-pages` branch of your `mycourse_site` repo.
 
+## Updating the notes
+
+To update the notes, you will need to pull from the original code61 central version of the repo. To do this you need to have first set up code61 as a remote:
+
+    git remote add code61 git@github.com:code61/short_format_notes.git
+
+You can then update the notes by running:
+
+    git pull code61
+
+
 ## Deploying to a custom url
 
 Using a custom url should be straightforward - just add a CNAME at the root level of the project and deploy as normal. (The CNAME is gitignored on the main repo, but not in the _gh-pages sub-repo, so this should all be fine.)
