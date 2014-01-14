@@ -33,7 +33,7 @@ We've provided a rake task to make this workflow easier, but it requires that yo
 ### Setup
 
 1. Create a new, separate deployment repository (e.g. [oxford_code61_notes](https://github.com/tomclose/oxford_code61_notes)) on github.
-2. Clone this deployment repository down into a `_gh-pages` folder *inside* your `code61_notes` folder.
+2. Clone this deployment repository down into a `_gh-pages` folder *inside* your the notes folder.
 
         git clone <mycourse_site_repo> _gh-pages
 

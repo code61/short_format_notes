@@ -14,7 +14,7 @@ layout: default
 
 ## Sessions
 
-- [Preparation]
+- [Preparation](c1prep)
   + Install Chrome
   + Install Sublime text
   + Create Github account
