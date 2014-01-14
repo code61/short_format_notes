@@ -1,29 +1,56 @@
-## Using these notes
+## Running a course using these notes
 
-These notes use the jekyll static site generator. Although jekyll is the system used to compile and generate github pages sites, these notes won't work if you just push them to github as they rely on a custom build plugin. Instead you need to generate the html version of the site locally and then push it up to github.
+If you are using these notes to run a course, we recommend that you host a copy yourself. The easiest way to do this is to use github pages and follow the instructions below.
 
-If you are using them for your own course you should host your own copy of the notes. To do this, do the following:
+## Downloading the notes
 
-1. Fork the code61 version of the notes.
-2. Clone your forked repository down onto your machine (e.g. into a `code61_notes` folder)
-3. Install the required dependencies:
+We recommend that you fork the [code61 repository](https://github.com/code61/short_format_notes) and then clone your fork, instead of cloning the code61 repository directly. This helps us see how the notes are being used and makes it easier to incorporate any modifications you make back into the central version.
+
+## Viewing the notes locally
+
+The notes use the [jekyll](http://jekyllrb.com/) static site generator. You can will need to install this dependency before building the notes locally:
 
     gem install bundler
     bundle install
 
-3. Create a new, separate deployment repository (e.g. `mycourse_site`) on github.
-4. Clone your deployment repository down into a `_gh-pages` folder *inside* your `code61_notes` folder. (`_gh-pages` is ignored in the `.gitignore`, so this shouldn't cause problems.)
+Once you have jekyll installed you can build and view the notes by running:
 
-    git clone <mycourse_site_repo> _gh-pages
+    jekyll serve
 
-5. In your `code61_notes` folder, run `rake publish`. This will
-    1. Generate your site into the `_site` folder.
-    2. Copy this across to the `_gh-pages` folder.
-    3. Force push the contents of the `_gh-pages` folder to the `gh-pages` branch of your `mycourse_site` repo.
+## Publishing to github pages
+
+Although jekyll is the system used to compile and generate github pages sites, these notes won't work if you just push them to github as they rely on a custom build plugin (so that files in the `_sessions` folder compile correctly). Instead you need to generate the html version of the site locally.
+
+The general idea is
+1. Have a separate deployment repo, whose sole purpose is to serve the github pages version of the site.
+2. Build the site locally.
+3. Copy this build into a gitignored `_gh-pages` directory inside the project.
+4. Push this directory to the deployment repo.
+
+We've provided a rake task to make this workflow easier, but it requires that you set things up correctly first.
+
+### Setup
+
+1. Create a new, separate deployment repository (e.g. [oxford_code61_notes](https://github.com/tomclose/oxford_code61_notes)) on github.
+2. Clone this deployment repository down into a `_gh-pages` folder *inside* your `code61_notes` folder.
+
+        git clone <mycourse_site_repo> _gh-pages
+
+### Publishing the notes
+
+To publish the notes (in the root of the project) run:
+
+    rake publish
+
+This will check your setup, build the notes, copy them into the `_gh-pages` directory and add, commit and (force) push them to the gh-pages branch of your deployment repo.
+
+## Deploying to a custom url
+
+Using a custom url should be straightforward - just add a CNAME at the root level of the project and deploy as normal. (The CNAME is gitignored on the main repo, but not in the _gh-pages sub-repo, so this should all be fine.)
 
 ## Updating the notes
 
-To update the notes, you will need to pull from the original code61 central version of the repo. To do this you need to have first set up code61 as a remote:
+Assuming that you started with your own fork of the code61 repo, to update the notes you will need to pull from the original code61 central version of the repo. To do this you need to have first set up code61 as a remote:
 
     git remote add code61 git@github.com:code61/short_format_notes.git
 
@@ -31,10 +58,9 @@ You can then update the notes by running:
 
     git pull code61
 
+## Contributing
 
-## Deploying to a custom url
-
-Using a custom url should be straightforward - just add a CNAME at the root level of the project and deploy as normal. (The CNAME is gitignored on the main repo, but not in the _gh-pages sub-repo, so this should all be fine.)
+To contribute, push up to your fork and submit a pull request!
 
 ## Licence
 

@@ -32,12 +32,7 @@ layout: default
   + Iterating in a template
 - [Session 4](c3s4)
   + Hashes
-variable
-value
-expression
 
-values are objects. That means we can ask them questions and give them instructions.
-assignment
 
 name can be a variable, a Constant, (an @instance variable, a @@class variable, $global)
 http://rubylearning.com/satishtalim/ruby_names.html
