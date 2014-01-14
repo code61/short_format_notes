@@ -89,8 +89,10 @@ module Jekyll
 
   class ExerciseTag < Liquid::Block
     # somehow access converter
+    # really want to do markdown first
 
     def render(context)
+      # raise context.inspect
       # content = super
       # parsed_content = Liquid::Template.parse(content)
       # output = context.stack do 

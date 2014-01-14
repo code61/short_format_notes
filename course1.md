@@ -41,6 +41,7 @@ layout: default
   + [hwk] Finish exercises
 - [Session 3](c1s3)
   + CSS in a separate file, different resource refs, CSS exercise
+  + https://www.inkling.com/read/dreamweaver-cs6-missing-manual-david-sawyer-mcfarland-1st/chapter-4/understanding-links
   + Twitter bootstrap, bootstrap exercise
   + [hwk] Finish bootstrap exercise
   + [hwk] Point domain name to first_site
@@ -49,5 +50,6 @@ layout: default
   + Form submissions
   + Submitting to a google form
   + [hmk] Finish (add google analytics) and submit first_site
+
 
 

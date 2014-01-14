@@ -18,12 +18,14 @@ layout: default
   + Sinatra with matchers
   + [hwk] Modify example to use string operations
   + [ext] Look at tests
+  + [hwk] Codecademy ruby 1 & 2
 - [Session 2](c3s2)
   + Conditionals in ruby
   + Truthy and falsey
   + Sinatra templates
   + Deploying
   + [hwk] FOAAS?
+  + [hwk] Codecademy ruby 3 & 4
 - [Session 3](c3s3)
   + Arrays, iterating
   + Building up an in-memory data store (using a constant?)

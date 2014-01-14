@@ -51,35 +51,38 @@ Notice how in line `002` above there is no `=>` and no return value; comments do
 1. Pick a partner.
 2. Open `irb` on one of your laptops.
 3. For each of the following ruby expressions, try to agree what value you think they evaluate to. Check if you're right in irb.
+{% highlight ruby %}
+1 + 2
 
-        1 + 2
+5 - 6
 
-        5 - 6
+8 * 9
 
-        8 * 9
+6 / 2
 
-        6 / 2
+5 / 2
 
-        5 / 2
+5.0 / 2
 
-        5.0 / 2
+5 % 2
 
-        5 % 2
+2.even?
 
-        2.even?
+3.even?
 
-        3.even?
+"hello " + "world"
 
-        "hello " + "world"
+"Bob" * 3
 
-        "Bob" * 3
+"Bob" + 3
 
-        "Bob" + 3
+"don't shout".upcase
 
-        "don't shout".upcase
+"edam".reverse
+{% endhighlight %}
+{% endexercise %}
 
-        "edam".reverse
-
+{% exercise %}
 4. (Challenge for pairs who finish early). What does the operation `^` do? E.g.
 
         1 ^ 2
