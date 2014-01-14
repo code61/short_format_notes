@@ -12,6 +12,7 @@ The notes use the [jekyll](http://jekyllrb.com/) static site generator. You can 
 
     gem install bundler
     bundle install
+    rbenv rehash  # only if you're using rbenv
 
 Once you have jekyll installed you can build and view the notes by running:
 
