@@ -10,12 +10,16 @@ You can install sinatra on your laptop using [rubygems](http://rubygems.org/) - 
 
     $ gem install sinatra
 
-at the command line.
+at the command line. We will also need a few other rubygems, so install these too:
+
+    $ gem install rake rake-test
+
 
 {% exercise %}
 1. Install sinatra: at the command line run
 
         $ gem install sinatra
+        $ gem install rake rake-test
 
 2. Download the code for the session:
 

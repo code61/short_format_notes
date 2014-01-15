@@ -16,13 +16,13 @@ b = "hello"
 c = b.capitalize
 
 b #=> "hello"
-c #=> "HELLO"
+c #=> "Hello"
 
 d = "hello" 
 e = d.capitalize!
 
-d #=> "HELLO"
-e #=> "HELLO"
+d #=> "Hello"
+e #=> "Hello"
 {% endhighlight %}
 
 This example is pretty important. In the first case `capitalize` gives back "HELLO", but leaves the original string untouched. 
@@ -43,7 +43,7 @@ This example is pretty important. In the first case `capitalize` gives back "HEL
 </g>
 <rect x="6.89" y="56.807" fill="none" stroke="#939598" stroke-width="3" stroke-miterlimit="10" width="27" height="27"/>
 <text transform="matrix(1 0 0 1 19.1484 73.8071)" font-family="'MyriadPro-Regular'" font-size="12">c</text>
-<text transform="matrix(1 0 0 1 90.8896 74.8071)" font-family="'MyriadPro-Regular'" font-size="12">“HELLO”</text>
+<text transform="matrix(1 0 0 1 90.8896 74.8071)" font-family="'MyriadPro-Regular'" font-size="12">“Hello”</text>
 <g>
   <g>
     <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="33.89" y1="70.807" x2="71.829" y2="70.807"/>
@@ -83,7 +83,7 @@ In the second case, we use the in-place version of `captialize!`. It changes the
 <text transform="matrix(1 0 0 1 19.1484 26)" font-family="'MyriadPro-Regular'" font-size="12">d</text>
 <rect x="6.89" y="56.807" fill="none" stroke="#939598" stroke-width="3" stroke-miterlimit="10" width="27" height="27"/>
 <text transform="matrix(1 0 0 1 19.1484 73.8071)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
-<text transform="matrix(1 0 0 1 91.7783 26.8066)" font-family="'MyriadPro-Regular'" font-size="12">“HELLO”</text>
+<text transform="matrix(1 0 0 1 91.7783 26.8066)" font-family="'MyriadPro-Regular'" font-size="12">“Hello”</text>
 <path fill="none" stroke="#F7941E" stroke-width="3" stroke-miterlimit="10" d="M144.556,24c0,6.627-5.373,12-12,12h-39
   c-6.627,0-12-5.373-12-12v-3c0-6.627,5.373-12,12-12h39c6.627,0,12,5.373,12,12V24z"/>
 </svg>
