@@ -14,12 +14,21 @@ at the command line. We will also need a few other rubygems, so install these to
 
     $ gem install rake rake-test
 
+If you used `rbenv` to install ruby, you will need to run the following command:
+
+    $ rbenv rehash 
+
+(If you can't remember if you're using `rbenv`, try the command anyway!)
 
 {% exercise %}
 1. Install sinatra: at the command line run
 
         $ gem install sinatra
         $ gem install rake rake-test
+
+2. If you're using `rbenv` (or can't remember whether you are or not) run the following:
+
+        $ rbenv rehash
 
 2. Download the code for the session:
 
