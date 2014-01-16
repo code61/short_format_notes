@@ -4,7 +4,7 @@ title: Welcome
 
 Welcome to the course preparation for the Learn to Code programme!
 
-### Programme content
+### Course content
 
 The aim of this programme is to give you a taste of a number of different areas of web development. We don't aim to make you an expert in any one of them; instead we want to give you a basic level of understanding and the tools to test things out, so that you can independently learn more.
 
