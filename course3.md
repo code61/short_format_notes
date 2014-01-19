@@ -6,8 +6,10 @@ layout: default
 ## Sessions
 
 - [Preparation]()
+  + Install ruby
   + Check your ruby installation
-  + Do some ruby tutorial (try ruby?)
+  + Change sublime text settings
+  + [hwk] Codecademy ruby 1 & 2
 - [Session 1](c3s1)
   + Ruby as an interpreted language, irb, comments
   + Concept of a value and an expression
@@ -18,7 +20,7 @@ layout: default
   + Sinatra with matchers
   + [hwk] Modify example to use string operations
   + [ext] Look at tests
-  + [hwk] Codecademy ruby 1 & 2
+  + [hwk] heroku account, ssh setup
 - [Session 2](c3s2)
   + Conditionals in ruby
   + Truthy and falsey
