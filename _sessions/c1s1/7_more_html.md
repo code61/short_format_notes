@@ -16,7 +16,7 @@ A few things to look out for
 ### HTML file layout
 
 {% highlight html %}
-<DOCTYPE! html>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Page title</title>
