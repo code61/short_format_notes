@@ -54,11 +54,11 @@ There are a few features of the Chrome developer tools that it is worth pointing
 {% exercise %}
 1. Open this page in Google Chrome
 2. View the page source by doing one of the following:
-    * `View > Developer > View Source`
-    * `Tools > View Source`
+    * View > Developer > View Source
+    * Tools > View Source
 3. Open the developer tools by doing one of the following:
-    * `View > Developer > Developer Tools`
-    * `Tools > Developer Tools`
+    * View > Developer > Developer Tools
+    * Tools > Developer Tools
 4. Use the magnifying glass in the bottom left to hover over bits of the page and find the related HTML.
 5. Hover over the HTML code in the developer tools box and watch as different parts of the page are highlighted.
 6. Try changing some of the CSS on the right hand side. To undo any changes just refresh the page.

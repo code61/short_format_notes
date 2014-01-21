@@ -17,6 +17,7 @@ To buy a domain name you need to visit a domain registrar. Examples are:
 * [123-reg](http://www.123-reg.co.uk/)
 * [Godaddy](http://www.godaddy.com/)
 * [Namecheap](http://www.namecheap.com/)
+* [dot.tk](http://www.dot.tk/en/index.html?lang=en) (.tk domains are completely free!)
 
 There probably won't be a huge difference in price between these sites. You might be able to find a special offer on one of them if you shop around a bit though. Ultimately the domain you choose isn't that important for the course - the whole point is to practice pointing a domain name towards a server.
 
@@ -28,7 +29,6 @@ Buy your own domain name.
 
 {% exercise %}
 1. Complete the whole of Project 2 on the [General Assembly Dash](https://dash.generalassemb.ly/projects) site. 
-2. [Try git](http://try.github.io/levels/1/challenges/1) (up to stage 1.9).
 3. (Optional) Do the projects from the [Codecademy Web Track](http://www.codecademy.com/tracks/web) Sections 4, 5 &amp; 6.
 {% endexercise %}
 

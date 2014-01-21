@@ -3,22 +3,13 @@ title: More HTML
 ---
 
 {% exercise %}
-1. Make sure you are in your `coding_course` folder
-2. Clone the repo for this session. In the command line type:
-
-        $ git clone https://github.com/code61/learning_html.git
-
-3. Check that you now have the `learning_html` folder and move into it:
-
-        $ ls
-        $ cd learning_html
-
+2. Go to the github repository for this session: [https://github.com/code61/learning_html]()
+3. *Clone* the repository down into your `coding_course` folder (by clicking 'Clone in Desktop' in the bottom right).
 4. Open the whole folder in Sublime Text
 5. Open the file `example.html` in Chrome and look around with the developer tools
 6. Open the file `notes.html` in Sublime Text.
 7. Change `notes.html` into valid html so that it looks like `notes_solution.jpg`
 {% endexercise %}
-
 
 A few things to look out for
 
