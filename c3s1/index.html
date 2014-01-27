@@ -604,7 +604,43 @@ $ ruby app.rb
 <li>Finish the exercises from class.</li>
 
 <li>Do the <a href='http://www.codecademy.com/tracks/ruby'>Codecademy Ruby track</a> Sections 1 and 2.</li>
+
+<li>Get a <a href='https://www.heroku.com/'>Heroku</a> account and upload an ssh key (see below).</li>
 </ol>
+</div>
+<h3 id="about_heroku">About Heroku</h3>
+
+<p><a href="https://www.heroku.com/">Heroku</a> is a cloud-based web hosting solution, specifically designed for hosting web applications. It started out as a Rails host, but has since branched out into other frameworks (e.g. Sinatra, Node.js) and languages (e.g. Java, Python).</p>
+
+<p>They aim to completely manage your apps online infrastructure: you provide them with the code, they set it up and run it online. If you have a lot of users and want to scale your app up, they make it easy to allocate more resources so you can handle the increased traffic (for a price!).</p>
+
+<h3 id="setting_up_an_account">Setting up an account</h3>
+
+<p>Before you deploy your app to heroku you need to create an account.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Sign up for an account at <a href='https://www.heroku.com/'>Heroku</a>.</li>
+
+<li>After you log in, download and install the heroku toolbelt. (This will allow you to interact with heroku from the command line).</li>
+</ol>
+</div>
+<h3 id="setting_up_ssh_with_heroku"> Setting up ssh with heroku</h3>
+
+<p>The final part of the set up is to upload your ssh keys to Heroku. You might remember about ssh keys from the initial installation instructions: they’re basically a way of identifying yourself to a server without typing in your password each time.</p>
+
+<p>The heroku toolbelt makes this very easy. On the command line (in any folder) type:</p>
+
+<pre><code>$ heroku keys:add</code></pre>
+
+<p>You can check it worked by typing:</p>
+
+<pre><code>$ heroku keys</code></pre>
+
+<p>It should list the ssh key that you just added.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>Upload your ssh key to heroku by running</p>
+
+<pre><code>$ heroku keys:add</code></pre>
 </div>
 	</div>
 
