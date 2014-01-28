@@ -99,6 +99,7 @@ After you push, heroku automatically updates the app and launches it for you. Yo
 
 {% exercise %}
 Deploy your `sinatra_c3s2` app to Heroku:
+
 1. Install your bundle to get a `Gemfile.lock`. In your `sintara_c3s2` directory run:
 
         $ bundle install

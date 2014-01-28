@@ -32,3 +32,12 @@ x #=> 1
 
 In the above block of code, as `5` is truthy, the variable `x` is set to `1`.
 
+{% exercise %}
+Change your sinatra app into something more interesting:
+
+- Add more options to the form.
+- Make the logic in the views more complicated, so that you're using a few boolean operations.
+- Change your app into a horoscope provider/career adviser/which-star-wars-character-are-you machine.
+- Make it look nice, deploy it and show your friends.
+
+{% endexercise %}
