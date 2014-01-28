@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>c3s2</title>
+  <title>Intro to Ruby 2</title>
 
   
 
@@ -11,6 +11,8 @@
   <!-- Twitter bootstrap basic styles -->
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+
+
 
   <!-- syntax highlighting CSS -->
   <link rel="stylesheet" href="../css/syntax.css">
@@ -31,14 +33,14 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>c3s2 <small></small></h1>
+  <h1>Intro to Ruby 2 <small>Adding logic to app</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#1_conditionals" data-toggle="tab">Conditionals </a></li>
+		<li class="active"><a href="#1_conditionals" data-toggle="tab">If statements and comparisons </a></li>
 		
 	
 		
@@ -62,11 +64,7 @@
 		
 	
 		
-		<li><a href="#8_more_conditionals" data-toggle="tab">More conditionals </a></li>
-		
-	
-		
-		<li><a href="#9_project" data-toggle="tab">Project 1 </a></li>
+		<li><a href="#7_homework" data-toggle="tab">Homework </a></li>
 		
 	
 </ul>
@@ -77,7 +75,7 @@
 	<div class="tab-pane active" id="1_conditionals">
 	
 
-		<h2>Conditionals</h2>
+		<h2>If statements and comparisons</h2>
 		
 <p>So far we’ve just used ruby to evaluate simple expressions. Coding becomes a lot more interesting when you can use your code for simple logic tasks:</p>
 <div class='highlight'><pre><code class='ruby'><span class='k'>if</span> <span class='n'>age</span> <span class='o'>&gt;=</span> <span class='mi'>18</span>
@@ -222,9 +220,7 @@ heroku  git@heroku.com:arcane-gorge-2129.git (fetch)
 heroku  git@heroku.com:arcane-gorge-2129.git (push)
 origin  git@github.com:code61/sinatra_project_1.git (fetch)
 origin  git@github.com:code61/sinatra_project_1.git (push)</code></pre>
-
-<h3 id="a_bit_about_git_remotes">A bit about git remotes</h3>
-
+<!-- Put a bit about git remotes here -->
 <h3 id="deploying">Deploying</h3>
 
 <p>You deploy your repository by pushing to this remote. Heroku will serve whatever is in the <code>master</code> branch. Here we push the <code>master</code> branch up to the <code>heroku</code> remote:</p>
@@ -262,11 +258,15 @@ To git@heroku.com:arcane-gorge-2129.git
 
 <p>After you push, heroku automatically updates the app and launches it for you. You can now see the app by visiting the url (in this case http://arcane-gorge-2129.herokuapp.com).</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
-<p>Deploy your <code>sinatra_c3s2</code> app to Heroku: 1. Install your bundle to get a <code>Gemfile.lock</code>. In your <code>sintara_c3s2</code> directory run:</p>
-
-<pre><code>    $ bundle install</code></pre>
+<p>Deploy your <code>sinatra_c3s2</code> app to Heroku:</p>
 
 <ol>
+<li>
+<p>Install your bundle to get a <code>Gemfile.lock</code>. In your <code>sintara_c3s2</code> directory run:</p>
+
+<pre><code> $ bundle install</code></pre>
+</li>
+
 <li>
 <p>Add your work (and new <code>Gemfile.lock</code>) to your repository:</p>
 
@@ -328,7 +328,7 @@ To git@heroku.com:arcane-gorge-2129.git
 <span class='nt'>&lt;/body&gt;</span>
 <span class='nt'>&lt;/html&gt;</span>
 </code></pre></div>
-<p>The line <code>erb :form</code> tells sinatra to look for a file called <code>form.erb</code> in a folder called <code>views</code>. It then processes that file using the <code>erb</code> (<strong>e</strong>mbedded <strong>r</strong>u<strong>b</strong>y) templating language and returns the result to the user.</p>
+<p>The line <code>erb :form</code> tells sinatra to look for a file called <code>form.erb</code> in a folder called <code>views</code>. It then processes that file using the <code>erb</code> (embedded ruby) templating language and returns the result to the user.</p>
 
 <p>The <code>form.erb</code> above isn’t very interesting: it is jsut a static template and doesn’t have any ruby embedded in it. Let’s look at a slightly better example:</p>
 <div class='highlight'><pre><code class='ruby'><span class='c1'># in app.rb</span>
@@ -360,7 +360,21 @@ To git@heroku.com:arcane-gorge-2129.git
 
 <li>We use the instance variable in the <code>views/greet.erb</code> inside a special erb tag <code>&lt;%= ... %&gt;</code>. The erb templater looks for these tags and interprets the inside as ruby.</li>
 </ul>
-<div class='exercise alert alert-info'><strong>Task:</strong>
+
+<p>Sinatra emphasises <em>convention</em> over <em>configuration</em>: rather than specifying the exact place to find the template, you just give the name and Sinatra ‘knows’ where to look. This means you have to write less code in the long run, but also that you have to know the conventions before you start.</p>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>Sinatra template summary</h3>
+  </div>
+  <div class='panel-body'>
+   <ol>
+      <li>You call a template with the line <code>erb :template_name</code>.</li>
+      <li>For this to work, you will need a template called <code>template_name.erb</code> in the <code>views</code> folder.</li>
+      <li>Instance variables (ones that start with <code>@</code>) will be shared with the template.</li>
+      <li>You use these shared instance variables in the template by putting them inside an erb tag: <code>&lt;%= @my_variable &gt;</code> </li>
+    </ol> 
+  </div>
+</div><div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
 <li>
 <p>Uncomment the bottom part of <code>sinatra_c3s2/app.rb</code> and comment out the top two blocks.</p>
@@ -483,100 +497,33 @@ To git@heroku.com:arcane-gorge-2129.git
 <span class='n'>x</span> <span class='c1'>#=&gt; 1</span>
 </code></pre></div>
 <p>In the above block of code, as <code>5</code> is truthy, the variable <code>x</code> is set to <code>1</code>.</p>
-
-	</div>
-
-	
-	<div class="tab-pane " id="8_more_conditionals">
-	
-
-		<h2>More conditionals</h2>
-		
-<h3 id="if_elsif_else">If, elsif, else</h3>
-<div class='highlight'><pre><code class='ruby'><span class='k'>if</span> <span class='n'>age</span> <span class='o'>&lt;</span> <span class='mi'>1</span>
-	<span class='n'>type</span> <span class='o'>=</span> <span class='s2'>&quot;baby&quot;</span>
-<span class='k'>elsif</span> <span class='n'>age</span> <span class='o'>&lt;</span> <span class='mi'>3</span>
-	<span class='n'>type</span> <span class='o'>=</span> <span class='s2'>&quot;infant&quot;</span>
-<span class='k'>elsif</span> <span class='n'>age</span> <span class='o'>&lt;</span> <span class='mi'>13</span>
-	<span class='n'>type</span> <span class='o'>=</span> <span class='s2'>&quot;child&quot;</span>
-<span class='k'>elsif</span> <span class='n'>age</span> <span class='o'>&lt;</span> <span class='mi'>20</span>
-	<span class='n'>type</span> <span class='o'>=</span> <span class='s2'>&quot;teenager&quot;</span>
-<span class='k'>else</span>
-	<span class='n'>type</span> <span class='o'>=</span> <span class='s2'>&quot;adult&quot;</span>
-<span class='k'>end</span>
-</code></pre></div>
-<h3 id="case_statement">Case statement</h3>
-
-<p>The case statement (called a switch statement in many other languages) is used for testing multiple conditions, when <code>if ... elsif .. else</code> would become unweildy.</p>
-<div class='highlight'><pre><code class='ruby'><span class='nb'>print</span> <span class='s2'>&quot;Enter your favourite programming language: &quot;</span>
-<span class='n'>language</span> <span class='o'>=</span> <span class='nb'>gets</span><span class='o'>.</span><span class='n'>chomp</span>
-
-<span class='k'>case</span> <span class='n'>language</span><span class='o'>.</span><span class='n'>upcase</span>
-<span class='k'>when</span> <span class='s2'>&quot;Ruby&quot;</span>
-	<span class='nb'>puts</span> <span class='s2'>&quot;Great choice&quot;</span>
-<span class='k'>when</span> <span class='s2'>&quot;Python&quot;</span>
-	<span class='nb'>puts</span> <span class='s2'>&quot;Not bad. You should try Ruby though&quot;</span>
-<span class='k'>when</span> <span class='s2'>&quot;Javascript&quot;</span>
-	<span class='nb'>puts</span> <span class='s2'>&quot;Javascript is a necessary </span>
-<span class='s2'>	evil, but not nearly as nice as ruby&quot;</span>
-<span class='k'>else</span>
-	<span class='nb'>puts</span> <span class='s2'>&quot;Ruby is better!&quot;</span>
-<span class='k'>end</span>
-</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Open <code>grade.rb</code> in Sublime Text</li>
-
-<li>Complete the function using <code>if</code>, <code>elsif</code> and <code>else</code> statements</li>
-
-<li>Check your solution by running <code>test_grade.rb</code></li>
-</ol>
-</div>
-	</div>
-
-	
-	<div class="tab-pane " id="9_project">
-	
-
-		<h2>Project 1</h2>
-		
-<p>Take a look at <a href="http://foaas.herokuapp.com/">Fuck Off as a Service - FOAAS</a> for example <a href="http://foaas.herokuapp.com/off/boris/dave">foaas.herokuapp.com/off/boris/dave</a> or <a href="http://foaas.herokuapp.com/shakespeare/boris/dave">foaas.herokuapp.com/shakespeare/boris/dave</a>.</p>
-
-<p>Your task is to implement something similar using Sinatra. For example:</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>Change your sinatra app into something more interesting:</p>
 
 <ul>
-<li>An alternative insult site.</li>
+<li>Add more options to the form.</li>
 
-<li>A complement site.</li>
+<li>Make the logic in the views more complicated, so that you’re using a few boolean operations.</li>
 
-<li>.. use your imagination!</li>
+<li>Change your app into a horoscope provider/career adviser/which-star-wars-character-are-you machine.</li>
+
+<li>Make it look nice, deploy it and show your friends.</li>
 </ul>
-<div class='exercise alert alert-info'><strong>Task:</strong>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="7_homework">
+	
+
+		<h2>Homework</h2>
+		<div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>
-<p>Go to <a href='https://github.com/code61/sinatra_project_1'>https://github.com/code61/sinatra_project_1</a> and press the fork button. This will give you your own copy of the project on GitHub.</p>
-</li>
+<li>Finish the final exercise from class. Make your Sinatra app into something you can show people!</li>
 
-<li>
-<p>Clone your forked version of the repo down onto your laptop (using the <strong>ssh</strong> clone URL on the bottom right of the repo page): in your <code>coding_course</code> folder run</p>
-
-<pre><code> $ git clone paste_the_clone_URL_here</code></pre>
-</li>
-
-<li>
-<p>Use the outline project as a starting point for your work.</p>
-</li>
-
-<li>
-<p>Once you’ve written a simple URL matcher, see if you can write a test for it in <code>tests.rb</code> (by copying examples from class).</p>
-</li>
-
-<li>
-<p>At each stage <code>add</code>, <code>commit</code> and <code>push</code> your changes. (It should have automatically set itself up to push back up to your forked version on github.)</p>
-</li>
+<li>Do the <a href='http://www.codecademy.com/tracks/ruby'>Codecademy Ruby track</a> Sections 3 and 4.</li>
 </ol>
 </div>
-<p>Please make this project as good as you can. We’ll be deploying it online next time, so it’ll be nice to have something to be proud of. You will probably want to consider adding bootstrap to your HTML templates and things.</p>
-
 	</div>
 
 </div>
