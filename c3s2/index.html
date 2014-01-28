@@ -84,11 +84,11 @@
   <span class='s2'>&quot;Move along please.&quot;</span>
 <span class='k'>end</span>
 </code></pre></div>
-<p>If the code within the <code>if</code> block will only be run if the statement is true. If the statement is false, the code in the <code>else</code> block will be run instead.</p>
+<p>The code within the <code>if</code> block will only be run if the statement is true. If the statement is false, the code in the <code>else</code> block will be run instead.</p>
 
 <h3 id="comparisons">Comparisons</h3>
 
-<p>There are some basic comparisons that we will be useful when using if statments</p>
+<p>There are some basic comparisons that will be useful when using if statments</p>
 <table><thead><tr><th>Symbol</th><th>Meaning</th></tr></thead><tbody><tr><td style="text-align: left;"><code>==</code></td><td style="text-align: left;">Is equal to</td></tr>
 <tr><td style="text-align: left;"><code>&gt;</code></td><td style="text-align: left;">Greater than</td></tr>
 <tr><td style="text-align: left;"><code>&lt;</code></td><td style="text-align: left;">Less than</td></tr>
@@ -158,6 +158,8 @@
 <li>Open the <code>sinatra_c3s2</code> project in Sublime Text and have a read through <code>app.rb</code>. See if you can predict what the app will do.</li>
 
 <li>Run the app from the command line (<code>ruby app.rb</code>), to see if you were right.</li>
+
+<li>(Optional) Add the line <code>raise params.inspect</code> right at the top of the post block. Restart the app and see what happens.</li>
 </ol>
 </div>
 	</div>
@@ -271,7 +273,7 @@ To git@heroku.com:arcane-gorge-2129.git
 <p>Add your work (and new <code>Gemfile.lock</code>) to your repository:</p>
 
 <pre><code> $ git add --all
- $ git commit -m &amp;quot;Added Gemfile.lock&amp;quot;</code></pre>
+ $ git commit -m 'Added Gemfile.lock'</code></pre>
 </li>
 
 <li>
@@ -330,7 +332,7 @@ To git@heroku.com:arcane-gorge-2129.git
 </code></pre></div>
 <p>The line <code>erb :form</code> tells sinatra to look for a file called <code>form.erb</code> in a folder called <code>views</code>. It then processes that file using the <code>erb</code> (embedded ruby) templating language and returns the result to the user.</p>
 
-<p>The <code>form.erb</code> above isn’t very interesting: it is jsut a static template and doesn’t have any ruby embedded in it. Let’s look at a slightly better example:</p>
+<p>The <code>form.erb</code> above isn’t very interesting: it is just a static template and doesn’t have any ruby embedded in it. Let’s look at a slightly better example:</p>
 <div class='highlight'><pre><code class='ruby'><span class='c1'># in app.rb</span>
 
 <span class='n'>get</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
@@ -341,6 +343,7 @@ To git@heroku.com:arcane-gorge-2129.git
   <span class='vi'>@age</span>  <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:user_age</span><span class='o'>]</span>
 
   <span class='n'>erb</span> <span class='ss'>:welcome</span>
+<span class='k'>end</span>
 </code></pre></div><div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/welcome.erb  --&gt;</span>
 
 <span class='cp'>&lt;!DOCTYPE html&gt;</span>
