@@ -53,9 +53,9 @@ Linking to other files (stylesheets, javascript files, images) can be done in se
 
 and you're going to deploy your site to "http://www.my_first_site.com". Suppose you want to link to `main.css` from `index.html` and to `background.jpg` from `main.css`. There are three different styles of links you can use:
 
-#### 1. Absolute external links
+#### 1. Absolute links
 
-Absolute external links include the complete url to the resource you're linking to:
+Absolute external links include the complete url to the resource you're linking to. **Absolute links start with either http:// or https://**.
 
 {% highlight html %}
 <!-- in index.html -->
@@ -68,11 +68,11 @@ body {
 }
 {% endhighlight %}
 
-Absolute external links can be used to link to resources held on different sites, but wouldn't usually be used for links between your own site. They're a bit fragile - if you change your domain name all the links will break. They also won't work when you're developing locally.
+Absolute external links can be used to link to resources held on different sites, but wouldn't usually be used for links within your own site. They're a bit fragile - if you change your domain name all the links will break. They also won't work when you're developing locally.
 
-#### 2. Absolute local links
+#### 2. Root-relative links
 
-Absolute local links contain the path to the resource *relative to the site's root*. The site's root is (roughly) the folder that contains the site - in this case, `first_site`. **Absolute local links begin with a `/`**:
+Root-relative links contain the path to the resource *relative to the site's root*. The site's root is (roughly) the folder that contains the site - in this case, `first_site`. **Root-relative links begin with a `/`**:
 
 {% highlight html %}
 <!-- in index.html -->
@@ -85,11 +85,11 @@ body {
 }
 {% endhighlight %}
 
-Absolute local links are a bit more flexible than absolute external links: e.g. if you change your domain name everything will still be fine. They're sometimes useful for your own static sites, but probably won't work when developing locally (because the root will be taken to be the root of your file system and not the folder containing the site!).
+Root-relative links are a bit more flexible than absolute external links: e.g. if you change your domain name everything will still be fine. They're sometimes useful for your own static sites, but probably won't work when developing locally (because the root will be taken to be the root of your file system and not the folder containing the site!).
 
-#### 3. Relative local links
+#### 3. Document-relative links
 
-Relative local links contain the path to the resource *relative to the file where the link is written*. **Relative local links don't begin with `/`**:
+Document-relative links contain the path to the resource *relative to the file where the link is written*. **Document-relative links don't begin with `/`**:
 
 {% highlight html %}
 <!-- in index.html -->
@@ -104,27 +104,29 @@ body {
 
 To link to the stylesheet from `index.html` we use `stylesheets/main.css` which says "look in the same folder I'm in (`first_site`) and find a folder called `styleheets` and a file in it called `main.css`".
 
-To link to the image from the stylesheet is slightly more complicated: we use `../images/background.jpg`. This means "go to the folder above the one I'm in (I'm in `stylesheets`, so that's `first_site`) and find a folder called `images` and a file in it called `background.jpg`". Notice how `..` is used to go up a folder, just like in the command `cd ..`. 
+To link to the image from the stylesheet is slightly more complicated: we use `../images/background.jpg`. This means "go to the folder above the one I'm in (I'm in `stylesheets`, so that's `first_site`) and find a folder called `images` and a file in it called `background.jpg`". 
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Important to know</h3>
+  </div>
+  <div class='panel-body'>
+    In document-relative links (and in many other places e.g. command line navigation)
+   <ul>
+      <li><code>.</code> means in the folder <strong>that I'm in</strong></li>
+      <li><code>..</code> means in the folder <strong>above the one that I'm in</strong></li>
+    </ul> 
+  </div>
+</div>
 
 Relative links are the most flexible - they will work on your local file system. The only think you have to be careful about is moving your files into different folders, which can cause links to break.
 
 **You should be using relative local links in these exercises.**
 
+For a recap of all this, read [this article](https://www.inkling.com/read/dreamweaver-cs6-missing-manual-david-sawyer-mcfarland-1st/chapter-4/understanding-links).
 
 {% exercise %}
-1. Move to your `coding_course` folder and clone the repository for this session:
-
-         git clone https://github.com/code61/html3.git
-
-2. Open `exercise1.html` in Sublime Text and Chrome.
-3. Link in the external stylesheet `exercise1.css`. Save, add and commit. Make sure the results show up in Chrome when you refresh.
-4. Open `exercise2.html` in Sublime Text and Chrome.
-5. Move the css from the `head` into a separate stylesheet, which you should call `exercise2.css`. Link to this stylesheet in the head.
-6. Create another stylesheet called `exercise2-custom.css`.
-7. In this stylesheet write:
-
-        .color-info { border: 5px dotted purple; }
-
-8. Link in this stylesheet too, so that the changes take effect.
-9. If you have time, move any styles you have added to your `first_site` into a separate stylesheet.
+1. Return to `exercise1.html` and separate the CSS out into a separate file (called `exercise1.css`).
+2. Check that the CSS still shows up when you view the site in the browser.
+3. Make a change in `exercise1.css` and check that you can see that in the browser. (You might need to refresh the page a few times).
 {% endexercise %}

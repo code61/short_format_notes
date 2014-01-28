@@ -47,13 +47,8 @@ h3 {
 Note that you can specify multiple properties on one element. When you do this it's nice to lay them out on multiple lines as done above.
 
 {% exercise %}
-1. Use git to clone the repo for this part of the session:
-
-        $ git clone https://github.com/code61/html2.git
-
-    As well as the code, this has given you a local copy of the git repository I'm storing the exercise in. You'll be adding to this repo in a minute.
+1. Use git to clone the repo for this part of the session: [https://github.com/code61/html2](https://github.com/code61/html2).
 2. Open `exercise1.html` in Sublime Text and in Chrome.
 3. Add some css in the `head` to make the `h1` turn red.
-
 5. Continue with the exercise until `exercise1.html` looks like `exercise1_solution.png`.
 {% endexercise %}

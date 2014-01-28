@@ -41,5 +41,5 @@ Note that, like the words matched in the url, the value of the `user_name` field
 2. Clone down your fork of the repository onto your laptop.
 3. Open the `sinatra_c3s2` project in Sublime Text and have a read through `app.rb`. See if you can predict what the app will do.
 4. Run the app from the command line (`ruby app.rb`), to see if you were right.
-5. (Optional) Add the line `raise params.inspect` right at the top of the post block. Restart the app and see what happens.
+5. (Optional) Add the line `raise params.inspect` right at the top of the post block. Restart the app and see what happens. When you've had a look, make sure you remove the line again!
 {% endexercise %}
