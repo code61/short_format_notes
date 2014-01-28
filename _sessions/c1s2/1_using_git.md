@@ -2,12 +2,7 @@
 title:  "Intro to Git"
 ---
 
-
-
-
-
-
-
+![Basic git](/assets/basic_git.png)
 
 Git is a version control system. It allows you to keep the entire history of your code, and makes it easy to share and collaborate with others.
 
