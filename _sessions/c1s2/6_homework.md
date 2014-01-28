@@ -20,7 +20,7 @@ Finish off both CSS exercises from class. Check your solutions online:
 4. (Optional) Read [this article](https://www.inkling.com/read/dreamweaver-cs6-missing-manual-david-sawyer-mcfarland-1st/chapter-4/understanding-links) about absolute vs. relative links.
 {% endexercise %}
 
-### Get your domain name to point to you github page
+### Get your domain name to point to your GitHub Page
 
 The point of this exercise is to set up your domain name to point towards your new GitHub pages site.
 
