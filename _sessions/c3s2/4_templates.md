@@ -37,7 +37,7 @@ end
 
 The line `erb :form` tells sinatra to look for a file called `form.erb` in a folder called `views`. It then processes that file using the `erb` (embedded ruby) templating language and returns the result to the user.
 
-The `form.erb` above isn't very interesting: it is jsut a static template and doesn't have any ruby embedded in it. Let's look at a slightly better example:
+The `form.erb` above isn't very interesting: it is just a static template and doesn't have any ruby embedded in it. Let's look at a slightly better example:
 
 {% highlight ruby %}
 # in app.rb
@@ -50,6 +50,7 @@ post '/' do
   @age  = params[:user_age]
 
   erb :welcome
+end
 {% endhighlight %}
 
 {% highlight html %}

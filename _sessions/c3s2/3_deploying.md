@@ -107,7 +107,7 @@ Deploy your `sinatra_c3s2` app to Heroku:
 2. Add your work (and new `Gemfile.lock`) to your repository:
 
         $ git add --all
-        $ git commit -m "Added Gemfile.lock"
+        $ git commit -m 'Added Gemfile.lock'
 
 3. Create a new heroku app:
 

@@ -6,21 +6,7 @@ Git is a version control system. It allows you to keep the entire history of you
 
 ### Setting up a git repo
 
-Git works on a folder level. To set up a folder to work with git you need to navigate to that folder in the command line and run.
-
-    $ git init
-
-To see what this has done do:
-
-    $ ls -a
-
-The `-a` is a flag which tells the `ls` command to show hidden files and folders. You should see a folder called `.git` in the results. If you want you could move into this folder, and have a look around (and then move out again).
-
-    $ cd .git
-    $ ls
-    $ cd ..
-
-All the data to allow git to version control your code will be stored inside this hidden folder. If you ever want to 'un-version-control' your code all you have to do is delete this folder.
+Git works on a folder level. To set up a folder to work with git you need to open up the github app and select `File > Add Local Repository ...`. You then need to select the folder you want to control with git.
 
 ### Excluding some files
 

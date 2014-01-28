@@ -12,11 +12,11 @@ else
 end
 {% endhighlight %}
 
-If the code within the `if` block will only be run if the statement is true. If the statement is false, the code in the `else` block will be run instead.
+The code within the `if` block will only be run if the statement is true. If the statement is false, the code in the `else` block will be run instead.
 
 ### Comparisons
 
-There are some basic comparisons that we will be useful when using if statments
+There are some basic comparisons that will be useful when using if statments
 
 Symbol | Meaning
 ---- | ----
