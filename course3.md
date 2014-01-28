@@ -22,18 +22,31 @@ layout: default
   + [ext] Look at tests
   + [hwk] heroku account, ssh setup
 - [Session 2](c3s2)
-  + Conditionals in ruby
-  + Truthy and falsey
-  + Sinatra templates
+  + Start with basic app using a post request and a conditional
+  + Show them how to deploy it, diagram explaining remotes?
+  + Improving with templates and erb, redeploy
+  + Boolean ops, Truthy and falsey
+  + Modify their app to use more form information
+  + Sinatra templates, erb
   + Deploying
-  + [hwk] FOAAS?
+  + [hwk] FOAAS? - practices templates
   + [hwk] Codecademy ruby 3 & 4
 - [Session 3](c3s3)
   + Arrays, iterating
-  + Building up an in-memory data store (using a constant?)
+  + Hashes
+  <!-- + Building up an in-memory data store (using a constant?) -->
+  + Reading in from a CSV file
   + Iterating in a template
 - [Session 4](c3s4)
-  + Hashes
+  + functions
+  + sending emails?
+
+
+- [Session 1](c4s1)
+- [Session 2](c4s2)
+- [Session 3](c4s3)
+- [Session 4](c4s4)
+  + intro to ruby on rails
 
 
 name can be a variable, a Constant, (an @instance variable, a @@class variable, $global)
