@@ -56,7 +56,11 @@
 		
 	
 		
-		<li><a href="#5_homework" data-toggle="tab">Homework </a></li>
+		<li><a href="#5_separate_css_file" data-toggle="tab">External stylesheets </a></li>
+		
+	
+		
+		<li><a href="#6_homework" data-toggle="tab">Homework </a></li>
 		
 	
 </ul>
@@ -79,157 +83,32 @@
 
 <p>There are some other hidden files (e.g. those used by your operating system) that you don’t want to be version controlled. An example of these is the <code>.DS_Store</code> file on macs. We’ll talk more about this later - for now we’ll just quickly exclude them from our repository.</p>
 
-<p>To do this you need to create a file called <code>.gitignore</code> in your the folder containing your repo and put the line <code>.DS_Store</code> in it. You can do this with sublime text:</p>
+<p>To do this you need to change the settings on your repository.</p>
 
 <ol>
-<li>Open Sublime Text and write <code>.DS_Store</code> in a new window.</li>
+<li>Open the settings tab of your repository.</li>
 
-<li>Save this file as <code>.gitignore</code> in your repo folder.</li>
+<li>Add <code>.DS_Store</code> on the first line of the ‘Ignored files’ section, and press ‘Save Changes’.</li>
 </ol>
 
 <p>If you’re on Windows you don’t need to worry about this.</p>
 
-<h3 id="adding_files_to_the_repository">Adding files to the repository</h3>
+<h3 id="committing_files_to_the_repository">Committing files to the repository</h3>
 
-<p>Suppose we’ve now created a file called <code>index.html</code> in the folder. It’s in the folder but currently isn’t being tracked by git. You can see this by doing <code>git status</code>:</p>
+<p>Suppose we’ve now created a file called <code>index.html</code> in the folder. It’s in the folder but currently isn’t being tracked by git.</p>
 
-<pre><code>$ git status
-
-# On branch master
-#
-# Initial commit
-#
-# Untracked files:
-#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
-#
-#   index.html
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
-
-<p>Adding files to a git repository is actually a two-stage process: you have to <strong>add</strong> them and then <strong>commit</strong> them. This is useful when you get more advanced, but we’ll usually do those things together for the time being. To add the changes to the repository do:</p>
-
-<pre><code>$ git add --all
-$ git status
-
-# On branch master
-#
-# Initial commit
-#
-# Changes to be committed:
-#   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
-#
-#   new file:   index.html
-#</code></pre>
-
-<p>It is possible to add files one at a time - again, useful when you get more advanced. For the time being the <code>--all</code> flag tells git to add everything to the folder. In other tutorials you might see <code>git add .</code>. This also adds everything in the folder <strong>but doesn’t remove files you have deleted</strong>. I’d encourage you to stick with <code>git add --all</code> for the time being.</p>
-
-<p>We will now commit these changes to our repository, along with a description of the changes we have made.</p>
-
-<pre><code>$ git commit -m &quot;Created index.html&quot;
-
-[master (root-commit) e91b6be] Created index.html
-0 files changed
-create mode 100644 index.html</code></pre>
-<div class='alert alert-error'>
-<h4>How to get out of vim</h4>
-
-<p>If you forget to supply a message with the <code>-m</code> tag git will drop you into a text editor (probably vim) so that you can write one. If this happens you will need to do the following:</p>
-
-<ul>
-<li>Press <code>i</code> to get into insert mode, so you can write.</li>
-
-<li>Write your message.</li>
-
-<li>Press <code>esc</code> then <code>:</code> then <code>wq</code> then <code>Enter</code>.</li>
-
-<li>Never forget your message again</li>
-
-<li>… or make a note of these instructions!</li>
-</ul>
-</div>
-<p>You can check that the commit worked with git status:</p>
-
-<pre><code>$ git status
-
-# On branch master
-nothing to commit (working directory clean)</code></pre>
-
-<p>You can see your commit by doing</p>
-
-<pre><code>$ git log
-
-commit c63f9bbea211a0240fa1b13287a2aaf5a6d8d81a
-Author: Tom Close &lt;tom.close@example.com&gt;
-Date:   Tue Jul 2 14:19:30 2013 +0100
-
-    Created index.html</code></pre>
-
-<p>or you can get a nice diagram showing your repo by doing</p>
-
-<pre><code>$ gitk --all</code></pre>
+<p>Adding files to a git repository is actually a two-stage process: you have to <strong>add</strong> them and then <strong>commit</strong> them. This is useful when you get more advanced, but we’ll usually do those things together for the time being.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
-<p>Enable your <code>first_site</code> folder as a git repository:</p>
-
 <ol>
-<li>
-<p>Navigate to the <code>first_site</code> folder in the command line</p>
-</li>
+<li>Set up your <code>first_site</code> folder as a git repository: open up the github app, select <code>File &amp;gt; Add Local Repository ...</code> and select the <code>first_site</code> folder.</li>
 
-<li>
-<p>Type</p>
+<li><strong>If you are on a mac</strong>, tell git to ignore your <code>.DS_Store</code> files: in the settings panel of the github app, add the line <code>.DS_Store</code> in the ‘Ignored files’ section.</li>
 
-<pre><code> $ git init</code></pre>
-</li>
+<li>Commit your work to the repository: in the ‘Changes’ panel, click ‘Select all’, write a ‘Commit Summary’ in the box (e.g. &quot;Created index.html&quot;) and click ‘Commit’.</li>
 
-<li>
-<p><strong>If you are on a mac</strong>, tell git to ignore your <code>.DS_Store</code> files:</p>
+<li>Make some change to index.html (in Sublime Text)</li>
 
-<ol>
-<li>Open Sublime Text and write <code>.DS_Store</code> in a new window.</li>
-
-<li>Save this file as <code>.gitignore</code> in your <code>first_site</code> folder.</li>
-</ol>
-</li>
-
-<li>
-<p>Do a git status to see what it says</p>
-
-<pre><code> $ git status</code></pre>
-</li>
-
-<li>
-<p>Commit your changes to the repository:</p>
-
-<pre><code> $ git add --all
- $ git commit -m &amp;quot;Created index.html&amp;quot;</code></pre>
-</li>
-
-<li>
-<p>Do a git status and then a git log to see what has happened:</p>
-
-<pre><code> $ git status
- $ git log</code></pre>
-</li>
-
-<li>
-<p>Make some change to index.html (in Sublime Text)</p>
-</li>
-
-<li>
-<p>Go back to the command line and do a git status:</p>
-
-<pre><code> $ git status</code></pre>
-</li>
-
-<li>
-<p>Add and commit your changes but forget the <code>-m</code>:</p>
-
-<pre><code> $ git add --all
- $ git commit</code></pre>
-</li>
-
-<li>
-<p>Use the warning above to add you commit message and escape from vim</p>
-</li>
+<li>Go back to the ‘Changes’ panel. Select and commit your changes, with a ‘Commit Summary’ describing what you did.</li>
 </ol>
 </div>
 	</div>
@@ -242,27 +121,28 @@ Date:   Tue Jul 2 14:19:30 2013 +0100
 		
 <p>Github is a site which will host a git repo online for you, making it easy to collaborate with others. We’ll now see how to put some code online.</p>
 
-<p>Go to github, login, and click “Create New Repo” in the top left hand corner.</p>
+<h3 id="aside_serving_a_site_via_github_pages">Aside: serving a site via Github Pages</h3>
 
-<p><img src="/assets/create_repo.png" alt="Creating a repo on GitHub" /></p>
+<p>Normally when we push code up to github, it just sits there for others to see and contribute to. The code we’re about to push up happens to be the code for a website. Instead of the files just sitting there, we want github to <em>serve</em> them as a website. The way github does this is through its <a href="http://pages.github.com/">github pages</a>.</p>
 
-<p>Follow the instructions, calling it something like <code>first_site</code>. <strong>Do not</strong> click the box which says ‘Create a readme with this repository’. You’ll get to a page when it’ll describe how to get your code online. You want to follow the instructions for “Pushing an existing repository to github”.</p>
+<p>There are several ways of getting GitHub to publish your site as a GitHub page. We’re going to use a simple trick: in the branches panel of the GitHub app, change the name of the current branch from <code>master</code> to <code>gh-pages</code>.</p>
+<div class='alert alert-warning'>If you haven't verified your email with github (you'll see a warning at the top of the screen when you log in). Your GitHub won't serve your page at all. Make sure you've verified you email address, before continuing!</div>
+<h3 id="pushing_code_up_to_github">Pushing code up to github</h3>
 
-<p><img src="/assets/push_repo_github.png" alt="Push repo to GitHub" /></p>
-
-<p>If you’ve set up ssh keys, go for the ssh option, if not, go for https. You should end up doing something like:</p>
-
-<pre><code>$ git remote add origin git@github.com/yourusername/first_site.git
-$ git push -u origin master</code></pre>
-
-<p>You might now be prompted to add your github username and password (if you’re doing the https method). If all goes well, when you go to github you should see the <code>first_site</code> folder containing your html file.</p>
+<p>To push code up to GitHub, in the GitHub app select the ‘Push to Github’ button (on the top right). You’ll be prompted to choose a name (which might as well be <code>first_site</code>).</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
-<p>Push your <code>first_site</code> folder to GitHub!</p>
-
 <ol>
-<li>Create the new repository on GitHub. (<strong>Don’t</strong> create it with a README.)</li>
+<li>Log in to GitHub and check you’ve verified your email address.</li>
 
-<li>Follow the instructions for &quot;Pushing an existing repository to github&quot; to push your repository up.</li>
+<li>In the ‘Branches’ panel of the GitHub app, change the name of the current branch from <code>master</code> to <code>gh-pages</code>.</li>
+
+<li>Click the ‘Push to Github’ button in the GitHub app.</li>
+
+<li>On Github check you can see your <code>first_site</code> code.</li>
+
+<li>On the code page on github, click on Settings. It should tell you (about half way down) the url where they’ve published your site. Have a look to see whether you can see it!</li>
+
+<li>(If you finish early) Make a change to <code>index.html</code> in Sublime Text. Commit the change to the repository and then push it to GitHub. Make sure you can see the change in the code on GitHub and also in the published page.</li>
 </ol>
 </div>
 	</div>
@@ -316,25 +196,13 @@ $ git push -u origin master</code></pre>
 <p>Note that you can specify multiple properties on one element. When you do this it’s nice to lay them out on multiple lines as done above.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>
-<p>Use git to clone the repo for this part of the session:</p>
+<li>Use git to clone the repo for this part of the session: <a href='https://github.com/code61/html2'>https://github.com/code61/html2</a>.</li>
 
-<pre><code> $ git clone https://github.com/code61/html2.git</code></pre>
+<li>Open <code>exercise1.html</code> in Sublime Text and in Chrome.</li>
 
-<p>As well as the code, this has given you a local copy of the git repository I’m storing the exercise in. You’ll be adding to this repo in a minute.</p>
-</li>
+<li>Add some css in the <code>head</code> to make the <code>h1</code> turn red.</li>
 
-<li>
-<p>Open <code>exercise1.html</code> in Sublime Text and in Chrome.</p>
-</li>
-
-<li>
-<p>Add some css in the <code>head</code> to make the <code>h1</code> turn red.</p>
-</li>
-
-<li>
-<p>Continue with the exercise until <code>exercise1.html</code> looks like <code>exercise1_solution.png</code>.</p>
-</li>
+<li>Continue with the exercise until <code>exercise1.html</code> looks like <code>exercise1_solution.png</code>.</li>
 </ol>
 </div>
 	</div>
@@ -411,7 +279,124 @@ $ git push -u origin master</code></pre>
 	</div>
 
 	
-	<div class="tab-pane " id="5_homework">
+	<div class="tab-pane " id="5_separate_css_file">
+	
+
+		<h2>External stylesheets</h2>
+		
+<p>So far you have written your CSS rules directly in the <code>head</code> section of your html page:</p>
+<div class='highlight'><pre><code class='html'><span class='cp'>&lt;!DOCTYPE html&gt;</span>
+<span class='nt'>&lt;html&gt;</span>
+  <span class='nt'>&lt;head&gt;</span>
+  	<span class='nt'>&lt;title&gt;</span>My page<span class='nt'>&lt;/title&gt;</span>
+  	<span class='nt'>&lt;style </span><span class='na'>type=</span><span class='s'>&quot;text/css&quot;</span><span class='nt'>&gt;</span>
+  	  <span class='nt'>h1</span> <span class='p'>{</span> <span class='k'>color</span><span class='o'>:</span> <span class='nb'>red</span><span class='p'>;</span> <span class='p'>}</span>
+  	<span class='nt'>&lt;/style&gt;</span>
+  <span class='nt'>&lt;/head&gt;</span>
+
+  <span class='c'>&lt;!-- body goes here --&gt;</span>
+
+<span class='nt'>&lt;/html&gt;</span>
+</code></pre></div>
+<p>We did this to make your first experiments with CSS quick an easy. In a live site it is considered bad practice to put your CSS inside the <code>head</code> section: Typically a site will have one set of styles that apply to all the pages. By separating these CSS rules into their own file you (a) reduce repetition in your code and (b) reduce the amount of information that has to be sent to the browser for each page - if the CSS file applies to the whole site, it only needs to be sent to the visitor once.</p>
+
+<p>To link to an external CSS file you can do the following:</p>
+<div class='highlight'><pre><code class='html'><span class='cp'>&lt;!DOCTYPE html&gt;</span>
+<span class='nt'>&lt;html&gt;</span>
+  <span class='nt'>&lt;head&gt;</span>
+  	<span class='nt'>&lt;title&gt;</span>My page<span class='nt'>&lt;/title&gt;</span>
+  	<span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&#39;stylesheet&#39;</span> <span class='na'>type=</span><span class='s'>&#39;text/css&#39;</span> <span class='na'>href=</span><span class='s'>&#39;path/to/my_css_file.css&#39;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;/head&gt;</span>
+
+  <span class='c'>&lt;!-- body goes here --&gt;</span>
+
+<span class='nt'>&lt;/html&gt;</span>
+</code></pre></div>
+<h3 id="linking_to_other_files">Linking to other files</h3>
+
+<p>Linking to other files (stylesheets, javascript files, images) can be done in several ways, just like linking to another page. Say you have the following directory structure:</p>
+
+<pre><code>first_site
+|
+---- index.html
+|
+---- images
+|    |
+|    ---- background.jgp
+|
+---- stylesheets
+     |
+      ---- main.css</code></pre>
+
+<p>and you’re going to deploy your site to “http://www.my_first_site.com”. Suppose you want to link to <code>main.css</code> from <code>index.html</code> and to <code>background.jpg</code> from <code>main.css</code>. There are three different styles of links you can use:</p>
+
+<h4 id="1_absolute_links">1. Absolute links</h4>
+
+<p>Absolute external links include the complete url to the resource you’re linking to. <strong>Absolute links start with either http:// or https://</strong>.</p>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in index.html --&gt;</span>
+<span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&quot;stylesheet&quot;</span> <span class='na'>type=</span><span class='s'>&quot;text/css&quot;</span> <span class='na'>href=</span><span class='s'>&quot;http://www.my_first_site.com/stylesheets/main.css&quot;</span><span class='nt'>&gt;</span>
+</code></pre></div><div class='highlight'><pre><code class='css'><span class='c'>/* in main.css */</span>
+<span class='nt'>body</span> <span class='p'>{</span>
+  <span class='k'>background-image</span><span class='o'>:</span> <span class='sx'>url(&quot;http://www.my_first_site.com/images/background.jpg&quot;)</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>Absolute external links can be used to link to resources held on different sites, but wouldn’t usually be used for links within your own site. They’re a bit fragile - if you change your domain name all the links will break. They also won’t work when you’re developing locally.</p>
+
+<h4 id="2_rootrelative_links">2. Root-relative links</h4>
+
+<p>Root-relative links contain the path to the resource <em>relative to the site’s root</em>. The site’s root is (roughly) the folder that contains the site - in this case, <code>first_site</code>. <strong>Root-relative links begin with a <code>/</code></strong>:</p>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in index.html --&gt;</span>
+<span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&quot;stylesheet&quot;</span> <span class='na'>type=</span><span class='s'>&quot;text/css&quot;</span> <span class='na'>href=</span><span class='s'>&quot;/stylesheets/main.css&quot;</span><span class='nt'>&gt;</span>
+</code></pre></div><div class='highlight'><pre><code class='css'><span class='c'>/* in main.css */</span>
+<span class='nt'>body</span> <span class='p'>{</span>
+  <span class='k'>background-image</span><span class='o'>:</span> <span class='sx'>url(&quot;/images/background.jpg&quot;)</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>Root-relative links are a bit more flexible than absolute external links: e.g. if you change your domain name everything will still be fine. They’re sometimes useful for your own static sites, but probably won’t work when developing locally (because the root will be taken to be the root of your file system and not the folder containing the site!).</p>
+
+<h4 id="3_documentrelative_links">3. Document-relative links</h4>
+
+<p>Document-relative links contain the path to the resource <em>relative to the file where the link is written</em>. <strong>Document-relative links don’t begin with <code>/</code></strong>:</p>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in index.html --&gt;</span>
+<span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&quot;stylesheet&quot;</span> <span class='na'>type=</span><span class='s'>&quot;text/css&quot;</span> <span class='na'>href=</span><span class='s'>&quot;stylesheets/main.css&quot;</span><span class='nt'>&gt;</span>
+</code></pre></div><div class='highlight'><pre><code class='css'><span class='c'>/* in main.css */</span>
+<span class='nt'>body</span> <span class='p'>{</span>
+  <span class='k'>background-image</span><span class='o'>:</span> <span class='sx'>url(&quot;../images/background.jpg&quot;)</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>To link to the stylesheet from <code>index.html</code> we use <code>stylesheets/main.css</code> which says “look in the same folder I’m in (<code>first_site</code>) and find a folder called <code>styleheets</code> and a file in it called <code>main.css</code>”.</p>
+
+<p>To link to the image from the stylesheet is slightly more complicated: we use <code>../images/background.jpg</code>. This means “go to the folder above the one I’m in (I’m in <code>stylesheets</code>, so that’s <code>first_site</code>) and find a folder called <code>images</code> and a file in it called <code>background.jpg</code>”.</p>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>Important to know</h3>
+  </div>
+  <div class='panel-body'>
+    In document-relative links (and in many other places e.g. command line navigation)
+   <ul>
+      <li><code>.</code> means in the folder <strong>that I'm in</strong></li>
+      <li><code>..</code> means in the folder <strong>above the one that I'm in</strong></li>
+    </ul> 
+  </div>
+</div>
+<p>Relative links are the most flexible - they will work on your local file system. The only think you have to be careful about is moving your files into different folders, which can cause links to break.</p>
+
+<p><strong>You should be using relative local links in these exercises.</strong></p>
+
+<p>For a recap of all this, read <a href="https://www.inkling.com/read/dreamweaver-cs6-missing-manual-david-sawyer-mcfarland-1st/chapter-4/understanding-links">this article</a>.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Return to <code>exercise1.html</code> and separate the CSS out into a separate file (called <code>exercise1.css</code>).</li>
+
+<li>Check that the CSS still shows up when you view the site in the browser.</li>
+
+<li>Make a change in <code>exercise1.css</code> and check that you can see that in the browser. (You might need to refresh the page a few times).</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="6_homework">
 	
 
 		<h2>Homework</h2>
@@ -428,74 +413,16 @@ $ git push -u origin master</code></pre>
 <li>Click on the files below to see the solution</li>
 </ul>
 </div>
-<h3 id="revisiting_git">Revisiting git</h3>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
-
-<p>Read through <a href='http://gitimmersion.com/lab_01.html'>Git Immersion</a> exercises 1 to 11. You don’t need to do anything - just check you vaguely understand what they’re talking about.</p>
-
-</div>
 <h3 id="more_htmlcss">More HTML/CSS</h3>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>
-<p>Complete the whole of Project 3 on the <a href='https://dash.generalassemb.ly/projects'>General Assembly Dash</a> site.</p>
-</li>
+<li>Complete the whole of Project 3 on the <a href='https://dash.generalassemb.ly/projects'>General Assembly Dash</a> site.</li>
 
-<li>
-<p>Make some changes to your <code>first_site</code> based on what you’ve learnt. Make sure you add them to git at each stage, and push them up to github:</p>
+<li>Make some changes to your <code>first_site</code> based on what you’ve learnt. Make sure you add them to git, push them to github and check you can see them online.</li>
 
-<pre><code> $ git add --all
- $ git commit -m &amp;quot;Message to describe the change you made&amp;quot;
- $ git push</code></pre>
-</li>
+<li>(Optional) Do the projects from the <a href='http://www.codecademy.com/tracks/web'>Codecademy Web Track</a> Sections 7, 8 &amp; 9.</li>
 
-<li>
-<p>(Optional) Do the projects from the <a href='http://www.codecademy.com/tracks/web'>Codecademy Web Track</a> Sections 7, 8 &amp; 9.</p>
-</li>
-</ol>
-</div>
-<h3 id="get_your_site_online_with_github_pages">Get your site online with GitHub Pages</h3>
-
-<p>We’re now going to use GitHub Pages to publish your <code>first_site</code> folder as a webpage.</p>
-
-<p>Github will host an html site for free for you, through a service called <a href="http://pages.github.com/">GitHub Pages</a>. There are two possibilities for telling github to make your code into a website:</p>
-
-<ol>
-<li>Call your repo <code>yourusername.github.io</code> when you create it on GitHub</li>
-
-<li>Push your site to a branch called <code>gh-pages</code></li>
-</ol>
-
-<p>If you do either of these things GitHub will interpret you repo as a static website and serve it online.</p>
-
-<p>We’ll do the second option, even though you don’t know what branches are. For the moment, most of this won’t make much sense - hopefully it will at some point in the future!</p>
-
-<p>To do this we need to run the command</p>
-
-<pre><code>$ git push origin master:gh-pages</code></pre>
-
-<p>(and do this whenever you want changes you’ve made to show up on your site).</p>
-
-<p>After waiting a few minutes for github to get ready, you should be able to see your site at <code>yourusername.github.io/first_site</code>.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<p>Follow these instructions for your <code>first_site</code> folder. That is:</p>
-
-<ol>
-<li>
-<p>Set your repository up to push to the gh-pages branch. In your <code>first_site</code> folder run:</p>
-
-<pre><code> $ git push origin master:gh-pages</code></pre>
-</li>
-
-<li>
-<p>Check whether it worked:</p>
-
-<ol>
-<li>Go to your <code>first_site</code> repository on <code>GitHub.com</code>. Under the repo name, above the code, you’ll see a box that says <code>branch: master</code>. Click on the dropdown and check that you have a <code>branch: gh-pages</code> too.</li>
-
-<li>Try to visit your site: go to the settings section (bottom icon on RHS of page), there should be a <code>GitHub Pages</code> box where it will tell you where your site is published.</li>
-</ol>
-</li>
+<li>(Optional) Read <a href='https://www.inkling.com/read/dreamweaver-cs6-missing-manual-david-sawyer-mcfarland-1st/chapter-4/understanding-links'>this article</a> about absolute vs. relative links.</li>
 </ol>
 </div>
 	</div>

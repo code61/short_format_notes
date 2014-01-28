@@ -40,11 +40,7 @@
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#3_separate_css_file" data-toggle="tab">External stylesheets </a></li>
-		
-	
-		
-		<li><a href="#4_twitter_bootstrap" data-toggle="tab">Twitter Bootstrap </a></li>
+		<li class="active"><a href="#4_twitter_bootstrap" data-toggle="tab">Twitter Bootstrap </a></li>
 		
 	
 		
@@ -68,145 +64,7 @@
 <div class="tab-content">
 
 	
-	<div class="tab-pane active" id="3_separate_css_file">
-	
-
-		<h2>External stylesheets</h2>
-		
-<p>So far you have written your CSS rules directly in the <code>head</code> section of your html page:</p>
-<div class='highlight'><pre><code class='html'><span class='cp'>&lt;!DOCTYPE html&gt;</span>
-<span class='nt'>&lt;html&gt;</span>
-  <span class='nt'>&lt;head&gt;</span>
-  	<span class='nt'>&lt;title&gt;</span>My page<span class='nt'>&lt;/title&gt;</span>
-  	<span class='nt'>&lt;style </span><span class='na'>type=</span><span class='s'>&quot;text/css&quot;</span><span class='nt'>&gt;</span>
-  	  <span class='nt'>h1</span> <span class='p'>{</span> <span class='k'>color</span><span class='o'>:</span> <span class='nb'>red</span><span class='p'>;</span> <span class='p'>}</span>
-  	<span class='nt'>&lt;/style&gt;</span>
-  <span class='nt'>&lt;/head&gt;</span>
-
-  <span class='c'>&lt;!-- body goes here --&gt;</span>
-
-<span class='nt'>&lt;/html&gt;</span>
-</code></pre></div>
-<p>We did this to make your first experiments with CSS quick an easy. In a live site it is considered bad practice to put your CSS inside the <code>head</code> section: Typically a site will have one set of styles that apply to all the pages. By separating these CSS rules into their own file you (a) reduce repetition in your code and (b) reduce the amount of information that has to be sent to the browser for each page - if the CSS file applies to the whole site, it only needs to be sent to the visitor once.</p>
-
-<p>To link to an external CSS file you can do the following:</p>
-<div class='highlight'><pre><code class='html'><span class='cp'>&lt;!DOCTYPE html&gt;</span>
-<span class='nt'>&lt;html&gt;</span>
-  <span class='nt'>&lt;head&gt;</span>
-  	<span class='nt'>&lt;title&gt;</span>My page<span class='nt'>&lt;/title&gt;</span>
-  	<span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&#39;stylesheet&#39;</span> <span class='na'>type=</span><span class='s'>&#39;text/css&#39;</span> <span class='na'>href=</span><span class='s'>&#39;path/to/my_css_file.css&#39;</span><span class='nt'>&gt;</span>
-  <span class='nt'>&lt;/head&gt;</span>
-
-  <span class='c'>&lt;!-- body goes here --&gt;</span>
-
-<span class='nt'>&lt;/html&gt;</span>
-</code></pre></div>
-<h3 id="linking_to_other_files">Linking to other files</h3>
-
-<p>Linking to other files (stylesheets, javascript files, images) can be done in several ways, just like linking to another page. Say you have the following directory structure:</p>
-
-<pre><code>first_site
-|
----- index.html
-|
----- images
-|    |
-|    ---- background.jgp
-|
----- stylesheets
-     |
-      ---- main.css</code></pre>
-
-<p>and you’re going to deploy your site to “http://www.my_first_site.com”. Suppose you want to link to <code>main.css</code> from <code>index.html</code> and to <code>background.jpg</code> from <code>main.css</code>. There are three different styles of links you can use:</p>
-
-<h4 id="1_absolute_external_links">1. Absolute external links</h4>
-
-<p>Absolute external links include the complete url to the resource you’re linking to:</p>
-<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in index.html --&gt;</span>
-<span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&quot;stylesheet&quot;</span> <span class='na'>type=</span><span class='s'>&quot;text/css&quot;</span> <span class='na'>href=</span><span class='s'>&quot;http://www.my_first_site.com/stylesheets/main.css&quot;</span><span class='nt'>&gt;</span>
-</code></pre></div><div class='highlight'><pre><code class='css'><span class='c'>/* in main.css */</span>
-<span class='nt'>body</span> <span class='p'>{</span>
-  <span class='k'>background-image</span><span class='o'>:</span> <span class='sx'>url(&quot;http://www.my_first_site.com/images/background.jpg&quot;)</span><span class='p'>;</span>
-<span class='p'>}</span>
-</code></pre></div>
-<p>Absolute external links can be used to link to resources held on different sites, but wouldn’t usually be used for links between your own site. They’re a bit fragile - if you change your domain name all the links will break. They also won’t work when you’re developing locally.</p>
-
-<h4 id="2_absolute_local_links">2. Absolute local links</h4>
-
-<p>Absolute local links contain the path to the resource <em>relative to the site’s root</em>. The site’s root is (roughly) the folder that contains the site - in this case, <code>first_site</code>. <strong>Absolute local links begin with a <code>/</code></strong>:</p>
-<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in index.html --&gt;</span>
-<span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&quot;stylesheet&quot;</span> <span class='na'>type=</span><span class='s'>&quot;text/css&quot;</span> <span class='na'>href=</span><span class='s'>&quot;/stylesheets/main.css&quot;</span><span class='nt'>&gt;</span>
-</code></pre></div><div class='highlight'><pre><code class='css'><span class='c'>/* in main.css */</span>
-<span class='nt'>body</span> <span class='p'>{</span>
-  <span class='k'>background-image</span><span class='o'>:</span> <span class='sx'>url(&quot;/images/background.jpg&quot;)</span><span class='p'>;</span>
-<span class='p'>}</span>
-</code></pre></div>
-<p>Absolute local links are a bit more flexible than absolute external links: e.g. if you change your domain name everything will still be fine. They’re sometimes useful for your own static sites, but probably won’t work when developing locally (because the root will be taken to be the root of your file system and not the folder containing the site!).</p>
-
-<h4 id="3_relative_local_links">3. Relative local links</h4>
-
-<p>Relative local links contain the path to the resource <em>relative to the file where the link is written</em>. <strong>Relative local links don’t begin with <code>/</code></strong>:</p>
-<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in index.html --&gt;</span>
-<span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&quot;stylesheet&quot;</span> <span class='na'>type=</span><span class='s'>&quot;text/css&quot;</span> <span class='na'>href=</span><span class='s'>&quot;stylesheets/main.css&quot;</span><span class='nt'>&gt;</span>
-</code></pre></div><div class='highlight'><pre><code class='css'><span class='c'>/* in main.css */</span>
-<span class='nt'>body</span> <span class='p'>{</span>
-  <span class='k'>background-image</span><span class='o'>:</span> <span class='sx'>url(&quot;../images/background.jpg&quot;)</span><span class='p'>;</span>
-<span class='p'>}</span>
-</code></pre></div>
-<p>To link to the stylesheet from <code>index.html</code> we use <code>stylesheets/main.css</code> which says “look in the same folder I’m in (<code>first_site</code>) and find a folder called <code>styleheets</code> and a file in it called <code>main.css</code>”.</p>
-
-<p>To link to the image from the stylesheet is slightly more complicated: we use <code>../images/background.jpg</code>. This means “go to the folder above the one I’m in (I’m in <code>stylesheets</code>, so that’s <code>first_site</code>) and find a folder called <code>images</code> and a file in it called <code>background.jpg</code>”. Notice how <code>..</code> is used to go up a folder, just like in the command <code>cd ..</code>.</p>
-
-<p>Relative links are the most flexible - they will work on your local file system. The only think you have to be careful about is moving your files into different folders, which can cause links to break.</p>
-
-<p><strong>You should be using relative local links in these exercises.</strong></p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>
-<p>Move to your <code>coding_course</code> folder and clone the repository for this session:</p>
-
-<pre><code>  git clone https://github.com/code61/html3.git</code></pre>
-</li>
-
-<li>
-<p>Open <code>exercise1.html</code> in Sublime Text and Chrome.</p>
-</li>
-
-<li>
-<p>Link in the external stylesheet <code>exercise1.css</code>. Save, add and commit. Make sure the results show up in Chrome when you refresh.</p>
-</li>
-
-<li>
-<p>Open <code>exercise2.html</code> in Sublime Text and Chrome.</p>
-</li>
-
-<li>
-<p>Move the css from the <code>head</code> into a separate stylesheet, which you should call <code>exercise2.css</code>. Link to this stylesheet in the head.</p>
-</li>
-
-<li>
-<p>Create another stylesheet called <code>exercise2-custom.css</code>.</p>
-</li>
-
-<li>
-<p>In this stylesheet write:</p>
-
-<pre><code> .color-info { border: 5px dotted purple; }</code></pre>
-</li>
-
-<li>
-<p>Link in this stylesheet too, so that the changes take effect.</p>
-</li>
-
-<li>
-<p>If you have time, move any styles you have added to your <code>first_site</code> into a separate stylesheet.</p>
-</li>
-</ol>
-</div>
-	</div>
-
-	
-	<div class="tab-pane " id="4_twitter_bootstrap">
+	<div class="tab-pane active" id="4_twitter_bootstrap">
 	
 
 		<h2>Twitter Bootstrap</h2>
