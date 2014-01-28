@@ -38,27 +38,19 @@
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#2_deploying" data-toggle="tab">App deployment </a></li>
+		<li class="active"><a href="#1_conditionals" data-toggle="tab">Conditionals </a></li>
 		
 	
 		
-		<li><a href="#3_conditionals" data-toggle="tab">Conditionals </a></li>
+		<li><a href="#2_post_requests" data-toggle="tab">Post requests revisited </a></li>
 		
 	
 		
-		<li><a href="#3_post_requests" data-toggle="tab">Post requests </a></li>
+		<li><a href="#3_deploying" data-toggle="tab">App deployment </a></li>
 		
 	
 		
-		<li><a href="#3_templates" data-toggle="tab">HTML templates </a></li>
-		
-	
-		
-		<li><a href="#4_more_conditionals" data-toggle="tab">More conditionals </a></li>
-		
-	
-		
-		<li><a href="#4_project" data-toggle="tab">Project 1 </a></li>
+		<li><a href="#4_templates" data-toggle="tab">HTML templates </a></li>
 		
 	
 		
@@ -69,21 +61,122 @@
 		<li><a href="#6_truthy_falsey" data-toggle="tab">Truthy and falsey </a></li>
 		
 	
+		
+		<li><a href="#8_more_conditionals" data-toggle="tab">More conditionals </a></li>
+		
+	
+		
+		<li><a href="#9_project" data-toggle="tab">Project 1 </a></li>
+		
+	
 </ul>
 
 <div class="tab-content">
 
 	
-	<div class="tab-pane active" id="2_deploying">
+	<div class="tab-pane active" id="1_conditionals">
+	
+
+		<h2>Conditionals</h2>
+		
+<p>So far we’ve just used ruby to evaluate simple expressions. Coding becomes a lot more interesting when you can use your code for simple logic tasks:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>if</span> <span class='n'>age</span> <span class='o'>&gt;=</span> <span class='mi'>18</span>
+  <span class='s2'>&quot;Here&#39;s the vodka you wanted.&quot;</span>
+<span class='k'>else</span>
+  <span class='s2'>&quot;Move along please.&quot;</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>If the code within the <code>if</code> block will only be run if the statement is true. If the statement is false, the code in the <code>else</code> block will be run instead.</p>
+
+<h3 id="comparisons">Comparisons</h3>
+
+<p>There are some basic comparisons that we will be useful when using if statments</p>
+<table><thead><tr><th>Symbol</th><th>Meaning</th></tr></thead><tbody><tr><td style="text-align: left;"><code>==</code></td><td style="text-align: left;">Is equal to</td></tr>
+<tr><td style="text-align: left;"><code>&gt;</code></td><td style="text-align: left;">Greater than</td></tr>
+<tr><td style="text-align: left;"><code>&lt;</code></td><td style="text-align: left;">Less than</td></tr>
+<tr><td style="text-align: left;"><code>&gt;=</code></td><td style="text-align: left;">Greater than or equal to</td></tr>
+<tr><td style="text-align: left;"><code>&lt;=</code></td><td style="text-align: left;">Less than or equal to</td></tr>
+<tr><td style="text-align: left;"><code>!=</code></td><td style="text-align: left;">Not equal to</td></tr>
+</tbody></table>
+<p>Comparisons evaluate to <code>true</code> or <code>false</code>.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Working with a partner, try out each of these comparisons in irb:</p>
+
+
+<div class='highlight'><pre><code class='ruby'><span class='mi'>4</span> <span class='o'>==</span> <span class='mi'>5</span>
+
+<span class='s1'>&#39;five&#39;</span><span class='o'>.</span><span class='n'>length</span> <span class='o'>&gt;</span> <span class='mi'>5</span>
+
+<span class='n'>a</span> <span class='o'>=</span> <span class='mi'>20</span>
+<span class='n'>a</span> <span class='o'>&lt;=</span> <span class='mi'>20</span>
+
+<span class='kp'>true</span> <span class='o'>&gt;=</span> <span class='kp'>false</span>
+
+<span class='s1'>&#39;aardvark&#39;</span> <span class='o'>&lt;</span> <span class='s1'>&#39;anteater&#39;</span>
+
+<span class='s1'>&#39;we&#39;</span> <span class='o'>!=</span> <span class='s1'>&#39;done yet&#39;</span>
+</code></pre></div>
+
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="2_post_requests">
+	
+
+		<h2>Post requests revisited</h2>
+		
+<p>Last time we looked at responding to <code>get</code> requests:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>get</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
+  <span class='s2'>&quot;Hello there!&quot;</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>As you know from the Introduction to Web Programming course, <code>GET</code> is only one of several types of web requests. Another is the <code>POST</code> request, which is commonly used for submitting data from a web form.</p>
+
+<p>Suppose we have the following HTML form:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;form</span> <span class='na'>method=</span><span class='s'>&quot;post&quot;</span> <span class='na'>action=</span><span class='s'>&#39;/&#39;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;user_name&#39;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;user_age&#39;</span><span class='nt'>&gt;</span>
+
+    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;submit&#39;</span><span class='nt'>&gt;</span>
+<span class='nt'>&lt;/form&gt;</span>
+</code></pre></div>
+<p>The form will submit via a <code>POST</code> request to the root url, <code>/</code>. We can respond to this using the following sinatra block:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>post</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
+  <span class='nb'>name</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:user_name</span><span class='o'>]</span>
+  <span class='n'>age</span>  <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:user_age</span><span class='o'>]</span>
+
+  <span class='s2'>&quot;Hello </span><span class='si'>#{</span><span class='nb'>name</span><span class='si'>}</span><span class='s2'>. You are </span><span class='si'>#{</span><span class='n'>age</span><span class='si'>}</span><span class='s2'> years old.&quot;</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>Note that, like the words matched in the url, the value of the <code>user_name</code> field is made available in the <code>params</code> hash. (If you want to have a look at the params hash you could put a <code>raise params.inspect</code> at the beginning of the method.)</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li><strong>Fork</strong> the repository <a href='https://github.com/code61/sinatra_c3s2'>https://github.com/code61/sinatra_c3s2</a> (using the fork button on the top right of the repository page on github).</li>
+
+<li>Clone down your fork of the repository onto your laptop.</li>
+
+<li>Open the <code>sinatra_c3s2</code> project in Sublime Text and have a read through <code>app.rb</code>. See if you can predict what the app will do.</li>
+
+<li>Run the app from the command line (<code>ruby app.rb</code>), to see if you were right.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="3_deploying">
 	
 
 		<h2>App deployment</h2>
 		
-<p>Now that you have heroku set up, we can deploy your <code>sinatra_project1</code> application from last time.</p>
+<p>We’re now going to look at how to get the Sinatra app online, a process known as <em>deployment</em>. We’re going to deploy the app to <a href="heroku.com">Heroku</a>, which offers easy hosting for a variety of web frameworks - all you need to do is push up a git repository, and they take care of everything else!</p>
+
+<p>You should have set up a heroku account and uploaded your ssh keys for homework.</p>
 
 <h3 id="preparation">Preparation</h3>
 
-<p>There are a few files in <code>sinatra_project1</code> that we haven’t talked about yet:</p>
+<p>There are a few files <code>sinatra_c3s2</code> that we need if we’re going to deploy the app to heroku:</p>
 
 <ul>
 <li>config.ru</li>
@@ -130,6 +223,10 @@ heroku  git@heroku.com:arcane-gorge-2129.git (push)
 origin  git@github.com:code61/sinatra_project_1.git (fetch)
 origin  git@github.com:code61/sinatra_project_1.git (push)</code></pre>
 
+<h3 id="a_bit_about_git_remotes">A bit about git remotes</h3>
+
+<h3 id="deploying">Deploying</h3>
+
 <p>You deploy your repository by pushing to this remote. Heroku will serve whatever is in the <code>master</code> branch. Here we push the <code>master</code> branch up to the <code>heroku</code> remote:</p>
 
 <pre><code>$ git push heroku master
@@ -165,7 +262,7 @@ To git@heroku.com:arcane-gorge-2129.git
 
 <p>After you push, heroku automatically updates the app and launches it for you. You can now see the app by visiting the url (in this case http://arcane-gorge-2129.herokuapp.com).</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
-<p>Deploy your <code>sinatra_project1</code> app to Heroku: 1. Install your bundle to get a <code>Gemfile.lock</code>. In your <code>sintara_project1</code> directory run:</p>
+<p>Deploy your <code>sinatra_c3s2</code> app to Heroku: 1. Install your bundle to get a <code>Gemfile.lock</code>. In your <code>sintara_c3s2</code> directory run:</p>
 
 <pre><code>    $ bundle install</code></pre>
 
@@ -190,175 +287,61 @@ To git@heroku.com:arcane-gorge-2129.git
 
 <p>(for subsequent updates you should be ok with just <code>git push heroku</code>).</p>
 </li>
-</ol>
-</div>
-	</div>
-
-	
-	<div class="tab-pane " id="3_conditionals">
-	
-
-		<h2>Conditionals</h2>
-		
-<p>Often when writing code it is useful to test for certain conditions and respond accordingly.</p>
-<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>old_enough?</span><span class='p'>(</span><span class='n'>age</span><span class='p'>)</span>
-  <span class='k'>if</span> <span class='n'>age</span> <span class='o'>&gt;=</span> <span class='mi'>18</span>
-    <span class='nb'>puts</span> <span class='s2'>&quot;You can buy alcohol&quot;</span>
-  <span class='k'>end</span>
-  <span class='k'>return</span> <span class='kp'>nil</span>
-<span class='k'>end</span>
-</code></pre></div>
-<p>In the above code we use an <code>if</code> statement to write a function to tell us if someone can buy alcohol. The if statement starts with an <code>if</code> and ends with an <code>end</code>:</p>
-<div class='highlight'><pre><code class='ruby'><span class='k'>if</span> <span class='n'>some_condition</span>
-	<span class='c1'># do some stuff here ...</span>
-<span class='k'>end</span>
-</code></pre></div>
-<p>If the code within the <code>if</code> block will only be run if the statement is true.</p>
-
-<h3 id="comparisons">Comparisons</h3>
-
-<p>There are some basic comparisons that we will be useful when using if statments</p>
-<table><thead><tr><th>Symbol</th><th>Meaning</th></tr></thead><tbody><tr><td style="text-align: left;"><code>==</code></td><td style="text-align: left;">Is equal to</td></tr>
-<tr><td style="text-align: left;"><code>&gt;</code></td><td style="text-align: left;">Greater than</td></tr>
-<tr><td style="text-align: left;"><code>&lt;</code></td><td style="text-align: left;">Less than</td></tr>
-<tr><td style="text-align: left;"><code>&gt;=</code></td><td style="text-align: left;">Greater than or equal to</td></tr>
-<tr><td style="text-align: left;"><code>&lt;=</code></td><td style="text-align: left;">Less than or equal to</td></tr>
-<tr><td style="text-align: left;"><code>!=</code></td><td style="text-align: left;">Not equal to</td></tr>
-</tbody></table>
-<p>Comparisons evaluate to <code>true</code> or <code>false</code>.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
-
-<p>In irb try each of the above comparisons e.g. <code>4 != 5</code>.</p>
-
-</div>
-<h3 id="ifelse">If/else</h3>
-
-<p>It is often useful to have the ability to run some code only if the condition isn’t true. Ruby allows you to do this with an <code>if .. else</code> statement:</p>
-<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>old_enough?</span><span class='p'>(</span><span class='n'>age</span><span class='p'>)</span>
-  <span class='k'>if</span> <span class='n'>age</span> <span class='o'>&gt;=</span> <span class='mi'>18</span>
-	<span class='nb'>puts</span> <span class='s2'>&quot;You can buy alcohol&quot;</span>
-  <span class='k'>else</span>
-	<span class='nb'>puts</span> <span class='s2'>&quot;No alcohol for you child. Move along please.&quot;</span>
-  <span class='k'>end</span>
-  <span class='k'>return</span> <span class='kp'>nil</span>
-<span class='k'>end</span>
-</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Open <code>pass_fail.rb</code> in Sublime Text</li>
-
-<li>Run <code>test_pass_fail.rb</code> in the console</li>
-
-<li>Complete the function <code>pass_fail</code> in <code>pass_fail.rb</code> using an <code>if</code> statement so that the tests pass</li>
-
-<li>(extension) Complete the function <code>pass_fail2</code>, using <code>test_pass_fail2.rb</code> to test.</li>
-</ol>
-</div>
-	</div>
-
-	
-	<div class="tab-pane " id="3_post_requests">
-	
-
-		<h2>Post requests</h2>
-		
-<p>Last time we looked at responding to <code>get</code> requests:</p>
-<div class='highlight'><pre><code class='ruby'><span class='n'>get</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
-    <span class='n'>erb</span> <span class='ss'>:index</span>
-<span class='k'>end</span>
-</code></pre></div>
-<p>As mentioned in <a href="/lp3">Landing Page 3</a>, <code>GET</code> is only one of several types of web requests. Another is the <code>POST</code> request, which is commonly used for submitting data from a web form.</p>
-
-<p>Suppose we have the following HTML form:</p>
-<div class='highlight'><pre><code class='html'><span class='nt'>&lt;form</span> <span class='na'>method=</span><span class='s'>&quot;post&quot;</span> <span class='na'>action=</span><span class='s'>&#39;/&#39;</span><span class='nt'>&gt;</span>
-    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;user_name&#39;</span><span class='nt'>&gt;</span>
-    <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;submit&#39;</span><span class='nt'>&gt;</span>
-<span class='nt'>&lt;/form&gt;</span>
-</code></pre></div>
-<p>The form will submit via a <code>POST</code> request to the root url, <code>/</code>. We can respond to this using the following sinatra block:</p>
-<div class='highlight'><pre><code class='ruby'><span class='n'>post</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
-    <span class='vi'>@name</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:user_name</span><span class='o'>]</span>
-    <span class='n'>erb</span> <span class='ss'>:page</span>
-<span class='k'>end</span>
-</code></pre></div>
-<p>Note that, like the words matched in the url, the value of the <code>user_name</code> field is made available in the <code>params</code> hash. If you want to have a look at the params hash you could put a <code>raise params.inspect</code> at the beginning of the method.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>
-<p>Clone the code for the session:</p>
-
-<pre><code> $ git clone https://github.com/code61/sinatra2.git</code></pre>
-</li>
 
 <li>
-<p>Run the application. Check you understand what it does and how it does it.</p>
-</li>
-
-<li>
-<p>Have a look at the <a href='http://sheltered-oasis-6836.herokuapp.com'>example solution</a>. This is what you’re trying to build!</p>
-</li>
-
-<li>
-<p>Change the form so that it also asks for a user email (call it <code>user_email</code>), the user’s operating system (windows/mac/linux) (<code>user_os</code>).</p>
-</li>
-
-<li>
-<p>Make it so that after submitting the form the user is sent to a page that displays all the details they supplied.</p>
+<p>Visit the url that heroku provide, to check that your app is running!</p>
 </li>
 </ol>
 </div>
 	</div>
 
 	
-	<div class="tab-pane " id="3_templates">
+	<div class="tab-pane " id="4_templates">
 	
 
 		<h2>HTML templates</h2>
 		
-<p>So far we’ve just returned text to the browser. It would be better if we could return proper HTML pages. We can do this by using HTML templates.</p>
+<p>So far we’ve just returned text to the browser. It would be better if we could return proper HTML pages. We can do this by using <strong>HTML templates</strong>.</p>
 <div class='highlight'><pre><code class='ruby'><span class='c1'># in app.rb</span>
 
 <span class='nb'>require</span> <span class='s1'>&#39;sinatra&#39;</span>
 
 <span class='n'>get</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
-    <span class='n'>erb</span> <span class='ss'>:index</span>
+  <span class='n'>erb</span> <span class='ss'>:form</span>
 <span class='k'>end</span>
-</code></pre></div><div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/index.erb --&gt;</span>
+</code></pre></div><div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/form.erb --&gt;</span>
 
 <span class='cp'>&lt;!DOCTYPE html&gt;</span>
 <span class='nt'>&lt;html&gt;</span>
 <span class='nt'>&lt;head&gt;</span>
-    <span class='nt'>&lt;title&gt;</span>hello<span class='nt'>&lt;/title&gt;</span>
+  <span class='nt'>&lt;title&gt;</span>Barman 2.0<span class='nt'>&lt;/title&gt;</span>
 <span class='nt'>&lt;/head&gt;</span>
 <span class='nt'>&lt;body&gt;</span>
-    <span class='nt'>&lt;h1&gt;</span>hello<span class='nt'>&lt;/h1&gt;</span>
+  <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&#39;container&#39;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;form</span> <span class='na'>method=</span><span class='s'>&quot;post&quot;</span> <span class='na'>action=</span><span class='s'>&#39;/&#39;</span><span class='nt'>&gt;</span>
+      <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;user_name&#39;</span> <span class='na'>placeholder=</span><span class='s'>&#39;name&#39;</span><span class='nt'>&gt;</span>
+      <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;user_age&#39;</span> <span class='na'>placeholder=</span><span class='s'>&#39;age&#39;</span><span class='nt'>&gt;</span>
+
+      <span class='nt'>&lt;button</span> <span class='na'>type=</span><span class='s'>&#39;submit&#39;</span><span class='nt'>&gt;</span>Submit<span class='nt'>&lt;/button&gt;</span>
+    <span class='nt'>&lt;/form&gt;</span>
+  <span class='nt'>&lt;/div&gt;</span>
 <span class='nt'>&lt;/body&gt;</span>
 <span class='nt'>&lt;/html&gt;</span>
 </code></pre></div>
-<p>The line <code>erb :index</code> tells sinatra to look for a file called <code>index.erb</code> in a folder called <code>views</code>. It then processes that file using the <code>erb</code> (<strong>e</strong>mbedded <strong>r</strong>u<strong>b</strong>y) templating language and returns the result to the user.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Move into the <code>sinatra1/app2</code> folder.</li>
+<p>The line <code>erb :form</code> tells sinatra to look for a file called <code>form.erb</code> in a folder called <code>views</code>. It then processes that file using the <code>erb</code> (<strong>e</strong>mbedded <strong>r</strong>u<strong>b</strong>y) templating language and returns the result to the user.</p>
 
-<li>Run the app with <code>ruby app.rb</code>.</li>
-
-<li>Change the app so that the page it shows says &quot;Hello everyone!&quot; (inside the <code>h1</code>).</li>
-</ol>
-</div>
-<p>The <code>index.erb</code> above isn’t very interesting: it doesn’t have any ruby embedded in it. Let’s look at a slightly better example:</p>
+<p>The <code>form.erb</code> above isn’t very interesting: it is jsut a static template and doesn’t have any ruby embedded in it. Let’s look at a slightly better example:</p>
 <div class='highlight'><pre><code class='ruby'><span class='c1'># in app.rb</span>
 
-<span class='nb'>require</span> <span class='s1'>&#39;sinatra&#39;</span>
-
 <span class='n'>get</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
-    <span class='n'>erb</span> <span class='ss'>:index</span>
-<span class='k'>end</span>
+  <span class='n'>erb</span> <span class='ss'>:form</span>
 
+<span class='n'>post</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
+  <span class='vi'>@name</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:user_name</span><span class='o'>]</span>
+  <span class='vi'>@age</span>  <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:user_age</span><span class='o'>]</span>
 
-<span class='n'>get</span> <span class='s1'>&#39;/:name&#39;</span> <span class='k'>do</span>
-    <span class='vi'>@name</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:name</span><span class='o'>]</span>
-    <span class='n'>erb</span> <span class='ss'>:greet</span>
-<span class='k'>end</span>
-</code></pre></div><div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/greet.erb  --&gt;</span>
+  <span class='n'>erb</span> <span class='ss'>:welcome</span>
+</code></pre></div><div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/welcome.erb  --&gt;</span>
 
 <span class='cp'>&lt;!DOCTYPE html&gt;</span>
 <span class='nt'>&lt;html&gt;</span>
@@ -366,7 +349,7 @@ To git@heroku.com:arcane-gorge-2129.git
     <span class='nt'>&lt;title&gt;</span>hello<span class='nt'>&lt;/title&gt;</span>
 <span class='nt'>&lt;/head&gt;</span>
 <span class='nt'>&lt;body&gt;</span>
-    <span class='nt'>&lt;h1&gt;</span>hello <span class='err'>&lt;</span>%= @name %&gt;<span class='nt'>&lt;/h1&gt;</span>
+    <span class='nt'>&lt;h1&gt;</span>Hello <span class='err'>&lt;</span>%= @name %&gt;. You are <span class='err'>&lt;</span>%= @age %&gt; years old.<span class='nt'>&lt;/h1&gt;</span>
 <span class='nt'>&lt;/body&gt;</span>
 <span class='nt'>&lt;/html&gt;</span>
 </code></pre></div>
@@ -379,19 +362,132 @@ To git@heroku.com:arcane-gorge-2129.git
 </ul>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Open <code>app2/views/greet.erb</code> and <code>app2/app.rb</code> in Sublime Text.</li>
+<li>
+<p>Uncomment the bottom part of <code>sinatra_c3s2/app.rb</code> and comment out the top two blocks.</p>
+</li>
 
-<li>Change it so that instead of saying &quot;hello tom&quot; it says &quot;Hello Tom!&quot; in the <code>h1</code> (when you visit <a href='http://localhost:4567/tom'>localhost:4567/tom</a>, and similarly for other names).</li>
+<li>
+<p>Restart your server and check you can see the new page <code>h1</code> sections.</p>
+</li>
 
-<li>Change it so that the page title (in the browser bar) is &quot;Greet Tom&quot; (and similarly for other names).</li>
+<li>
+<p>Add twitter bootstrap to your templates, linking to the online hosted version as described on the <a href='http://getbootstrap.com/getting-started/#download-cdn'>Bootstrap CDN</a> section of the bootstrap docs.</p>
+</li>
 
-<li>Link twitter bootstrap into your page and add a <code>div class='container'</code> just inside the <code>body</code> so that things look nicer.</li>
+<li>
+<p>Add a <code>div class='container'</code> around the page content, and add some styling to the <code>form</code> (see <a href='http://getbootstrap.com/css/#forms'>here</a>).</p>
+</li>
+
+<li>
+<p>Add and commit your changes to your local git repo.</p>
+</li>
+
+<li>
+<p>Deploy your changes:</p>
+
+<pre><code> git push heroku</code></pre>
+</li>
 </ol>
 </div>
 	</div>
 
 	
-	<div class="tab-pane " id="4_more_conditionals">
+	<div class="tab-pane " id="5_boolean_ops">
+	
+
+		<h2>Logical operations</h2>
+		
+<p>It’s often useful to combine various conditions:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>if</span> <span class='n'>age</span> <span class='o'>&lt;</span> <span class='mi'>12</span> <span class='o'>||</span> <span class='n'>height</span> <span class='o'>&lt;</span> <span class='mi'>1</span><span class='o'>.</span><span class='mi'>2</span>
+	<span class='s2'>&quot;You are allowed on the ride.&quot;</span>
+<span class='k'>else</span>
+	 <span class='s2'>&quot;Try a different helter-skelter. There&#39;s nothing for you here.&quot;</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>It the above snippet of code the <code>||</code> means or. If the person is under 12 or is smaller than 1.2m they are allowed on the ride.</p>
+
+<h3 id="logical_operations">Logical operations</h3>
+
+<p>Ruby has three ways of combining conditions:</p>
+
+<h4 id="and_">and (<code>&amp;&amp;</code>)</h4>
+
+<p>If you use an <code>&amp;&amp;</code> the output is true only if both inputs are true. You can write this in terms of a <em>truth table</em>:</p>
+<div class='highlight'><pre><code class='ruby'><span class='kp'>false</span> <span class='o'>&amp;&amp;</span> <span class='kp'>false</span> <span class='c1'>#=&gt; false</span>
+<span class='kp'>false</span> <span class='o'>&amp;&amp;</span> <span class='kp'>true</span>  <span class='c1'>#=&gt; false</span>
+<span class='kp'>true</span>  <span class='o'>&amp;&amp;</span> <span class='kp'>false</span> <span class='c1'>#=&gt; false</span>
+<span class='kp'>true</span>  <span class='o'>&amp;&amp;</span> <span class='kp'>true</span>  <span class='c1'>#=&gt; true</span>
+</code></pre></div>
+<h4 id="or_">or (<code>||</code>)</h4>
+
+<p>If you use the <code>||</code> the output is true if at least one of the inputs is true. <code>||</code> means one or the other <strong>or both</strong>:</p>
+<div class='highlight'><pre><code class='ruby'><span class='kp'>false</span> <span class='o'>||</span> <span class='kp'>false</span> <span class='c1'>#=&gt; false</span>
+<span class='kp'>false</span> <span class='o'>||</span> <span class='kp'>true</span>  <span class='c1'>#=&gt; true</span>
+<span class='kp'>true</span>  <span class='o'>||</span> <span class='kp'>false</span> <span class='c1'>#=&gt; true</span>
+<span class='kp'>true</span>  <span class='o'>||</span> <span class='kp'>true</span>  <span class='c1'>#=&gt; true</span>
+</code></pre></div>
+<h3 id="not_">not (<code>!</code>)</h3>
+
+<p>The <code>!</code> is not. It is a quick way of reversing the truth of the condition:</p>
+<div class='highlight'><pre><code class='ruby'><span class='o'>!</span><span class='kp'>false</span> <span class='c1'>#=&gt; true</span>
+<span class='o'>!</span><span class='kp'>true</span>  <span class='c1'>#=&gt; false</span>
+</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<ol>
+<li>Working with a partner, see if you can guess what the following expressions evaluate to. Test in <code>irb</code> to see if you’re right.</li>
+</ol>
+
+
+<div class='highlight'><pre><code class='ruby'><span class='mi'>1</span> <span class='o'>&gt;</span> <span class='mi'>2</span> <span class='o'>&amp;&amp;</span> <span class='mi'>3</span> <span class='o'>&gt;</span> <span class='mi'>4</span>
+
+<span class='mi'>1</span><span class='o'>==</span><span class='mi'>1</span> <span class='o'>||</span> <span class='mi'>10</span> <span class='o'>==</span><span class='mi'>9</span>
+
+<span class='o'>!</span><span class='p'>(</span><span class='mi'>5</span><span class='o'>&lt;</span><span class='mi'>6</span><span class='p'>)</span>
+
+<span class='p'>(</span><span class='mi'>1</span><span class='o'>&lt;=</span><span class='mi'>2</span> <span class='o'>&amp;&amp;</span> <span class='mi'>3</span><span class='o'>&gt;</span><span class='mi'>4</span><span class='p'>)</span> <span class='o'>||</span> <span class='p'>(</span><span class='mi'>3</span> <span class='o'>&lt;=</span> <span class='mi'>4</span> <span class='o'>&amp;&amp;</span> <span class='s2'>&quot;ham&quot;</span><span class='p'>)</span>
+</code></pre></div>
+
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="6_truthy_falsey">
+	
+
+		<h2>Truthy and falsey</h2>
+		
+<p>In the last exercise you found out something interesting:</p>
+<div class='highlight'><pre><code class='ruby'><span class='kp'>true</span> <span class='o'>&amp;&amp;</span> <span class='s2'>&quot;ham&quot;</span> <span class='c1'>#=&gt; &quot;ham&quot;</span>
+</code></pre></div>
+<p>Which is a bit weird. There are actually two things going on here:</p>
+
+<ol>
+<li>The string <code>ham</code> is considered to be <code>true</code></li>
+
+<li>The overall statement evaluates to the last expression in it</li>
+</ol>
+
+<h3 id="truthy_and_falsey">Truthy and falsey</h3>
+
+<p>In ruby there are only two values that are considered false: <code>false</code> and <code>nil</code>. We say that <code>false</code> and <code>nil</code> are <em>falsey</em>.</p>
+
+<p>Everything else is considered to be true. We say that all other objects are <em>truthy</em>.</p>
+
+<p>What we mean by ‘considered to be true’ is that if that value is used as a conditional in an <code>if</code> statement then the if code runs:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>if</span> <span class='mi'>5</span>
+	<span class='n'>x</span> <span class='o'>=</span> <span class='mi'>1</span>
+<span class='k'>else</span>
+	<span class='n'>x</span> <span class='o'>=</span> <span class='mi'>2</span>
+<span class='k'>end</span>
+
+<span class='n'>x</span> <span class='c1'>#=&gt; 1</span>
+</code></pre></div>
+<p>In the above block of code, as <code>5</code> is truthy, the variable <code>x</code> is set to <code>1</code>.</p>
+
+	</div>
+
+	
+	<div class="tab-pane " id="8_more_conditionals">
 	
 
 		<h2>More conditionals</h2>
@@ -438,7 +534,7 @@ To git@heroku.com:arcane-gorge-2129.git
 	</div>
 
 	
-	<div class="tab-pane " id="4_project">
+	<div class="tab-pane " id="9_project">
 	
 
 		<h2>Project 1</h2>
@@ -480,89 +576,6 @@ To git@heroku.com:arcane-gorge-2129.git
 </ol>
 </div>
 <p>Please make this project as good as you can. We’ll be deploying it online next time, so it’ll be nice to have something to be proud of. You will probably want to consider adding bootstrap to your HTML templates and things.</p>
-
-	</div>
-
-	
-	<div class="tab-pane " id="5_boolean_ops">
-	
-
-		<h2>Logical operations</h2>
-		
-<p>It’s often useful to combine various conditions:</p>
-<div class='highlight'><pre><code class='ruby'><span class='k'>if</span> <span class='n'>age</span> <span class='o'>&lt;</span> <span class='mi'>12</span> <span class='o'>||</span> <span class='n'>height</span> <span class='o'>&lt;</span> <span class='mi'>1</span><span class='o'>.</span><span class='mi'>2</span>
-	<span class='nb'>puts</span> <span class='s2'>&quot;You are allowed on the ride.&quot;</span>
-<span class='k'>else</span>
-	<span class='nb'>puts</span> <span class='s2'>&quot;Try a different helter-skelter. There&#39;s nothing for you here.&quot;</span>
-<span class='k'>end</span>
-</code></pre></div>
-<p>It the above snippet of code the <code>||</code> means or. If the person is under 12 or is smaller than 1.2m they are allowed on the ride.</p>
-
-<h3 id="logical_operations">Logical operations</h3>
-
-<p>Ruby has three ways of combining conditions:</p>
-
-<h4 id="and_">and (<code>&amp;&amp;</code>)</h4>
-
-<p>If you use an <code>&amp;&amp;</code> the output is true only if both inputs are true. You can write this in terms of a <em>truth table</em>:</p>
-<div class='highlight'><pre><code class='ruby'><span class='kp'>false</span> <span class='o'>&amp;&amp;</span> <span class='kp'>false</span> <span class='c1'>#=&gt; false</span>
-<span class='kp'>false</span> <span class='o'>&amp;&amp;</span> <span class='kp'>true</span>  <span class='c1'>#=&gt; false</span>
-<span class='kp'>true</span>  <span class='o'>&amp;&amp;</span> <span class='kp'>false</span> <span class='c1'>#=&gt; false</span>
-<span class='kp'>true</span>  <span class='o'>&amp;&amp;</span> <span class='kp'>true</span>  <span class='c1'>#=&gt; true</span>
-</code></pre></div>
-<h4 id="or_">or (<code>||</code>)</h4>
-
-<p>If you use the <code>||</code> the output is true if at least one of the inputs is true. <code>||</code> means one or the other <strong>or both</strong>:</p>
-<div class='highlight'><pre><code class='ruby'><span class='kp'>false</span> <span class='o'>||</span> <span class='kp'>false</span> <span class='c1'>#=&gt; false</span>
-<span class='kp'>false</span> <span class='o'>||</span> <span class='kp'>true</span>  <span class='c1'>#=&gt; true</span>
-<span class='kp'>true</span>  <span class='o'>||</span> <span class='kp'>false</span> <span class='c1'>#=&gt; true</span>
-<span class='kp'>true</span>  <span class='o'>||</span> <span class='kp'>true</span>  <span class='c1'>#=&gt; true</span>
-</code></pre></div>
-<h3 id="not_">not (<code>!</code>)</h3>
-
-<p>The <code>!</code> is not. It is a quick way of reversing the truth of the condition:</p>
-<div class='highlight'><pre><code class='ruby'><span class='o'>!</span><span class='kp'>false</span> <span class='c1'>#=&gt; true</span>
-<span class='o'>!</span><span class='kp'>true</span>  <span class='c1'>#=&gt; false</span>
-</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong> 
-
-<p>Open the file <code>boolean_ops.rb</code> in Sublime Text. For each of the expressions discuss with your partner what you think the expression will evaluate to. Check by pasting them in to irb.</p>
-
-</div>
-	</div>
-
-	
-	<div class="tab-pane " id="6_truthy_falsey">
-	
-
-		<h2>Truthy and falsey</h2>
-		
-<p>In the last exercise you found out something interesting:</p>
-<div class='highlight'><pre><code class='ruby'><span class='kp'>true</span> <span class='o'>&amp;&amp;</span> <span class='s2'>&quot;ham&quot;</span> <span class='c1'>#=&gt; &quot;ham&quot;</span>
-</code></pre></div>
-<p>Which is a bit weird. There are actually two things going on here:</p>
-
-<ol>
-<li>The string <code>ham</code> is considered to be <code>true</code></li>
-
-<li>The overall statement evaluates to the last expression in it</li>
-</ol>
-
-<h3 id="truthy_and_falsey">Truthy and falsey</h3>
-
-<p>In ruby there are only two values that are considered false: <code>false</code> and <code>nil</code>. We say that <code>false</code> and <code>nil</code> are <em>falsey</em>.</p>
-
-<p>Everything else is considered to be true. We say that all other objects are <em>truthy</em>.</p>
-
-<p>What we mean by ‘considered to be true’ is that if that value is used as a conditional in an <code>if</code> statement then the if code runs:</p>
-<div class='highlight'><pre><code class='ruby'><span class='k'>if</span> <span class='mi'>5</span>
-	<span class='n'>x</span> <span class='o'>=</span> <span class='mi'>1</span>
-<span class='k'>else</span>
-	<span class='n'>x</span> <span class='o'>=</span> <span class='mi'>2</span>
-<span class='k'>end</span>
-
-<span class='n'>x</span> <span class='c1'>#=&gt; 1</span>
-</code></pre></div>
-<p>In the above block of code, as <code>5</code> is truthy, the variable <code>x</code> is set to <code>1</code>.</p>
 
 	</div>
 
