@@ -35,7 +35,7 @@ end
 </html>
 {% endhighlight %}
 
-The line `erb :form` tells sinatra to look for a file called `form.erb` in a folder called `views`. It then processes that file using the `erb` (**e**mbedded **r**u**b**y) templating language and returns the result to the user.
+The line `erb :form` tells sinatra to look for a file called `form.erb` in a folder called `views`. It then processes that file using the `erb` (embedded ruby) templating language and returns the result to the user.
 
 The `form.erb` above isn't very interesting: it is jsut a static template and doesn't have any ruby embedded in it. Let's look at a slightly better example:
 
@@ -70,6 +70,23 @@ The important bits are:
 
 * In `app.rb` we assign `params[:name]` to a special type of variable `@name`. The special type of variable is an *instance variable* which **has to begin with a single `@`**.
 * We use the instance variable in the `views/greet.erb` inside a special erb tag `<%= ... %>`. The erb templater looks for these tags and interprets the inside as ruby.
+
+Sinatra emphasises *convention* over *configuration*: rather than specifying the exact place to find the template, you just give the name and Sinatra 'knows' where to look. This means you have to write less code in the long run, but also that you have to know the conventions before you start.
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Sinatra template summary</h3>
+  </div>
+  <div class='panel-body'>
+   <ol>
+      <li>You call a template with the line <code>erb :template_name</code>.</li>
+      <li>For this to work, you will need a template called <code>template_name.erb</code> in the <code>views</code> folder.</li>
+      <li>Instance variables (ones that start with <code>@</code>) will be shared with the template.</li>
+      <li>You use these shared instance variables in the template by putting them inside an erb tag: <code>&lt;%= @my_variable &gt;</code> </li>
+    </ol> 
+  </div>
+</div>
+
 
 {% exercise %}
 1. Uncomment the bottom part of `sinatra_c3s2/app.rb` and comment out the top two blocks.

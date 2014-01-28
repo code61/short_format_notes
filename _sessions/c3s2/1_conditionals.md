@@ -1,5 +1,5 @@
 ---
-title: Conditionals
+title: If statements and comparisons
 ---
 
 So far we've just used ruby to evaluate simple expressions. Coding becomes a lot more interesting when you can use your code for simple logic tasks:

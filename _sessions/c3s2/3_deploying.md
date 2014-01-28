@@ -58,8 +58,7 @@ You'll see that it created an app for you. In my case the app is called `arcane-
     origin  git@github.com:code61/sinatra_project_1.git (fetch)
     origin  git@github.com:code61/sinatra_project_1.git (push)
 
-### A bit about git remotes
-
+<!-- Put a bit about git remotes here -->
 
 ### Deploying
 
