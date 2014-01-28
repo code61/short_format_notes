@@ -17,7 +17,7 @@ There are several ways of getting GitHub to publish your site as a GitHub page. 
 
 To push code up to GitHub, in the GitHub app select the 'Push to Github' button (on the top right). You'll be prompted to choose a name (which might as well be `first_site`).
 
-{% endexercise %}
+{% exercise %}
 1. Log in to GitHub and check you've verified your email address.
 1. In the 'Branches' panel of the GitHub app, change the name of the current branch from `master` to `gh-pages`.
 2. Click the 'Push to Github' button in the GitHub app.

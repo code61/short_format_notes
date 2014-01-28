@@ -2,6 +2,13 @@
 title:  "Intro to Git"
 ---
 
+
+
+
+
+
+
+
 Git is a version control system. It allows you to keep the entire history of your code, and makes it easy to share and collaborate with others.
 
 ### Setting up a git repo
