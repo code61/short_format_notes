@@ -40,7 +40,11 @@
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#4_twitter_bootstrap" data-toggle="tab">Twitter Bootstrap </a></li>
+		<li class="active"><a href="#1_why_is_css_hard" data-toggle="tab">What's hard about CSS? </a></li>
+		
+	
+		
+		<li><a href="#2_twitter_bootstrap" data-toggle="tab">Twitter Bootstrap </a></li>
 		
 	
 		
@@ -64,62 +68,157 @@
 <div class="tab-content">
 
 	
-	<div class="tab-pane active" id="4_twitter_bootstrap">
+	<div class="tab-pane active" id="1_why_is_css_hard">
+	
+
+		<h2>What's hard about CSS?</h2>
+		
+<p>You’ve seen quite a bit of CSS now; it all seems quite straightforward - you write some css, tweak it ‘til it looks good and you’re done! In theory this is exactly how CSS works and is why CSS is brilliant.</p>
+
+<p><br /></p>
+<div style='display: block;margin-left: auto; margin-right: auto; width: 200px;'>
+<img class='img-polaroid' src='/assets/cat_pic.jpg' width='200px' />
+</div>
+<p><br /></p>
+
+<p>Unfortunately, the realities are not quite so straightforward. Different browsers will render CSS with subtle differences. Take a look at the cat picture above. The styling is relatively simple - all we’ve done is add a border and a shadow. The following CSS will probably do this in your browser:</p>
+<div class='highlight'><pre><code class='css'><span class='nc'>.img-polaroid</span> <span class='p'>{</span>
+  <span class='k'>padding</span><span class='o'>:</span> <span class='m'>4px</span><span class='p'>;</span>
+  <span class='k'>border</span><span class='o'>:</span> <span class='m'>1px</span> <span class='k'>solid</span> <span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>.</span><span class='m'>2</span><span class='p'>);</span>     <span class='c'>/* transparent black border */</span>
+  <span class='n'>box</span><span class='o'>-</span><span class='n'>shadow</span><span class='o'>:</span> <span class='m'>0</span> <span class='m'>1px</span> <span class='m'>3px</span> <span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>.</span><span class='m'>1</span><span class='p'>);</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>However, to get this effect in all browsers you need the following:</p>
+<div class='highlight'><pre><code class='css'><span class='nc'>.img-polaroid</span> <span class='p'>{</span>
+  <span class='k'>padding</span><span class='o'>:</span> <span class='m'>4px</span><span class='p'>;</span>
+  <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#fff</span><span class='p'>;</span>
+  <span class='k'>border</span><span class='o'>:</span> <span class='m'>1px</span> <span class='k'>solid</span> <span class='m'>#ccc</span><span class='p'>;</span>                           <span class='c'>/* grey border for browsers that can&#39;t do transparency */</span>
+  <span class='k'>border</span><span class='o'>:</span> <span class='m'>1px</span> <span class='k'>solid</span> <span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>.</span><span class='m'>2</span><span class='p'>);</span>             <span class='c'>/* put the transparency after for browsers that do */</span>
+  <span class='o'>-</span><span class='n'>webkit</span><span class='o'>-</span><span class='n'>box</span><span class='o'>-</span><span class='n'>shadow</span><span class='o'>:</span> <span class='m'>0</span> <span class='m'>1px</span> <span class='m'>3px</span> <span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>.</span><span class='m'>1</span><span class='p'>);</span> <span class='c'>/* some browers only understand webkit box shadow */</span>
+     <span class='o'>-</span><span class='n'>moz</span><span class='o'>-</span><span class='n'>box</span><span class='o'>-</span><span class='n'>shadow</span><span class='o'>:</span> <span class='m'>0</span> <span class='m'>1px</span> <span class='m'>3px</span> <span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>.</span><span class='m'>1</span><span class='p'>);</span> <span class='c'>/* others need this */</span>
+          <span class='n'>box</span><span class='o'>-</span><span class='n'>shadow</span><span class='o'>:</span> <span class='m'>0</span> <span class='m'>1px</span> <span class='m'>3px</span> <span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>,</span> <span class='m'>0</span><span class='o'>.</span><span class='m'>1</span><span class='p'>);</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p><strong>Just because your site looks good in Chrome, doesn’t mean it will look good in Internet Explorer.</strong> Making your site look good (or even presentable) in multiple browsers takes time, effort and experience.</p>
+
+<h3 id="what_else_is_hard_about_css">What else is hard about CSS?</h3>
+
+<p>About 5 years ago, ‘all’ you would have had to worry about is the cross-browser display issues. Since then, the mobile web has exploded and you have another (far more important) concern: how will your site look when viewed on a mobile?</p>
+
+<p>Making webpages that look good when viewed at multiple different sizes is a whole new level of complexity.</p>
+
+<h3 id="should_i_just_give_up_then">Should I just give up then?</h3>
+
+<p>You might be the sort of person who relishes this sort of challenge - if so, great! If not, help is at hand </p>
+
+	</div>
+
+	
+	<div class="tab-pane " id="2_twitter_bootstrap">
 	
 
 		<h2>Twitter Bootstrap</h2>
 		
-<h3 id="whats_hard_about_css">What’s hard about CSS?</h3>
+<p><a href="http://getbootstrap.com">Twitter Bootstrap</a> is set of CSS (&amp; Javascript) files, released by the makers of Twitter.</p>
 
-<p>You’ve seen quite a bit of CSS now; it all seems quite straightforward - you write some css, tweak it ‘til it looks good and you’re done! In theory this is exactly how CSS works and is why CSS is brilliant.</p>
+<p>Twitter Bootstrap is a set of <strong>ready-made CSS files</strong> that provide solutions to <strong>common presentation requirements</strong> in a <strong>cross-browser and responsive</strong> way. To make use of Twitter Bootstrap, you need to do two things:</p>
 
-<p>Unfortunately, the realities are not quite so straightforward. Different browsers will render CSS with subtle differences. <strong>Just because your site looks good in Chrome, doesn’t mean it will look good in Internet Explorer.</strong> Making your site look good (or even presentable) in multiple browsers takes time, effort and experience. You might be the sort of person who relishes this sort of challenge - if so, great! If not, help is at hand </p>
+<ol>
+<li>Link to the Twitter Bootstrap stylesheet in the <code>head</code> of your html page.</li>
 
-<p><a href="http://getbootstrap.com">Twitter Bootstrap</a> is set of CSS (&amp; Javascript) files, released by the makers of Twitter. It makes a lot easier to produce websites that won’t make you want to sick up into your mouth everytime you look at them - and that look the same in all browsers. We’ll now look at adding Twitter Bootstrap to a page.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<p>The aim of the rest of this session will be to create the website for <a href='http://code61.github.io/bootstrap_exercise/'>&quot;Sam’s Sarnies&quot;</a> using twitter bootstrap.</p>
+<li>Attach the relevant Twitter Bootstrap class to you html element.</li>
+</ol>
+
+<h3 id="an_example_making_a_stripy_table">An example: making a stripy table</h3>
+
+<p>Suppose you want a Zebra-esque table like this fine specimen:</p>
+<table class='table table-striped'>
+<tbody>
+  <tr>
+    <td>I am a</td>
+    <td>Zebra table!</td>
+  </tr>
+  <tr>
+    <td>Look at my</td>
+    <td>stripes.</td>
+  </tr>
+  <tr>
+    <td>Do you find them</td>
+    <td>beautiful?</td>
+  </tr>
+  <tr>
+    <td>Do you find them</td>
+    <td>mesmerising?</td>
+  </tr>
+  <tr>
+    <td>Wooaahh ..</td>
+    <td>.. such stripiness!</td>
+  </tr>
+
+</tbody>
+</table>
+<p>You have a look at the <a href="http://getbootstrap.com/css/#tables">Twitter Bootstrap table documentation</a> and discover that you need to add the <code>table table-striped</code> class to the <code>&lt;table&gt;</code> tag:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;table</span> <span class='na'>class=</span><span class='s'>&quot;table table-striped&quot;</span><span class='nt'>&gt;</span>
+  ...
+<span class='nt'>&lt;/table&gt;</span>
+</code></pre></div>
+<p>This will apply the relevant CSS rules from the bootstrap CSS file. If you’re interested, you can go into Developer Tools and view the rules that apply e.g.</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* from line 1950 of bootstrap.css */</span>
+
+<span class='nc'>.table-striped</span> <span class='nt'>tbody</span> <span class='nt'>tr</span><span class='nd'>:nth-child</span><span class='o'>(</span><span class='nt'>odd</span><span class='o'>)</span> <span class='nt'>td</span><span class='o'>,</span>
+<span class='nc'>.table-striped</span> <span class='nt'>tbody</span> <span class='nt'>tr</span><span class='nd'>:nth-child</span><span class='o'>(</span><span class='nt'>odd</span><span class='o'>)</span> <span class='nt'>th</span> <span class='p'>{</span>
+  <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#f9f9f9</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<h3 id="responsive_design">Responsive design</h3>
+
+<p><strong>Responsive design</strong> means designing your sites so that they look good on all screen sizes.</p>
+
+<p>Twitter Bootstrap promotes a ‘mobile first’ philosophy, encouraging you to design your site so that it looks good at all sizes from the very beginning. It provides a lot of useful CSS that helps you to do this.</p>
+
+<p>We’re not really going to cover responsive design in depth in class, but the Bootstrap docs do a good job of explaining what’s possible. Take a look at the <a href="http://getbootstrap.com/css/#grid">grid system</a> as an example.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>The aim of the rest of this session will be to create the website for <a href='http://code61.github.io/bootstrap_exercise/'>&quot;Sam’s Sarnies&quot;</a> using Twitter Bootstrap.</p>
+
 
 <ol>
 <li>
-<p>Clone down the repository for the bootstrap exercise. In your <code>coding_course</code> folder, run</p>
-
-<pre><code>  git clone https://github.com/code61/bootstrap_exercise.git</code></pre>
+Clone down the repository for the bootstrap exercise: <a href='https://github.com/code61/bootstrap_exercise.git'>https://github.com/code61/bootstrap_exercise.git</a>
 </li>
-
 <li>
-<p>Open <code>bootstrap_exercise/index.html</code> in your browser.</p>
+Open <code>bootstrap_exercise/index.html</code> in your browser.
 </li>
-
 <li>
-<p>Go to the <a href='http://getbootstrap.com'>Bootstrap</a> website (it’s hosted at github, like your <code>first_site</code>) and click the <code>Download Bootstrap</code> button (not the Download Source).</p>
+Go to the <a href='http://getbootstrap.com'>Bootstrap</a> website (it’s hosted at github, like your <code>first_site</code>) and click the <code>Download Bootstrap</code> button (not the Download Source).
 </li>
-
 <li>
-<p>Unzip and copy the <code>dist</code> folder into the <code>bootstrap_exercise</code> folder.</p>
+Unzip and copy the <code>dist</code> folder into the <code>bootstrap_exercise</code> folder.
 </li>
-
 <li>
-<p>Open <code>index.html</code> in Sublime Text and Chrome.</p>
+Open <code>index.html</code> in Sublime Text and Chrome.
 </li>
-
 <li>
-<p>Add a link to the twitter bootstrap stylesheet into <code>index.html</code></p>
+Add a link to the twitter bootstrap stylesheet into <code>index.html</code>
 
-<pre><code>  &amp;lt;link href='dist/css/bootstrap.css' rel='stylesheet'&amp;gt;</code></pre>
 
-<p>Note that you’re using a relative link to a file two subfolders down.</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;link</span> <span class='na'>href=</span><span class='s'>&#39;dist/css/bootstrap.css&#39;</span> <span class='na'>rel=</span><span class='s'>&#39;stylesheet&#39;</span><span class='nt'>&gt;</span>
+</code></pre></div>
+
+Note that you’re using a document-relative link to a file two subfolders down.
+
 </li>
-
 <li>
-<p>Refresh the page in Chrome. Notice how the fonts have changed.</p>
+Refresh the page in Chrome. Notice how the fonts have changed.
 </li>
-
 <li>
-<p>Add the following line to the <code>head</code> section:</p>
+Add the following line to the <code>head</code> section:
 
-<pre><code> &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;</code></pre>
 
-<p>as suggested in the <code>CSS &amp;gt; Overview</code> section of the <a href='http://getbootstrap.com/css/#overview-mobile'>Bootstrap docs</a>.</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;meta</span> <span class='na'>name=</span><span class='s'>&quot;viewport&quot;</span> <span class='na'>content=</span><span class='s'>&quot;width=device-width, initial-scale=1.0&quot;</span><span class='nt'>&gt;</span>
+</code></pre></div>
+
+as suggested in the <code>CSS / Overview</code> section of the <a href='http://getbootstrap.com/css/#overview-mobile'>Bootstrap docs</a>.
 </li>
 </ol>
 </div>
@@ -164,7 +263,7 @@
 <p>The number after the <code>col-sm-</code> determines how many of the 12 grid columns that page column takes up. The <code>sm</code> bit determines the width at which the columns will collapse on top of each other (which is useful when viewing your site on a phone). For more information see the <a href="http://getbootstrap.com/css/#grid">Grid system docs</a>.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Add a <code>&amp;lt; div class=&amp;quot;container&amp;quot; &amp;gt;</code> around the page content.</li>
+<li>Add a <code>div class='container'</code> around the page content.</li>
 
 <li>Create a row at the top of the page, with two columns, with the left twice as wide as the right. Put the <code>h1</code> in the left column and the <code>img src='images/sandwich.png' </code> on the right.</li>
 
@@ -192,20 +291,21 @@
 <h3 id="badges_and_buttons">Badges and Buttons</h3>
 
 <p>Check out the <a href="http://getbootstrap.com/css/#buttons">buttons section</a> (CSS &gt; Buttons).</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
 <ol>
-<li>
-<p>Change the ‘Send’ button to a success button:</p>
+<li>Change the ‘Send’ button to a success button:
 
-<pre><code> &amp;lt;button class='btn btn-success' &amp;gt;Send&amp;lt;\button&amp;gt;</code></pre>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;button</span> <span class='na'>class=</span><span class='s'>&#39;btn btn-success&#39;</span> <span class='nt'>&gt;</span>Send<span class='nt'>&lt;/button&gt;</span>
+</code></pre></div>
 
-<p>You might also need <code>btn-small</code> in the Recent Activity section.</p>
+    You might also need <code>btn-small</code> in the Recent Activity section.
 </li>
-
 <li>
-<p>Make the social links at the bottom in to large buttons (we’ll colour them later):</p>
+2. Make the social links at the bottom in to large buttons (we’ll colour them later):
 
-<pre><code> &amp;lt;button class='btn btn-lg' &amp;gt;Send&amp;lt;\button&amp;gt;</code></pre>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;button</span> <span class='na'>class=</span><span class='s'>&#39;btn btn-lg&#39;</span> <span class='nt'>&gt;</span>Send<span class='nt'>&lt;/button&gt;</span>
+</code></pre></div>
+
 </li>
 </ol>
 </div>
@@ -221,8 +321,6 @@
 <li>Change the main sandwich image into a <code>img-responsive</code>, as described in the <a href='http://getbootstrap.com/css/#overview-responsive-images'>responsive images section</a>. Try resizing your browser and see how it changes size.</li>
 </ol>
 </div>
-<h3 id="">{}</h3>
-
 	</div>
 
 	
@@ -234,67 +332,69 @@
 <strong>Warning</strong>: Bootstrap has been designed and heavily tested for good cross-browser compatibility. Unless you know what you're doing or have a lot of time, it's probably best to stick with their layout and tweak small things e.g. fonts and colours. Just because it looks great in your browser doesn't mean it will look great in everyone's!
 </div>
 <p>If you’re going to modify Bootstrap <strong>don’t touch the Bootstrap files</strong>. Instead create a new css file of your own to overwrite anything you don’t want. This means when a new version of Bootstrap comes out you can upgrade by dragging the new version over the top of the old, without losing any modifications.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
 <ol>
 <li>
-<p>Create a file called <code>main.css</code> and write the following CSS:</p>
+Create a file called <code>main.css</code> and write the following CSS:
 
-<pre><code> #social-buttons button {
-   color: white;
- }
- .btn-twitter {
-   background-color: #00acee;
-   border-color: #009ad5;
- }
+<div class='highlight'><pre><code class='css'><span class='nf'>#social-buttons</span> <span class='nt'>button</span> <span class='p'>{</span>
+  <span class='k'>color</span><span class='o'>:</span> <span class='nb'>white</span><span class='p'>;</span>
+<span class='p'>}</span>
+<span class='nc'>.btn-twitter</span> <span class='p'>{</span>
+  <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#00acee</span><span class='p'>;</span>
+  <span class='k'>border-color</span><span class='o'>:</span> <span class='m'>#009ad5</span><span class='p'>;</span>
+<span class='p'>}</span>
 
- .btn-facebook {
-   background-color: #4868ac;
-   border-color: #314776;
- }
+<span class='nc'>.btn-facebook</span> <span class='p'>{</span>
+  <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#4868ac</span><span class='p'>;</span>
+  <span class='k'>border-color</span><span class='o'>:</span> <span class='m'>#314776</span><span class='p'>;</span>
+<span class='p'>}</span>
 
- .btn-pinterest {
-   background-color: #b62f26;
-   border-color: #b62f26;
- }</code></pre>
+<span class='nc'>.btn-pinterest</span> <span class='p'>{</span>
+  <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#b62f26</span><span class='p'>;</span>
+  <span class='k'>border-color</span><span class='o'>:</span> <span class='m'>#b62f26</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
 </li>
-
 <li>
-<p>Link this file into the <code>head</code> of <code>index.html</code> <strong>underneath your link to bootstrap</strong>.</p>
+Link this file into the <code>head</code> of <code>index.html</code> <strong>underneath your link to bootstrap</strong>.
 </li>
-
 <li>
-<p>What happens? Notice how in the first rule we’ve selected only those buttons that exist inside an element with <code>id=social-buttons</code>.</p>
+What happens? Notice how in the first rule we’ve selected only those buttons that exist inside an element with <code>id=social-buttons</code>.
 </li>
 </ol>
 </div>
 <h3 id="changing_the_background">Changing the background</h3>
-<div class='exercise alert alert-info'><strong>Task:</strong>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
 <ol>
 <li>
-<p>Change the background of the <code>jumbotron</code> to be the image <code>fruit-and-veg.png</code> by adding the css</p>
+Change the background of the <code>jumbotron</code> to be the image <code>fruit-and-veg.png</code> by adding the css
 
-<pre><code> .jumbotron {
-   min-height: 600px;
-   background-image: url('images/fruit-and-veg.jpg');
-   background-size: cover;
-   background-attachment: fixed;
- }</code></pre>
+<div class='highlight'><pre><code class='css'><span class='nc'>.jumbotron</span> <span class='p'>{</span>
+  <span class='k'>min-height</span><span class='o'>:</span> <span class='m'>600px</span><span class='p'>;</span>
+  <span class='k'>background-image</span><span class='o'>:</span> <span class='sx'>url(&#39;images/fruit-and-veg.jpg&#39;)</span><span class='p'>;</span>
+  <span class='k'>background</span><span class='o'>-</span><span class='k'>size</span><span class='o'>:</span> <span class='n'>cover</span><span class='p'>;</span>
+  <span class='k'>background-attachment</span><span class='o'>:</span> <span class='k'>fixed</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
 </li>
 
 <li>
-<p>This doesn’t look quite right. The problem is that the jumbotron is it is inside the <code>div class=&amp;quot;container&amp;quot;</code>. You can change this by moving it inside:</p>
+This doesn’t look quite right. The problem is that the jumbotron is it is inside the <code>div class='container'</code>. You can change this by moving it inside:
 
-<pre><code> &amp;lt;div class=&amp;quot;jumbotron&amp;quot;&amp;gt;
-   &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;jumbotron&quot;</span><span class='nt'>&gt;</span>
+  <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;container&quot;</span><span class='nt'>&gt;</span>
 
-   &amp;lt;/div&amp;gt;
- &amp;lt;/div&amp;gt;</code></pre>
+  <span class='nt'>&lt;/div&gt;</span>
+<span class='nt'>&lt;/div&gt;</span>
+</code></pre></div>
 
-<p>Similarly you will now need to create new <code>container</code>s inside the <code>div id=&amp;quot;buzz&amp;quot;</code> and <code>div id=&amp;quot;mission&amp;quot;</code>.</p>
+Similarly you will now need to create new <code>container</code>s inside the <code>div id='buzz'</code> and <code>div id='mission'</code>.
 </li>
-
 <li>
-<p>Change the background color of the <code>mission</code> section to <code>rgba(32, 35, 41, 0.9)</code> and the font colour to <code>#ddd</code></p>
+Change the background color of the <code>mission</code> section to <code>rgba(32, 35, 41, 0.9)</code> and the font colour to <code>#ddd</code>
 </li>
 </ol>
 </div>
@@ -342,82 +442,24 @@
 
 		<h2>Homework</h2>
 		
-<h2 id="finishing_off">Finishing off</h2>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Finish off the bootstrap_exercise from class</li>
-
-<li>(Optional) Push your code up to github.</li>
-
-<li>(Optional) Serve it as a site using gh-pages, following the same instructions as before</li>
-</ol>
-</div>
-<h2 id="set_up_your_domain_name">Set up your domain name</h2>
-
-<p>The point of this exercise is to set up your domain name to point towards your new GitHub pages site.</p>
-
-<p>As GitHub hosts many different pages at their IP address, it isn’t quite as simple as pointing your domain address towards that IP address. There are two things you need to do to get your domain name working with your GitHub pages site:</p>
-
-<ol>
-<li>Tell your domain registrar (e.g 123-reg or godaddy) to point your domain name towards GitHub’s IP address.</li>
-
-<li>Tell GitHub that requests to your domain name should come to your site.</li>
-</ol>
-
-<p>Github explains this <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">here</a>.</p>
-
-<h3 id="telling_github_that_requests_for_your_domain_name_are_for_your_site">Telling GitHub that requests for your domain name are for your site</h3>
-
-<p>Doing this is relatively simple. You just have to add a special file to your repository and push it up to GitHub:</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>
-<p>Open Sublime Text and create a new file.</p>
-</li>
-
-<li>
-<p>Write your domain name on the first line of the new file e.g:</p>
-
-<pre><code>  mydomain.com</code></pre>
-</li>
-
-<li>
-<p>Save that file as <code>CNAME</code> (uppercase, with no extension) in your <code>first_site</code> folder</p>
-</li>
-
-<li>
-<p>Add and commit your changes locally, then push to github:</p>
-
-<pre><code>  git add --all
-  git commit -m &amp;quot;Added CNAME&amp;quot;
-  git push</code></pre>
-</li>
-</ol>
-</div>
-<h3 id="pointing_your_domain_name_towards_github">Pointing your domain name towards GitHub</h3>
-
-<p>For the first bit you need to log in to your domain registrar and change the DNS settings. You want an <em>A-record</em> pointing to <code>204.232.175.78</code> (which is github.com). Note that it can take up to a couple of days for DNS changes to propagate.</p>
-
-<p>If you’re using 123-reg, your should log in, select your domain from the list, and click “Manage”. You should then go to “Manage DNS”.</p>
-
-<p><img src="/assets/dns_settings.png" alt="123-reg DNS Settings" /></p>
-
-<p>(The @ dns entry stands for the root or bare domain.)</p>
+<h3 id="finishing_off">Finishing off</h3>
 <div class='exercise alert alert-info'><strong>Task:</strong> 
 
-<p>Log in to your domain registrar and set an A-record to point towards GitHub.</p>
+<p>Finish off the bootstrap_exercise from class</p>
 
 </div>
-<p>Your changes won’t take effect immediately. You can check your DNS settings from the command line by running</p>
+<h3 id="personal_site">Personal site</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
 
-<pre><code>$ host yourdomain.com</code></pre>
+<p>Continue work on your personal site. You might want to think about using Twitter Bootstrap!</p>
 
-<p>at the command prompt on a Mac, or</p>
+</div>
+<h3 id="get_a_google_account">Get a Google Account</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
 
-<pre><code>$ nslookup yourdomain.com</code></pre>
+<p>If you don’t already have a google account (e.g. via a gmail address), you need to sign up for one: <a href='https://accounts.google.com/SignUp'>https://accounts.google.com/SignUp</a>. You’ll need it in class next week!</p>
 
-<p>on Windows.</p>
-
+</div>
 	</div>
 
 </div>
