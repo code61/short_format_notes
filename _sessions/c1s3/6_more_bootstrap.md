@@ -17,16 +17,20 @@ Skim through the [typography section](http://getbootstrap.com/css/#type) of the 
 Check out the [buttons section](http://getbootstrap.com/css/#buttons) (CSS > Buttons). 
 
 {% exercise %}
-1. Change the 'Send' button to a success button:
-
-        &lt;button class='btn btn-success' &gt;Send&lt;\button&gt;
-
+<ol markdown="1">
+<li markdown="1">Change the 'Send' button to a success button:
+{% highlight html %}
+<button class='btn btn-success' >Send</button>
+{% endhighlight %}
     You might also need `btn-small` in the Recent Activity section.
-
+</li>
+<li markdown="1">
 2. Make the social links at the bottom in to large buttons (we'll colour them later):
-
-        &lt;button class='btn btn-lg' &gt;Send&lt;\button&gt;
-
+{% highlight html %}
+<button class='btn btn-lg' >Send</button>
+{% endhighlight %}
+</li>
+</ol>
 {% endexercise %} 
 
 ### Images
@@ -38,5 +42,3 @@ Have a look at the [image section](http://getbootstrap.com/css/#images) of the B
 2. You can center the image by adding the [helper class](http://getbootstrap.com/css/#helper-classes-center) `center-block`.
 2. Change the main sandwich image into a `img-responsive`, as described in the [responsive images section](http://getbootstrap.com/css/#overview-responsive-images). Try resizing your browser and see how it changes size.
 {% endexercise %}
-
-### 
