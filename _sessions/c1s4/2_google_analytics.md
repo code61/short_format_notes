@@ -2,7 +2,7 @@
 title: Google Analytics
 ---
 
-Google Analytics is an analytics service provided for free by Google. It allows you get an overview of how many people are visiting your site, where they come from, what they do, and much more. 
+Google Analytics is an analytics service provided for free by Google. It allows you get an overview of how many people are visiting your site, where they come from, what they do on your site, and much more. 
 
 ### Google Analytics vs. Mixpanel/Kissmetrics
 

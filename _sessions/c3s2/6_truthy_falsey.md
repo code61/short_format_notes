@@ -33,11 +33,10 @@ x #=> 1
 In the above block of code, as `5` is truthy, the variable `x` is set to `1`.
 
 {% exercise %}
-Change your sinatra app into something more interesting:
+The bar is trialling a new initiative: Tuesdays is ladies night at the pub - no men allowed and all drinks are 2-4-1! They want you to update Bouncer 2.0 appropriately.
 
-- Add more options to the form.
-- Make the logic in the views more complicated, so that you're using a few boolean operations.
-- Change your app into a horoscope provider/career adviser/which-star-wars-character-are-you machine.
-- Make it look nice, deploy it and show your friends.
+1. Add select boxes for sex and day on the form.
+2. Add new templates to be shown on ladies night to (a) turn away a customer if he is male (b) give them an extra drink if they are female.
+3. Add the required logic to `app.rb` to make it all work.
 
 {% endexercise %}

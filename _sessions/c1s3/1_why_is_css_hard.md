@@ -4,9 +4,11 @@ title: What's hard about CSS?
 
 You've seen quite a bit of CSS now; it all seems quite straightforward - you write some css, tweak it 'til it looks good and you're done! In theory this is exactly how CSS works and is why CSS is brilliant.
 
+<br>
 <div style="display: block;margin-left: auto; margin-right: auto; width: 200px;">
 <img src="/assets/cat_pic.jpg" class='img-polaroid' width='200px'>
 </div>
+<br>
 
 Unfortunately, the realities are not quite so straightforward. Different browsers will render CSS with subtle differences. Take a look at the cat picture above. The styling is relatively simple - all we've done is add a border and a shadow. The following CSS will probably do this in your browser:
 
