@@ -5,13 +5,15 @@ layout: default
 
 ## Overall aims
 
-+ jquery
-+ Collaboration with git
-+ Gain familiarity with the command line
++ to get lots more practice with HTML and CSS
++ to learn about and practice using git for collaboration
++ to meet jquery - mostly as a DOM manipulation/special effects tool, rather than covering javascript as a programming language
++ to meet the command line and start getting comfortable moving around, trying git etc.
 
 ## Sessions
 
 - [Preparation](c2prep)
+  + Rails installer to get the bash/windows emulator??
 
 - [Session 1](c2s1)
   + Collaboration with git

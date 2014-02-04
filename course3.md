@@ -33,13 +33,13 @@ layout: default
   + [hwk] Codecademy ruby 3 & 4
 - [Session 3](c3s3)
   + Arrays, iterating
-  + Hashes
   <!-- + Building up an in-memory data store (using a constant?) -->
   + Reading in from a CSV file
   + Iterating in a template
 - [Session 4](c3s4)
   + functions
   + sending emails?
+  + Hashes
 
 
 - [Session 1](c4s1)
