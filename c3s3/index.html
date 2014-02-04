@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Web Programming with Ruby 3</title>
+
+  
+
+  <meta name="viewport" content="width=device-width">
+  <!-- Twitter bootstrap basic styles -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+
+
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="../css/syntax.css">
+  <!-- Google webfont link -->
+<link href='http://fonts.googleapis.com/css?family=Arvo:700|Titillium+Web:900' rel='stylesheet' type='text/css'>
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/main.css">
+
+  <script src="../assets/jquery-1.10.0.js"></script>
+
+  <script type="text/javascript" src='../bootstrap/js/bootstrap.js'></script>
+  <script type="text/javascript" src='../assets/custom.js'></script>
+
+<body class="">
+
+  <div class="container">
+
+    <div class="page-header">
+  <h1>Web Programming with Ruby 3 <small>Arrays</small></h1>
+</div>
+
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs" id="myTab">
+	
+		
+		<li class="active"><a href="#1_arrays" data-toggle="tab">Arrays </a></li>
+		
+	
+		
+		<li><a href="#2_array_summary" data-toggle="tab">Exercise summary </a></li>
+		
+	
+		
+		<li><a href="#3_iteration" data-toggle="tab">Iteration </a></li>
+		
+	
+		
+		<li><a href="#4_displaying_lists" data-toggle="tab">Lists of data </a></li>
+		
+	
+		
+		<li><a href="#5_sinatra_static" data-toggle="tab">Sinatra static assets </a></li>
+		
+	
+		
+		<li><a href="#6_layout_files" data-toggle="tab">Sinatra layouts </a></li>
+		
+	
+		
+		<li><a href="#7_homework" data-toggle="tab">Homework </a></li>
+		
+	
+</ul>
+
+<div class="tab-content">
+
+	
+	<div class="tab-pane active" id="1_arrays">
+	
+
+		<h2>Arrays</h2>
+		
+<p>An array is a way of storing a list of objects. Unlike in some other languages in ruby you don’t need to specify which sort of object the array will hold - it can even hold objects of different types.</p>
+
+<p>Arrays are written with square brackets.</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>my_array</span> <span class='o'>=</span> <span class='o'>[</span><span class='mi'>1</span><span class='p'>,</span><span class='mi'>2</span><span class='p'>,</span><span class='mi'>3</span><span class='o'>]</span>
+
+<span class='n'>empty_array</span> <span class='o'>=</span> <span class='o'>[]</span>    <span class='c1'># an array with no elements</span>
+</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Working with a partner, guess what each of the following expressions will give, then try them out in <code>irb</code>:</p>
+
+
+
+<div class='highlight'><pre><code class='ruby'><span class='n'>a</span> <span class='o'>=</span> <span class='o'>[</span><span class='mi'>3</span><span class='p'>,</span> <span class='mi'>39</span><span class='p'>,</span> <span class='mi'>1</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>5</span><span class='o'>]</span>
+
+<span class='n'>a</span><span class='o'>[</span><span class='mi'>1</span><span class='o'>]</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>first</span>
+<span class='n'>a</span><span class='o'>[</span><span class='mi'>0</span><span class='o'>]</span>
+<span class='n'>a</span><span class='o'>[</span><span class='mi'>5</span><span class='o'>]</span>
+
+<span class='n'>a</span><span class='o'>[-</span><span class='mi'>1</span><span class='o'>]</span>
+<span class='n'>a</span><span class='o'>[-</span><span class='mi'>5</span><span class='o'>]</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>last</span>
+
+<span class='n'>a</span><span class='o'>[</span><span class='mi'>1</span><span class='o'>.</span><span class='n'>.</span><span class='mi'>3</span><span class='o'>]</span>
+<span class='n'>a</span><span class='o'>[</span><span class='mi'>1</span><span class='o'>.</span><span class='n'>.</span><span class='o'>-</span><span class='mi'>1</span><span class='o'>]</span>
+
+<span class='n'>b</span> <span class='o'>=</span> <span class='o'>[]</span>
+
+<span class='n'>a</span><span class='o'>.</span><span class='n'>empty?</span>
+<span class='n'>b</span><span class='o'>.</span><span class='n'>empty?</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>length</span>
+<span class='n'>b</span><span class='o'>.</span><span class='n'>length</span>
+
+<span class='n'>a</span><span class='o'>.</span><span class='n'>include?</span><span class='p'>(</span><span class='mi'>39</span><span class='p'>)</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>include?</span><span class='p'>(</span><span class='mi'>49</span><span class='p'>)</span>
+
+<span class='n'>a</span><span class='o'>.</span><span class='n'>reverse</span>
+<span class='n'>a</span>   <span class='c1'># has this changed a?</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>reverse!</span>
+<span class='n'>a</span>   <span class='c1'># has this changed a?</span>
+
+<span class='n'>a</span><span class='o'>.</span><span class='n'>sort</span>
+<span class='n'>a</span>   <span class='c1'># has this changed a?</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>sort!</span>
+<span class='n'>a</span>   <span class='c1'># has this changed a?</span>
+
+<span class='n'>a</span> <span class='o'>=</span> <span class='o'>[</span><span class='mi'>1</span><span class='p'>,</span> <span class='mi'>2</span><span class='p'>,</span> <span class='mi'>3</span><span class='p'>,</span> <span class='mi'>4</span><span class='p'>,</span> <span class='mi'>5</span><span class='o'>]</span>
+
+<span class='n'>a</span><span class='o'>[</span><span class='mi'>3</span><span class='o'>]</span> <span class='o'>=</span> <span class='mi'>6</span>
+<span class='n'>a</span>   <span class='c1'># What is a now?</span>
+
+<span class='n'>a</span><span class='o'>[</span><span class='mi'>7</span><span class='o'>]</span> <span class='o'>=</span> <span class='mi'>7</span>
+<span class='n'>a</span>   <span class='c1'># What else has been added?</span>
+
+<span class='n'>a</span> <span class='o'>&lt;&lt;</span> <span class='mi'>9</span>  <span class='c1'># This one&#39;s important - you&#39;ll see it a lot</span>
+</code></pre></div>
+
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="2_array_summary">
+	
+
+		<h2>Exercise summary</h2>
+		
+<p>Here are some things you learnt in the last exercise:</p>
+
+<h3 id="accessing_elements">Accessing elements</h3>
+
+<ul>
+<li>Arrays start from 0, so that the first elements is <code>a[0]</code></li>
+
+<li>Arrays also allow indexing from the back, giving the last element as <code>a[-1]</code></li>
+
+<li>If try to access beyond the end of the array it gives <code>nil</code> (instead of an error in other languages)</li>
+
+<li>You can access multiple elements by specifying a range, e.g. <code>a[1..-1]</code> is everything but the first element</li>
+</ul>
+
+<h3 id="array_methods">Array methods</h3>
+
+<p>Arrays have many useful (and largely self-explanatory) methods, including:</p>
+
+<ul>
+<li><code>empty?</code> - does the array have any elements, or is it the empty array <code>[]</code></li>
+
+<li><code>length</code></li>
+
+<li><code>include?(x)</code> - is <code>x</code> in the array</li>
+
+<li><code>reverse</code>, <code>reverse!</code> - as with strings the <code>!</code> permanenty changes the array</li>
+</ul>
+
+<h3 id="adding_to_an_array"> Adding to an array</h3>
+
+<ul>
+<li>
+<p>You can add to an array by setting a given element explicitly <code>a[5] = 6</code></p>
+</li>
+
+<li>
+<p>If the array isn’t long enough the gaps are filled with <code>nil</code>:</p>
+
+<pre><code>a = [1, 2]
+a[6] = 5
+a #=&gt; [1, 2, nil, nil, nil, nil, 5]</code></pre>
+</li>
+
+<li>
+<p>You can also add to the end of an array by doing <code>a &lt;&lt; 5</code>. This is very ‘rubyish’ and you’ll see it a lot.</p>
+</li>
+</ul>
+
+	</div>
+
+	
+	<div class="tab-pane " id="3_iteration">
+	
+
+		<h2>Iteration</h2>
+		
+<p>Most programming language have some way of looping, or iterating, over a range of values.</p>
+
+<p>Ruby’s approach to this is slightly unusual - instead of you taking elements from the array one-by-one, the ruby array <em>gives</em> the elements to you one-by-one. This might seem like a small distinction to make, but it has a significant effect on the feel of the ruby language and how you think about coding with it.</p>
+
+<p>The way you get an array to give you its elements is by calling its <code>each</code> method:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>array</span> <span class='o'>=</span> <span class='o'>[</span><span class='mi'>1</span><span class='p'>,</span> <span class='mi'>2</span><span class='p'>,</span> <span class='mi'>3</span><span class='p'>,</span> <span class='mi'>4</span><span class='p'>,</span> <span class='mi'>5</span><span class='o'>]</span>
+<span class='n'>sum</span>   <span class='o'>=</span> <span class='mi'>0</span>
+
+<span class='n'>array</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>n</span><span class='o'>|</span>
+  <span class='n'>sum</span> <span class='o'>=</span> <span class='n'>sum</span> <span class='o'>+</span> <span class='n'>n</span>
+<span class='k'>end</span>
+
+<span class='n'>sum</span> <span class='c1'>#=&gt; 15</span>
+</code></pre></div>
+<p>The <code>each</code> method accepts a <strong>block</strong> - in the example above, this is everything between <code>do ... end</code>.</p>
+
+<ul>
+<li>The <code>each</code> method sends the elements of the array one-by-one to the block.</li>
+
+<li>When the element arrives it is assigned to the variable <code>n</code>.</li>
+
+<li>The code on the inside of the block is then run.</li>
+</ul>
+
+<p>In the example above, each element is added to the <code>sum</code>. The example shows one method that you can use to sum the values in an array.</p>
+
+<p>Below is another example, which iterates over the elements of an array, separating them into one of two lists:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>all_words</span>   <span class='o'>=</span> <span class='o'>[</span><span class='s1'>&#39;hello&#39;</span><span class='p'>,</span> <span class='s1'>&#39;how&#39;</span><span class='p'>,</span> <span class='s1'>&#39;are&#39;</span><span class='p'>,</span> <span class='s1'>&#39;you&#39;</span><span class='p'>,</span> <span class='s1'>&#39;today&#39;</span><span class='o'>]</span>
+<span class='n'>long_words</span>  <span class='o'>=</span> <span class='o'>[]</span>
+<span class='n'>short_words</span> <span class='o'>=</span> <span class='o'>[]</span>
+
+<span class='n'>all_words</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>word</span><span class='o'>|</span>
+  <span class='k'>if</span> <span class='n'>word</span><span class='o'>.</span><span class='n'>length</span> <span class='o'>&gt;=</span> <span class='mi'>5</span>
+    <span class='n'>long_words</span>  <span class='o'>&lt;&lt;</span> <span class='n'>word</span>
+  <span class='k'>else</span>
+    <span class='n'>short_words</span> <span class='o'>&lt;&lt;</span> <span class='n'>word</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='n'>long_words</span>  <span class='c1'>#=&gt; [&#39;hello&#39;, &#39;today&#39;]</span>
+<span class='n'>short_words</span> <span class='c1'>#=&gt; [&#39;how&#39;, &#39;are&#39;, &#39;you&#39;]</span>
+</code></pre></div>
+<p><small>Please note: the summing and categorising examples above can be made much neater with the use of the array methods <code>inject</code> and <code>select</code>. We’ll leave that for another day though </small></p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Take another look through the code examples above. Check you really understand how they work. Try them out in <code>irb</code>, to check they work as advertised!</p>
+
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_displaying_lists">
+	
+
+		<h2>Lists of data</h2>
+		
+<p>So far we have only inserted single values and words into an already existing <code>erb</code> template. We will now look at using ruby to generate more of the template dynamically.</p>
+
+<p>Suppose you have a ruby array that you want to turn into an html list:</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># in app.rb</span>
+
+<span class='n'>get</span> <span class='s1'>&#39;/fruit&#39;</span> <span class='k'>do</span>
+  <span class='vi'>@fruits</span> <span class='o'>=</span> <span class='o'>[</span><span class='s2'>&quot;Bananas&quot;</span><span class='p'>,</span> <span class='s2'>&quot;Apples&quot;</span><span class='p'>,</span> <span class='s2'>&quot;Raspberries&quot;</span><span class='o'>]</span>
+  <span class='n'>erb</span> <span class='ss'>:fruits_view</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>We can do this by using the <code>@fruits</code> array’s <code>each</code> method to iterate over the elements and put them into the page one-by-one.</p>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/fruits_view.erb --&gt;</span>
+<span class='nt'>&lt;ul&gt;</span>
+  <span class='err'>&lt;</span>% @fruits.each do |fruit| %&gt;
+    <span class='nt'>&lt;li&gt;</span><span class='err'>&lt;</span>%= fruit %&gt;<span class='nt'>&lt;/li&gt;</span>
+  <span class='err'>&lt;</span>% end %&gt;
+<span class='nt'>&lt;/ul&gt;</span>
+</code></pre></div>
+<p>You might notice that we’ve used a different type of erb tag for the <code>do ... end</code> block: <code>&lt;% %&gt;</code> instead of <code>&lt;%= %&gt;</code>. This is really important:</p>
+
+<ul>
+<li>You need to use <code>&lt;%= %&gt;</code> if you want the result of executing that line of ruby to be added to the page.</li>
+
+<li>You need to use <code>&lt;% %&gt;</code> if you don’t want the result of executing that line of ruby to be added to the page.</li>
+</ul>
+
+<p>Here, the bits we want adding are the elements of the array, so only they have the <code>&lt;%= %&gt;</code> tags. The code will cause the following html to be generated:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;ul&gt;</span>
+  <span class='nt'>&lt;li&gt;</span>Bananas<span class='nt'>&lt;/li&gt;</span>
+  <span class='nt'>&lt;li&gt;</span>Apples<span class='nt'>&lt;/li&gt;</span>
+  <span class='nt'>&lt;li&gt;</span>Raspberries<span class='nt'>&lt;/li&gt;</span>
+<span class='nt'>&lt;/ul&gt;</span>
+</code></pre></div>
+<p>You can also use the same technique to generate tables and other html (lists of divs etc.).</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li><strong>Fork, then clone</strong> the code for this exercise <a href='https://github.com/code61/sinatra_c3s3'>https://github.com/code61/sinatra_c3s3</a>.</li>
+
+<li>Add the code to the body of <code>todo.erb</code>, so that the <code>@todos</code> display as an ordered list.</li>
+
+<li>Add, commit and push your code to Github.</li>
+
+<li>Add the code to the body of <code>schedule.erb</code>, so that the items in the <code>@schedule</code> display as rows in a table. Note that <code>@schedule</code> is an <em>array of arrays</em> - you’ll need to iterate over the first array, and within the loop use the normal ways of accessing elements of an array pull out the items.</li>
+
+<li>Add, commit and push your code to Github.</li>
+
+<li>Take a look at the <code>get '/rsvps'</code> block. Try the <code>CSV.read</code> bit in irb, to see what it does. Have a go at writing the code to categorise rsvps into acceptances/rejections and count them.</li>
+
+<li>Update the <code>rsvps.erb</code> view, so that the right information is displayed.</li>
+
+<li>Add, commit and push your code to Github.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="5_sinatra_static">
+	
+
+		<h2>Sinatra static assets</h2>
+		
+<p>Last week we linked Twitter Bootstrap into your view templates, by linking to the online hosted version <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css&quot;&gt;</code>. What if we want to link to our own files?</p>
+
+<p>When we were building static sites, this was simple: we just created a <code>main.css</code> file in our site folder, and linked to it. The problem is that <strong>a sinatra site folder is not like a static site folder</strong>. We’ve already seen this: <code>app.rb</code> controls the url structure, not the folders in the app folder. (Just try going to ‘/app.rb’ or ‘/views/index.erb’). Because of this, just dropping a <code>main.css</code> into the sinatra folder and trying to link to it won’t work.</p>
+
+<p>Thankfully sinatra has a solution to this problem: if you create a folder called <code>public</code>, any files you put in there will be available from the root url. For example, if I have a file <code>public/main.css</code>, I can then link to this from my template files using <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/main.css&quot;&gt;</code>. The two important things to note here are:</p>
+
+<ol>
+<li>I’m using a root-relative link (starting with a <code>/</code>). If you don’t do this, you’ll have problems if you ever call that template from a different url route.</li>
+
+<li>I’m linking directly to <code>main.css</code>, <strong>not</strong> to <code>public/main.css</code>.</li>
+</ol>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>Sinatra conventions</h3>
+  </div>
+  <div class='panel-body'>
+   <ol>
+      <li>Files inside the <code>public</code> folder will be served at the root of the site. This is where you should put your own stylesheets/images etc.</li>
+      <li>You call a template with the line <code>erb :template_name</code>.</li>
+      <li>For this to work, you will need a template called <code>template_name.erb</code> in the <code>views</code> folder.</li>
+      <li>Instance variables (ones that start with <code>@</code>) will be shared with the template.</li>
+      <li>You use these shared instance variables in the template by putting them inside an erb tag: <code>&lt;%= @my_variable &gt;</code> </li>
+    </ol> 
+  </div>
+</div><div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<ol>
+<li>Link the bootstrap stylesheet you’ll find in <code>public/dist/css/bootstrap.css</code> into the <code>head</code> of <code>todo.erb</code> and <code>schedule.erb</code>.</li>
+</ol>
+
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="6_layout_files">
+	
+
+		<h2>Sinatra layouts</h2>
+		
+<p>One of the most important principles in software engineering is to stay <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY</a>: <strong>don’t repeat yourself</strong>.</p>
+
+<p>The basic idea is that you don’t want to be copying and pasting the same code into multiple places. If you’re doing this, you’re making a lot of work for yourself should you ever decide to change that code.</p>
+
+<p>One way of staying DRY that we’ll meet soon is writing functions: if there’s a task that you do repeatedly, write a function to put the logic for that task in one place and then call the function when you need to do the task.</p>
+
+<p>Another way, that we’ll be looking at today, is in the form of layouts.</p>
+
+<h3 id="the_problem">The Problem</h3>
+
+<p>In the exercise today, you’ve been using a lot of erb view templates. You have 4 different templates, which all share the same basic outline:</p>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/index.erb --&gt;</span>
+<span class='cp'>&lt;!DOCTYPE html&gt;</span>
+<span class='nt'>&lt;html&gt;</span>
+<span class='nt'>&lt;head&gt;</span>
+  <span class='nt'>&lt;title&gt;</span>Event Manager 2.0<span class='nt'>&lt;/title&gt;</span>
+<span class='nt'>&lt;/head&gt;</span>
+<span class='nt'>&lt;body&gt;</span>
+
+  <span class='nt'>&lt;h1&gt;</span>Picture Unveiling Evening - Event Managment<span class='nt'>&lt;/h1&gt;</span>
+
+  <span class='nt'>&lt;ul&gt;</span>
+    <span class='nt'>&lt;li&gt;&lt;a</span> <span class='na'>href=</span><span class='s'>&#39;/todos&#39;</span><span class='nt'>&gt;</span>Todo list<span class='nt'>&lt;/a&gt;&lt;/li&gt;</span>
+    <span class='nt'>&lt;li&gt;&lt;a</span> <span class='na'>href=</span><span class='s'>&#39;/schedule&#39;</span><span class='nt'>&gt;</span>Event schedule<span class='nt'>&lt;/a&gt;&lt;/li&gt;</span>
+    <span class='nt'>&lt;li&gt;&lt;a</span> <span class='na'>href=</span><span class='s'>&#39;/rsvps&#39;</span><span class='nt'>&gt;</span>RSVPs<span class='nt'>&lt;/a&gt;&lt;/li&gt;</span>
+  <span class='nt'>&lt;/ul&gt;</span>
+
+<span class='nt'>&lt;/body&gt;</span>
+<span class='nt'>&lt;/html&gt;</span>
+</code></pre></div><div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/todo.erb --&gt;</span>
+<span class='cp'>&lt;!DOCTYPE html&gt;</span>
+<span class='nt'>&lt;html&gt;</span>
+<span class='nt'>&lt;head&gt;</span>
+  <span class='nt'>&lt;title&gt;</span>Event Manager 2.0<span class='nt'>&lt;/title&gt;</span>
+<span class='nt'>&lt;/head&gt;</span>
+<span class='nt'>&lt;body&gt;</span>
+  <span class='nt'>&lt;h1&gt;</span>Todo list<span class='nt'>&lt;/h1&gt;</span>
+
+  <span class='nt'>&lt;ul&gt;</span>
+    <span class='err'>&lt;</span>% @todos.each do |todo| %&gt;
+      <span class='nt'>&lt;li&gt;</span><span class='err'>&lt;</span>%= todo %&gt;<span class='nt'>&lt;/li&gt;</span>
+    <span class='err'>&lt;</span>% end %&gt;
+  <span class='nt'>&lt;/ul&gt;</span>
+
+<span class='nt'>&lt;/body&gt;</span>
+<span class='nt'>&lt;/html&gt;</span>
+</code></pre></div>
+<p>These files are almost the same - a lot of copy and paste has gone on.</p>
+
+<h3 id="the_solution"> The solution</h3>
+
+<p>Sinatra gets round this problem by allowing you to have a <code>layout.erb</code> file in your <code>views</code> folder:</p>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- views/layout.erb --&gt;</span>
+<span class='cp'>&lt;!DOCTYPE html&gt;</span>
+<span class='nt'>&lt;html&gt;</span>
+<span class='nt'>&lt;head&gt;</span>
+  <span class='nt'>&lt;title&gt;</span>Event Manager 2.0<span class='nt'>&lt;/title&gt;</span>
+<span class='nt'>&lt;/head&gt;</span>
+<span class='nt'>&lt;body&gt;</span>
+
+  <span class='err'>&lt;</span>%= yield %&gt;
+
+<span class='nt'>&lt;/body&gt;</span>
+<span class='nt'>&lt;/html&gt;</span>
+</code></pre></div>
+<p>You can then write only the bits that change in the other two views:</p>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/index.erb --&gt;</span>
+<span class='nt'>&lt;h1&gt;</span>Picture Unveiling Evening - Event Managment<span class='nt'>&lt;/h1&gt;</span>
+
+<span class='nt'>&lt;ul&gt;</span>
+  <span class='nt'>&lt;li&gt;&lt;a</span> <span class='na'>href=</span><span class='s'>&#39;/todos&#39;</span><span class='nt'>&gt;</span>Todo list<span class='nt'>&lt;/a&gt;&lt;/li&gt;</span>
+  <span class='nt'>&lt;li&gt;&lt;a</span> <span class='na'>href=</span><span class='s'>&#39;/schedule&#39;</span><span class='nt'>&gt;</span>Event schedule<span class='nt'>&lt;/a&gt;&lt;/li&gt;</span>
+  <span class='nt'>&lt;li&gt;&lt;a</span> <span class='na'>href=</span><span class='s'>&#39;/rsvps&#39;</span><span class='nt'>&gt;</span>RSVPs<span class='nt'>&lt;/a&gt;&lt;/li&gt;</span>
+<span class='nt'>&lt;/ul&gt;</span>
+</code></pre></div><div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- in views/todo.erb --&gt;</span>
+<span class='nt'>&lt;h1&gt;</span>Todo list<span class='nt'>&lt;/h1&gt;</span>
+
+<span class='nt'>&lt;ul&gt;</span>
+  <span class='err'>&lt;</span>% @todos.each do |todo| %&gt;
+    <span class='nt'>&lt;li&gt;</span><span class='err'>&lt;</span>%= todo %&gt;<span class='nt'>&lt;/li&gt;</span>
+  <span class='err'>&lt;</span>% end %&gt;
+<span class='nt'>&lt;/ul&gt;</span>
+</code></pre></div>
+<p>Sinatra knows that if you have a file called <code>layout.erb</code> it should use that as a layout. If you call <code>erb :index</code>:</p>
+
+<ul>
+<li>It takes the <code>layout.erb</code> file.</li>
+
+<li>It finds the bit where it says <code>&lt;%= yield %&gt;</code>.</li>
+
+<li>It inserts <code>index.erb</code> at that point.</li>
+</ul>
+
+<p>You can find more about Sinatra layouts on <a href="http://lmgtfy.com/?q=sinatra+layouts">the internet</a>.</p>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>Sinatra conventions</h3>
+  </div>
+  <div class='panel-body'>
+   <ol>
+      <li>If you have a file <code>views/layout.erb</code> Sinatra will treat it as a layout file: whenever it renders another template, it will try and insert the output into the <code>&lt;%= yield %&gt;</code> part of the layout file.</li>
+      <li>Files inside the <code>public</code> folder will be served at the root of the site. This is where you should put your own stylesheets/images etc.</li>
+      <li>You call a template with the line <code>erb :template_name</code>.</li>
+      <li>For this to work, you will need a template called <code>template_name.erb</code> in the <code>views</code> folder.</li>
+      <li>Instance variables (ones that start with <code>@</code>) will be shared with the template.</li>
+      <li>You use these shared instance variables in the template by putting them inside an erb tag: <code>&lt;%= @my_variable %&gt;</code> </li>
+    </ol> 
+  </div>
+</div><div class='exercise alert alert-info'><strong>Task:</strong>
+<p><em>Refactor</em> your views:</p>
+
+<ol>
+<li>Create a layout file, containing the shared material from each view.</li>
+
+<li>Remove the shared material from each view.</li>
+
+<li>Check that the screens still look the same!</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="7_homework">
+	
+
+		<h2>Homework</h2>
+		<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Finish the final exercise from class. If you have time, try and make the app look a bit nicer and practice deploying to heroku.</li>
+
+<li>Do the <a href='http://www.codecademy.com/tracks/ruby'>Codecademy Ruby track</a> Sections 5 and 6.</li>
+</ol>
+</div>
+	</div>
+
+</div>
+
+</div>
+
+
+
+
+  </div> <!-- /container -->
+
+
+</body>
+</html>
