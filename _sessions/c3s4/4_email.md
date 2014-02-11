@@ -2,7 +2,7 @@
 title: Sending email
 ---
 
-Today we'll be looking at sending email from a ruby program. To do this we'll be using a library called [Pony](https://github.com/benprew/pony). Pony is a light-weight, simple library (in comparison more fully fledged options like [ActionMailer](http://guides.rubyonrails.org/action_mailer_basics.html)). After a small amount of configuration, it allows you to send emails with a single function call.
+Today we'll be looking at sending email from a ruby program. To do this we'll be using a library called [Pony](https://github.com/benprew/pony). Pony is a light-weight, simple library (in comparison more fully fledged options like [ActionMailer](http://guides.rubyonrails.org/action_mailer_basics.html)). After a small amount of configuration, it allows you to send emails with a single command.
 
 We'll be using a google account to send the email - you will need to input your username and password, and it will look like the email came from your gmail account. Using gmail is a good solution for a small test app like this. When you get bigger you will start hitting gmails sending limits, and you will want to investigate other solutions e.g. [sendgrid](http://sendgrid.com/) or [mandrill](http://mandrill.com/). For further options see the [heroku addons page](https://addons.heroku.com/).
 

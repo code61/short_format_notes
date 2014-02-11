@@ -1,5 +1,5 @@
 ---
-title: More about hashes
+title: Exercise summary
 ---
 
 In the last exercise you will have learnt a number of things about hashes. Here is a summary of the important points:
@@ -105,10 +105,3 @@ h #=> {'a' => 3, 'b' => 1}
 
 If the letter isn't in the hash yet, the default value of 0 will be returned. Otherwise the current count will be returned. Either way, we just need to increase the value by 1.
 
-
-{% exercise %}
-1. Open `hash_exercises.rb` in Sublime Text.
-2. Work through the file fixing the functions to work as described.
-3. Check your work by running `test_hash_exercises.rb` on the command line.
-4. If you finish early move on to `array_conversion_examples.rb`.
-{% endexercise %}

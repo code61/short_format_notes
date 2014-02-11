@@ -37,16 +37,20 @@ layout: default
   + Reading in from a CSV file
   + Iterating in a template
 - [Session 4](c3s4)
-  + functions
   + sending emails?
   + Hashes
 
 
 - [Session 1](c4s1)
+  + functions
+  + lots of exercises with tests
+  + [hwk] refactor a sinatra app
 - [Session 2](c4s2)
+  + more functions
 - [Session 3](c4s3)
+  + mongodb/classes
 - [Session 4](c4s4)
-  + intro to ruby on rails
+  + CRUD app
 
 
 name can be a variable, a Constant, (an @instance variable, a @@class variable, $global)

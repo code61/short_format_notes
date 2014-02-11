@@ -38,9 +38,6 @@ The above form contains only text boxes. A user visiting the form would have no 
 {% endhighlight %}
 
 {% exercise %}
-1. Clone the code for this session:
-
-    git clone https://github.com/code61/html_forms.git
-
+1. Clone the code for this session: [https://github.com/code61/html_forms.git](https://github.com/code61/html_forms.git)
 2. Open 'basic_form.html' in Sublime Text and Chrome.
 {% endexercise %}
