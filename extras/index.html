@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Extras</title>
+
+  
+
+  <meta name="viewport" content="width=device-width">
+  <!-- Twitter bootstrap basic styles -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+
+
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="../css/syntax.css">
+  <!-- Google webfont link -->
+<link href='http://fonts.googleapis.com/css?family=Arvo:700|Titillium+Web:900' rel='stylesheet' type='text/css'>
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/main.css">
+
+  <script src="../assets/jquery-1.10.0.js"></script>
+
+  <script type="text/javascript" src='../bootstrap/js/bootstrap.js'></script>
+  <script type="text/javascript" src='../assets/custom.js'></script>
+
+<body class="">
+
+  <div class="container">
+
+    <div class="page-header">
+  <h1>Extras <small></small></h1>
+</div>
+
+<div class="tabbable tabs-left">
+<ul class="nav nav-tabs" id="myTab">
+	
+		
+		<li class="active"><a href="#9_configuration_variables" data-toggle="tab">Configuration variables </a></li>
+		
+	
+</ul>
+
+<div class="tab-content">
+
+	
+	<div class="tab-pane active" id="9_configuration_variables">
+	
+
+		<h2>Configuration variables</h2>
+		
+<p>The purpose of this next part is to add an email notification to the sign-up form you worked on last time.</p>
+
+<h3 id="problem_where_to_store_the_password">Problem: where to store the password</h3>
+
+<p>In the example email script you were prompted for your gmail username and password. This meant we side-stepped the issue of where to write this (sensitive) information down.</p>
+
+<p>The problem of where in your program to store sensitive, application-specific configuration data is one that you will come across often. For example, you may want to store:</p>
+
+<ul>
+<li>An email username/password for your app.</li>
+
+<li>Database configuration, username and passwords.</li>
+
+<li>Amazon webservices api tokens and secret key (e.g. Amazon S3 etc.).</li>
+
+<li>Facebook integration token and key.</li>
+
+<li>GitHub integration token and key.</li>
+
+<li>… tokens and keys to connect to many other services.</li>
+</ul>
+
+<p>Quite often these keys will have different values in different <em>environments</em>: you probably won’t want to use your live production database when developing or testing.</p>
+
+<p>A tempting (but non-ideal) place to put this information is in the code in your git repository (i.e. just write them into the source code files). This is bad for a few reasons including:</p>
+
+<ol>
+<li>Anyone with access to your git repository has access to your email password etc.</li>
+
+<li>It’s hard to manage different versions for different environment - you will need to remember to replace your development info with your production info everytime before you do a ‘git push heroku’.</li>
+</ol>
+
+<p>In general <strong>it is bad practice to put passwords/tokens/keys in your git repo</strong>.</p>
+
+<h3 id="using_env_variables">Using ENV variables</h3>
+
+<p>A good solution for this situation is to use environment variables. All ruby programs have access to an <code>ENV</code> hash containing options from the environment where the program is run. You can see the environment variables set on your computer by running</p>
+
+<pre><code>$ env
+TERM_PROGRAM=Apple_Terminal
+SHELL=/bin/bash
+TERM=xterm-256color
+...</code></pre>
+
+<p>You can then check that you can access these in irb:</p>
+<div class='highlight'><pre><code class='ruby'><span class='o'>&gt;</span> <span class='no'>ENV</span><span class='o'>[</span><span class='s1'>&#39;SHELL&#39;</span><span class='o'>]</span>
+<span class='c1'>#=&gt; &quot;/bin/bash&quot;</span>
+</code></pre></div>
+<p>We are going to store the configuration values (e.g. email username and password) as environment variables for our program. Heroku makes it easy for you to manage ENV variables on their servers, as described <a href="https://devcenter.heroku.com/articles/config-vars">here</a>. To replicate the situation on your laptop you can use a gem called <code>dotenv</code>.</p>
+
+<p>You can install <code>dotenv</code> via rubygems. If you use <code>rbenv</code> (i.e. if you followed ‘The Hard Way’ installation instructions) you will then need to do a <code>rbenv rehash</code>. (This is because the foreman gem comes with a command line tool, which we need to tell rbenv about.)</p>
+
+<pre><code>gem install dotenv</code></pre>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># in .env</span>
+<span class='no'>GMAIL_USER_NAME</span><span class='o'>=</span><span class='n'>yourgmailusername</span>
+<span class='no'>GMAIL_PASSWORD</span><span class='o'>=</span><span class='n'>password12345</span>
+</code></pre></div>
+<p>You can then access these variables in your ruby program by the <code>ENV</code> hash:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>user_name</span> <span class='o'>=</span> <span class='no'>ENV</span><span class='o'>[</span><span class='s1'>&#39;GMAIL_USER_NAME&#39;</span><span class='o'>]</span>
+<span class='n'>password</span> <span class='o'>=</span> <span class='no'>ENV</span><span class='o'>[</span><span class='s1'>&#39;GMAIL_PASSWORD&#39;</span><span class='o'>]</span>
+</code></pre></div>
+<p>In order to keep your <code>.env</code> configuration secret you need to make sure it doesn’t get added to the git repo. If you want to deploy to Heroku, it is also important that your <code>Procfile</code> <strong>isn’t</strong> in your git repo (otherwise it will mess with Heroku’s settings when it gets up there). To do this you need to make sure both of them are in your <code>.gitignore</code>:</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># in .gitignore</span>
+<span class='no'>Procfile</span>
+<span class='o'>.</span><span class='n'>env</span>
+</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Fetch down the changes to <code>mongo1</code>. In the <code>mongo1</code> directory:</p>
+
+<pre><code> $ git fetch</code></pre>
+</li>
+
+<li>
+<p>Checkout the <code>email</code> branch:</p>
+
+<pre><code> $ git checkout email</code></pre>
+
+<p>This has the solution from last time along with some email examples. If you spent a lot of time making your solution from last session look nice, you might instead want to merge the <code>email</code> branch into your <code>master</code> - up to you!</p>
+</li>
+
+<li>
+<p>Do a <code>bundle install</code> (and a <code>rbenv rehash</code> if necessary):</p>
+
+<pre><code> $ bundle install
+ $ rbenv rehash</code></pre>
+</li>
+
+<li>
+<p>Copy the contents of <code>mongo1/example_app/Procfile.sample</code> and <code>mongo1/example_app/.env.sample</code> and save them as <code>mongo1/example_app/Procfile</code> and <code>mongo1/example_app/.env</code> filling in your gmail details in <code>.env</code>.</p>
+</li>
+
+<li>
+<p>Start the app with <code>foreman start</code>. Check that the app sends you a fruity email.</p>
+</li>
+</ol>
+</div>
+<h3 id="env_variables_on_heroku">ENV variables on heroku</h3>
+
+<p>As the settings in <code>.env</code> aren’t in the git repo, they won’t be pushed to heroku. You will need to set these variables separately. Heroku makes it easy to do this. Assuming your app is already on heroku you can set environment variables as:</p>
+
+<pre><code>    $ heroku config:set GMAIL_USER_NAME=yourgmailusername
+    $ heroku config:set GMAIL_PASSWORD=password12345</code></pre>
+
+<p>You can check the values you have set by running</p>
+
+<pre><code>    $ heroku config</code></pre>
+
+<p>There are other tools you can use to manage heroku configuration variables, which might be useful if you end up setting a lot of options. See <a href="https://github.com/ddollar/heroku-config">here</a> for more details.</p>
+
+	</div>
+
+</div>
+
+</div>
+
+
+
+
+  </div> <!-- /container -->
+
+
+</body>
+</html>

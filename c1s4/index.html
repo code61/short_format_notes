@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Web Fundamentals 5</title>
+  <title>Web Fundamentals 4</title>
 
   
 
@@ -33,34 +33,34 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Web Fundamentals 5 <small>HTML Forms</small></h1>
+  <h1>Web Fundamentals 4 <small>Analytics and HTML Forms</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#1_forms" data-toggle="tab">Basic forms </a></li>
+		<li class="active"><a href="#1_google_analytics" data-toggle="tab">Google Analytics </a></li>
 		
 	
 		
-		<li><a href="#2_form_submissions" data-toggle="tab">Form submissions </a></li>
+		<li><a href="#2_forms" data-toggle="tab">Basic forms </a></li>
 		
 	
 		
-		<li><a href="#2_google_analytics" data-toggle="tab">Google Analytics </a></li>
+		<li><a href="#3_form_submissions" data-toggle="tab">Form submissions </a></li>
 		
 	
 		
-		<li><a href="#3_google_forms" data-toggle="tab">Google forms trick </a></li>
+		<li><a href="#4_google_forms" data-toggle="tab">Google forms trick </a></li>
 		
 	
 		
-		<li><a href="#4_more_elements" data-toggle="tab">More form elements </a></li>
+		<li><a href="#5_more_elements" data-toggle="tab">More form elements </a></li>
 		
 	
 		
-		<li><a href="#5_homework" data-toggle="tab">Homework </a></li>
+		<li><a href="#6_homework" data-toggle="tab">Homework </a></li>
 		
 	
 </ul>
@@ -68,7 +68,31 @@
 <div class="tab-content">
 
 	
-	<div class="tab-pane active" id="1_forms">
+	<div class="tab-pane active" id="1_google_analytics">
+	
+
+		<h2>Google Analytics</h2>
+		
+<p>Google Analytics is an analytics service provided for free by Google. It allows you get an overview of how many people are visiting your site, where they come from, what they do on your site, and much more.</p>
+
+<h3 id="how_it_works">How it works</h3>
+
+<p>To use Google Analytics you need to place a snippet of javascript (that they provide) on each of the HTML pages on your site. When a user visits the page, the javascript sends a message to the Google Analytics site logging the visit.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Set up a <a href='http://www.google.com/analytics/'>Google Analytics</a> account. You want to choose the default ‘Universal Analytics’ option.</li>
+
+<li>In the Admin section, create a new account for your personal site.</li>
+
+<li>Following the instructions, install the analytics code on all the pages of your site.</li>
+
+<li>Push your changes up to the <code>gh-pages</code> branch on GitHub.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="2_forms">
 	
 
 		<h2>Basic forms</h2>
@@ -107,21 +131,15 @@
 <span class='nt'>&lt;/form&gt;</span>
 </code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>
-<p>Clone the code for this session:</p>
+<li>Clone the code for this session: <a href='https://github.com/code61/html_forms.git'>https://github.com/code61/html_forms.git</a></li>
 
-<p>git clone https://github.com/code61/html_forms.git</p>
-</li>
-
-<li>
-<p>Open ‘basic_form.html’ in Sublime Text and Chrome.</p>
-</li>
+<li>Open ‘basic_form.html’ in Sublime Text and Chrome.</li>
 </ol>
 </div>
 	</div>
 
 	
-	<div class="tab-pane " id="2_form_submissions">
+	<div class="tab-pane " id="3_form_submissions">
 	
 
 		<h2>Form submissions</h2>
@@ -220,45 +238,7 @@
 	</div>
 
 	
-	<div class="tab-pane " id="2_google_analytics">
-	
-
-		<h2>Google Analytics</h2>
-		
-<p>Google Analytics is an analytics service provided for free by Google. It allows you get an overview of how many people are visiting your site, where they come from, what they do on your site, and much more.</p>
-
-<h3 id="google_analytics_vs_mixpanelkissmetrics">Google Analytics vs. Mixpanel/Kissmetrics</h3>
-
-<p>There are many other analytics services out there. <a href="https://mixpanel.com/">Mixpanel</a> and <a href="https://www.kissmetrics.com/">Kissmetrics</a> are two of the most well-known.</p>
-
-<p>Kissmetrics seems to be very advanced. They provide a lot of good material on how to use analytics (especially kissmetrics!) through the Kissmetrics blogs and through regular webinars. These are well worth having a look at/signing up for. Kissmetrics will allow you to track individuals from their first visit to your site, through to signing up and any subsequent actions. You can get excellent insights into where your most valuable users come from. Kissmetrics is expensive though - their cheapest plan is $150/month.</p>
-
-<p>Mixpanel also focusses on tracking individual users. It seems most suited to when you have an app with users who log in. You can add tracking events to certain user actions. Mixpanel has a handy free plan to get you started.</p>
-
-<p>Google Analytics seems to focus mostly on aggregated statistics rather than individual users: it’s perfect for a landing page, where you want to track numbers and percentages but doesn’t offer the same amount of control for tracking user interaction with your app.</p>
-
-<p>That said, Google Analytics is in the process of a major upgrade to ‘Universal Analytics’. This should make it possible to track on a user-level more like Mixpanel or Kissmetrics.</p>
-
-<h3 id="setting_up_google_analytics">Setting up Google Analytics</h3>
-
-<p>To use Google Analytics you need to place a snippet of javascript (that they provide) on each of the HTML pages on your site. When a user visits the page, the javascript sends a message to the Google Analytics site logging the visit.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<p>In your landing page team:</p>
-
-<ol>
-<li>Have one team member set up a <a href='http://www.google.com/analytics/'>Google Analytics</a> account. You want to choose the default ‘Universal Analytics’ option.</li>
-
-<li>In the Admin section, create a new account for your landing page.</li>
-
-<li>Following the instructions, install the analytics code on all the pages of your site.</li>
-
-<li>Push your changes up to the <code>gh-pages</code> branch on GitHub.</li>
-</ol>
-</div>
-	</div>
-
-	
-	<div class="tab-pane " id="3_google_forms">
+	<div class="tab-pane " id="4_google_forms">
 	
 
 		<h2>Google forms trick</h2>
@@ -385,7 +365,7 @@
 	</div>
 
 	
-	<div class="tab-pane " id="4_more_elements">
+	<div class="tab-pane " id="5_more_elements">
 	
 
 		<h2>More form elements</h2>
@@ -460,7 +440,7 @@
 	</div>
 
 	
-	<div class="tab-pane " id="5_homework">
+	<div class="tab-pane " id="6_homework">
 	
 
 		<h2>Homework</h2>
