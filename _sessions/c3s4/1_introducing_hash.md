@@ -51,7 +51,7 @@ h.delete('one')  # What does this return? Does it change the hash?
 h.length
 h.empty?
 h.keys
-k.values
+h.values
 h.has_key?('one')
 h.has_value?(7)
 

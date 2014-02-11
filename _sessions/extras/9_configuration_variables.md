@@ -43,27 +43,12 @@ You can then check that you can access these in irb:
 #=> "/bin/bash"
 {% endhighlight %}
 
-We are going to store the configuration values (e.g. email username and password) as environment variables for our program. Heroku makes it easy for you to manage ENV variables on their servers, as described [here](https://devcenter.heroku.com/articles/config-vars). To replicate the situation on your laptop you can use a gem called `foreman`.
+We are going to store the configuration values (e.g. email username and password) as environment variables for our program. Heroku makes it easy for you to manage ENV variables on their servers, as described [here](https://devcenter.heroku.com/articles/config-vars). To replicate the situation on your laptop you can use a gem called `dotenv`.
 
-You can install `foreman` via rubygems. If you use `rbenv` (i.e. if you followed 'The Hard Way' installation instructions) you will then need to do a `rbenv rehash`. (This is because the foreman gem comes with a command line tool, which we need to tell rbenv about.)
+You can install `dotenv` via rubygems. If you use `rbenv` (i.e. if you followed 'The Hard Way' installation instructions) you will then need to do a `rbenv rehash`. (This is because the foreman gem comes with a command line tool, which we need to tell rbenv about.)
 
-    gem install foreman
-    rbenv rehash
+    gem install dotenv
 
-Foreman manages your app processes for you. It becomes more useful when you might have several services that you need to remember to start for you application e.g. a Mongo database, a web server, a queue manager etc. We will be using it mainly to set environment variables.
-
-To run your app with foreman you need to create a `Procfile` with the command you usually use to start your app (e.g. `ruby app.rb`):
-
-{% highlight ruby %}
-# in Procfile
-app:  ruby app.rb
-{% endhighlight %}
-
-To start your app you then run
-
-    $ foreman start
-
-(instead of the usual `ruby app.rb`). To set the environment variables you use a `.env` file:
 
 {% highlight ruby %}
 # in .env

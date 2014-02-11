@@ -2,7 +2,7 @@
 title: Email templates
 ---
 
-You might have noticed that the `mongo1/example_app` application uses an email template.
+So far the body of our email has only been a single line. What if we want a proper multi-line email? You can use `erb` templates for this!
 
 {% highlight ruby %}
   Pony.mail( :to => email,
@@ -12,7 +12,7 @@ You might have noticed that the `mongo1/example_app` application uses an email t
 
 The important bit is `erb(:email, :layout => false)`, which tells sinatra to find `views/email.erb` and run it through erb (to replace any `<%= %>` tags). The `:layout => false` tells sintra to skip the normal layout file: we want to send the user the raw text, not an html page! The result is then used as the email's body.
 
-The template looks like this:
+The template will look something like this:
 
     Hello there!
 
@@ -23,6 +23,8 @@ The template looks like this:
     The FruitApp team
 
 {% exercise %}
-1. Add a signup email to your `mongo1/app.rb` signup form from last time: when a user signs up they should be sent a welcome email as well as being sent to the thanks page.
-2. (Optional extension) deploy your app to heroku.
+1. Add the required line of code in the `post '/'` block, to send a welcome email to the new user.
+2. Modify `views/email.erb` so that it (at least) contains the name of the person who just signed up.
+2. (Optional extension) deploy your app to heroku. You will need to add the (free version) of the [sendgrid addon](https://addons.heroku.com/sendgrid) to allow you to send emails.
+4. (Alternative extension) Clone down the project [https://github.com/code61/mailmerge](https://github.com/code61/mailmerge) and have a play!
 {% endexercise %}
