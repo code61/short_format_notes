@@ -5,7 +5,7 @@ title: Email templates
 So far the body of our email has only been a single line. What if we want a proper multi-line email? You can use `erb` templates for this!
 
 {% highlight ruby %}
-  Pony.mail( :to => email,
+  Pony.mail( :to => @email,
              :subject => "Congratulations, you added a fruit!",
              :body => erb(:email, :layout => false)   )
 {% endhighlight %}
