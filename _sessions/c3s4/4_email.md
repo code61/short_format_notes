@@ -38,7 +38,7 @@ You can find out more about the different options you can use on the [pony githu
         bundle install
 
 2. Copy and paste the contents of `development_pony_options.rb.sample` into a new file. Save this file as `development_pony_options.rb`. Fill in your gmail (or university) account details.
-3. In irb type `require pony`, then copy and paste in your updated options.
+3. In irb type `require 'pony'`, then copy and paste in your updated options.
 4. Send an email to yourself e.g.:
 
 {% highlight ruby %}
