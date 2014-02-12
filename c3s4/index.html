@@ -404,7 +404,7 @@
 		<h2>Email templates</h2>
 		
 <p>So far the body of our email has only been a single line. What if we want a proper multi-line email? You can use <code>erb</code> templates for this!</p>
-<div class='highlight'><pre><code class='ruby'>  <span class='no'>Pony</span><span class='o'>.</span><span class='n'>mail</span><span class='p'>(</span> <span class='ss'>:to</span> <span class='o'>=&gt;</span> <span class='n'>email</span><span class='p'>,</span>
+<div class='highlight'><pre><code class='ruby'>  <span class='no'>Pony</span><span class='o'>.</span><span class='n'>mail</span><span class='p'>(</span> <span class='ss'>:to</span> <span class='o'>=&gt;</span> <span class='vi'>@email</span><span class='p'>,</span>
              <span class='ss'>:subject</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;Congratulations, you added a fruit!&quot;</span><span class='p'>,</span>
              <span class='ss'>:body</span> <span class='o'>=&gt;</span> <span class='n'>erb</span><span class='p'>(</span><span class='ss'>:email</span><span class='p'>,</span> <span class='ss'>:layout</span> <span class='o'>=&gt;</span> <span class='kp'>false</span><span class='p'>)</span>   <span class='p'>)</span>
 </code></pre></div>
