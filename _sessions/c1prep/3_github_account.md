@@ -8,9 +8,11 @@ GitHub is a site that makes sharing code part of git really easy. It is the go-t
 
 GitHub also allows you to put a static website online for free, using [GitHub Pages](http://pages.github.com/). We will be making use of this feature during the course.
 
-git itself is the sort of program that you have to run by typing commands into your computer's command line. At some point, you will need to know how to do this but, for the time being, we're going to use a *git client* - an point-and-click application to make git easier. In particular, we're going to be using the git client provided by GitHub. Downloading GitHub's git client will install both the git command line progam and the point-and-click application.
+### SourceTree
+
+git itself is the sort of program that you have to run by typing commands into your computer's command line. At some point, you will need to know how to do this but, for the time being, we're going to use a *git client* - an point-and-click application to make git easier. In particular, we're going to be using a free git client called SourceTree. Downloading SourceTree will install both the git command line progam and the point-and-click application.
 
 {% exercise %}
 1. Sign up for a GitHub account at [https://github.com/](https://github.com/). Make sure you **know your password** to avoid awkward moments in class!
-2. Download [GitHub for Mac](http://mac.github.com/) or [GitHub for Windows](http://windows.github.com/). If you're using linux, contact your course instructor.
+2. Download [SourceTree](http://www.sourcetreeapp.com/) for Windows or Mac. If you're using linux, contact your course instructor.
 {% endexercise %}
