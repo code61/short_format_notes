@@ -40,11 +40,11 @@
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#1_rails_installer" data-toggle="tab">Ruby & Git: Easy Way </a></li>
+		<li class="active"><a href="#1_rails_installer" data-toggle="tab">Installing Ruby: Easy Way </a></li>
 		
 	
 		
-		<li><a href="#2_homebrew_mac" data-toggle="tab">Ruby & Git: Better Way </a></li>
+		<li><a href="#2_homebrew_mac" data-toggle="tab">Installing Ruby: Better Way </a></li>
 		
 	
 		
@@ -55,6 +55,10 @@
 		<li><a href="#4_command_line" data-toggle="tab">Meet the Command Line </a></li>
 		
 	
+		
+		<li><a href="#5_meet_ruby" data-toggle="tab">Meet Ruby! </a></li>
+		
+	
 </ul>
 
 <div class="tab-content">
@@ -63,11 +67,15 @@
 	<div class="tab-pane active" id="1_rails_installer">
 	
 
-		<h2>Ruby & Git: Easy Way</h2>
+		<h2>Installing Ruby: Easy Way</h2>
 		
-<p>In this step we will be installing git, Ruby and Ruby on Rails. You’ve already come accross git. Ruby is a programming language that we will be learning in the second part of the course. Ruby on Rails is a framework for building web applications quickly and easily, built using Ruby.</p>
+<p>Ruby is a programming language that we will be the focus of the course. In order to run ruby programs on your computer you need to have the language, and various development tools, installed on your laptop. That’s what we’re going to do now.</p>
 
-<p>It’s important to realise that git, Ruby and Ruby on Rails are not ‘programs’ in the sense that you are probably used to. <strong>There won’t be any icons for ruby, git or Ruby on Rails</strong>. They’re the sort of programs you run from the command line, rather than applications that you click on.</p>
+<p>The easiest way to install ruby is to use the <a href="http://railsinstaller.org/">railsinstaller</a>, which will install ruby, Ruby on Rails, git and a few other things (don’t worry if you already have git - it’ll be ok!). Ruby on Rails is a framework for building web applications quickly and easily, built using Ruby. We won’t actually be using Ruby on Rails in this course, but it’s useful to have it for the future.</p>
+
+<p>It’s important to realise that git, Ruby and Ruby on Rails are not ‘programs’ in the sense that you are probably used to. <strong>There won’t be any icons for ruby, git or Ruby on Rails</strong>. They’re the sort of programs you run from the command line, rather than applications that you click on. More on this later </p>
+
+<p><strong>If you’re on a mac, the next tab has instructions on a different way to install ruby. Have a look at these before deciding which method you want to go ahead with.</strong></p>
 <div class='exercise alert alert-info'><strong>Task:</strong> 
 
 <p>Go to <a href='http://railsinstaller.org/'>http://railsinstaller.org/</a> and follow the instructions for your operating system (choosing all the defaults they give). You want the <strong>Ruby 1.9</strong> version.</p>
@@ -109,7 +117,7 @@
  git version 1.8.4
  $ </code></pre>
 
-<p>If it doesn’t print out your git version you have a problem - ask in the forum!</p>
+<p>If it doesn’t print out your git version you have a problem - email your instructor!</p>
 </li>
 
 <li>
@@ -123,7 +131,7 @@
  ruby 1.9.3p448 (2013-06-27 revision 41675) [x86_64-darwin12.4.1]
  $</code></pre>
 
-<p>If it doesn’t print out your ruby version you have a problem - ask in the forum!</p>
+<p>If it doesn’t print out your ruby version you have a problem - email your instructor!</p>
 </li>
 </ol>
 </div>
@@ -133,7 +141,7 @@
 	<div class="tab-pane " id="2_homebrew_mac">
 	
 
-		<h2>Ruby & Git: Better Way</h2>
+		<h2>Installing Ruby: Better Way</h2>
 		
 <p>These instructions are for <strong>Mac only</strong>. On Windows the Easy Way is the Better Way.</p>
 
@@ -141,7 +149,7 @@
 
 <p>These instructions will take you through installing Ruby and git using an OS X package manager called <a href="http://mxcl.github.io/homebrew/">Homebrew</a>. Once you have Homebrew set up you will be able to quickly and easily install the vast majority of the (free, open-source) software you will need as a developer. Consider this an investment for the future!</p>
 
-<p>The first parts of the installation procedure is described in a post by Moncef Belyamani <a href="http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/">here</a>. [Our Steps 1-3 correspond to their Steps 1-5. We wont be doing their steps 6 onwards.] If you get stuck, please check with these instructions. If you find things that don’t work, let us know in the <a href="http://chat.code61.org">forum</a>.</p>
+<p>The first parts of the installation procedure is described in a post by Moncef Belyamani <a href="http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/">here</a>. [Our Steps 1-3 correspond to their Steps 1-5. We wont be doing their steps 6 onwards.] If you get stuck, please check with these instructions. If you find things that don’t work, please email your course instructor.</p>
 
 <h3 id="step_one_installing_apples_command_line_tools">Step One: Installing Apple’s Command Line Tools</h3>
 
@@ -300,7 +308,7 @@ rbenv rehash</code></pre>
 </div>
 <h3 id="step_six_install_rails">Step Six: Install Rails</h3>
 
-<p>Now we have the latest version of ruby, we can install rails using Rubygems. Rubygems is ruby’s excellent package manager, used for sharing projects written in ruby - more on this later in the course.</p>
+<p>You won’t actually need rails this course, but now you’ve installed ruby it’s easy to get it using <em>Rubygems</em>. Rubygems is ruby’s excellent package manager, used for sharing projects written in ruby - more on this later in the course.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
 <li>
@@ -322,7 +330,9 @@ gem install bundler</code></pre>
 <p>An SSH key gives you a way of connecting to a remote computer without having to type in a password everytime. In the course you will often be pushing code up to GitHub and other locations, and it can get annoying if you continually have to provide your password.</p>
 
 <p>In this step we will guide you through creating an ssh key and uploading it to GitHub. This is probably the most complicated step of the installation instructions. Good luck!</p>
-
+<div class='alert alert-error'>
+If you have 'GitHub for Windows' or 'GitHub for Mac' you might already have an ssh key set up. You can check this by logging in to github and clicking 'Account Settings > SSH keys'. If you see a key in the list, you're done and can skip the rest of this page.
+</div>
 <p>GitHub itself provides excellent instructions for this step: <a href="https://help.github.com/articles/generating-ssh-keys">Github - Generating SSH Keys</a>. We’ll be just providing a few notes to go with those instructions here.</p>
 
 <p>(You might see that GitHub recommends using a different connection method: https. We’re going to stick with ssh as (a) it’s good to know how to set up an ssh key and (b) it avoids messing around with the credential-helper.)</p>
@@ -412,7 +422,7 @@ gem install bundler</code></pre>
 <ul>
 <li>On a Mac open Terminal (Applications &gt; Terminal)</li>
 
-<li>On Windowns open Command Prompt with Ruby on Rails</li>
+<li>On Windows open Command Prompt with Ruby on Rails</li>
 </ul>
 </li>
 
@@ -435,15 +445,15 @@ gem install bundler</code></pre>
 </li>
 
 <li>
-<p>Create the folder for the coding course:</p>
+<p>Practice creating a new folder:</p>
 
-<pre><code> $ mkdir coding_course</code></pre>
+<pre><code> $ mkdir my_new_folder</code></pre>
 </li>
 
 <li>
 <p>Move into that folder:</p>
 
-<pre><code> $ cd coding_course</code></pre>
+<pre><code> $ cd my_new_folder</code></pre>
 </li>
 
 <li>
@@ -453,14 +463,30 @@ gem install bundler</code></pre>
 </li>
 
 <li>
-<p>Move back into the coding course folder. This time don’t type out coding_course - just type out the first few letters and hit <code>Tab</code>:</p>
+<p>Move back into the coding course folder. This time don’t type out my_new_folder - just type out the first few letters and hit <code>Tab</code>:</p>
 
-<pre><code>$ cd coding_course</code></pre>
+<pre><code>$ cd my_new_folder</code></pre>
 </li>
 
 <li>
 <p>In the Finder (Mac) or My Computer (Windows) find the folder that you just created.</p>
 </li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="5_meet_ruby">
+	
+
+		<h2>Meet Ruby!</h2>
+		
+<p>We’ll be using <a href="http://www.codecademy.com">Codecademy</a> to complement the work you’re doing in class. In order to prepare for the first session, please take a look at the first two sections of the <a href="http://www.codecademy.com/tracks/ruby">Codecademy Ruby track</a>.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Sign up for <a href='http://www.codecademy.com'>Codecademy</a>.</li>
+
+<li>Do the <a href='http://www.codecademy.com/tracks/ruby'>Codecademy Ruby track</a> Sections 1 and 2.</li>
 </ol>
 </div>
 	</div>
