@@ -1,10 +1,14 @@
 ---
-title: "Ruby & Git: Easy Way"
+title: "Installing Ruby: Easy Way"
 ---
 
-In this step we will be installing git, Ruby and Ruby on Rails. You've already come accross git. Ruby is a programming language that we will be learning in the second part of the course. Ruby on Rails is a framework for building web applications quickly and easily, built using Ruby.
+Ruby is a programming language that we will be the focus of the course. In order to run ruby programs on your computer you need to have the language, and various development tools, installed on your laptop. That's what we're going to do now.
 
-It's important to realise that git, Ruby and Ruby on Rails are not 'programs' in the sense that you are probably used to. **There won't be any icons for ruby, git or Ruby on Rails**. They're the sort of programs you run from the command line, rather than applications that you click on.
+The easiest way to install ruby is to use the [railsinstaller](http://railsinstaller.org/), which will install ruby, Ruby on Rails, git and a few other things (don't worry if you already have git - it'll be ok!). Ruby on Rails is a framework for building web applications quickly and easily, built using Ruby. We won't actually be using Ruby on Rails in this course, but it's useful to have it for the future. 
+
+It's important to realise that git, Ruby and Ruby on Rails are not 'programs' in the sense that you are probably used to. **There won't be any icons for ruby, git or Ruby on Rails**. They're the sort of programs you run from the command line, rather than applications that you click on. More on this later ...
+
+**If you're on a mac, the next tab has instructions on a different way to install ruby. Have a look at these before deciding which method you want to go ahead with.**
 
 {% exercise %}
 Go to [http://railsinstaller.org/](http://railsinstaller.org/) and follow the instructions for your operating system (choosing all the defaults they give). You want the **Ruby 1.9** version.
@@ -40,7 +44,7 @@ You should now have installed git and ruby on your laptop. Check it worked with 
         git version 1.8.4
         $ 
 
-    If it doesn't print out your git version you have a problem - ask in the forum!
+    If it doesn't print out your git version you have a problem - email your instructor!
 
 3. Type
 
@@ -52,5 +56,5 @@ You should now have installed git and ruby on your laptop. Check it worked with 
         ruby 1.9.3p448 (2013-06-27 revision 41675) [x86_64-darwin12.4.1]
         $
 
-    If it doesn't print out your ruby version you have a problem - ask in the forum!
+    If it doesn't print out your ruby version you have a problem - email your instructor!
 {% endexercise %}

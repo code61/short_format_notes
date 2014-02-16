@@ -6,6 +6,10 @@ An SSH key gives you a way of connecting to a remote computer without having to 
 
 In this step we will guide you through creating an ssh key and uploading it to GitHub. This is probably the most complicated step of the installation instructions. Good luck!
 
+<div class='alert alert-error'>
+If you have 'GitHub for Windows' or 'GitHub for Mac' you might already have an ssh key set up. You can check this by logging in to github and clicking 'Account Settings > SSH keys'. If you see a key in the list, you're done and can skip the rest of this page.
+</div>
+
 GitHub itself provides excellent instructions for this step: [Github - Generating SSH Keys](https://help.github.com/articles/generating-ssh-keys). We'll be just providing a few notes to go with those instructions here.
 
 (You might see that GitHub recommends using a different connection method: https. We're going to stick with ssh as (a) it's good to know how to set up an ssh key and (b) it avoids messing around with the credential-helper.)

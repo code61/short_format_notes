@@ -1,5 +1,5 @@
 ---
-title: "Ruby & Git: Better Way"
+title: "Installing Ruby: Better Way"
 ---
 
 These instructions are for **Mac only**. On Windows the Easy Way is the Better Way.
@@ -8,7 +8,7 @@ These instructions are for **Mac only**. On Windows the Easy Way is the Better W
 
 These instructions will take you through installing Ruby and git using an OS X package manager called [Homebrew](http://mxcl.github.io/homebrew/). Once you have Homebrew set up you will be able to quickly and easily install the vast majority of the (free, open-source) software you will need as a developer. Consider this an investment for the future!
 
-The first parts of the installation procedure is described in a post by Moncef Belyamani [here](http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/). [Our Steps 1-3 correspond to their Steps 1-5. **We won't be doing their steps 6 onwards**.] If you get stuck, please check with these instructions. If you find things that don't work, let us know in the [forum](http://chat.code61.org).
+The first parts of the installation procedure is described in a post by Moncef Belyamani [here](http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/). [Our Steps 1-3 correspond to their Steps 1-5. **We won't be doing their steps 6 onwards**.] If you get stuck, please check with these instructions. If you find things that don't work, please email your course instructor.
 
 ### Step One: Installing Apple's Command Line Tools
 
@@ -136,7 +136,7 @@ Having installed rbenv with homebrew, we will now use rbenv to install the lates
 
 ### Step Six: Install Rails
 
-Now we have the latest version of ruby, we can install rails using Rubygems. Rubygems is ruby's excellent package manager, used for sharing projects written in ruby - more on this later in the course.
+You won't actually need rails this course, but now you've installed ruby it's easy to get it using *Rubygems*. Rubygems is ruby's excellent package manager, used for sharing projects written in ruby - more on this later in the course.
 
 {% exercise %}
 1. In the terminal type:

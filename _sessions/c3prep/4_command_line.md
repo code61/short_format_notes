@@ -2,7 +2,6 @@
 title: Meet the Command Line
 ---
 
-
 The command line is a way to interact with your computer programmatically. If you are doing any software development you will need to get to grips with using the command line, as many of the programs you will use will be run from the it, instead of by clicking an icon.
 
 Note: when giving you instructions for the command line we will precede them with a `$` to represent the command prompt e.g.
@@ -43,7 +42,7 @@ Note: choosing names without spaces makes command line navigation easier.
 {% exercise %}
 1. Open your command line:
     * On a Mac open Terminal (Applications > Terminal)
-    * On Windowns open Command Prompt with Ruby on Rails
+    * On Windows open Command Prompt with Ruby on Rails
 2. Find out where you are:
 
         $ pwd
@@ -56,21 +55,21 @@ Note: choosing names without spaces makes command line navigation easier.
 
         $ cd Documents
 
-5. Create the folder for the coding course:
+5. Practice creating a new folder:
 
-        $ mkdir coding_course
+        $ mkdir my_new_folder
 
 6. Move into that folder:
 
-        $ cd coding_course
+        $ cd my_new_folder
 
 7. Move back up to the folder above
 
         $ cd ..
 
-8. Move back into the coding course folder. This time don't type out coding_course - just type out the first few letters and hit `Tab`:
+8. Move back into the coding course folder. This time don't type out my_new_folder - just type out the first few letters and hit `Tab`:
 
-       $ cd coding_course
+       $ cd my_new_folder
 
 9. In the Finder (Mac) or My Computer (Windows) find the folder that you just created.
 {% endexercise %}
