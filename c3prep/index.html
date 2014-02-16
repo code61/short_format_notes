@@ -40,19 +40,19 @@
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#1_about_the_course" data-toggle="tab">Welcome </a></li>
+		<li class="active"><a href="#1_rails_installer" data-toggle="tab">Ruby & Git: Easy Way </a></li>
 		
 	
 		
-		<li><a href="#4_rails_installer" data-toggle="tab">Ruby & Git: Easy Way </a></li>
+		<li><a href="#2_homebrew_mac" data-toggle="tab">Ruby & Git: Better Way </a></li>
 		
 	
 		
-		<li><a href="#5_homebrew_mac" data-toggle="tab">Ruby & Git: Better Way </a></li>
+		<li><a href="#3_ssh_keys" data-toggle="tab">SSH keys </a></li>
 		
 	
 		
-		<li><a href="#6_ssh_keys" data-toggle="tab">SSH keys </a></li>
+		<li><a href="#4_command_line" data-toggle="tab">Meet the Command Line </a></li>
 		
 	
 </ul>
@@ -60,15 +60,7 @@
 <div class="tab-content">
 
 	
-	<div class="tab-pane active" id="1_about_the_course">
-	
-
-		<h2>Welcome</h2>
-		
-	</div>
-
-	
-	<div class="tab-pane " id="4_rails_installer">
+	<div class="tab-pane active" id="1_rails_installer">
 	
 
 		<h2>Ruby & Git: Easy Way</h2>
@@ -138,7 +130,7 @@
 	</div>
 
 	
-	<div class="tab-pane " id="5_homebrew_mac">
+	<div class="tab-pane " id="2_homebrew_mac">
 	
 
 		<h2>Ruby & Git: Better Way</h2>
@@ -322,7 +314,7 @@ gem install bundler</code></pre>
 	</div>
 
 	
-	<div class="tab-pane " id="6_ssh_keys">
+	<div class="tab-pane " id="3_ssh_keys">
 	
 
 		<h2>SSH keys</h2>
@@ -369,6 +361,108 @@ gem install bundler</code></pre>
 
 <p>For some reason RailsInstaller doesn’t seem to generate the key for you on a Mac. You will need to do all the steps from the <a href="https://help.github.com/articles/generating-ssh-keys">GitHub ssh key instructions</a>.</p>
 
+	</div>
+
+	
+	<div class="tab-pane " id="4_command_line">
+	
+
+		<h2>Meet the Command Line</h2>
+		
+<p>The command line is a way to interact with your computer programmatically. If you are doing any software development you will need to get to grips with using the command line, as many of the programs you will use will be run from the it, instead of by clicking an icon.</p>
+
+<p>Note: when giving you instructions for the command line we will precede them with a <code>$</code> to represent the command prompt e.g.</p>
+
+<pre><code>$ some_command</code></pre>
+
+<p><strong>You shouldn’t type the <code>$</code> sign - just the stuff after it.</strong> So for the above instruction you would just type <code>some_command</code> into the command line.</p>
+
+<h3 id="moving_around">Moving around</h3>
+
+<p>The first thing you will need to get used to is moving around. Start by printing the name of the directory you are in:</p>
+
+<pre><code>$ pwd</code></pre>
+
+<p>Then have a look at what’s in that directory ( <em>list</em> the contents):</p>
+
+<pre><code>$ ls</code></pre>
+
+<p>To move up a directory ( <em>change directory</em> ) do</p>
+
+<pre><code>$ cd ..</code></pre>
+
+<p>To move back into the folder you just left do</p>
+
+<pre><code>$ cd name_of_the_folder</code></pre>
+
+<p>Your commandline will help you: <kbd>tab</kbd> can often be used to auto-complete names of files, the up arrow can be used to cycle through previous commands that you have typed.</p>
+
+<h3 id="creating_a_directory">Creating a directory</h3>
+
+<p>You can do a lot more on the command line than just move around. We’ll be using the command line a lot over the course. For the time being we just need to create a folder:</p>
+
+<pre><code>$ mkdir coding_course</code></pre>
+
+<p>Note: choosing names without spaces makes command line navigation easier.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Open your command line:</p>
+
+<ul>
+<li>On a Mac open Terminal (Applications &gt; Terminal)</li>
+
+<li>On Windowns open Command Prompt with Ruby on Rails</li>
+</ul>
+</li>
+
+<li>
+<p>Find out where you are:</p>
+
+<pre><code> $ pwd</code></pre>
+</li>
+
+<li>
+<p>See what is in the same folder:</p>
+
+<pre><code> $ ls</code></pre>
+</li>
+
+<li>
+<p>If you are on a Mac move into <code>Documents</code>:</p>
+
+<pre><code> $ cd Documents</code></pre>
+</li>
+
+<li>
+<p>Create the folder for the coding course:</p>
+
+<pre><code> $ mkdir coding_course</code></pre>
+</li>
+
+<li>
+<p>Move into that folder:</p>
+
+<pre><code> $ cd coding_course</code></pre>
+</li>
+
+<li>
+<p>Move back up to the folder above</p>
+
+<pre><code> $ cd ..</code></pre>
+</li>
+
+<li>
+<p>Move back into the coding course folder. This time don’t type out coding_course - just type out the first few letters and hit <code>Tab</code>:</p>
+
+<pre><code>$ cd coding_course</code></pre>
+</li>
+
+<li>
+<p>In the Finder (Mac) or My Computer (Windows) find the folder that you just created.</p>
+</li>
+</ol>
+</div>
 	</div>
 
 </div>
