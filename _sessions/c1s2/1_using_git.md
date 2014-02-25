@@ -89,3 +89,5 @@ Adding files to a git repository is actually a two-stage process: first you have
 3. To check this worked run the command
 
         git status
+
+        
