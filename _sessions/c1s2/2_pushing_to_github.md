@@ -2,7 +2,6 @@
 title: Pushing code to Github
 ---
 
-
 Github is a site which will host a git repo online for you, making it easy to collaborate with others. We'll now see how to put some code online.
 
 ### Aside: serving a site via Github Pages
@@ -25,3 +24,8 @@ To push code up to GitHub, in the GitHub app select the 'Push to Github' button 
 4. On the code page on github, click on Settings. It should tell you (about half way down) the url where they've published your site. Have a look to see whether you can see it!
 5. (If you finish early) Make a change to `index.html` in Sublime Text. Commit the change to the repository and then push it to GitHub. Make sure you can see the change in the code on GitHub and also in the published page.
 {% endexercise %}
+
+### Creating a git repository, adding and committing with Source Tree
+
+#### To 
+
