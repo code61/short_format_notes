@@ -221,25 +221,92 @@
 <div class='alert alert-warning'>If you haven't verified your email with github (you'll see a warning at the top of the screen when you log in). Your GitHub won't serve your page at all. Make sure you've verified you email address, before continuing!</div>
 <h3 id="pushing_code_up_to_github">Pushing code up to github</h3>
 
-<p>To push code up to GitHub, in the GitHub app select the ‘Push to Github’ button (on the top right). You’ll be prompted to choose a name (which might as well be <code>first_site</code>).</p>
+<p>Go to github, login, and click “Create New Repo” in the top left hand corner.</p>
+
+<p><img src="/assets/create_repo.png" alt="Creating a repo on GitHub" /></p>
+
+<p>Follow the instructions, calling it something like <code>first_site</code>. <strong>Do not</strong> click the box which says ‘Create a readme with this repository’. You’ll get to a page when it’ll describe how to get your code online. You want to follow the instructions for “Pushing an existing repository to github”.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
 <li>Log in to GitHub and check you’ve verified your email address.</li>
 
-<li>In the ‘Branches’ panel of the GitHub app, change the name of the current branch from <code>master</code> to <code>gh-pages</code>.</li>
+<li>Change the name of your master branch to ‘gh-pages’.</li>
 
-<li>Click the ‘Push to Github’ button in the GitHub app.</li>
+<li>On github create a new repository called ‘first_site’.</li>
+
+<li>Push your code up to github.</li>
 
 <li>On Github check you can see your <code>first_site</code> code.</li>
 
 <li>On the code page on github, click on Settings. It should tell you (about half way down) the url where they’ve published your site. Have a look to see whether you can see it!</li>
 
-<li>(If you finish early) Make a change to <code>index.html</code> in Sublime Text. Commit the change to the repository and then push it to GitHub. Make sure you can see the change in the code on GitHub and also in the published page.</li>
+<li>(If you finish early) Make a change to <code>index.html</code> in Sublime Text. Add and commit the change to the repository and then push it to GitHub. Make sure you can see the change in the code on GitHub and also in the published page.</li>
 </ol>
 </div>
-<h3 id="creating_a_git_repository_adding_and_committing_with_source_tree">Creating a git repository, adding and committing with Source Tree</h3>
+<h3 id="git_with_source_tree">Git with source tree</h3>
 
-<h4 id="to">To</h4>
+<h4 id="change_the_branch_name_to_ghpages">Change the branch name to ‘gh-pages’</h4>
+
+<ol>
+<li>Go to the branches section on the right hand side.</li>
+
+<li>Right-click on the name and select ‘rename’.</li>
+</ol>
+
+<h4 id="pushing_to_github_for_the_first_time">Pushing to github for the first time</h4>
+
+<ol>
+<li>In the ‘Repository’ menu, click ‘Add remote’.</li>
+
+<li>Copy the git url (from the bottom right) on github, and copy it into the source tree ‘URL/path’ box.</li>
+</ol>
+
+<h4 id="pushing_for_a_second_time">Pushing for a second time</h4>
+
+<h3 id="git_with_the_command_line">Git with the command line</h3>
+
+<h4 id="change_the_branch_name_to_ghpages_2">Change the branch name to ‘gh-pages’</h4>
+
+<ol>
+<li>
+<p>Using the command line, navigate to the repository folder.</p>
+</li>
+
+<li>
+<p>Run the command:</p>
+
+<pre><code> git branch -m gh-pages</code></pre>
+</li>
+
+<li>
+<p>To check this worked, run the command:</p>
+
+<pre><code> git branch -a</code></pre>
+</li>
+</ol>
+
+<h4 id="pushing_to_github_for_the_first_time_2"> Pushing to github for the first time</h4>
+
+<p>We’re assiming here that you’ve just created your repository and are on the github new repository screen.</p>
+
+<p><img src="/assets/push_repo_github.png" alt="Push repo to GitHub" /></p>
+
+<p>If you’ve set up ssh keys, go for the ssh option, if not, go for https. You should end up doing something like:</p>
+
+<pre><code>$ git remote add origin git@github.com/yourusername/first_site.git
+$ git push -u origin master</code></pre>
+
+<p>You might now be prompted to add your github username and password (if you’re doing the https method). If all goes well, when you go to github you should see the <code>first_site</code> folder containing your html file.</p>
+
+<h4 id="pushing_to_github_for_a_second_time">Pushing to github for a second time</h4>
+
+<ol>
+<li>
+<p>In the repository folder, run the command</p>
+
+<pre><code> git push</code></pre>
+</li>
+</ol>
 
 	</div>
 
