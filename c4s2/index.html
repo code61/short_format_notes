@@ -39,9 +39,335 @@
 <div class="tabbable tabs-left">
 <ul class="nav nav-tabs" id="myTab">
 	
+		
+		<li class="active"><a href="#1_function_recap" data-toggle="tab">Revisiting functions </a></li>
+		
+	
+		
+		<li><a href="#2_intro_to_classes" data-toggle="tab">Introducing classes </a></li>
+		
+	
+		
+		<li><a href="#3_setters" data-toggle="tab">Changing attributes </a></li>
+		
+	
+		
+		<li><a href="#4_refactor" data-toggle="tab">Putting it all together </a></li>
+		
+	
+		
+		<li><a href="#5_homework" data-toggle="tab">Homework </a></li>
+		
+	
 </ul>
 
 <div class="tab-content">
+
+	
+	<div class="tab-pane active" id="1_function_recap">
+	
+
+		<h2>Revisiting functions</h2>
+		
+<p>Last time we looked at splitting small bits of program logic out into functions.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># Extracts the first name from a full name.</span>
+<span class='c1'>#</span>
+<span class='c1'>#   first_name(&#39;Tom Close&#39;) #=&gt; &#39;Tom&#39;</span>
+<span class='c1'>#   first_name(&#39;Alan Jones&#39;) #=&gt; &#39;Alan&#39;</span>
+<span class='c1'>#</span>
+<span class='k'>def</span> <span class='nf'>first_name</span><span class='p'>(</span><span class='n'>full_name</span><span class='p'>)</span>
+  <span class='n'>full_name</span><span class='o'>.</span><span class='n'>split</span><span class='o'>.</span><span class='n'>first</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>This then allowed us to reuse this logic in different places:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>post</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
+  <span class='vi'>@event</span>   <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:event</span><span class='o'>]</span>
+  <span class='vi'>@swimmer</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:swimmer</span><span class='o'>]</span>
+  <span class='vi'>@cyclist</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:cyclist</span><span class='o'>]</span>
+  <span class='vi'>@runner</span>  <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:runner</span><span class='o'>]</span>
+
+  <span class='vi'>@event_name</span> <span class='o'>=</span> <span class='n'>event_name</span><span class='p'>(</span><span class='vi'>@event</span><span class='p'>)</span>
+  <span class='vi'>@event_date</span> <span class='o'>=</span> <span class='n'>event_date</span><span class='p'>(</span><span class='vi'>@event</span><span class='p'>)</span>
+
+  <span class='vi'>@swimmer_first_name</span>   <span class='o'>=</span> <span class='n'>first_name</span><span class='p'>(</span><span class='vi'>@swimmer</span><span class='o'>[</span><span class='ss'>:name</span><span class='o'>]</span><span class='p'>)</span>
+  <span class='vi'>@swimmer_last_name</span>    <span class='o'>=</span> <span class='n'>last_name</span><span class='p'>(</span><span class='vi'>@swimmer</span><span class='o'>[</span><span class='ss'>:name</span><span class='o'>]</span><span class='p'>)</span>
+  <span class='vi'>@swimmer_dob</span>          <span class='o'>=</span> <span class='vi'>@swimmer</span><span class='o'>[</span><span class='ss'>:dob</span><span class='o'>]</span>
+
+  <span class='vi'>@cyclist_first_name</span>   <span class='o'>=</span> <span class='n'>first_name</span><span class='p'>(</span><span class='vi'>@cyclist</span><span class='o'>[</span><span class='ss'>:name</span><span class='o'>]</span><span class='p'>)</span>
+  <span class='vi'>@cyclist_last_name</span>    <span class='o'>=</span> <span class='n'>last_name</span><span class='p'>(</span><span class='vi'>@cyclist</span><span class='o'>[</span><span class='ss'>:name</span><span class='o'>]</span><span class='p'>)</span>
+  <span class='vi'>@cyclist_dob</span>          <span class='o'>=</span> <span class='vi'>@cyclist</span><span class='o'>[</span><span class='ss'>:dob</span><span class='o'>]</span>
+
+  <span class='vi'>@runner_first_name</span>    <span class='o'>=</span> <span class='n'>first_name</span><span class='p'>(</span><span class='vi'>@runner</span><span class='o'>[</span><span class='ss'>:name</span><span class='o'>]</span><span class='p'>)</span>
+  <span class='vi'>@runner_last_name</span>     <span class='o'>=</span> <span class='n'>last_name</span><span class='p'>(</span><span class='vi'>@runner</span><span class='o'>[</span><span class='ss'>:name</span><span class='o'>]</span><span class='p'>)</span>
+  <span class='vi'>@runner_dob</span>           <span class='o'>=</span> <span class='vi'>@runner</span><span class='o'>[</span><span class='ss'>:dob</span><span class='o'>]</span>
+
+  <span class='n'>erb</span> <span class='ss'>:tickets</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>This form still isn’t ideal though:</p>
+
+<ul>
+<li>we have 3 competitors, but are passing around 9 different variables. If the <code>tickets</code> template were to become more complicated, things will only get worse.</li>
+
+<li>we have the <code>first_name</code> logic separated out, but the functions are separate from the data that they act on. We have to keep track of both these things throughout the program.</li>
+</ul>
+
+<p>Today we’re going to be looking at a solution to this problem: we’re going to be looking at <strong>classes</strong>, which will let us package up data with the functions that act on them.</p>
+
+<p>This will allow us to change the code so that it looks more like this:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>post</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
+  <span class='vi'>@event</span>   <span class='o'>=</span> <span class='no'>Event</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='ss'>:event</span><span class='o'>]</span><span class='p'>)</span>
+  <span class='vi'>@swimmer</span> <span class='o'>=</span> <span class='no'>Person</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='ss'>:swimmer</span><span class='o'>]</span><span class='p'>)</span>
+  <span class='vi'>@cyclist</span> <span class='o'>=</span> <span class='no'>Person</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='ss'>:cyclist</span><span class='o'>]</span><span class='p'>)</span>
+  <span class='vi'>@runner</span>  <span class='o'>=</span> <span class='no'>Person</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='ss'>:runner</span><span class='o'>]</span><span class='p'>)</span>
+
+  <span class='n'>erb</span> <span class='ss'>:tickets</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>we’ll then use this in the templates as follows:</p>
+<div class='highlight'><pre><code class='erb'><span class='x'>&lt;table class=&quot;table&quot;&gt;</span>
+<span class='x'>  &lt;tr&gt;</span>
+<span class='x'>    &lt;th&gt;First Name&lt;/th&gt;</span>
+<span class='x'>    &lt;th&gt;Last Name&lt;/th&gt;</span>
+<span class='x'>    &lt;th&gt;D.O.B&lt;/th&gt;</span>
+<span class='x'>  &lt;/tr&gt;</span>
+<span class='x'>  &lt;tr&gt;</span>
+<span class='x'>    &lt;td&gt;</span><span class='cp'>&lt;%=</span> <span class='vi'>@cyclist</span><span class='o'>.</span><span class='n'>first_name</span> <span class='cp'>%&gt;</span><span class='x'>&lt;/td&gt;</span>
+<span class='x'>    &lt;td&gt;</span><span class='cp'>&lt;%=</span> <span class='vi'>@cyclist</span><span class='o'>.</span><span class='n'>last_name</span> <span class='cp'>%&gt;</span><span class='x'>&lt;/td&gt;</span>
+<span class='x'>    &lt;td&gt;</span><span class='cp'>&lt;%=</span> <span class='vi'>@cyclist</span><span class='o'>.</span><span class='n'>dob</span> <span class='cp'>%&gt;</span><span class='x'>&lt;/td&gt;</span>
+<span class='x'>  &lt;/tr&gt;</span>
+<span class='x'>&lt;/table&gt;</span>
+</code></pre></div>
+<p>Instead of passing the <code>@cyclist</code> data to various functions, we’re calling <em>methods</em> on a new <code>Person</code> object, that we’ve created.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Clone down the sinatra app for the session: <a href='https://github.com/code61/sinatra_c4s2'>https://github.com/code61/sinatra_c4s2</a></li>
+
+<li>Install the gems for the app: <code>bundle install</code>.</li>
+
+<li>Have a quick look at the commented out section at the bottom of <code>app.rb</code> to get an idea of where we’re going.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="2_intro_to_classes">
+	
+
+		<h2>Introducing classes</h2>
+		
+<p>A class</p>
+
+<ul>
+<li>you can view a class as a blueprint for a set of behaviour</li>
+
+<li>an instance of a class is called an object</li>
+</ul>
+
+<p>Classes are common to many programming languages. Languages that use classes to organise their logic are often referred to as Object-Oriented programming languages. Apart from ruby, other object-oriented programming languages include python, c++ and Java, meaning that the vast majority of code written at the moment is object-oriented code.</p>
+
+<p>Ruby is a more object-oriented language than most: in ruby every value (e.g. integers, strings, arrays, hashes, etc.) is an object.</p>
+
+<p>Have a look at the following use of a <code>Circle</code> object:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>c</span> <span class='o'>=</span> <span class='no'>Circle</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='mi'>10</span><span class='p'>)</span>
+
+<span class='n'>c</span><span class='o'>.</span><span class='n'>radius</span> <span class='c1'>#=&gt; 10</span>
+<span class='n'>c</span><span class='o'>.</span><span class='n'>area</span>   <span class='c1'>#=&gt; 314.2</span>
+</code></pre></div>
+<p>The circle object holds the data, or <strong>attributes</strong>, of the circle (in this case just the radius) and has <strong>methods</strong> to perform operations (in this case calculating the area), using that data.</p>
+
+<p>We define the behaviour of this object using a class. You can view a class as a blueprint for a given type of object. We say that the objects that follow the blueprint that the class defines are <em>instances</em> of the class.</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>Circle</span>
+  <span class='k'>def</span> <span class='nf'>initialize</span><span class='p'>(</span><span class='n'>radius</span><span class='p'>)</span>
+    <span class='vi'>@radius</span> <span class='o'>=</span> <span class='n'>radius</span>
+  <span class='k'>end</span>
+
+  <span class='k'>def</span> <span class='nf'>radius</span>
+    <span class='vi'>@radius</span>
+  <span class='k'>end</span>
+
+  <span class='k'>def</span> <span class='nf'>area</span>
+    <span class='mi'>3</span><span class='o'>.</span><span class='mi'>142</span> <span class='o'>*</span> <span class='vi'>@radius</span> <span class='o'>*</span> <span class='vi'>@radius</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>There are a few things to note here:</p>
+
+<ul>
+<li>The <code>initialize</code> method is run when you create the instance of the class e.g. <code>c = Circle.new(10)</code></li>
+
+<li>Instance variables (beginning with <code>@</code>) are used to hold the attributes of the object e.g. <code>@radius</code>. Instance variables can be used inside any of the class’s methods.</li>
+</ul>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Clone down the code for the session: <a href='https://github.com/tomclose/exercises_c4s2'>https://github.com/tomclose/exercises_c4s2</a></li>
+
+<li>Run <code>bundle install</code> to grab the required gems.</li>
+
+<li>Have a look at <code>circle.rb</code> in sublime text:
+<ul>
+<li>load it into irb: <code>load './circle.rb'</code></li>
+
+<li>create a circle: <code>c = Circle.new(5)</code></li>
+
+<li>check its radius and area: <code>c.radius</code> and <code>c.area</code></li>
+
+<li>write the contents of the missing <code>circumference</code> method</li>
+
+<li>run the tests: <code>rspec spec/circle_spec.rb</code> (on the command line <strong>not</strong> irb)</li>
+</ul>
+</li>
+
+<li>Open <code>square.rb</code> in sublime text:
+<ul>
+<li>write the missing methods</li>
+
+<li>load it into irb to check they work</li>
+
+<li>run the tests: <code>rspec spec/square_spec.rb</code> (on the command line)</li>
+</ul>
+</li>
+
+<li>Open <code>person.rb</code> in sublime text:
+<ul>
+<li>write the missing methods</li>
+
+<li>load it into irb to check they work</li>
+
+<li>run the tests: <code>rspec spec/person_spec.rb</code> (on the command line)</li>
+</ul>
+</li>
+
+<li>(Ext) have a look in <code>mastermind.rb</code> and <code>guess.rb</code>.
+<ul>
+<li>Write the missing methods in <code>guess.rb</code>.</li>
+
+<li>Run the tests to check it works.</li>
+
+<li>Use the <code>Guess</code> class you’ve just written to help write the missing methods in <code>mastermind.rb</code></li>
+
+<li>Run the mastermind tests to check it works.</li>
+</ul>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="3_setters">
+	
+
+		<h2>Changing attributes</h2>
+		
+<p>So far we’ve just seen attributes that have been set when the class is <strong>instantiated</strong>. It’s also possible to update attributes throughout the lifecycle of the object. Have a look at the following code:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>Child</span>
+  <span class='k'>def</span> <span class='nf'>initialize</span><span class='p'>(</span><span class='n'>age</span><span class='p'>)</span>
+    <span class='vi'>@age</span> <span class='o'>=</span> <span class='n'>age</span>
+  <span class='k'>end</span>
+
+  <span class='k'>def</span> <span class='nf'>age</span>
+    <span class='vi'>@age</span>
+  <span class='k'>end</span>
+
+  <span class='k'>def</span> <span class='nf'>age</span><span class='o'>=</span><span class='p'>(</span><span class='n'>new_age</span><span class='p'>)</span>
+    <span class='vi'>@age</span> <span class='o'>=</span> <span class='n'>new_age</span>
+  <span class='k'>end</span>
+
+  <span class='k'>def</span> <span class='nf'>have_birthday</span>
+    <span class='vi'>@age</span> <span class='o'>=</span> <span class='vi'>@age</span> <span class='o'>+</span> <span class='mi'>1</span>
+    <span class='s2'>&quot;You are now </span><span class='si'>#{</span><span class='vi'>@age</span><span class='si'>}</span><span class='s2'> years old!&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>It can be used as follows:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>c</span> <span class='o'>=</span> <span class='no'>Child</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='mi'>5</span><span class='p'>)</span>
+<span class='n'>c</span><span class='o'>.</span><span class='n'>age</span> <span class='c1'>#=&gt; 5</span>
+
+<span class='n'>c</span><span class='o'>.</span><span class='n'>age</span> <span class='o'>=</span> <span class='mi'>6</span>
+<span class='n'>c</span><span class='o'>.</span><span class='n'>age</span> <span class='c1'>#=&gt; 6</span>
+
+<span class='n'>c</span><span class='o'>.</span><span class='n'>have_birthday</span> <span class='c1'>#=&gt; &quot;You are now 7 years old!&quot;</span>
+<span class='n'>c</span><span class='o'>.</span><span class='n'>age</span> <span class='c1'>#=&gt; 7</span>
+</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Update your solution in <code>person.rb</code> to allow the <code>first_name</code> and <code>last_name</code> to be set independently, and have the <code>name</code> update accordingly:</p>
+
+
+<div class='highlight'><pre><code class='ruby'><span class='nb'>p</span> <span class='o'>=</span> <span class='no'>Person</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='s2'>&quot;Tom Close&quot;</span><span class='p'>)</span>
+<span class='nb'>p</span><span class='o'>.</span><span class='n'>name</span> <span class='c1'>#=&gt; &quot;Tom Close&quot;</span>
+
+<span class='nb'>p</span><span class='o'>.</span><span class='n'>first_name</span> <span class='o'>=</span> <span class='s2'>&quot;Thomas&quot;</span>
+<span class='nb'>p</span><span class='o'>.</span><span class='n'>name</span> <span class='c1'>#=&gt; &quot;Thomas Close&quot;</span>
+</code></pre></div>
+<p>You might need to make changes to which attributes your class stores, to make this work.</p>
+
+<p>Test your work by running <code>rspec spec/person_update_spec.rb</code>.</p>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_refactor">
+	
+
+		<h2>Putting it all together</h2>
+		
+<p>We’re now going to return to the sinatra app and use classes to refactor the app again.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Gather up all the data and methods to do with people into a <code>Person</code> class:
+<ul>
+<li>Copy your <code>Person</code> class from the exercise into <code>sinatra_c4s2/person.rb</code>.</li>
+
+<li>Uncomment the <code>require './person'</code> at the top of <code>app.rb</code>.</li>
+
+<li>Rewrite the person code in the <code>post</code> block to use your class.</li>
+
+<li>Change <code>views/tickets.erb</code> to call method on the objects you pass through.</li>
+
+<li>Check the app still works as before!</li>
+</ul>
+</li>
+
+<li>Gather up all the event-related code into a new <code>Event</code> class:
+<ul>
+<li>Write the necessary code in <code>event.rb</code>.</li>
+
+<li>Uncomment the <code>require './event'</code> at the top of <code>app.rb</code>.</li>
+
+<li>Rewrite the event code in the <code>post</code> block.</li>
+
+<li>Change the views to use the objects.</li>
+
+<li>Check the app works as before.</li>
+</ul>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="5_homework">
+	
+
+		<h2>Homework</h2>
+		<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Finish off any exercises from class.</li>
+
+<li>Do the <a href='http://www.codecademy.com/tracks/ruby'>Codecademy Ruby track</a> Sections 16 and 17. (If you have time, do the inbetween ones too!)</li>
+</ol>
+</div>
+<h3 id="further_reading">Further reading</h3>
+
+<p>We have only really begun to touch on what you can do with classes in ruby. There are really important concepts in object oriented programming (e.g. inheritance, class methods, class variables, mixins, etc.) that we haven’t really mentioned at all. We’ll meet some of these things in the next few weeks, but if you want a more comprehensive overview you can take a look at one of the following:</p>
+
+<ul>
+<li><a href="http://phrogz.net/programmingruby/tut_classes.html">http://phrogz.net/programmingruby/tut_classes.html</a></li>
+
+<li><a href="http://juixe.com/techknow/index.php/2007/01/22/ruby-class-tutorial/">http://juixe.com/techknow/index.php/2007/01/22/ruby-class-tutorial/</a></li>
+</ul>
+
+	</div>
 
 </div>
 
