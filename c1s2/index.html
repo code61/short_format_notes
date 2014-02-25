@@ -73,46 +73,136 @@
 
 		<h2>Intro to Git</h2>
 		
-<p><img src="/assets/basic_git.png" alt="Basic git" /></p>
-
 <p>Git is a version control system. It allows you to keep the entire history of your code, and makes it easy to share and collaborate with others.</p>
 
-<h3 id="setting_up_a_git_repo">Setting up a git repo</h3>
+<p>To use git you need to create a <strong>Git repository</strong>. You can think of a git repository like this:</p>
 
-<p>Git works on a folder level. To set up a folder to work with git you need to open up the github app and select <code>File &gt; Add Local Repository ...</code>. You then need to select the folder you want to control with git.</p>
+<p><img src="/assets/basic_git.png" alt="Basic git" /></p>
 
-<h3 id="excluding_some_files">Excluding some files</h3>
+<ul>
+<li>A repository contains lots of <strong>commits</strong>. Each commit is essentially a different version of your files.</li>
 
-<p>There are some other hidden files (e.g. those used by your operating system) that you don’t want to be version controlled. An example of these is the <code>.DS_Store</code> file on macs. We’ll talk more about this later - for now we’ll just quickly exclude them from our repository.</p>
+<li>Commits can be organised into <strong>branches</strong>. A repository can contain many different branches. Branches are often used to develop new application features - that way the main codebase still works while the feature is being developed, and the new code can be <em>merged</em> in when it’s working.</li>
 
-<p>To do this you need to change the settings on your repository.</p>
+<li>Branches have names, so you can keep track of them. When you first set up a repository, you’ll just have one branch and it will have the default name - <strong>master</strong>.</li>
+</ul>
 
-<ol>
-<li>Open the settings tab of your repository.</li>
+<h3 id="what_does_a_git_repository_look_like">What does a git repository look like?</h3>
 
-<li>Add <code>.DS_Store</code> on the first line of the ‘Ignored files’ section, and press ‘Save Changes’.</li>
-</ol>
+<p>On your laptop, a git repository is just a <strong>special type of folder</strong>. Any folder can be made into a git repository (but not all folders should - e.g. don’t make your entire documents directory into a git repository, you’ll run into problems). You’ll normally make a new git repository for each coding project you work on.</p>
 
-<p>If you’re on Windows you don’t need to worry about this.</p>
+<p>If you look inside the folder, you won’t see all the different versions stored there (they are actually there - just stored inside a hidden folder called <code>.git</code>) - you’ll only see the files that are in your <strong>working copy</strong>. Normally this working copy will contain the files from the last commit on the master branch, along with any changes you’ve made.</p>
 
-<h3 id="committing_files_to_the_repository">Committing files to the repository</h3>
+<h3 id="making_a_commit">Making a commit</h3>
 
-<p>Suppose we’ve now created a file called <code>index.html</code> in the folder. It’s in the folder but currently isn’t being tracked by git.</p>
+<p>To save some changes into the repository you need to create a commit. When you create a commit you get to write a message, to help remind yourself (and others) what changes you made (and why you made them). Once you’ve created a commit, you’ll be able to come back to this version of your code at any point in the future.</p>
 
-<p>Adding files to a git repository is actually a two-stage process: you have to <strong>add</strong> them and then <strong>commit</strong> them. This is useful when you get more advanced, but we’ll usually do those things together for the time being.</p>
+<p>Adding files to a git repository is actually a two-stage process: first you have to <strong>add</strong> them to something called the <strong>index</strong> and then you have to <strong>commit</strong> them. This is useful when you get more advanced, but we’ll usually do those things together for the time being.</p>
+
+<p><img src="/assets/index_working_tree.png" alt="Index and working tree" /></p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Set up your <code>first_site</code> folder as a git repository: open up the github app, select <code>File &amp;gt; Add Local Repository ...</code> and select the <code>first_site</code> folder.</li>
+<li>Set up your <code>first_site</code> folder as a git repository.</li>
 
-<li><strong>If you are on a mac</strong>, tell git to ignore your <code>.DS_Store</code> files: in the settings panel of the github app, add the line <code>.DS_Store</code> in the ‘Ignored files’ section.</li>
+<li><strong>Add</strong> your work to the index.</li>
 
-<li>Commit your work to the repository: in the ‘Changes’ panel, click ‘Select all’, write a ‘Commit Summary’ in the box (e.g. &quot;Created index.html&quot;) and click ‘Commit’.</li>
+<li><strong>Commit</strong> your work to the repository, with a message e.g. &quot;Initial import&quot;</li>
 
 <li>Make some change to index.html (in Sublime Text)</li>
 
-<li>Go back to the ‘Changes’ panel. Select and commit your changes, with a ‘Commit Summary’ describing what you did.</li>
+<li><strong>Add</strong> your changes to the index.</li>
+
+<li><strong>Commit</strong> them to the repository.</li>
 </ol>
 </div>
+<h3 id="git_with_sourcetree">Git with SourceTree</h3>
+
+<h4 id="creating_a_git_repository">Creating a git repository</h4>
+
+<ol>
+<li>Open SourceTree</li>
+
+<li>Select File &gt; New / Clone</li>
+
+<li>Select the ‘New’ option</li>
+
+<li>Navigate to the folder you want to make into a git repository.</li>
+</ol>
+
+<h4 id="adding_to_the_index">Adding to the index</h4>
+
+<ol>
+<li>Select all the files in the working tree section.</li>
+
+<li>Click the “Add” button at the top.</li>
+
+<li>You should see the files move to the ‘Index’ section</li>
+</ol>
+
+<h4 id="committing_to_the_repository">Committing to the repository</h4>
+
+<ol>
+<li>Once you have files in your ‘Index’ section, click on ‘Commit’.</li>
+
+<li>Write a commit message explain what you’ve done (and maybe why).</li>
+
+<li>Click “Commit”</li>
+</ol>
+
+<h3 id="git_with_the_command_line">Git with the command line</h3>
+
+<h4 id="creating_a_git_repository_2">Creating a git repository</h4>
+
+<ol>
+<li>
+<p>Using the command line, navigate to the folder you want to make into a repository.</p>
+</li>
+
+<li>
+<p><strong>Inside the target folder</strong> run the command</p>
+
+<pre><code> git init</code></pre>
+</li>
+
+<li>
+<p>To check this worked run the command</p>
+
+<pre><code> git status</code></pre>
+</li>
+</ol>
+
+<h4 id="adding_to_the_index_2">Adding to the index</h4>
+
+<ol>
+<li>
+<p>Inside the folder, run the command</p>
+
+<pre><code> git add --all</code></pre>
+</li>
+
+<li>
+<p>To check this worked run the command</p>
+
+<pre><code> git status</code></pre>
+</li>
+</ol>
+
+<h4 id="committing_to_the_repository_2">Committing to the repository</h4>
+
+<ol>
+<li>
+<p>Inside the folder, run the command</p>
+
+<pre><code> git commit -m &quot;write your message here&quot;</code></pre>
+</li>
+
+<li>
+<p>To check this worked run the command</p>
+
+<pre><code> git status</code></pre>
+</li>
+</ol>
+
 	</div>
 
 	
@@ -147,6 +237,10 @@
 <li>(If you finish early) Make a change to <code>index.html</code> in Sublime Text. Commit the change to the repository and then push it to GitHub. Make sure you can see the change in the code on GitHub and also in the published page.</li>
 </ol>
 </div>
+<h3 id="creating_a_git_repository_adding_and_committing_with_source_tree">Creating a git repository, adding and committing with Source Tree</h3>
+
+<h4 id="to">To</h4>
+
 	</div>
 
 	
