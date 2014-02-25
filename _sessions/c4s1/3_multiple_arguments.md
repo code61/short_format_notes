@@ -69,4 +69,3 @@ i_love           #=> "I love ruby!"
 3. For each function you write, run the appropriate test e.g.: `rspec spec/multiply_and_sum_spec.rb` (run this **outside** `irb`, on the command line).
 4. If you get onto the `describe_result` function, you will need to start by writing your own test in `spec/describe_result_spec.rb`. (Do this by copying and pasting from another test, and make the appropriate changes.)
 {% endexercise %}
-{% endexercise %}
