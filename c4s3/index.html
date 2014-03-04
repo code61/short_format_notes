@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Databases 1</title>
+  <title>Further Web Programming with Ruby 3</title>
 
   
 
@@ -33,7 +33,7 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Databases 1 <small>Intro to MongoDB</small></h1>
+  <h1>Further Web Programming with Ruby 3 <small>Intro to MongoDB</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
@@ -44,11 +44,15 @@
 		
 	
 		
-		<li><a href="#2_mongo_classes" data-toggle="tab">Using MongoDB </a></li>
+		<li><a href="#2_searching_and_sorting" data-toggle="tab">Searching and sorting </a></li>
 		
 	
 		
 		<li><a href="#3_mongo_with_sinatra" data-toggle="tab">Mongo with sinatra </a></li>
+		
+	
+		
+		<li><a href="#4_homework" data-toggle="tab">Homework </a></li>
 		
 	
 </ul>
@@ -60,11 +64,7 @@
 	
 
 		<h2>About MongoDB</h2>
-		<div class='exercise alert alert-info'><strong>Task:</strong>
-<p>Clone the code for this session:</p>
-
-<pre><code>    $ git clone https://github.com/code61/mongo1.git</code></pre>
-</div>
+		
 <p>In this session we will be using a database - a specialised piece of software for storing and retrieving data. Databases become important when you have large amounts of data, which you want to be able to access quickly and which you want to keep consistent.</p>
 
 <p>In the session we will be using two different, but related, pieces of software:</p>
@@ -79,6 +79,63 @@
 
 <p>MongoDB is a <em>NOSQL</em>, or <em>document-based</em>, database. In the past, the more traditional style <em>SQL</em>, or <em>relational</em>, databases were used in most applications. NOSQL databases have risen in popularity in the last year or two, in part due to their ability to offer increased performance in certain common scenarios, by allowing developers to bend the rigid SQL database structures. We will go into this in slightly more depth later in the course. For the time being, with data we’re storing in the next few sessions it won’t make much difference whether our db is SQL or NOSQL.</p>
 
+<h3 id="using_mongoid">Using Mongoid</h3>
+
+<p>Mongoid is a ruby library that allows you to interface with MongoDB. The idea is very simple - you can think of Mongoid as mapping <strong>classes</strong> in your application to <strong>tables</strong> in the database. Take a look at the following example:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>Athlete</span>
+  <span class='kp'>include</span> <span class='no'>Mongoid</span><span class='o'>::</span><span class='no'>Document</span>
+
+  <span class='n'>field</span> <span class='ss'>:name</span><span class='p'>,</span>    <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>String</span>
+  <span class='n'>field</span> <span class='ss'>:country</span><span class='p'>,</span> <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>String</span>
+  <span class='n'>field</span> <span class='ss'>:age</span><span class='p'>,</span>     <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>Integer</span>
+  <span class='n'>field</span> <span class='ss'>:height</span><span class='p'>,</span>  <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>Integer</span>
+  <span class='n'>field</span> <span class='ss'>:weight</span><span class='p'>,</span>  <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>Integer</span>
+  <span class='n'>field</span> <span class='ss'>:sex</span><span class='p'>,</span>     <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>String</span>
+  <span class='n'>field</span> <span class='ss'>:dob</span><span class='p'>,</span>     <span class='ss'>type</span><span class='p'>:</span> <span class='no'>Time</span>
+  <span class='n'>field</span> <span class='ss'>:gold</span><span class='p'>,</span>    <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>Integer</span>
+  <span class='n'>field</span> <span class='ss'>:silver</span><span class='p'>,</span>  <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>Integer</span>
+  <span class='n'>field</span> <span class='ss'>:bronze</span><span class='p'>,</span>  <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>Integer</span>
+  <span class='n'>field</span> <span class='ss'>:sport</span><span class='p'>,</span>   <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>Integer</span>
+  <span class='n'>field</span> <span class='ss'>:events</span><span class='p'>,</span>  <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>Array</span>
+
+  <span class='k'>def</span> <span class='nf'>total_medals</span>
+    <span class='n'>bronze</span> <span class='o'>+</span> <span class='n'>silver</span> <span class='o'>+</span> <span class='n'>bronze</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>This is fairly similar to the classes we looked at last week - we have data and methods that act on the data. The two different parts are:</p>
+
+<ul>
+<li><code>include Mongoid::Document</code>: this activates this class as a mongoid-enabled class.</li>
+
+<li>The <code>field :name, type: String</code> etc.: these setup the getting and setting methods that we had to do by hand last week, and tell mongoid what sort of object it is, which is useful for storage purposes.</li>
+</ul>
+
+<p>You can use this class like this:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>a</span> <span class='o'>=</span> <span class='no'>Athlete</span><span class='o'>.</span><span class='n'>new</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>name</span>    <span class='o'>=</span> <span class='s2'>&quot;Michael Phelps&quot;</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>country</span> <span class='o'>=</span> <span class='s2'>&quot;US&quot;</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>sport</span>   <span class='o'>=</span> <span class='s2'>&quot;Swimming&quot;</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>gold</span>    <span class='o'>=</span> <span class='mi'>2</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>silver</span>  <span class='o'>=</span> <span class='mi'>2</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>bronze</span>  <span class='o'>=</span> <span class='mi'>0</span>
+
+<span class='n'>a</span><span class='o'>.</span><span class='n'>name</span>         <span class='c1'>#=&gt; &quot;Michael Phelps&quot;</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>total_medals</span> <span class='c1'>#=&gt; 4</span>
+</code></pre></div>
+<p>This is not that exciting - we could have done all this last week. It gets more interesting when we start using some of the extra methods that Mongoid has added to the <code>Athlete</code> class:</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># Let&#39;s save Michael in the database</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>save</span>    <span class='c1'>#=&gt; true</span>
+
+<span class='c1'># How many athletes do we have?</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>count</span>  <span class='c1'>#=&gt; 1</span>
+
+<span class='c1'># Let&#39;s pull Michael out again</span>
+<span class='n'>a</span> <span class='o'>=</span> <span class='no'>Athlete</span><span class='o'>.</span><span class='n'>first</span> <span class='c1'>#=&gt; #&lt;Athlete _id: 5315dec6de9c928a02001c9c, name: &quot;Michael Phelps&quot;, country: &quot;US&quot;, gold: 2, silver: 2, bronze: 0, sport: &quot;Swimming&quot;&gt;</span>
+
+<span class='c1'># or</span>
+<span class='n'>a</span> <span class='o'>=</span> <span class='no'>Athlete</span><span class='o'>.</span><span class='n'>find_by</span><span class='p'>(</span><span class='ss'>:name</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;Michael Phelps&quot;</span><span class='p'>)</span> <span class='c1'>#=&gt; #&lt;Athlete _id: 5315dec6de9c928a02001c9c, name: &quot;Michael Phelps&quot;, country: &quot;US&quot;, gold: 2, silver: 2, bronze: 0, sport: &quot;Swimming&quot;&gt;</span>
+</code></pre></div>
 <h3 id="starting_mongodb">Starting MongoDB</h3>
 
 <p>In order to use MongoDB in a ruby project, it first needs to be running on your computer. The command for this is</p>
@@ -88,92 +145,133 @@
 <p>You will need to keep this command line open and continue the instructions in a new one.</p>
 
 <p>By default mongo will run on <a href="http://localhost:28017/">localhost:28017</a>. If you visit that link in your browser you should see a mongo stats page.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Start MongoDB running on your laptop.</li>
 
-<h3 id="using_it_in_ruby">Using it in ruby</h3>
+<li>Clone down the code for the session: <a href='https://github.com/code61/sinatra_c4s3'>https://github.com/code61/sinatra_c4s3</a></li>
 
-<p>To interface with MongoDB from ruby we will be using the <a href="http://mongoid.org/">Mongoid</a> gem. You should have installed the gem already, but if not,</p>
+<li>Run <code>bundle install</code> to get the required gems.</li>
 
-<pre><code>$ gem install mongoid</code></pre>
+<li>Open up <code>irb</code>.</li>
 
-<p>should do the trick.</p>
+<li>Type <code>require './utils'</code> (this loads in the <code>Athlete</code> class and sets up your MongoDB connection).</li>
 
-<p>We then need to set some configuration options in our ruby project. Among other things this tells the project which of the mongodb databases on your computer to use - usually you’d want each project to have its own database. The following configuration options should go in a <code>mongoid.yml</code> file:</p>
-<div class='highlight'><pre><code class='yaml'><span class='l-Scalar-Plain'>development</span><span class='p-Indicator'>:</span>
-  <span class='l-Scalar-Plain'>sessions</span><span class='p-Indicator'>:</span>
-    <span class='l-Scalar-Plain'>default</span><span class='p-Indicator'>:</span>
-      <span class='l-Scalar-Plain'>hosts</span><span class='p-Indicator'>:</span>
-        <span class='p-Indicator'>-</span> <span class='l-Scalar-Plain'>localhost:27017</span>
-      <span class='l-Scalar-Plain'>database</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>mongo_examples</span>
-  <span class='l-Scalar-Plain'>options</span><span class='p-Indicator'>:</span>
-    <span class='l-Scalar-Plain'>raise_not_found_error</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>false</span>
+<li>Try the following</li>
+</ol>
+<div class='highlight'><pre><code class='ruby'><span class='n'>a</span> <span class='o'>=</span> <span class='no'>Athlete</span><span class='o'>.</span><span class='n'>new</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>name</span>    <span class='o'>=</span> <span class='s2'>&quot;Michael Phelps&quot;</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>country</span> <span class='o'>=</span> <span class='s2'>&quot;US&quot;</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>sport</span>   <span class='o'>=</span> <span class='s2'>&quot;Swimming&quot;</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>gold</span>    <span class='o'>=</span> <span class='mi'>2</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>silver</span>  <span class='o'>=</span> <span class='mi'>2</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>bronze</span>  <span class='o'>=</span> <span class='mi'>0</span>
+
+<span class='n'>a</span><span class='o'>.</span><span class='n'>name</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>country</span>
+
+<span class='n'>a</span><span class='o'>.</span><span class='n'>save</span>
+
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>count</span>
+<span class='n'>b</span> <span class='o'>=</span> <span class='no'>Athlete</span><span class='o'>.</span><span class='n'>first</span>
+
+<span class='n'>b</span><span class='o'>.</span><span class='n'>name</span>
+<span class='n'>b</span><span class='o'>.</span><span class='n'>name</span> <span class='o'>=</span> <span class='s2'>&quot;Tom Close&quot;</span>
+
+<span class='n'>a</span><span class='o'>.</span><span class='n'>name</span>     <span class='c1'># has this updated?</span>
+
+<span class='n'>b</span><span class='o'>.</span><span class='n'>save</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>name</span>     <span class='c1'># has it updated now?</span>
+
+<span class='n'>a</span><span class='o'>.</span><span class='n'>reload</span>
+<span class='n'>a</span><span class='o'>.</span><span class='n'>name</span>
+
+<span class='c1'># different way of creating an athlete, using a hash</span>
+<span class='n'>c</span> <span class='o'>=</span> <span class='no'>Athlete</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='ss'>:name</span>   <span class='o'>=&gt;</span> <span class='s2'>&quot;Chad Le Clos&quot;</span><span class='p'>,</span> <span class='ss'>:country</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;South Africa&quot;</span><span class='p'>,</span> 
+                <span class='ss'>:sport</span>  <span class='o'>=&gt;</span> <span class='s2'>&quot;Swimming&quot;</span><span class='p'>,</span>     <span class='ss'>:gold</span>    <span class='o'>=&gt;</span> <span class='mi'>1</span><span class='p'>,</span>
+                <span class='ss'>:silver</span> <span class='o'>=&gt;</span> <span class='mi'>1</span><span class='p'>,</span>              <span class='ss'>:bronze</span>  <span class='o'>=&gt;</span> <span class='mi'>0</span> <span class='p'>)</span>
+<span class='n'>c</span><span class='o'>.</span><span class='n'>save</span>
+
+<span class='n'>d</span> <span class='o'>=</span> <span class='no'>Athlete</span><span class='o'>.</span><span class='n'>find_by</span><span class='p'>(</span><span class='ss'>:name</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;Chad Le Clos&quot;</span><span class='p'>)</span>
 </code></pre></div>
-<p>You then need to include the following code in your <code>app.rb</code> (or similar) file:</p>
-<div class='highlight'><pre><code class='ruby'><span class='nb'>require</span> <span class='s1'>&#39;mongoid&#39;</span>
-<span class='nb'>require</span> <span class='s1'>&#39;json&#39;</span>
 
-<span class='no'>Mongoid</span><span class='o'>.</span><span class='n'>load!</span><span class='p'>(</span><span class='s2'>&quot;mongoid.yml&quot;</span><span class='p'>,</span> <span class='ss'>:development</span><span class='p'>)</span>
-</code></pre></div>
-<p>We’ve seen the <code>require</code> statements before - they just tell ruby that we’d like to use the <code>mongoid</code> library (and also <code>json</code>). The line <code>Mongoid.load!(&quot;mongoid.yml&quot;, :development)</code> tells <code>mongoid</code> where to find the configuration options. The <code>:development</code> bit refers to our environment - you will probably want to have different configuration options when you’re deploying your app to heroku; mongoid allows this by specifying <code>:production</code> and <code>:development</code> environments.</p>
-
+</div>
 	</div>
 
 	
-	<div class="tab-pane " id="2_mongo_classes">
+	<div class="tab-pane " id="2_searching_and_sorting">
 	
 
-		<h2>Using MongoDB</h2>
+		<h2>Searching and sorting</h2>
 		
-<p>So far in ruby we have met several different types of object e.g. <code>String</code>, <code>FixNum</code>, <code>Array</code> and <code>Hash</code>. To interact with the database we will define our own type of object using a <code>class</code>:</p>
-<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>User</span>
-    <span class='kp'>include</span> <span class='no'>Mongoid</span><span class='o'>::</span><span class='no'>Document</span>
+<p>One thing that databases are good at is searching for records. Mongoid allows you to search for records in various different ways:</p>
+<div class='highlight'><pre><code class='ruby'><span class='no'>Athlete</span><span class='o'>.</span><span class='n'>find_by</span><span class='p'>(</span><span class='ss'>:name</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;Michael Phelps&quot;</span><span class='p'>)</span>
 
-    <span class='n'>field</span> <span class='ss'>:name</span>
-    <span class='n'>field</span> <span class='ss'>:email</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>find_by</span><span class='p'>(</span><span class='ss'>:gold</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>)</span>   <span class='c1'># returns the first one it finds</span>
+
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:gold</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>)</span>     <span class='c1'># returns a &#39;collection&#39; with all of them</span>
+
+<span class='c1'># you can do lots of things with collections e.g. counting</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:gold</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>)</span><span class='o'>.</span><span class='n'>count</span>
+<span class='c1'># or iterating</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:gold</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>)</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>a</span><span class='o'>|</span>
+  <span class='nb'>puts</span> <span class='n'>a</span><span class='o'>.</span><span class='n'>name</span>
 <span class='k'>end</span>
-</code></pre></div>
-<p>This class defines an object that will be saved to the database. A <code>User</code> will have two properties: <code>name</code> and <code>email</code> set up using the <code>field</code> command. The line <code>include Mongoid::Document</code> is the bit that tells ruby how to save the object.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Open <code>mongo1/db_examples.rb</code> in Sublime text.</li>
+<span class='c1'># or summing</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:gold</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>)</span><span class='o'>.</span><span class='n'>sum</span><span class='p'>(</span><span class='ss'>:age</span><span class='p'>)</span>
+<span class='c1'># or turn it into an array</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:gold</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>)</span><span class='o'>.</span><span class='n'>to_a</span>
 
-<li>With a partner, work through the examples in the file, copying and pasting into <code>irb</code>.</li>
+<span class='c1'># searching on multiple things at once</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:gold</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>,</span> <span class='ss'>:bronze</span> <span class='o'>=&gt;</span> <span class='mi'>3</span><span class='p'>)</span>
+<span class='c1'># or</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:gold</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>)</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:bronze</span> <span class='o'>=&gt;</span> <span class='mi'>0</span><span class='p'>)</span>
+
+<span class='c1'># searching on conditions</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:gold</span><span class='o'>.</span><span class='n'>gte</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>)</span>
+</code></pre></div>
+<p>You can find further examples in the <a href="http://mongoid.org/en/mongoid/docs/querying.html#queries">Mongoid docs</a>.</p>
+
+<h3 id="sorting">Sorting</h3>
+
+<p>You can also get the database to return things to you sorted:</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># these both return collections</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>order_by</span><span class='p'>(</span><span class='ss'>:age</span><span class='o'>.</span><span class='n'>asc</span><span class='p'>)</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>order_by</span><span class='p'>(</span><span class='ss'>:age</span><span class='o'>.</span><span class='n'>desc</span><span class='p'>)</span>
+
+<span class='c1'># you can then do things like</span>
+<span class='c1'># .. take the first 1</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>order_by</span><span class='p'>(</span><span class='ss'>:age</span><span class='o'>.</span><span class='n'>asc</span><span class='p'>)</span><span class='o'>.</span><span class='n'>first</span>
+
+<span class='c1'># .. or the first 10</span>
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>order_by</span><span class='p'>(</span><span class='ss'>:age</span><span class='o'>.</span><span class='n'>asc</span><span class='p'>)</span><span class='o'>.</span><span class='n'>limit</span><span class='p'>(</span><span class='mi'>10</span><span class='p'>)</span><span class='o'>.</span><span class='n'>to_a</span>
+</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Open <code>irb</code> and do <code>require './utils'</code>.</li>
+
+<li>Call the function <code>load_athletes</code>. This loads in all the athletes from London 2012.</li>
+
+<li>Answer the following questions:
+<ol>
+<li>How many athletes were there?</li>
+
+<li>How many women? How many men?</li>
+
+<li>Who was the oldest athlete?</li>
+
+<li>Who was the youngest?</li>
+
+<li>How many people won at least 1 gold?</li>
+
+<li>What was the average age? (Your answer should have decimal places..)</li>
+
+<li>Who got the most golds?</li>
+
+<li>Who was the 10th oldest athlete?</li>
+</ol>
+</li>
 </ol>
 </div>
-<h3 id="creating_a_new_user">Creating a new user</h3>
-<div class='highlight'><pre><code class='ruby'><span class='c1'># create a new user object</span>
-<span class='n'>u</span> <span class='o'>=</span> <span class='no'>User</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='ss'>:name</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;Tom&quot;</span><span class='p'>,</span> <span class='ss'>:email</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;tom@example.com&quot;</span><span class='p'>)</span>
-
-<span class='c1'># get the properties</span>
-<span class='n'>u</span><span class='o'>.</span><span class='n'>name</span> <span class='c1'>#=&gt; &quot;Tom&quot;</span>
-<span class='n'>u</span><span class='o'>.</span><span class='n'>email</span> <span class='c1'>#=&gt; &quot;tom@example.com&quot;</span>
-
-<span class='c1'># change the name</span>
-<span class='n'>u</span><span class='o'>.</span><span class='n'>name</span> <span class='o'>=</span> <span class='s2'>&quot;Tom Close&quot;</span>
-
-<span class='c1'># save to the database</span>
-<span class='n'>u</span><span class='o'>.</span><span class='n'>save</span> <span class='c1'>#=&gt; true</span>
-</code></pre></div>
-<h3 id="getting_users_from_the_database">Getting users from the database</h3>
-<div class='highlight'><pre><code class='ruby'><span class='c1'># count the number of users</span>
-<span class='no'>User</span><span class='o'>.</span><span class='n'>count</span>
-
-<span class='c1'># find the first user</span>
-<span class='no'>User</span><span class='o'>.</span><span class='n'>first</span>
-
-<span class='c1'># find the user with name Tom Close</span>
-<span class='no'>User</span><span class='o'>.</span><span class='n'>find_by</span><span class='p'>(</span><span class='ss'>:name</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;Tom Close&quot;</span><span class='p'>)</span>
-
-<span class='c1'># pull all users out of the database ...</span>
-<span class='n'>users</span> <span class='o'>=</span> <span class='no'>User</span><span class='o'>.</span><span class='n'>all</span>
-<span class='c1'>#=&gt; #&lt;Mongoid::Criteria</span>
-<span class='c1'>#  selector: {}</span>
-<span class='c1'>#  options:  {}</span>
-<span class='c1'>#  class:    User</span>
-<span class='c1'>#  embedded: false&gt;</span>
-
-<span class='c1'># ... and print their names</span>
-<span class='n'>users</span><span class='o'>.</span><span class='n'>each</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>u</span><span class='o'>|</span> <span class='nb'>puts</span> <span class='n'>u</span><span class='o'>.</span><span class='n'>name</span><span class='p'>}</span>
-</code></pre></div>
 	</div>
 
 	
@@ -181,51 +279,100 @@
 	
 
 		<h2>Mongo with sinatra</h2>
-		<div class='highlight'><pre><code class='ruby'><span class='nb'>require</span> <span class='s1'>&#39;sinatra&#39;</span>
+		
+<h3 id="setting_up_sinatra_to_work_with_mongoid">Setting up Sinatra to work with Mongoid</h3>
+
+<p>To get sinatra to work with Mongoid you will need to do the following things:</p>
+
+<ol>
+<li>Add <code>gem 'mongoid'</code> to your Gemfile (and <code>bundle install</code>).</li>
+
+<li>Create a <code>mongoid.yml</code> file with your Mongoid settings (see below).</li>
+
+<li>Load mongoid and connect to the database</li>
+</ol>
+
+<p>For local development, you will also need to <strong>make sure MongoDB is running on your laptop</strong> - type <code>mongod</code> at the command line.</p>
+
+<h5 id="mongoidyml">Mongoid.yml</h5>
+
+<p>The mongoid.yml file specifies the options you need to connect to a MongoDB database. The following should work:</p>
+<div class='highlight'><pre><code class='yaml'><span class='l-Scalar-Plain'>development</span><span class='p-Indicator'>:</span>
+  <span class='l-Scalar-Plain'>sessions</span><span class='p-Indicator'>:</span>
+    <span class='l-Scalar-Plain'>default</span><span class='p-Indicator'>:</span>
+      <span class='l-Scalar-Plain'>hosts</span><span class='p-Indicator'>:</span>
+        <span class='p-Indicator'>-</span> <span class='l-Scalar-Plain'>localhost:27017</span>
+      <span class='l-Scalar-Plain'>database</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>london2012</span>
+  <span class='l-Scalar-Plain'>options</span><span class='p-Indicator'>:</span>
+    <span class='l-Scalar-Plain'>raise_not_found_error</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>false</span>
+
+<span class='l-Scalar-Plain'>production</span><span class='p-Indicator'>:</span>
+  <span class='l-Scalar-Plain'>sessions</span><span class='p-Indicator'>:</span>
+    <span class='l-Scalar-Plain'>default</span><span class='p-Indicator'>:</span>
+      <span class='l-Scalar-Plain'>uri</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>&lt;%= ENV[&#39;MONGOHQ_URL&#39;] %&gt;</span>
+  <span class='l-Scalar-Plain'>options</span><span class='p-Indicator'>:</span>
+    <span class='l-Scalar-Plain'>raise_not_found_error</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>false</span>
+</code></pre></div>
+<p>There are two sections, describing different databases to connect to in development and production. You should <strong>change the development database name</strong> from ‘london2012’ to something suitable for your project. If you fail to do this, your code will still run, but eventually you’ll run into problems as data from one project turns up in another.</p>
+
+<p>The production section is set up to use MongoHQ on Heroku (see below). Sinatra can find out which environment it is running in by checking the <code>settings.environment</code> variable, which will return <code>:production</code> on Heroku and <code>:development</code> on your local machine. Mongoid uses this to know which part of the <code>mongoid.yml</code> file to look at.</p>
+
+<h5 id="loading_libraries_and_connecting">Loading libraries and connecting</h5>
+
+<p>You also need to load the relevant libraries in <code>app.rb</code> and setup a database connection. The following code does this:</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># in app.rb</span>
+<span class='nb'>require</span> <span class='s1'>&#39;sinatra&#39;</span>
 <span class='nb'>require</span> <span class='s1'>&#39;mongoid&#39;</span>
 <span class='nb'>require</span> <span class='s1'>&#39;json&#39;</span>
 
-<span class='c1'>## Mongoid setup</span>
-<span class='c1'>## =============</span>
+<span class='c1'># Setup database connection</span>
+<span class='no'>Mongoid</span><span class='o'>.</span><span class='n'>load!</span><span class='p'>(</span><span class='s2'>&quot;mongoid.yml&quot;</span><span class='p'>)</span>
 
-<span class='no'>Mongoid</span><span class='o'>.</span><span class='n'>load!</span><span class='p'>(</span><span class='s2'>&quot;mongoid.yml&quot;</span><span class='p'>,</span> <span class='ss'>:development</span><span class='p'>)</span>
+<span class='n'>get</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
+<span class='c1'># etc. etc.</span>
+</code></pre></div>
+<p>As well as the ‘mongoid’ and ‘sinatra’ libraries, you also need to include ‘json’, which mongoid uses to store objects in the database.</p>
 
-<span class='k'>class</span> <span class='nc'>Fruit</span>
-  <span class='kp'>include</span> <span class='no'>Mongoid</span><span class='o'>::</span><span class='no'>Document</span>
+<p>The <code>Mongoid.load!</code> line is the one which uses the sinatra environment to decide which part of <code>mongoid.yml</code> to look at.</p>
 
-  <span class='n'>field</span> <span class='ss'>:name</span>
-<span class='k'>end</span>
-</code></pre></div><div class='highlight'><pre><code class='ruby'><span class='n'>get</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
-  <span class='vi'>@fruits</span> <span class='o'>=</span> <span class='no'>Fruit</span><span class='o'>.</span><span class='n'>all</span>
-  <span class='n'>erb</span> <span class='ss'>:index</span>
-<span class='k'>end</span>
-</code></pre></div><div class='highlight'><pre><code class='html'><span class='nt'>&lt;ul&gt;</span>
-  <span class='err'>&lt;</span>% @fruits.each do |f| %&gt;
-    <span class='nt'>&lt;li&gt;</span><span class='err'>&lt;</span>%= f.name %&gt;<span class='nt'>&lt;/li&gt;</span>
-  <span class='err'>&lt;</span>% end %&gt;
-<span class='nt'>&lt;/ul&gt;</span>
-</code></pre></div><div class='highlight'><pre><code class='html'><span class='nt'>&lt;h3&gt;</span>Add a new fruit<span class='nt'>&lt;/h3&gt;</span>
+<h3 id="mongoid_on_heroku">Mongoid on Heroku</h3>
 
-<span class='nt'>&lt;form</span> <span class='na'>method=</span><span class='s'>&#39;post&#39;</span><span class='nt'>&gt;</span>
-  <span class='nt'>&lt;label&gt;</span>Name of fruit<span class='nt'>&lt;/label&gt;</span>
-  <span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&#39;text&#39;</span> <span class='na'>name=</span><span class='s'>&#39;fruit_name&#39;</span><span class='nt'>&gt;</span>
-<span class='nt'>&lt;/form&gt;</span>
-</code></pre></div><div class='highlight'><pre><code class='ruby'><span class='n'>post</span> <span class='s1'>&#39;/&#39;</span> <span class='k'>do</span>
-  <span class='nb'>name</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:fruit_name</span><span class='o'>]</span>
-  <span class='n'>f</span> <span class='o'>=</span> <span class='no'>Fruit</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='ss'>:name</span> <span class='o'>=&gt;</span> <span class='nb'>name</span><span class='p'>)</span>
-  <span class='n'>f</span><span class='o'>.</span><span class='n'>save</span>
-  <span class='vi'>@fruites</span> <span class='o'>=</span> <span class='no'>Fruit</span><span class='o'>.</span><span class='n'>all</span>
-  <span class='n'>erb</span> <span class='ss'>:index</span>
-<span class='k'>end</span>
-</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
+<p>If you use the <code>mongoid.yml</code> from above, you’ll be pretty much ready to go on Heroku. The only thing you’ll need to do is to add the <a href="https://devcenter.heroku.com/articles/mongohq">MongoHQ Add-on</a>. You can do this by logging into Heroku.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Have a look at the <code>example_app</code> in <code>mongo1</code>.</li>
+<li>Modify the application so that the ‘oldest’ link displays the 20 oldest athletes.</li>
 
-<li>Have a look in the (mostly empty) <code>mongo1/app.rb</code>.</li>
+<li>Make changes so that the ‘youngest’ link displays the 20 youngest athletes.</li>
 
-<li>Have a look at the <a href='http://aqueous-earth-3131.herokuapp.com/'>finished app</a>.</li>
+<li>Add at least 2 more stats pages of your choosing.</li>
 
-<li>Try and make your app work like that.</li>
+<li>(Optional) Return to <code>sinatra_c3s4</code>. Set your app up with mongoid, so that when people sign up it stores their names and emails. You will need to:
+<ul>
+<li>Follow the steps above to add mongoid to the sinatra app.</li>
+
+<li>Create a mongoid-enabled <code>User</code> class, to store the data.</li>
+
+<li>Add a <code>/list</code> route for admins to see the list of people who’ve signed up.</li>
+
+<li>Push it to heroku.</li>
+
+<li>You can see a working app <a href='http://aqueous-earth-3131.herokuapp.com/'>here</a>. If you get stuck, you can find the code <a href='https://github.com/code61/mongo1/tree/solution'>here</a>.</li>
+</ul>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_homework">
+	
+
+		<h2>Homework</h2>
+		<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Finish off any exercises from class.</li>
+
+<li>Finish off anything you haven’t done from the <a href='http://www.codecademy.com/tracks/ruby'>Codecademy Ruby track</a>!</li>
 </ol>
 </div>
 	</div>
