@@ -293,11 +293,12 @@
 <p>Update your solution in <code>person.rb</code> to allow the <code>first_name</code> and <code>last_name</code> to be set independently, and have the <code>name</code> update accordingly:</p>
 
 
-<div class='highlight'><pre><code class='ruby'><span class='nb'>p</span> <span class='o'>=</span> <span class='no'>Person</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='s2'>&quot;Tom Close&quot;</span><span class='p'>)</span>
-<span class='nb'>p</span><span class='o'>.</span><span class='n'>name</span> <span class='c1'>#=&gt; &quot;Tom Close&quot;</span>
+<div class='highlight'><pre><code class='ruby'><span class='nb'>p</span> <span class='o'>=</span> <span class='no'>Person</span><span class='o'>.</span><span class='n'>new</span><span class='p'>({</span><span class='ss'>:name</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;Bart Simpson&quot;</span><span class='p'>,</span> <span class='ss'>:dob</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;15/1/1990&quot;</span><span class='p'>})</span>
 
-<span class='nb'>p</span><span class='o'>.</span><span class='n'>first_name</span> <span class='o'>=</span> <span class='s2'>&quot;Thomas&quot;</span>
-<span class='nb'>p</span><span class='o'>.</span><span class='n'>name</span> <span class='c1'>#=&gt; &quot;Thomas Close&quot;</span>
+<span class='nb'>p</span><span class='o'>.</span><span class='n'>name</span> <span class='c1'>#=&gt; &quot;Bart Simpson&quot;</span>
+
+<span class='nb'>p</span><span class='o'>.</span><span class='n'>first_name</span> <span class='o'>=</span> <span class='s2'>&quot;Bartholomew&quot;</span>
+<span class='nb'>p</span><span class='o'>.</span><span class='n'>name</span> <span class='c1'>#=&gt; &quot;Bartholomew Simpson&quot;</span>
 </code></pre></div>
 <p>You might need to make changes to which attributes your class stores, to make this work.</p>
 
@@ -367,6 +368,89 @@
 <li><a href="http://juixe.com/techknow/index.php/2007/01/22/ruby-class-tutorial/">http://juixe.com/techknow/index.php/2007/01/22/ruby-class-tutorial/</a></li>
 </ul>
 
+<h2 id="getting_set_up_with_mongodb">Getting set up with MongoDB</h2>
+
+<p>Next session we will look at storing information in a database. The database we’ll be using is <a href="http://www.mongodb.org/">MongoDB</a>.</p>
+
+<p>To use mongodb you need to have it running on your laptop. The database will run on one of your localhost ports (like sinatra), so that other processes can connect to it.</p>
+
+<p>The preparation falls into four parts:</p>
+
+<ol>
+<li>Install MongoDB.</li>
+
+<li>Start running the database.</li>
+
+<li>Install the gems to allow ruby to connect to MongoDB.</li>
+
+<li>Test your installation.</li>
+</ol>
+
+<p>We will look at these parts separately.</p>
+
+<h3 id="install_mongodb">Install MongoDB</h3>
+
+<p>If you installed <code>homebrew</code> (“The Hard Way”, Mac only), your task is now easy. At the command line write:</p>
+
+<pre><code>brew install mongo</code></pre>
+
+<p>If you didn’t install homebrew (i.e. try doing the above and it doens’t work), you will need to <a href="http://www.mongodb.org/downloads">download MongoDB</a> from the site and follow the installation instructions for your system.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>Install MongoDB either via</p>
+
+<pre><code>$ brew install mongo</code></pre>
+
+<p>or by downloading and installing from the <a href='http://www.mongodb.org/downloads'>MongoDB website</a>.</p>
+</div>
+<h3 id="start_mongodb_running">Start MongoDB running</h3>
+
+<p>You can start MongoDB running from the command line:</p>
+
+<pre><code>$ mongod</code></pre>
+
+<p>You will need to <strong>keep this command line open</strong> and open a new one to continue the instructions.</p>
+
+<p>By default mongo will run on <a href="http://localhost:28017/">localhost:28017</a>. If you visit that link in your browser you should see a mongo stats page.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Start MongoDB:</p>
+
+<pre><code> $ mongod</code></pre>
+</li>
+
+<li>
+<p>Check the service is running at <a href='http://localhost:28017/'>localhost:28017</a>.</p>
+</li>
+</ol>
+</div>
+<h3 id="install_the_gems_and_test">Install the gems and test</h3>
+
+<p>I’ve set up a project with the gems you need, so this should be straightforward:</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Clone the project:</p>
+
+<pre><code> $ git clone https://github.com/code61/mongo_test.git</code></pre>
+</li>
+
+<li>
+<p>Move into that folder and install the gems:</p>
+
+<pre><code> $ cd mongo_test
+ $ bundle install</code></pre>
+</li>
+
+<li>
+<p>Test your installation:</p>
+
+<pre><code> $ ruby main.rb</code></pre>
+
+<p>If you see the text &quot;Everything worked ok!&quot;, you’re good to go!</p>
+</li>
+</ol>
+</div>
 	</div>
 
 </div>
