@@ -41,11 +41,12 @@ c.age #=> 7
 {% exercise %}
 Update your solution in `person.rb` to allow the `first_name` and `last_name` to be set independently, and have the `name` update accordingly:
 {%highlight ruby %}
-p = Person.new("Tom Close")
-p.name #=> "Tom Close"
+p = Person.new({:name => "Bart Simpson", :dob => "15/1/1990"})
 
-p.first_name = "Thomas"
-p.name #=> "Thomas Close"
+p.name #=> "Bart Simpson"
+
+p.first_name = "Bartholomew"
+p.name #=> "Bartholomew Simpson"
 {% endhighlight %}
 You might need to make changes to which attributes your class stores, to make this work.
 

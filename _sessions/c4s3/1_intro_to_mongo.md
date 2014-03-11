@@ -2,12 +2,6 @@
 title: About MongoDB
 ---
 
-{% exercise %}
-Clone the code for this session:
-
-        $ git clone https://github.com/code61/mongo1.git
-
-{% endexercise %}
 
 In this session we will be using a database - a specialised piece of software for storing and retrieving data. Databases become important when you have large amounts of data, which you want to be able to access quickly and which you want to keep consistent.
 
@@ -20,6 +14,69 @@ MongoDB is one of many different databases that we could have chosen. We went wi
 
 MongoDB is a *NOSQL*, or *document-based*, database. In the past, the more traditional style *SQL*, or *relational*, databases were used in most applications. NOSQL databases have risen in popularity in the last year or two, in part due to their ability to offer increased performance in certain common scenarios, by allowing developers to bend the rigid SQL database structures. We will go into this in slightly more depth later in the course. For the time being, with data we're storing in the next few sessions it won't make much difference whether our db is SQL or NOSQL.
 
+### Using Mongoid
+
+Mongoid is a ruby library that allows you to interface with MongoDB. The idea is very simple - you can think of Mongoid as mapping **classes** in your application to **tables** in the database. Take a look at the following example:
+
+{% highlight ruby %}
+class Athlete
+  include Mongoid::Document
+
+  field :name,    type: String
+  field :country, type: String
+  field :age,     type: Integer
+  field :height,  type: Integer
+  field :weight,  type: Integer
+  field :sex,     type: String
+  field :dob,     type: Time
+  field :gold,    type: Integer
+  field :silver,  type: Integer
+  field :bronze,  type: Integer
+  field :sport,   type: Integer
+  field :events,  type: Array
+
+  def total_medals
+    bronze + silver + bronze
+  end
+end
+{% endhighlight %}
+
+This is fairly similar to the classes we looked at last week - we have data and methods that act on the data. The two different parts are:
+
+* `include Mongoid::Document`: this activates this class as a mongoid-enabled class.
+* The `field :name, type: String` etc.: these setup the getting and setting methods that we had to do by hand last week, and tell mongoid what sort of object it is, which is useful for storage purposes.
+
+You can use this class like this:
+{% highlight ruby %}
+a = Athlete.new
+a.name    = "Michael Phelps"
+a.country = "US"
+a.sport   = "Swimming"
+a.gold    = 2
+a.silver  = 2
+a.bronze  = 0
+
+a.name         #=> "Michael Phelps"
+a.total_medals #=> 4
+{% endhighlight %}
+
+This is not that exciting - we could have done all this last week. It gets more interesting when we start using some of the extra methods that Mongoid has added to the `Athlete` class:
+
+{% highlight ruby %}
+# Let's save Michael in the database
+a.save    #=> true
+
+# How many athletes do we have?
+Athlete.count  #=> 1
+
+# Let's pull Michael out again
+a = Athlete.first #=> #<Athlete _id: 5315dec6de9c928a02001c9c, name: "Michael Phelps", country: "US", gold: 2, silver: 2, bronze: 0, sport: "Swimming">
+
+# or
+a = Athlete.find_by(:name => "Michael Phelps") #=> #<Athlete _id: 5315dec6de9c928a02001c9c, name: "Michael Phelps", country: "US", gold: 2, silver: 2, bronze: 0, sport: "Swimming">
+
+{% endhighlight %}
+
 
 ### Starting MongoDB
 
@@ -31,35 +88,47 @@ You will need to keep this command line open and continue the instructions in a 
 
 By default mongo will run on [localhost:28017](http://localhost:28017/). If you visit that link in your browser you should see a mongo stats page.
 
-### Using it in ruby
-
-To interface with MongoDB from ruby we will be using the [Mongoid](http://mongoid.org/) gem. You should have installed the gem already, but if not,
-
-    $ gem install mongoid
-
-should do the trick.
-
-We then need to set some configuration options in our ruby project. Among other things this tells the project which of the mongodb databases on your computer to use - usually you'd want each project to have its own database. The following configuration options should go in a `mongoid.yml` file:
-
-{% highlight yaml %}
-development:
-  sessions:
-    default:
-      hosts:
-        - localhost:27017
-      database: mongo_examples
-  options:
-    raise_not_found_error: false
-{% endhighlight %}
-
-You then need to include the following code in your `app.rb` (or similar) file:
-
+{% exercise %}
+1. Start MongoDB running on your laptop.
+1. Clone down the code for the session: [https://github.com/code61/sinatra_c4s3](https://github.com/code61/sinatra_c4s3)
+2. Run `bundle install` to get the required gems.
+3. Open up `irb`.
+4. Type `require './utils'` (this loads in the `Athlete` class and sets up your MongoDB connection).
+5. Try the following
 {% highlight ruby %}
-require 'mongoid'
-require 'json'
+a = Athlete.new
+a.name    = "Michael Phelps"
+a.country = "US"
+a.sport   = "Swimming"
+a.gold    = 2
+a.silver  = 2
+a.bronze  = 0
 
-Mongoid.load!("mongoid.yml", :development)
+a.name
+a.country
+
+a.save
+
+Athlete.count
+b = Athlete.first
+
+b.name
+b.name = "Tom Close"
+
+a.name     # has this updated?
+
+b.save
+a.name     # has it updated now?
+
+a.reload
+a.name
+
+# different way of creating an athlete, using a hash
+c = Athlete.new(:name   => "Chad Le Clos", :country => "South Africa", 
+                :sport  => "Swimming",     :gold    => 1,
+                :silver => 1,              :bronze  => 0 )
+c.save
+
+d = Athlete.find_by(:name => "Chad Le Clos")
 {% endhighlight %}
-
-We've seen the `require` statements before - they just tell ruby that we'd like to use the `mongoid` library (and also `json`). The line `Mongoid.load!("mongoid.yml", :development)` tells `mongoid` where to find the configuration options. The `:development` bit refers to our environment - you will probably want to have different configuration options when you're deploying your app to heroku; mongoid allows this by specifying `:production` and `:development` environments.
-
+{% endexercise %}
