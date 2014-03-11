@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Further Web Programming with Ruby</title>
+  <title>Intro to Rails 1</title>
 
   
 
@@ -33,15 +33,389 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Further Web Programming with Ruby <small></small></h1>
+  <h1>Intro to Rails 1 <small>Riding the rails</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
 <ul class="nav nav-tabs" id="myTab">
 	
+		
+		<li class="active"><a href="#2_intro_to_rails" data-toggle="tab">Intro to Rails </a></li>
+		
+	
+		
+		<li><a href="#3_mvc" data-toggle="tab">Model/View/Controller </a></li>
+		
+	
+		
+		<li><a href="#4_views" data-toggle="tab">Views </a></li>
+		
+	
+		
+		<li><a href="#5_the_console" data-toggle="tab">Rails console </a></li>
+		
+	
+		
+		<li><a href="#6_further_resources" data-toggle="tab">Rails resources </a></li>
+		
+	
 </ul>
 
 <div class="tab-content">
+
+	
+	<div class="tab-pane active" id="2_intro_to_rails">
+	
+
+		<h2>Intro to Rails</h2>
+		
+<p>Rails is a web framework written in ruby. It is similar to Sinatra, except it does a lot more for you. Rails is great as it makes it possible to build serious web applications while you continue to learn about web development.</p>
+
+<p>A lot of your time as a new rails programmer will be spent figuring out how all the pieces fit together. It can seem daunting at first, however there are a huge number of excellent blog posts/tutorials/videos out there which will make your task much easier. In this session we will go through the steps involved setting up a new rails application and spend a bit of time looking around the application that is created.</p>
+
+<p>In this session we will be creating a Rails 4.0 application. Rails 4.0 is the latest version of rails and was released a few months ago. When looking at advice on the internet it’s important to be aware that some things have changed since Rails 3, and so some things may no longer apply.</p>
+
+<p>One of the nice things about rails is it does a lot of work for you. We’ll start by creating a new rails project using the <code>rails new</code> command:</p>
+
+<pre><code>$ rails new project_manager</code></pre>
+
+<p>This command has created a new folder called <code>project_manager</code> and filled it with the files for a basic rails application. As part of this it will have created a <code>Gemfile</code> to manage the dependencies and as the last step will run <code>bundle install</code> to download them all.</p>
+
+<p>Let’s have a quick look in this new folder:</p>
+
+<pre><code>$ cd project_manager
+$ ls -a
+.gitignore
+Gemfile
+Gemfile.lock
+README.rdoc
+Rakefile
+app
+bin
+config
+config.ru
+db
+lib
+log
+public
+test
+tmp
+vendor</code></pre>
+
+<p>You’ll notice a couple of files that you recognise from sinatra: <code>Gemfile</code>, <code>Gemfile.lock</code> and <code>config.ru</code>. Rails has also created a <code>.gitignore</code> file for you so that files that shouldn’t be placed in version control aren’t.</p>
+
+<p>Rails has also created a load of folders for you, mostly with other files and folders inside. We won’t worry about all of these at the moment, but will come back to them later on.</p>
+
+<p>We can run this skeleton application by starting the rails server (similar to <code>ruby app.rb</code> in Sinatra). To do this type</p>
+
+<pre><code>$ rails server</code></pre>
+
+<p>This will probably start rails running at <a href="http://localhost:3000">localhost:3000</a>. When you visit that link you’ll find a default rails page telling you some information about your new application.</p>
+
+<h3 id="generating_a_model"> Generating a model</h3>
+
+<p>Models are the ‘the things our system is about’. For our project manager application, one of the models we will be working with will be the <code>task</code> model. A user will create tasks, others will be able to see the tasks and then mark them as created when they’re done. We will create the files for the task by generating a scaffold:</p>
+
+<pre><code>$ rails generate scaffold task name:string due_date:date description:text project:string completed:boolean</code></pre>
+
+<p><code>rails generate scaffold</code> tells rails to set up everything to do with the <code>task</code> model that we’re creating (more on this later). The name of the thing that you’re creating (<code>task</code> in this case) should always be <strong>singular</strong>. The final part of the command <code>name:string due_date:date description:text</code> tells rails what attributes the model should have and what type they are. The possibilities for the types are:</p>
+
+<pre><code>:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp, :time, :date, :binary, :boolean</code></pre>
+
+<p>an up-to-date list of which can be found in the <a href="http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/TableDefinition.html#method-i-column">rails docs</a>.</p>
+
+<p>Among other things the <code>generate scaffold</code> command will have set up a <em>database migration</em> to set up the database table for tasks. As a final step we need to create that tale in the database:</p>
+
+<pre><code>$ rake db:migrate</code></pre>
+
+<p>Once you have <strong>restarted the server</strong> you should now be able to visit <a href="http://localhost:3000/tasks">localhost:3000/tasks</a> in the browser and create a task.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Before you start check that you’re running rails 4.0:</p>
+
+<pre><code> $ rails -v
+ Rails 4.0.0</code></pre>
+</li>
+
+<li>
+<p>In your <code>coding_course</code> folder set up a new rails application:</p>
+
+<pre><code> $ rails new project_manager</code></pre>
+</li>
+
+<li>
+<p>Move into the <code>project_manager</code> folder and set it up as a git repository:</p>
+
+<pre><code> $ cd project_manager
+ $ git init
+ $ git add --all
+ $ git commit -m &amp;quot;Initial import&amp;quot;</code></pre>
+</li>
+
+<li>
+<p>Generate scaffolding for a <code>task</code> model:</p>
+
+<pre><code> $ rails generate scaffold task name:string due_date:date description:text project:string completed:boolean</code></pre>
+</li>
+
+<li>
+<p>Migrate the database:</p>
+
+<pre><code> $ rake db:migrate</code></pre>
+</li>
+
+<li>
+<p>Restart the server and check you can add tasks at <a href='http://localhost:3000/tasks'>localhost:3000/tasks</a>.</p>
+</li>
+
+<li>
+<p>Add everything to git:</p>
+
+<pre><code> $ git add --all
+ $ git commit -m &amp;quot;Created tasks.&amp;quot;</code></pre>
+</li>
+
+<li>
+<p>Have a look in <code>app/controllers</code> and <code>app/views/tasks</code> and see if you can figure out what is going on.</p>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="3_mvc">
+	
+
+		<h2>Model/View/Controller</h2>
+		
+<p>Model/View/Controller (MVC) is an application architecture that rails is based on. It works as follows:</p>
+
+<ul>
+<li>The Controller deals with incoming web requests. It manages the interaction between the Models and renders the Views.</li>
+
+<li>The Models correspond to ‘business objects’. The Model layer is responsible for storing/retrieving the information in the database (among other things).</li>
+
+<li>The Views correspond to pages you send to the user. Views are responsible for displaying the data that the Controller has gathered from the Models on the page.</li>
+</ul>
+
+<p>For a far better expanation please see <a href="http://betterexplained.com/articles/intermediate-rails-understanding-models-views-and-controllers/">this post</a>.</p>
+
+<h3 id="controllers">Controllers</h3>
+
+<p>The tasks controller can be found in the file <code>app/controllers/tasks_controller.rb</code>. In that file there are several different methods, for example:</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># GET /tasks</span>
+<span class='c1'># GET /tasks.json</span>
+<span class='k'>def</span> <span class='nf'>index</span>
+  <span class='vi'>@tasks</span> <span class='o'>=</span> <span class='no'>Task</span><span class='o'>.</span><span class='n'>all</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>The comments tell you when this action will run. In the case above, it is when someone makes a <code>GET</code> request to <code>/tasks</code>. (How requests map to controllers is set up in <code>config/routes.rb</code> in this case with the line <code>resources :tasks</code>. You can find out more about request routing and <code>routes.rb</code> from the <a href="">rails routing docs</a>.) All the <code>index</code> action does is to use the <code>Task</code> model to pull all the existing tasks out of the database. Just like sinatra it will use the instance variable <code>@tasks</code> to share the information with a view. By default the view with the <strong>same name as the action</strong> will be run - in this case <code>views/tasks/index.html.erb</code>.</p>
+
+<p>Scaffolding a model with <code>rails generate scaffold</code> will create a controller with the following actions:</p>
+
+<ul>
+<li><code>index</code>: for listing all the tasks.</li>
+
+<li><code>show</code>: for seeing a single task on its own page.</li>
+
+<li><code>new</code>: for displaying a form to create a task.</li>
+
+<li><code>create</code>: for receiving the post request from the ‘new’ form and storing the new task in the database.</li>
+
+<li><code>edit</code>: for displaying a form to edit a task.</li>
+
+<li><code>update</code>: for receiving the post request from the ‘edit’ form and updating the task in the database.</li>
+
+<li><code>destroy</code>: for destroying the task and removing it from the database.</li>
+</ul>
+
+<p>These are known as <strong>CRUD</strong> actions, short for ‘create’, ‘read’, ‘update’ and ‘destroy’, and represent the common actions that are generally performed on models. Rails provides a <strong>RESTful interface</strong> to these actions, by mapping appropriate http requests to the controller through the configuration in <code>routes.rb</code>. You can find more out about this in the <a href="">rails routing docs</a> but, for now, it’s not really that important.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Read through all the actions in the <code>tasks_contoller.rb</code>.</li>
+
+<li>One-by-one try them out in your browser (e.g. by clicking on the ‘show’/’edit’/’destroy’ links on the <a href='http://localhost:3000/tasks'>localhost:3000/tasks</a> page)</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_views">
+	
+
+		<h2>Views</h2>
+		
+<p>Your app’s views can be found in <code>app/views</code>. You’ll notice that there are view files for most of the controller actions (all the ones that need them):</p>
+
+<pre><code>- app
+  + assets
+  + controllers
+  + helpers
+  + mailers
+  + models
+  - views
+    + layouts
+    + tasks
+      - _form.html.erb
+      - edit.html.erb
+      - show.html.erb
+      - new.html.erb
+      - index.html.erb</code></pre>
+
+<p>(There are also some <code>.json.jbundle</code> files. These are new in Rails 4.0. I think they’re for making your app accessible as a json api.) The <code>_form.html.erb</code> is a <em>partial</em> - a view that is shared by other views, which is why it begins with an underscore. <code>_form.html.erb</code> is used in both the <code>edit.html.erb</code> and <code>new.html.erb</code> views.</p>
+
+<h3 id="layouts">Layouts</h3>
+
+<p>Just like Sinatra, Rails allows you to use layout templates to reduce the amount of repetition in your <code>erb</code> files. Rails has even gone so far as to set one up for you. You can have a look at the layout in <code>app/views/layouts/application.html.erb</code>.</p>
+
+<p><code>app/views/layouts/application.html.erb</code> will be used by default by all the views in your application. It is possible to create other layout files (e.g. <code>admin.html.erb</code>) to use with certain views. You can find out more about doing this <a href="http://stackoverflow.com/questions/14356207/not-rendering-the-default-application-layout-in-rails-3">here</a>.</p>
+
+<p>I’m going to add <a href="">Twitter Bootstrap</a> to the rails app by linking the online version of the css to the top of <code>application.html.erb</code>:</p>
+<div class='highlight'><pre><code class='html'><span class='cp'>&lt;!DOCTYPE html&gt;</span>
+<span class='nt'>&lt;html&gt;</span>
+<span class='nt'>&lt;head&gt;</span>
+  <span class='nt'>&lt;title&gt;</span>ProjectManager<span class='nt'>&lt;/title&gt;</span>
+
+  !-- Latest compiled and minified CSS --&gt;
+  <span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&quot;stylesheet&quot;</span> <span class='na'>href=</span><span class='s'>&quot;//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css&quot;</span><span class='nt'>&gt;</span>
+
+  <span class='err'>&lt;</span>%= stylesheet_link_tag    &quot;application&quot;, media: &quot;all&quot;, &quot;data-turbolinks-track&quot; =&gt; true %&gt;
+  <span class='err'>&lt;</span>%= javascript_include_tag &quot;application&quot;, &quot;data-turbolinks-track&quot; =&gt; true %&gt;
+  <span class='err'>&lt;</span>%= csrf_meta_tags %&gt;
+<span class='nt'>&lt;/head&gt;</span>
+<span class='nt'>&lt;body&gt;</span>
+
+<span class='err'>&lt;</span>%= yield %&gt;
+
+<span class='nt'>&lt;/body&gt;</span>
+<span class='nt'>&lt;/html&gt;</span>
+</code></pre></div>
+<h3 id="where_to_put_css_and_images">Where to put CSS and Images</h3>
+
+<p>In Sinatra you had to put CSS and images in the <code>public</code> folder. Rails has a different way of dealing with these things: you need to put them in <code>app/assets/..</code>. This is to allow Rails to use <a href="http://sass-lang.com/">sass</a>: a special language that makes css easier to write and manage. You might want to investigate sass in the future, for now the important thing is that <strong>writing css in a sass file is fine</strong> - the css will be unchanged and behave as normal.</p>
+
+<p>Let’s write some custom CSS in <code>app/assets/css/application.css.scss</code>:</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/*</span>
+<span class='c'> * This is a manifest file that&#39;ll be compiled into application.css, which will include all the files</span>
+<span class='c'> * listed below.</span>
+<span class='c'> *</span>
+<span class='c'> * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,</span>
+<span class='c'> * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.</span>
+<span class='c'> *</span>
+<span class='c'> * You&#39;re free to add application-wide styles to this file and they&#39;ll appear at the top of the</span>
+<span class='c'> * compiled file, but it&#39;s generally better to create a new file per style scope.</span>
+<span class='c'> *</span>
+<span class='c'> *= require_self</span>
+<span class='c'> *= require_tree .</span>
+<span class='c'> */</span>
+
+<span class='nt'>h1</span> <span class='p'>{</span><span class='k'>color</span><span class='o'>:</span> <span class='nb'>red</span><span class='p'>;}</span>
+</code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Have a look through all the views in <code>app/views/tasks</code>. See if you can work out roughly what they do.</li>
+
+<li>Add Twitter Bootstrap to your site (by editing <code>app/views/layouts/application.html.erb</code> as above).</li>
+
+<li>See if you can change the <code>index.html.erb</code> view so that the table is a <a href='http://getbootstrap.com/css/#tables-striped'>Twitter Bootstrap striped table</a>.</li>
+
+<li>See if you can add a <a href='http://getbootstrap.com/components/#navbar'>Twitter Bootstrap navbar</a> to your site (in <code>layouts/application.html.erb</code>).</li>
+
+<li>Change the colour of the navbar, by adding some custom css to <code>app/assets/css/application.css.scss</code>.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="5_the_console">
+	
+
+		<h2>Rails console</h2>
+		
+<p>Rails provides its own special version of <code>irb</code> known as the <code>rails console</code>. It’s basically irb with your rails project already loaded, so that you can easily interact with the application and the database. You start the console at the command line (in your <code>project_manager</code> folder):</p>
+
+<pre><code>$ rails console</code></pre>
+
+<p>We’ll use the console to have a closer look at the <code>Task</code> model that was created via the <code>rails generate scaffold</code>.</p>
+
+<h3 id="models">Models</h3>
+
+<p>If you take a look at the file <code>app/models/task.rb</code> you’ll find the following:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>Task</span> <span class='o'>&lt;</span> <span class='no'>ActiveRecord</span><span class='o'>::</span><span class='no'>Base</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>The important bit here is the <code>&lt; ActiveRecord::Base</code>, which is saying that the class <em>inherits</em> from <code>ActiveRecord::Base</code>. <code>ActiveRecord</code> is a ruby library that allows you to access SQL, or relational, databases from ruby (whereas <code>mongoid</code> was for accessing the NoSQL, or document-based, database MongoDB). You’ll note that, unlike <code>mongoid</code> we don’t specify which fields the <code>Task</code> model has - <code>ActiveRecord</code> takes this information automatically from the database. <code>ActiveRecord</code> is similar to <code>mongoid</code> in terms to how you pull things out of the database:</p>
+<div class='highlight'><pre><code class='ruby'><span class='no'>Task</span><span class='o'>.</span><span class='n'>all</span>     <span class='c1'># to find all the tasks</span>
+
+<span class='c1'># create a new task (not yet in the database)</span>
+<span class='n'>t</span> <span class='o'>=</span> <span class='no'>Task</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='ss'>:name</span> <span class='o'>=&gt;</span> <span class='s2'>&quot;Washing up&quot;</span><span class='p'>,</span> <span class='ss'>:due_date</span> <span class='o'>=&gt;</span> <span class='s1'>&#39;14/8/2013&#39;</span><span class='p'>,</span> <span class='ss'>:project</span> <span class='o'>=&gt;</span> <span class='s1'>&#39;Housework&#39;</span><span class='p'>)</span>
+
+<span class='c1'># save the task to the database</span>
+<span class='n'>t</span><span class='o'>.</span><span class='n'>save</span>
+
+<span class='c1'># pull a task out of the database</span>
+<span class='n'>t2</span> <span class='o'>=</span> <span class='no'>Task</span><span class='o'>.</span><span class='n'>first</span>
+
+<span class='c1'># update an attribute</span>
+<span class='n'>t2</span><span class='o'>.</span><span class='n'>completed</span> <span class='o'>=</span> <span class='kp'>true</span>
+
+<span class='c1'># save the update to the database</span>
+<span class='n'>t2</span><span class='o'>.</span><span class='n'>save</span>
+</code></pre></div>
+<h3 id="adding_logic_to_the_model">Adding logic to the model</h3>
+
+<p>A useful question to be able to ask a <code>Task</code> would be whether it is overdue yet. It is easy to add this logic to the model in <code>app/models/task.rb</code>:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>Task</span> <span class='o'>&lt;</span> <span class='no'>ActiveRecord</span><span class='o'>::</span><span class='no'>Base</span>
+
+  <span class='k'>def</span> <span class='nf'>overdue?</span>
+    <span class='n'>due_date</span> <span class='o'>&lt;</span> <span class='no'>Date</span><span class='o'>.</span><span class='n'>today</span> <span class='o'>&amp;&amp;</span> <span class='o'>!</span><span class='n'>completed?</span>
+  <span class='k'>end</span>
+
+<span class='k'>end</span>
+</code></pre></div>
+<p>You can try this out in the rails console (but you need to reload the class to pick up the changes):</p>
+
+<pre><code>&gt; reload!
+&gt; t = Task.last
+&gt; t.overdue?</code></pre>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Open up <code>irb</code> and try working through the set of operations above to experiment with creating a new <code>Task</code> and saving it to the database via the rails console.</li>
+
+<li>Add the <code>overdue?</code> method to the <code>Task</code> model. Check you use the new method in <code>irb</code>.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="6_further_resources">
+	
+
+		<h2>Rails resources</h2>
+		
+<p>We are not going to do much more Rails in class, but I strongly recommend you use it for your project. I’m hoping that the stuff we’ve done with Sinatra will have given you enough of insight to be able to effectively discover rails for yourselves.</p>
+
+<p>One resource that you’ll definitely want to have a look at is <a href="http://railscasts.com">Railscasts</a>. For most things you’ll want to do in rails there’s a railscast telling you how to do it! They’re really clear and demonstrate exactly where to put stuff in your rails application. Even if you’re not trying to do anything in particular, watching a couple of railscasts is a great way to passively discover more about how rails works. Here are a few you might want to start with:</p>
+
+<ul>
+<li>http://railscasts.com/episodes/417-foundation: an overview of a Twitter Bootstrap - like framework called Foundation.</li>
+
+<li>http://railscasts.com/episodes/310-getting-started-with-rails: advice on how to get started with rails.</li>
+
+<li>http://railscasts.com/episodes/360-facebook-authentication: how to integrate facebook log-in into your app.</li>
+
+<li>http://railscasts.com/episodes/209-introducing-devise: how to easily provide a log-in to your site, using <a href="https://github.com/plataformatec/devise">Devise</a> (this is how you should do authentication!) [Warning: old but probably still relevant].</li>
+
+<li>http://railscasts.com/episodes/328-twitter-bootstrap-basics: a ruby gem to make adding Twitter Bootstrap to your app easier.</li>
+</ul>
+
+<p><a href="http://railsapps.github.io/twitter-bootstrap-rails.html">RailsApps</a> is a great site with many nice tutorials. There’s also the <a href="http://learn-rails.com/">learn rails book</a> which <strong>you can currently get for free</strong>, provided you’re willing to give feedback. If you’re using this book I’d recommend starting with Chapters 9 and then 14 (and then flicking back and forth as necessary). It’s well worth working through - it guides you through a mail list signup and management application, including integration with MailChimp.</p>
+
+<p>There’s also the <a href="http://ruby.railstutorial.org/ruby-on-rails-tutorial-book">Rails Tutorial book</a> by Michael Hartl, which gives a thorough and up-to-date tutorial for building a rails app.</p>
+
+<p>Finally, as will all web things, Google is probably your most useful resource for answering most questions!</p>
+
+	</div>
 
 </div>
 
