@@ -19,9 +19,9 @@ Now we will look at some slightly more interesting things you can do with HTML.
 
 * The doctype tells you what sort of html you're using (html5, html4 ...). With html5 it's simple - you just write `html`.
 * Everything is wrapped in an `<html> ... </html>` tag
+* Things within the `<head> .. </head>` are used to provide information about the page
 * Only things within the `<body> ... </body>` tags are displayed on the page 
-* Things within the `<head> .. </head>` are used to provide more information about the page
-* .. for exmple the thing within `<title> ... </title>` will be displayed in the browser bar
+* ... for example the text within `<title> ... </title>` will be displayed in the browser bar
 
 ### Headings
 
@@ -31,7 +31,7 @@ Now we will look at some slightly more interesting things you can do with HTML.
 <h3>Lower level heading</h3>
 {% endhighlight %}
 
-* There are six levels of heading `h1` .. `h6`
+* There are six levels of heading `h1` ... `h6`
 * The higher numbers are more important
 * It's usual to only have one `h1` on a page
 * You rarely see anything below `h4` in real pages
@@ -82,8 +82,8 @@ Now we will look at some slightly more interesting things you can do with HTML.
     * absolute external link e.g. "http://www.facebook.com"
     * absolute local link e.g. "/about". This links to a file relative to the root of your webserver. For example if your site is at `www.example.com` the link will point to `www.example.com/about`
     * relative local link e.g. "about". This links to a file relative to the current html document. In this case it will link to the file called `about` in the same folder as your current html file.
-* You can also link to places in the same document using `href="#my_tag"`. This 
-* You can get the link to open in a new tag like this: `<a href="http://www.facebook.com" target="_blank">`
+* You can also link to places in the same document using `href="#my_tag"`. More on this later.
+* You can get the link to open in a new tab like this: `<a href="http://www.facebook.com" target="_blank">`
 
 ### Images
 
