@@ -10,9 +10,9 @@ layout: default
 <ul class="nav nav-tabs" id="myTab">
 	{% for task in page.tasks %}
 		{% if forloop.first %}
-		<li class="active"><a href="#{{ task.name }}" data-toggle="tab">{{ task.title }} </a></li>
+		<li class="active"><a href="#{{ task.basename }}" data-toggle="tab">{{ task.title }} </a></li>
 		{% else %}
-		<li><a href="#{{ task.name }}" data-toggle="tab">{{ task.title }} </a></li>
+		<li><a href="#{{ task.basename }}" data-toggle="tab">{{ task.title }} </a></li>
 		{% endif %}
 	{% endfor %}
 </ul>
@@ -20,9 +20,9 @@ layout: default
 <div class="tab-content">
 {% for task in page.tasks %}
 	{% if forloop.first %}
-	<div class="tab-pane active" id="{{ task.name }}">
+	<div class="tab-pane active" id="{{ task.basename }}">
 	{% else %}
-	<div class="tab-pane " id="{{ task.name }}">
+	<div class="tab-pane " id="{{ task.basename }}">
 	{% endif %}
 
 		<h2>{{ task.title }}</h2>

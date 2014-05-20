@@ -79,7 +79,7 @@ module Jekyll
       self.process(@name) # separates into @basename and @ext
       self.read_yaml(File.join(base,'_sessions', dir), name)
 
-      self.data['name'] = @basename
+      self.data['basename'] = @basename
       
       # self.data['title'] = "#{category_title_prefix}#{category}" # should have title already
     end
