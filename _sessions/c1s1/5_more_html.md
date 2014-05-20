@@ -1,17 +1,7 @@
 ---
 title: More HTML
 ---
-
-{% exercise %}  
-1. Go to the github repository for this session: [https://github.com/code61/learning_html](https://github.com/code61/learning_html)  
-2. *Clone* the repository down into your `coding_course` folder (by clicking 'Clone in Desktop' in the bottom right).  
-3. Open the whole folder in Sublime Text  
-4. Open the file `example.html` in Chrome and look around with the developer tools  
-5. Open the file `notes.html` in Sublime Text.  
-6. Change `notes.html` into valid html so that it looks like `notes_solution.jpg`
-{% endexercise %}
-
-A few things to look out for
+Now we will look at some slightly more interesting things you can do with HTML. 
 
 ### HTML file layout
 
@@ -131,3 +121,14 @@ A few things to look out for
 </table>
 
 {% endhighlight %}
+
+Now you will use these ideas to create a richer web page.
+
+{% exercise %}  
+1. Go to the github repository for this session: [https://github.com/code61/learning_html](https://github.com/code61/learning_html)  
+2. *Clone* the repository down into your `coding_course` folder (by clicking 'Clone in Desktop' in the bottom right).  
+3. Open the whole folder in Sublime Text  
+4. Open the file `example.html` in Chrome and look around with the developer tools  
+5. Open the file `notes.html` in Sublime Text.  
+6. Change `notes.html` into valid html so that it looks like `notes_solution.jpg`
+{% endexercise %}
