@@ -51,8 +51,7 @@ Several browsers also provide developer tools, which allow you to *interactively
 There are a few features of the Chrome developer tools that it is worth pointing out now.
 
 
-{% exercise %}
-
+{% exercise %}  
 1. Open this page in Google Chrome  
 2. View the page source by doing one of the following:
     * View > Developer > View Source
