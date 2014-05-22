@@ -12,7 +12,7 @@ else
 end
 {% endhighlight %}
 
-It the above snippet of code the `||` means or. If the person is under 12 or is smaller than 1.2m they are allowed on the ride.
+In the above snippet of code, the `||` means OR. If the person is under 12 or is smaller than 1.2m they are allowed on the ride.
 
 ### Logical operations
 
