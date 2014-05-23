@@ -38,7 +38,7 @@ h = Hash[zipped]  #=> {1 => 'one', 2 => 'two', 3 => 'three'}
 
 h1 = Hash['a', 1, 'b', 2, 'c', 3]
 
-h2 = Hash[['a',1],['b',2],['c',3]]
+h2 = Hash[[['a',1],['b',2],['c',3]]]
 
 
 # Converting to arrays (and back?)
