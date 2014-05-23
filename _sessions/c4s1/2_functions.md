@@ -37,5 +37,5 @@ In the example above the function takes a single *parameter* (in this case the f
 7. Close `irb` and run the tests we've provided for the function by running `rspec spec/first_name_spec.rb`.
 8. Now try and write the body of the `last_name` function. Follow the same procedure of trying in irb, then running the test `rspec spec/last_name_spec.rb`.
 9. (Ext) Improve your `last_name` function, so that it can cope with composite last names (treating everything after the first name as the last name). Test your solution by running `rspec spec/ext_last_name_spec.rb`
-10. (Ext) Work through the functions in `date.rb`. Test your solutions running the tests in files `spec/month_spec.rb`, `spec/last_digit_spec.rb`, `spec/penultimate_digit_spec.rb`, `spec/ordinal_suffix_spec.rb` and `spec/date_in_words_spec.rb`.
+10. (Ext) Work through the functions in `dates.rb`. Test your solutions running the tests in files `spec/month_spec.rb`, `spec/last_digit_spec.rb`, `spec/penultimate_digit_spec.rb`, `spec/ordinal_suffix_spec.rb` and `spec/date_in_words_spec.rb`.
 {% endexercise %}
