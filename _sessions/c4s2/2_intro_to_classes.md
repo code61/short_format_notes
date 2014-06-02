@@ -45,7 +45,7 @@ There are a few things to note here:
 * Instance variables (beginning with `@`) are used to hold the attributes of the object e.g. `@radius`. Instance variables can be used inside any of the class's methods.
 
 {% exercise %}
-1. Clone down the code for the session: [https://github.com/tomclose/exercises_c4s2](https://github.com/tomclose/exercises_c4s2)
+1. Clone down the code for the session: [https://github.com/code61/exercises_c4s2.git](https://github.com/code61/exercises_c4s2.git)
 2. Run `bundle install` to grab the required gems.
 1. Have a look at `circle.rb` in sublime text:
     - load it into irb: `load './circle.rb'`
