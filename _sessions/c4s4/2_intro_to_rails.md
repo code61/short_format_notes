@@ -51,7 +51,7 @@ Models are the 'the things our system is about'. For our project manager applica
 
     $ rails generate scaffold task name:string due_date:date description:text project:string completed:boolean
 
-`rails generate scaffold` tells rails to set up everything to do with the `task` model that we're creating (more on this later). The name of the thing that you're creating (`task` in this case) should always be **singular**. The final part of the command `name:string due_date:date description:text` tells rails what attributes the model should have and what type they are. The possibilities for the types are:
+The `rails generate scaffold` command tells rails to set up everything to do with the `task` model that we're creating (more on this later). The name of the thing that you're creating (`task` in this case) should always be **singular**. The final part of the command `name:string due_date:date description:text` tells rails what attributes the model should have and what type they are. The possibilities for the types are:
 
     :primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp, :time, :date, :binary, :boolean
 
