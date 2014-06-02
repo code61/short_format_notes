@@ -79,7 +79,7 @@ Once you have **restarted the server** you should now be able to visit [localhos
         $ cd project_manager
         $ git init
         $ git add --all
-        $ git commit -m "Initial import"
+        $ git commit -m 'Initial import'
 
 3. Generate scaffolding for a `task` model:
 
@@ -93,7 +93,7 @@ Once you have **restarted the server** you should now be able to visit [localhos
 6. Add everything to git:
 
         $ git add --all
-        $ git commit -m "Created tasks."
+        $ git commit -m 'Created tasks'
 
 7. Have a look in `app/controllers` and `app/views/tasks` and see if you can figure out what is going on.
 {% endexercise %}
