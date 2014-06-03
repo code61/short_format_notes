@@ -10,7 +10,7 @@ Ruby really shot to fame around 2005, due to the Ruby on Rails web framework. Ru
 
 In this course, we'll be leaning the basics of ruby, in a web development context. We won't be using ruby on rails, instead focussing on a simpler framework (called sinatra), which will give you a better understanding of what's going on behind the scenes and allow you to be far more productive with rails, when you come onto it later.
 
-## Iteractive ruby: irb
+## Interactive ruby: irb
 
 Ruby is an _interpreted language_. One of the great things about an interpreted language is that it's often possible to interact with the interpreter in real time. When you installed ruby, you also got a program called `irb` (interactive ruby), which allows you to interpret ruby on the command line. To start it you just type `irb` on the command line.
 
