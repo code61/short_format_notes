@@ -1,5 +1,5 @@
 ---
-title: GitHub
+title: GitHub account
 ---
 
 Git is a program that helps with the management of code. It means that you completely avoid the situation where you end up with files called `team_contacts_v1`, `team_contacts_v2` etc. It also allows you to share your code with others and collaborate on code in an efficient way.

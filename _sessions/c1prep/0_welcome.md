@@ -17,7 +17,7 @@ That does mean that there's a bit of setting up that you will need to do to be r
 The tabs on the left hand side will take you through installing the software you'll need for the course. Instructions are given in blue boxes.
 
 {% exercise %}
-The blue boxes tell you what you need to do. Read them carefully!
+The blue boxes tell you what you need to do!
 {% endexercise %}
 
-If you have any problems, please email your course instructor!
+If you have any problems, please contact the tech team!
