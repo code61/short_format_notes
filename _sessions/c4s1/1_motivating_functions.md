@@ -49,5 +49,5 @@ A nicer way to write this code would be to use `first_name` and `last_name` func
 1. Clone down the sinatra app for this session: [https://github.com/code61/sinatra_c4s1](https://github.com/code61/sinatra_c4s1).
 2. Install the required libraries: `cd sinatra_c4s1` and then `bundle install`.
 2. Familiarise yourself with the app, by looking through the code and running the app from the command line (`ruby app.rb`).
-3. See if you can identify other places where logic could be cleaned up.
+3. See if you can identify other places where the logic could be cleaned up.
 {% endexercise %}

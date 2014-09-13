@@ -10,9 +10,7 @@ We recommend that you fork the [code61 repository](https://github.com/code61/sho
 
 The notes use the [jekyll](http://jekyllrb.com/) static site generator. You can will need to install this dependency before building the notes locally:
 
-    gem install bundler
-    bundle install
-    rbenv rehash  # only if you're using rbenv
+    gem install jekyll
 
 Once you have jekyll installed you can build and view the notes by running:
 

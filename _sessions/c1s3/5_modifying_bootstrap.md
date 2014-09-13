@@ -9,10 +9,8 @@ title: Modifying Bootstrap
 If you're going to modify Bootstrap **don't touch the Bootstrap files**. Instead create a new css file of your own to overwrite anything you don't want. This means when a new version of Bootstrap comes out you can upgrade by dragging the new version over the top of the old, without losing any modifications.
 
 
-{% exercise %}
-<ol markdown="1">
-<li markdown="1">
-Create a file called `main.css` and write the following CSS:
+{% exercise %}  
+1. Create a file called `main.css` and write the following CSS:
 {% highlight css %}
 #social-buttons button {
   color: white;
@@ -21,25 +19,17 @@ Create a file called `main.css` and write the following CSS:
   background-color: #00acee;
   border-color: #009ad5;
 }
-
 .btn-facebook {
   background-color: #4868ac;
   border-color: #314776;
 }
-
 .btn-pinterest {
   background-color: #b62f26;
   border-color: #b62f26;
 }
 {% endhighlight %}
-</li>
-<li markdown="1">
-Link this file into the `head` of `index.html` **underneath your link to bootstrap**.
-</li>
-<li markdown="1">
-What happens? Notice how in the first rule we've selected only those buttons that exist inside an element with `id=social-buttons`.
-</li>
-</ol>
+2. Link this file into the `head` of `index.html` **underneath your link to bootstrap**.  
+3. What happens? Notice how in the first rule we've selected only those buttons that exist inside an element with `id=social-buttons`.
 {% endexercise %}
 
 ### Changing the background

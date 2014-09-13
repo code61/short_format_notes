@@ -36,7 +36,7 @@ class Athlete
   field :events,  type: Array
 
   def total_medals
-    bronze + silver + bronze
+    gold + silver + bronze
   end
 end
 {% endhighlight %}

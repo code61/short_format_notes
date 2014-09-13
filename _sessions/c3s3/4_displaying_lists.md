@@ -45,9 +45,9 @@ You can also use the same technique to generate tables and other html (lists of 
 
 {% exercise %}
 1. **Fork, then clone** the code for this exercise [https://github.com/code61/sinatra_c3s3](https://github.com/code61/sinatra_c3s3).
-2. Add the code to the body of `todo.erb`, so that the `@todos` display as an ordered list.
+2. Add code to the body of `todo.erb`, so that the `@todos` display as an ordered list.
 3. Add, commit and push your code to Github.
-3. Add the code to the body of `schedule.erb`, so that the items in the `@schedule` display as rows in a table. Note that `@schedule` is an *array of arrays* - you'll need to iterate over the first array, and within the loop use the normal ways of accessing elements of an array pull out the items.
+3. Add code to the body of `schedule.erb`, so that the items in the `@schedule` display as rows in a table. Note that `@schedule` is an *array of arrays* - you'll need to iterate over the first array, and within the loop use the normal ways of accessing elements of an array pull out the items.
 3. Add, commit and push your code to Github.
 4. Take a look at the `get '/rsvps'` block. Try the `CSV.read` bit in irb, to see what it does. Have a go at writing the code to categorise rsvps into acceptances/rejections and count them.
 5. Update the `rsvps.erb` view, so that the right information is displayed.

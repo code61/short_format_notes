@@ -23,7 +23,7 @@ Each computer on the internet has an address (an _IP address_) so that requests 
 
 IP addresses are a sequence of numbers and '.'s such as `212.58.244.67`. These aren't very easy to remember. Instead the internet works on a domain name system, that matches domain names such as `bbc.co.uk` to IP addresses. 
 
-{% exercise %}
+{% exercise %}  
 Type `212.58.244.67` into your browser's address bar. What happens?
 {% endexercise %}
 

@@ -65,10 +65,11 @@ The `Mongoid.load!` line is the one which uses the sinatra environment to decide
 If you use the `mongoid.yml` from above, you'll be pretty much ready to go on Heroku. The only thing you'll need to do is to add the [MongoHQ Add-on](https://devcenter.heroku.com/articles/mongohq). You can do this by logging into Heroku.
 
 {% exercise %}
-1. Modify the application so that the 'oldest' link displays the 20 oldest athletes.
-2. Make changes so that the 'youngest' link displays the 20 youngest athletes.
-3. Add at least 2 more stats pages of your choosing.
-4. (Optional) Return to `sinatra_c3s4`. Set your app up with mongoid, so that when people sign up it stores their names and emails. You will need to:
+1. Run app.rb and take a look at the site in your browser. 
+2. Modify the application so that the 'oldest' link displays the 20 oldest athletes.
+3. Make changes so that the 'youngest' link displays the 20 youngest athletes.
+4. Add at least 2 more stats pages of your choosing.
+5. (Optional) Return to `sinatra_c3s4`. Set your app up with mongoid, so that when people sign up it stores their names and emails. You will need to:
     * Follow the steps above to add mongoid to the sinatra app.
     * Create a mongoid-enabled `User` class, to store the data.
     * Add a `/list` route for admins to see the list of people who've signed up.
