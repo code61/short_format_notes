@@ -4,14 +4,20 @@ title: Meet the Command Line
 
 The command line is a way to interact with your computer programmatically. If you are doing any software development you will need to get to grips with using the command line, as many of the programs you will use will be run from the it, instead of by clicking an icon.
 
+### Opening the command line
+
+* On a Mac open Terminal (Applications > Terminal)
+* On Windowns open Command Prompt with Ruby on Rails
+
+
+### Moving around
+
 Note: when giving you instructions for the command line we will precede them with a `$` to represent the command prompt e.g.
 
     $ some_command
 
 **You shouldn't type the `$` sign - just the stuff after it.** So for the above instruction you would just type `some_command` into the command line.
 
-
-### Moving around
 
 The first thing you will need to get used to is moving around. Start by printing the name of the directory you are in:
 
