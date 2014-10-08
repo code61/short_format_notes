@@ -47,7 +47,9 @@ h3 {
 Note that you can specify multiple properties on one element. When you do this it's nice to lay them out on multiple lines as done above.
 
 {% exercise %}
-2. Open `exercise1.html` in Sublime Text and in Chrome.
-3. Add some css in the `head` to make the `h1` turn red.
-5. Continue with the exercise until `exercise1.html` looks like `exercise1_solution.png`.
+<ol>
+<li>Open `exercise1.html` in Sublime Text and in Chrome.</li>
+<li>Add some css in the `head` to make the `h1` turn red.</li>
+<li>Continue with the exercise until `exercise1.html` looks like `exercise1_solution.png`.</li>
+</ol>
 {% endexercise %}

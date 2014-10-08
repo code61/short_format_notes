@@ -71,7 +71,10 @@ The aim of the rest of this session will be to create the website for ["Sam's Sa
 
 <ol markdown="1">
 <li markdown="1">
-Clone down the repository for the bootstrap exercise: [https://github.com/code61/bootstrap_exercise.git](https://github.com/code61/bootstrap_exercise.git)
+Clone down the repository for the [bootstrap exercise](https://github.com/code61/bootstrap_exercise.git) **into your coding_course folder**:
+
+    git clone https://github.com/code61/bootstrap_exercise.git
+
 </li>
 <li markdown="1">
 Open `bootstrap_exercise/index.html` in your browser.
