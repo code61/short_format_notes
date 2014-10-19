@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Further Web Programming with Ruby 3</title>
+  <title>Further Web Programming with Ruby</title>
 
   
 
@@ -33,7 +33,7 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Further Web Programming with Ruby 3 <small>Intro to MongoDB</small></h1>
+	<a href ="/contents/"><img src="/assets/code61_logo_66x66.png" ></a><h1>Further Web Programming with Ruby <small>Intro to MongoDB</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
@@ -48,11 +48,15 @@
 		
 	
 		
-		<li><a href="#3_mongo_with_sinatra" data-toggle="tab">Mongo with sinatra </a></li>
+		<li><a href="#3_Exercise_answers" data-toggle="tab">Exercise answers </a></li>
 		
 	
 		
-		<li><a href="#4_homework" data-toggle="tab">Homework </a></li>
+		<li><a href="#4_mongo_with_sinatra" data-toggle="tab">Mongo with sinatra </a></li>
+		
+	
+		
+		<li><a href="#5_homework" data-toggle="tab">Homework </a></li>
 		
 	
 </ul>
@@ -99,7 +103,7 @@
   <span class='n'>field</span> <span class='ss'>:events</span><span class='p'>,</span>  <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>Array</span>
 
   <span class='k'>def</span> <span class='nf'>total_medals</span>
-    <span class='n'>bronze</span> <span class='o'>+</span> <span class='n'>silver</span> <span class='o'>+</span> <span class='n'>bronze</span>
+    <span class='n'>gold</span> <span class='o'>+</span> <span class='n'>silver</span> <span class='o'>+</span> <span class='n'>bronze</span>
   <span class='k'>end</span>
 <span class='k'>end</span>
 </code></pre></div>
@@ -155,7 +159,7 @@
 
 <li>Open up <code>irb</code>.</li>
 
-<li>Type <code>require './utils'</code> (this loads in the <code>Athlete</code> class and sets up your MongoDB connection).</li>
+<li>Type <code>require &amp;#39;./utils&amp;#39;</code> (this loads in the <code>Athlete</code> class and sets up your MongoDB connection).</li>
 
 <li>Try the following</li>
 </ol>
@@ -247,7 +251,7 @@
 <span class='no'>Athlete</span><span class='o'>.</span><span class='n'>order_by</span><span class='p'>(</span><span class='ss'>:age</span><span class='o'>.</span><span class='n'>asc</span><span class='p'>)</span><span class='o'>.</span><span class='n'>limit</span><span class='p'>(</span><span class='mi'>10</span><span class='p'>)</span><span class='o'>.</span><span class='n'>to_a</span>
 </code></pre></div><div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Open <code>irb</code> and do <code>require './utils'</code>.</li>
+<li>Open <code>irb</code> and do <code>require &amp;#39;./utils&amp;#39;</code>.</li>
 
 <li>Call the function <code>load_athletes</code>. This loads in all the athletes from London 2012.</li>
 
@@ -275,7 +279,74 @@
 	</div>
 
 	
-	<div class="tab-pane " id="3_mongo_with_sinatra">
+	<div class="tab-pane " id="3_Exercise_answers">
+	
+
+		<h2>Exercise answers</h2>
+		
+<pre><code>1. How many athletes were there?
+2. How many women? How many men?
+3. Who was the oldest athlete?
+4. Who was the youngest?
+4. How many people won at least 1 gold?
+5. What was the average age? (Your answer should have decimal places..)
+6. Who got the most golds?
+7. Who was the 10th oldest athlete?</code></pre>
+<div class='highlight'><pre><code class='ruby'><span class='no'>Athlete</span><span class='o'>.</span><span class='n'>count</span>
+<span class='c1'>#=&gt; 10384 </span>
+
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:sex</span><span class='o'>=&gt;</span><span class='s2'>&quot;M&quot;</span><span class='p'>)</span><span class='o'>.</span><span class='n'>count</span>
+<span class='c1'>#=&gt; 5756 </span>
+
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:sex</span><span class='o'>=&gt;</span><span class='s2'>&quot;F&quot;</span><span class='p'>)</span><span class='o'>.</span><span class='n'>count</span>
+<span class='c1'>#=&gt; 4628 </span>
+
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>order_by</span><span class='p'>(</span><span class='ss'>:age</span><span class='o'>.</span><span class='n'>desc</span><span class='p'>)</span><span class='o'>.</span><span class='n'>first</span><span class='o'>.</span><span class='n'>name</span>
+<span class='c1'>#=&gt; &quot;Hiroshi Hoketsu&quot; </span>
+
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>order_by</span><span class='p'>(</span><span class='ss'>:age</span><span class='o'>.</span><span class='n'>desc</span><span class='p'>)</span><span class='o'>.</span><span class='n'>last</span><span class='o'>.</span><span class='n'>name</span>
+<span class='c1'>#=&gt; &quot;Adzo Kpossi&quot; </span>
+
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='ss'>:gold</span><span class='o'>.</span><span class='n'>gt</span> <span class='o'>=&gt;</span> <span class='mi'>0</span><span class='p'>)</span><span class='o'>.</span><span class='n'>count</span>
+<span class='c1'>#=&gt; 162 </span>
+ 
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>sum</span><span class='p'>(</span><span class='ss'>:age</span><span class='p'>)</span><span class='o'>/</span><span class='no'>Athlete</span><span class='o'>.</span><span class='n'>count</span><span class='o'>.</span><span class='n'>to_f</span>
+<span class='c1'>#=&gt; 26.06885593220339</span>
+
+<span class='no'>Athlete</span><span class='o'>.</span><span class='n'>order_by</span><span class='p'>(</span><span class='ss'>:gold</span><span class='o'>.</span><span class='n'>desc</span><span class='p'>)</span><span class='o'>.</span><span class='n'>limit</span><span class='p'>(</span><span class='mi'>11</span><span class='p'>)</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>a</span><span class='o'>|</span>
+   <span class='nb'>puts</span> <span class='n'>a</span><span class='o'>.</span><span class='n'>name</span>
+   <span class='nb'>puts</span> <span class='n'>a</span><span class='o'>.</span><span class='n'>gold</span>
+<span class='k'>end</span>
+<span class='c1'>#=&gt;Yannick Agnel</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Bo Bae Ki</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Elisa Di Francisca</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Gabrielle Douglas</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Missy Franklin</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Michael Jung</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Ryan Lochte</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Michael Phelps</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Allison Schmitt</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Dana Vollmer</span>
+<span class='c1'>#=&gt;2</span>
+<span class='c1'>#=&gt;Shiwen Ye</span>
+<span class='c1'>#=&gt;2</span>
+
+ <span class='no'>Athlete</span><span class='o'>.</span><span class='n'>order_by</span><span class='p'>(</span><span class='ss'>:age</span><span class='o'>.</span><span class='n'>desc</span><span class='p'>)</span><span class='o'>[</span><span class='mi'>9</span><span class='o'>].</span><span class='n'>name</span>
+ <span class='o'>=&gt;</span> <span class='s2'>&quot;Irada Ashumova&quot;</span> 
+</code></pre></div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_mongo_with_sinatra">
 	
 
 		<h2>Mongo with sinatra</h2>
@@ -285,7 +356,7 @@
 <p>To get sinatra to work with Mongoid you will need to do the following things:</p>
 
 <ol>
-<li>Add <code>gem 'mongoid'</code> to your Gemfile (and <code>bundle install</code>).</li>
+<li>Add <code>gem &#39;mongoid&#39;</code> to your Gemfile (and <code>bundle install</code>).</li>
 
 <li>Create a <code>mongoid.yml</code> file with your Mongoid settings (see below).</li>
 
@@ -340,9 +411,11 @@
 <p>If you use the <code>mongoid.yml</code> from above, you’ll be pretty much ready to go on Heroku. The only thing you’ll need to do is to add the <a href="https://devcenter.heroku.com/articles/mongohq">MongoHQ Add-on</a>. You can do this by logging into Heroku.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Modify the application so that the ‘oldest’ link displays the 20 oldest athletes.</li>
+<li>Run app.rb and take a look at the site in your browser.</li>
 
-<li>Make changes so that the ‘youngest’ link displays the 20 youngest athletes.</li>
+<li>Modify the application so that the &#39;oldest&#39; link displays the 20 oldest athletes.</li>
+
+<li>Make changes so that the &#39;youngest&#39; link displays the 20 youngest athletes.</li>
 
 <li>Add at least 2 more stats pages of your choosing.</li>
 
@@ -352,7 +425,7 @@
 
 <li>Create a mongoid-enabled <code>User</code> class, to store the data.</li>
 
-<li>Add a <code>/list</code> route for admins to see the list of people who’ve signed up.</li>
+<li>Add a <code>/list</code> route for admins to see the list of people who&#39;ve signed up.</li>
 
 <li>Push it to heroku.</li>
 
@@ -364,7 +437,7 @@
 	</div>
 
 	
-	<div class="tab-pane " id="4_homework">
+	<div class="tab-pane " id="5_homework">
 	
 
 		<h2>Homework</h2>
@@ -372,7 +445,7 @@
 <ol>
 <li>Finish off any exercises from class.</li>
 
-<li>Finish off anything you haven’t done from the <a href='http://www.codecademy.com/tracks/ruby'>Codecademy Ruby track</a>!</li>
+<li>Finish off anything you haven&#39;t done from the <a href='http://www.codecademy.com/tracks/ruby'>Codecademy Ruby track</a>!</li>
 </ol>
 </div>
 	</div>

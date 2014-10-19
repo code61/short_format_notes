@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Web Fundamentals 2</title>
+  <title>Web Fundamentals 1</title>
 
   
 
@@ -33,30 +33,30 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Web Fundamentals 2 <small>Git and CSS</small></h1>
+	<a href ="/contents/"><img src="/assets/code61_logo_66x66.png" ></a><h1>Web Fundamentals 1 <small>Git and CSS</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#1_using_git" data-toggle="tab">Intro to Git </a></li>
+		<li class="active"><a href="#1_recap" data-toggle="tab">Recap from last time </a></li>
 		
 	
 		
-		<li><a href="#2_pushing_to_github" data-toggle="tab">Pushing code to Github </a></li>
+		<li><a href="#2_css" data-toggle="tab">CSS </a></li>
 		
 	
 		
-		<li><a href="#3_css" data-toggle="tab">CSS </a></li>
+		<li><a href="#3_selectors" data-toggle="tab">Selectors and Attributes </a></li>
 		
 	
 		
-		<li><a href="#4_selectors" data-toggle="tab">Selectors and Attributes </a></li>
+		<li><a href="#4_separate_css_file" data-toggle="tab">External stylesheets </a></li>
 		
 	
 		
-		<li><a href="#5_separate_css_file" data-toggle="tab">External stylesheets </a></li>
+		<li><a href="#5_push_to_github" data-toggle="tab">Pushing to GitHub </a></li>
 		
 	
 		
@@ -68,250 +68,51 @@
 <div class="tab-content">
 
 	
-	<div class="tab-pane active" id="1_using_git">
+	<div class="tab-pane active" id="1_recap">
 	
 
-		<h2>Intro to Git</h2>
+		<h2>Recap from last time</h2>
 		
-<p>Git is a version control system. It allows you to keep the entire history of your code, and makes it easy to share and collaborate with others.</p>
-
-<p>To use git you need to create a <strong>Git repository</strong>. You can think of a git repository like this:</p>
-
-<p><img src="/assets/basic_git.png" alt="Basic git" /></p>
+<h3 id="htmlcss">HTML/CSS</h3>
 
 <ul>
-<li>A repository contains lots of <strong>commits</strong>. Each commit is essentially a different version of your files.</li>
+<li>Webpage is just a collection of files: HTML, CSS &amp; Javascript.</li>
 
-<li>Commits can be organised into <strong>branches</strong>. A repository can contain many different branches. Branches are often used to develop new application features - that way the main codebase still works while the feature is being developed, and the new code can be <em>merged</em> in when it’s working.</li>
+<li>We can edit these files locally.</li>
 
-<li>Branches have names, so you can keep track of them. When you first set up a repository, you’ll just have one branch and it will have the default name - <strong>master</strong>.</li>
+<li>We can create them locally (using a text editor) and view then in a browser.</li>
 </ul>
 
-<h3 id="what_does_a_git_repository_look_like">What does a git repository look like?</h3>
+<h3 id="command_line">Command line</h3>
 
-<p>On your laptop, a git repository is just a <strong>special type of folder</strong>. Any folder can be made into a git repository (but not all folders should - e.g. don’t make your entire documents directory into a git repository, you’ll run into problems). You’ll normally make a new git repository for each coding project you work on.</p>
+<ul>
+<li><code>ls</code> - list the files in the current directory</li>
 
-<p>If you look inside the folder, you won’t see all the different versions stored there (they are actually there - just stored inside a hidden folder called <code>.git</code>) - you’ll only see the files that are in your <strong>working copy</strong>. Normally this working copy will contain the files from the last commit on the master branch, along with any changes you’ve made.</p>
+<li><code>cd coding_course</code> - move into the ‘coding_course’ directory</li>
 
-<h3 id="making_a_commit">Making a commit</h3>
-
-<p>To save some changes into the repository you need to create a commit. When you create a commit you get to write a message, to help remind yourself (and others) what changes you made (and why you made them). Once you’ve created a commit, you’ll be able to come back to this version of your code at any point in the future.</p>
-
-<p>Adding files to a git repository is actually a two-stage process: first you have to <strong>add</strong> them to something called the <strong>index</strong> and then you have to <strong>commit</strong> them. This is useful when you get more advanced, but we’ll usually do those things together for the time being.</p>
-
-<p><img src="/assets/index_working_tree.png" alt="Index and working tree" /></p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
+<li><code>cd ..</code> - move up a level</li>
+</ul>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
 <ol>
-<li>Set up your <code>first_site</code> folder as a git repository.</li>
-
-<li><strong>Add</strong> your work to the index.</li>
-
-<li><strong>Commit</strong> your work to the repository, with a message e.g. &quot;Initial import&quot;</li>
-
-<li>Make some change to index.html (in Sublime Text)</li>
-
-<li><strong>Add</strong> your changes to the index.</li>
-
-<li><strong>Commit</strong> them to the repository.</li>
+ <li>Open the command line ('Terminal' on a mac, 'Command prompt with Ruby on Rails' on windows)</li>
+ <li>Use cd and ls to navigate to your coding_course folder.</li>
 </ol>
 </div>
-<h3 id="git_with_sourcetree">Git with SourceTree</h3>
-
-<h4 id="creating_a_git_repository">Creating a git repository</h4>
-
+<h3 id="something_new">Something new</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
 <ol>
-<li>Open SourceTree</li>
-
-<li>Select File &gt; New / Clone</li>
-
-<li>Select the ‘New’ option</li>
-
-<li>Navigate to the folder you want to make into a git repository.</li>
+  <li>Make sure you're in your coding_course folder.</li>
+  <li>Do an ls.</li>
+  <li>Type git clone https://github.com/code61/html2.git</li>
+  <li>Do an ls.</li>
 </ol>
-
-<h4 id="adding_to_the_index">Adding to the index</h4>
-
-<ol>
-<li>Select all the files in the working tree section.</li>
-
-<li>Click the “Add” button at the top.</li>
-
-<li>You should see the files move to the ‘Index’ section</li>
-</ol>
-
-<h4 id="committing_to_the_repository">Committing to the repository</h4>
-
-<ol>
-<li>Once you have files in your ‘Index’ section, click on ‘Commit’.</li>
-
-<li>Write a commit message explain what you’ve done (and maybe why).</li>
-
-<li>Click “Commit”</li>
-</ol>
-
-<h3 id="git_with_the_command_line">Git with the command line</h3>
-
-<h4 id="creating_a_git_repository_2">Creating a git repository</h4>
-
-<ol>
-<li>
-<p>Using the command line, navigate to the folder you want to make into a repository.</p>
-</li>
-
-<li>
-<p><strong>Inside the target folder</strong> run the command</p>
-
-<pre><code> git init</code></pre>
-</li>
-
-<li>
-<p>To check this worked run the command</p>
-
-<pre><code> git status</code></pre>
-</li>
-</ol>
-
-<h4 id="adding_to_the_index_2">Adding to the index</h4>
-
-<ol>
-<li>
-<p>Inside the folder, run the command</p>
-
-<pre><code> git add --all</code></pre>
-</li>
-
-<li>
-<p>To check this worked run the command</p>
-
-<pre><code> git status</code></pre>
-</li>
-</ol>
-
-<h4 id="committing_to_the_repository_2">Committing to the repository</h4>
-
-<ol>
-<li>
-<p>Inside the folder, run the command</p>
-
-<pre><code> git commit -m &quot;write your message here&quot;</code></pre>
-</li>
-
-<li>
-<p>To check this worked run the command</p>
-
-<pre><code> git status</code></pre>
-</li>
-</ol>
+</div>
+<p>You just used git to get the code for the next exercise onto your laptop!</p>
 
 	</div>
 
 	
-	<div class="tab-pane " id="2_pushing_to_github">
-	
-
-		<h2>Pushing code to Github</h2>
-		
-<p>Github is a site which will host a git repo online for you, making it easy to collaborate with others. We’ll now see how to put some code online.</p>
-
-<h3 id="aside_serving_a_site_via_github_pages">Aside: serving a site via Github Pages</h3>
-
-<p>Normally when we push code up to github, it just sits there for others to see and contribute to. The code we’re about to push up happens to be the code for a website. Instead of the files just sitting there, we want github to <em>serve</em> them as a website. The way github does this is through its <a href="http://pages.github.com/">github pages</a>.</p>
-
-<p>There are several ways of getting GitHub to publish your site as a GitHub page. We’re going to use a simple trick: in the branches panel of the GitHub app, change the name of the current branch from <code>master</code> to <code>gh-pages</code>.</p>
-<div class='alert alert-warning'>If you haven't verified your email with github (you'll see a warning at the top of the screen when you log in). Your GitHub won't serve your page at all. Make sure you've verified you email address, before continuing!</div>
-<h3 id="pushing_code_up_to_github">Pushing code up to github</h3>
-
-<p>Go to github, login, and click “Create New Repo” in the top left hand corner.</p>
-
-<p><img src="/assets/create_repo.png" alt="Creating a repo on GitHub" /></p>
-
-<p>Follow the instructions, calling it something like <code>first_site</code>. <strong>Do not</strong> click the box which says ‘Create a readme with this repository’. You’ll get to a page when it’ll describe how to get your code online. You want to follow the instructions for “Pushing an existing repository to github”.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Log in to GitHub and check you’ve verified your email address.</li>
-
-<li>Change the name of your master branch to ‘gh-pages’.</li>
-
-<li>On github create a new repository called ‘first_site’.</li>
-
-<li>Push your code up to github.</li>
-
-<li>On Github check you can see your <code>first_site</code> code.</li>
-
-<li>On the code page on github, click on Settings. It should tell you (about half way down) the url where they’ve published your site. Have a look to see whether you can see it!</li>
-
-<li>(If you finish early) Make a change to <code>index.html</code> in Sublime Text. Add and commit the change to the repository and then push it to GitHub. Make sure you can see the change in the code on GitHub and also in the published page.</li>
-</ol>
-</div>
-<h3 id="git_with_source_tree">Git with source tree</h3>
-
-<h4 id="change_the_branch_name_to_ghpages">Change the branch name to ‘gh-pages’</h4>
-
-<ol>
-<li>Go to the branches section on the right hand side.</li>
-
-<li>Right-click on the name and select ‘rename’.</li>
-</ol>
-
-<h4 id="pushing_to_github_for_the_first_time">Pushing to github for the first time</h4>
-
-<ol>
-<li>In the ‘Repository’ menu, click ‘Add remote’.</li>
-
-<li>Copy the git url (from the bottom right) on github, and copy it into the source tree ‘URL/path’ box.</li>
-</ol>
-
-<h4 id="pushing_for_a_second_time">Pushing for a second time</h4>
-
-<h3 id="git_with_the_command_line">Git with the command line</h3>
-
-<h4 id="change_the_branch_name_to_ghpages_2">Change the branch name to ‘gh-pages’</h4>
-
-<ol>
-<li>
-<p>Using the command line, navigate to the repository folder.</p>
-</li>
-
-<li>
-<p>Run the command:</p>
-
-<pre><code> git branch -m gh-pages</code></pre>
-</li>
-
-<li>
-<p>To check this worked, run the command:</p>
-
-<pre><code> git branch -a</code></pre>
-</li>
-</ol>
-
-<h4 id="pushing_to_github_for_the_first_time_2"> Pushing to github for the first time</h4>
-
-<p>We’re assiming here that you’ve just created your repository and are on the github new repository screen.</p>
-
-<p><img src="/assets/push_repo_github.png" alt="Push repo to GitHub" /></p>
-
-<p>If you’ve set up ssh keys, go for the ssh option, if not, go for https. You should end up doing something like:</p>
-
-<pre><code>$ git remote add origin git@github.com/yourusername/first_site.git
-$ git push -u origin master</code></pre>
-
-<p>You might now be prompted to add your github username and password (if you’re doing the https method). If all goes well, when you go to github you should see the <code>first_site</code> folder containing your html file.</p>
-
-<h4 id="pushing_to_github_for_a_second_time">Pushing to github for a second time</h4>
-
-<ol>
-<li>
-<p>In the repository folder, run the command</p>
-
-<pre><code> git push</code></pre>
-</li>
-</ol>
-
-	</div>
-
-	
-	<div class="tab-pane " id="3_css">
+	<div class="tab-pane " id="2_css">
 	
 
 		<h2>CSS</h2>
@@ -357,21 +158,17 @@ $ git push -u origin master</code></pre>
 <span class='p'>}</span>
 </code></pre></div>
 <p>Note that you can specify multiple properties on one element. When you do this it’s nice to lay them out on multiple lines as done above.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
 <ol>
-<li>Use git to clone the repo for this part of the session: <a href='https://github.com/code61/html2'>https://github.com/code61/html2</a>.</li>
-
-<li>Open <code>exercise1.html</code> in Sublime Text and in Chrome.</li>
-
-<li>Add some css in the <code>head</code> to make the <code>h1</code> turn red.</li>
-
-<li>Continue with the exercise until <code>exercise1.html</code> looks like <code>exercise1_solution.png</code>.</li>
+<li>Open `exercise1.html` in Sublime Text and in Chrome.</li>
+<li>Add some css in the `head` to make the `h1` turn red.</li>
+<li>Continue with the exercise until `exercise1.html` looks like `exercise1_solution.png`.</li>
 </ol>
 </div>
 	</div>
 
 	
-	<div class="tab-pane " id="4_selectors">
+	<div class="tab-pane " id="3_selectors">
 	
 
 		<h2>Selectors and Attributes</h2>
@@ -442,7 +239,7 @@ $ git push -u origin master</code></pre>
 	</div>
 
 	
-	<div class="tab-pane " id="5_separate_css_file">
+	<div class="tab-pane " id="4_separate_css_file">
 	
 
 		<h2>External stylesheets</h2>
@@ -559,85 +356,128 @@ $ git push -u origin master</code></pre>
 	</div>
 
 	
+	<div class="tab-pane " id="5_push_to_github">
+	
+
+		<h2>Pushing to GitHub</h2>
+		
+<p>Git is a version control system. It allows you to keep the entire history of your code, and makes it easy to share and collaborate with others.</p>
+
+<h3 id="using_git">Using git</h3>
+
+<p>Using git is really easy:</p>
+
+<ol>
+<li>Set up a folder to be a <em>git repo</em>. This tells git to track all changes in that folder.</li>
+
+<li>After you’ve made some changes, save them into the repository.</li>
+
+<li>Once you’ve saved the changes push them up to github.</li>
+</ol>
+
+<p>The first point is important: <em>git works on a folder level</em>. It tracks all the changes you make to files within a given folder.</p>
+
+<h3 id="actually_using_git">Actually using git</h3>
+
+<p>Actually using git is a bit harder. It’s a very powerful tool and pretty complex to get started with. To make things simpler, we’re going to use a tool called <code>gitgit</code>.</p>
+
+<p>To install gitgit open the command line and type the following:</p>
+
+<pre><code>gem install gitgit</code></pre>
+
+<p>To see if this worked, type</p>
+
+<pre><code>gitgit</code></pre>
+
+<p>You should see a list of gitgit commands something like this:</p>
+
+<pre><code>$ gitgit
+Commands:
+  gitgit help [COMMAND]  # Describe available commands or one specific command
+  gitgit init            # Initialise a git repo
+  gitgit lg              # Show your recent saves
+  gitgit push            # Push your changes to github
+  gitgit save            # Save you changes to the repo
+  gitgit status          # See what changes you&#39;ve made since you last save</code></pre>
+
+<p>If it didn’t work, you might need to do</p>
+
+<pre><code>sudo gem install gitgit</code></pre>
+
+<p>and type your password.</p>
+
+<p>You also might need to do</p>
+
+<pre><code>rbenv rehash</code></pre>
+
+<p>If in doubt contact a teaching assistant!</p>
+
+<h3 id="using_gitgit">Using gitgit</h3>
+
+<p>To <strong>make a folder into a git repository</strong>:</p>
+
+<pre><code>gitgit init</code></pre>
+
+<p>then follow the instructions. You’ll only need to do this once for each folder you want to make into a repository.</p>
+
+<p>After you’ve made some changes to your files and saved them, you can <strong>save them into your repo</strong> by typing:</p>
+
+<pre><code>gitgit save</code></pre>
+
+<p>Finally, to push your code up to github you can do</p>
+
+<pre><code>gitgit push</code></pre>
+
+<p>Before you do this, you will need to setup your repo with github.</p>
+
+<h3 id="setting_up_your_repo_with_github">Setting up your repo with github</h3>
+
+<p>Go to github, login, and click “Create New Repo” in the top left hand corner.</p>
+
+<p><img src="/assets/create_repo.png" alt="Creating a repo on GitHub" /></p>
+
+<p>Follow the instructions, calling it something like <code>first_site</code>. <strong>Do not</strong> click the box which says ‘Create a readme with this repository’. You’ll get to a page when it’ll describe how to get your code online. You want to follow the instructions for “Pushing an existing repository to github”.</p>
+
+<h3 id="pushing_your_code_to_github">Pushing your code to github</h3>
+
+<p>We will now set up your <code>first_site</code> folder to use git and push it up to github.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+<ol>
+<li>Navigate to your first_site folder using cd and ls.</li>
+<li>Make it into a git repo: "gitgit init"</li>
+<li>Save all the work you've done so far: "gitgit save"</li>
+<li>Log in to GitHub.</li>
+<li>On github create a new repository called 'first_site'. DO NOT click the box which says 'Create a readme'.</li>
+<li>Copy and paste the instructions it gives you into the command line. You are 'Pushing an existing repository to github'.</li>
+<li>Go back to github and refresh the page. You should see your code.</li>
+</ol>
+</div>
+	</div>
+
+	
 	<div class="tab-pane " id="6_homework">
 	
 
 		<h2>Homework</h2>
 		
 <h3 id="finishing_off">Finishing off</h3>
-<div class='exercise alert alert-info'><strong>Task:</strong>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
 <p>Finish off both CSS exercises from class. Check your solutions online:</p>
 
 <ul>
-<li>Find the HTML2 repository on Code61’s github page.</li>
-
-<li>In the <code>branch</code> dropdown (just above the list of files) select the <code>solution</code> branch.</li>
-
+<li>Find the HTML2 repository on Code61's github page.</li>
+<li>In the `branch` dropdown (just above the list of files) select the `solution` branch.</li>
 <li>Click on the files below to see the solution</li>
 </ul>
 </div>
 <h3 id="more_htmlcss">More HTML/CSS</h3>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Complete the whole of Project 3 on the <a href='https://dash.generalassemb.ly/projects'>General Assembly Dash</a> site.</li>
-
-<li>Make some changes to your <code>first_site</code> based on what you’ve learnt. Make sure you add them to git, push them to github and check you can see them online.</li>
-
-<li>(Optional) Do the projects from the <a href='http://www.codecademy.com/tracks/web'>Codecademy Web Track</a> Sections 7, 8 &amp; 9.</li>
-
-<li>(Optional) Read <a href='https://www.inkling.com/read/dreamweaver-cs6-missing-manual-david-sawyer-mcfarland-1st/chapter-4/understanding-links'>this article</a> about absolute vs. relative links.</li>
-</ol>
-</div>
-<h3 id="get_your_domain_name_to_point_to_your_github_page">Get your domain name to point to your GitHub Page</h3>
-
-<p>The point of this exercise is to set up your domain name to point towards your new GitHub pages site.</p>
-
-<p>As GitHub hosts many different pages at their IP address, it isn’t quite as simple as pointing your domain address towards that IP address. There are two things you need to do to get your domain name working with your GitHub pages site:</p>
-
-<ol>
-<li>Tell your domain registrar (e.g 123-reg or godaddy) to point your domain name towards GitHub’s IP address.</li>
-
-<li>Tell GitHub that requests to your domain name should come to your site.</li>
-</ol>
-
-<p>Github explains this <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">here</a>.</p>
-
-<h5 id="pointing_your_domain_name_towards_github">Pointing your domain name towards GitHub</h5>
-
-<p>For the first bit you need to log in to your domain registrar and change the DNS settings. You want an <em>A-record</em> pointing to <code>204.232.175.78</code> (which is github.com). Note that it can take up to a couple of days for DNS changes to propagate.</p>
-
-<p>If you’re using 123-reg, your should log in, select your domain from the list, and click “Manage”. You should then go to “Manage DNS”.</p>
-
-<p><img src="/assets/dns_settings.png" alt="123-reg DNS Settings" /></p>
-
-<p>(The @ dns entry stands for the root or bare domain.)</p>
 <div class='exercise alert alert-info'><strong>Task:</strong> 
-
-<p>Log in to your domain registrar and set an A-record to point towards GitHub.</p>
-
-</div>
-<p>Your changes won’t take effect immediately.</p>
-
-<h5 id="tell_github_to_expect_requests_for_your_domain_name">Tell github to expect requests for your domain name</h5>
-<div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>
-<p>Open Sublime Text and create a new file.</p>
-</li>
-
-<li>
-<p>Write your domain name on the first line of the new file e.g:</p>
-
-<pre><code>  mydomain.com</code></pre>
-</li>
-
-<li>
-<p>Save that file as <code>CNAME</code> (uppercase, with no extension) in your <code>first_site</code> folder</p>
-</li>
-
-<li>
-<p>Commit your change and then push to github.</p>
-</li>
+<li>Complete the whole of Project 3 on the [General Assembly Dash](https://dash.generalassemb.ly/projects) site.</li>
+<li>Make some changes to your `first_site` based on what you've learnt. Make sure you add them to git, push them to github and check you can see them online.</li>
+<li>(Optional) Do the projects from the [Codecademy Web Track](http://www.codecademy.com/tracks/web) Sections 7, 8 &amp; 9.</li>
+<li>(Optional) Read [this article](https://www.inkling.com/read/dreamweaver-cs6-missing-manual-david-sawyer-mcfarland-1st/chapter-4/understanding-links) about absolute vs. relative links.</li>
 </ol>
 </div>
 	</div>

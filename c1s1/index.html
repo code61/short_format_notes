@@ -33,14 +33,18 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Web Fundamentals 1 <small>Getting going</small></h1>
+	<a href ="/contents/"><img src="/assets/code61_logo_66x66.png" ></a><h1>Web Fundamentals 1 <small>Getting going</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#1_what_is_a_webpage" data-toggle="tab">What is a web page? </a></li>
+		<li class="active"><a href="#0_overview" data-toggle="tab">Course Overview </a></li>
+		
+	
+		
+		<li><a href="#1_what_is_a_webpage" data-toggle="tab">What is a web page? </a></li>
 		
 	
 		
@@ -52,15 +56,19 @@
 		
 	
 		
-		<li><a href="#6_first_page" data-toggle="tab">Creating an HTML page </a></li>
+		<li><a href="#4_command_line" data-toggle="tab">Meet the Command Line </a></li>
 		
 	
 		
-		<li><a href="#7_more_html" data-toggle="tab">More HTML </a></li>
+		<li><a href="#4_first_page" data-toggle="tab">Creating an HTML page </a></li>
 		
 	
 		
-		<li><a href="#8_homework" data-toggle="tab">Homework </a></li>
+		<li><a href="#5_more_html" data-toggle="tab">More HTML </a></li>
+		
+	
+		
+		<li><a href="#6_homework" data-toggle="tab">Homework </a></li>
 		
 	
 </ul>
@@ -68,7 +76,45 @@
 <div class="tab-content">
 
 	
-	<div class="tab-pane active" id="1_what_is_a_webpage">
+	<div class="tab-pane active" id="0_overview">
+	
+
+		<h2>Course Overview</h2>
+		
+<h3 id="who_is_this_course_for">Who is this course for?</h3>
+
+<ul>
+<li>You want to start a start-up and be your own technical cofounder</li>
+
+<li>You want to have your own blog and understand how it works</li>
+
+<li>You want to have the foundations to teach yourself more</li>
+</ul>
+
+<h3 id="what_will_we_learn"> What will we learn</h3>
+
+<ul>
+<li>How to inspect and learn from other sites</li>
+
+<li>How to put up a webpage</li>
+
+<li>Basic skills and tools that will be useful for any coding you do</li>
+</ul>
+
+<p>Hope you will become curious about how the internet works and will look at websites in a different way.</p>
+
+<p>It’s worth pointing out that this is <em>not</em> the easiest way to put up a website. There are many site builders/blogging platforms which will allow you to put up a website quickly and easily in a point-and-click manner (eg. <a href="http://www.weebly.com/">weebly</a> or <a href="http://wordpress.com/">wordpress</a>). The focus of this course is learning the basics of how and why things work and to provide the basis to build upon in future courses.</p>
+
+<h3 id="how_to_study"> How to study</h3>
+
+<p>The hardest thing about learning to program is knowing where to start and what to learn. The course aims to provide a basic overview of the technologies used, along with the tools and resources to discover more. We do not aim to cover anything in great depth or comprehensive detail.</p>
+
+<p>The lectures will be as hands-on and practical as possible. Each week there will be a number of tasks to do in between the sessions to reinforce what you have learnt. It’s up to you whether you do the tasks or not, but the more you put in the more you will get out!</p>
+
+	</div>
+
+	
+	<div class="tab-pane " id="1_what_is_a_webpage">
 	
 
 		<h2>What is a web page?</h2>
@@ -111,7 +157,7 @@
 
 <h4 id="viewing_html_css_and_js">Viewing HTML, CSS and js</h4>
 
-<p>Because the HTML, CSS and js are sent you your browser, it is easy for you to look at them. <strong>There are no secrets in HTML, CSS or js.</strong> If there’s a part of a webpage that you like, it’s easy to find out how it is coded and use the technique yourself.</p>
+<p>Because the HTML, CSS and js are sent to your browser, it is easy for you to look at them. <strong>There are no secrets in HTML, CSS or js.</strong> If there’s a part of a webpage that you like, it’s easy to find out how it is coded and use the technique yourself.</p>
 
 <p>Every browser provides a way to look at the source of the page you’re currently viewing. In Chrome you do <code>View &gt; Developer &gt; View Source</code>. This will show you the raw HTML but isn’t always the easiest thing to look at.</p>
 
@@ -246,9 +292,9 @@
 <h3 id="dns">DNS</h3>
 
 <p>IP addresses are a sequence of numbers and ‘.’s such as <code>212.58.244.67</code>. These aren’t very easy to remember. Instead the internet works on a domain name system, that matches domain names such as <code>bbc.co.uk</code> to IP addresses.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
+<div class='exercise alert alert-info'><strong>Task:</strong>   
 
-<p>Type <code>212.58.244.67</code> into your browser’s address bar. What happens?</p>
+<p>Type <code>212.58.244.67</code> into your browser&#39;s address bar. What happens?</p>
 
 </div>
 <p>One of the first things that happens when you type a URL into your browser is a <em>DNS lookup</em>: your computer contacts a DNS server (<em>Domain Name System server</em>), which is basically a massive address book of IP addresses. The DNS server converts the domain name from the URL (e.g. <code>bbc.co.uk</code>) into an address for a server (such as <code>212.57.244.67</code>).</p>
@@ -272,12 +318,122 @@
 	</div>
 
 	
-	<div class="tab-pane " id="6_first_page">
+	<div class="tab-pane " id="4_command_line">
+	
+
+		<h2>Meet the Command Line</h2>
+		
+<p>The command line is a way to interact with your computer programmatically. If you are doing any software development you will need to get to grips with using the command line, as many of the programs you will use will be run from the it, instead of by clicking an icon.</p>
+
+<h3 id="opening_the_command_line">Opening the command line</h3>
+
+<ul>
+<li>On a Mac open Terminal (Applications &gt; Terminal)</li>
+
+<li>On Windowns open Command Prompt with Ruby on Rails</li>
+</ul>
+
+<h3 id="moving_around">Moving around</h3>
+
+<p>Note: when giving you instructions for the command line we will precede them with a <code>$</code> to represent the command prompt e.g.</p>
+
+<pre><code>$ some_command</code></pre>
+
+<p><strong>You shouldn’t type the <code>$</code> sign - just the stuff after it.</strong> So for the above instruction you would just type <code>some_command</code> into the command line.</p>
+
+<p>The first thing you will need to get used to is moving around. Start by printing the name of the directory you are in:</p>
+
+<pre><code>$ pwd</code></pre>
+
+<p>Then have a look at what’s in that directory ( <em>list</em> the contents):</p>
+
+<pre><code>$ ls</code></pre>
+
+<p>To move up a directory ( <em>change directory</em> ) do</p>
+
+<pre><code>$ cd ..</code></pre>
+
+<p>To move back into the folder you just left do</p>
+
+<pre><code>$ cd name_of_the_folder</code></pre>
+
+<p>Your commandline will help you: <kbd>tab</kbd> can often be used to auto-complete names of files, the up arrow can be used to cycle through previous commands that you have typed.</p>
+
+<h3 id="creating_a_directory">Creating a directory</h3>
+
+<p>You can do a lot more on the command line than just move around. We’ll be using the command line a lot over the course. For the time being we just need to create a folder:</p>
+
+<pre><code>$ mkdir coding_course</code></pre>
+
+<p>Note: choosing names without spaces makes command line navigation easier.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Open your command line:</p>
+
+<ul>
+<li>On a Mac open Terminal (Applications &gt; Terminal)</li>
+
+<li>On Windowns open Command Prompt with Ruby on Rails</li>
+</ul>
+</li>
+
+<li>
+<p>Find out where you are:</p>
+
+<pre><code> $ pwd</code></pre>
+</li>
+
+<li>
+<p>See what is in the same folder:</p>
+
+<pre><code> $ ls</code></pre>
+</li>
+
+<li>
+<p>If you are on a Mac move into <code>Documents</code>:</p>
+
+<pre><code> $ cd Documents</code></pre>
+</li>
+
+<li>
+<p>Create the folder for the coding course:</p>
+
+<pre><code> $ mkdir coding_course</code></pre>
+</li>
+
+<li>
+<p>Move into that folder:</p>
+
+<pre><code> $ cd coding_course</code></pre>
+</li>
+
+<li>
+<p>Move back up to the folder above</p>
+
+<pre><code> $ cd ..</code></pre>
+</li>
+
+<li>
+<p>Move back into the coding course folder. This time don&#39;t type out coding_course - just type out the first few letters and hit <code>Tab</code>:</p>
+
+<pre><code>$ cd coding_course</code></pre>
+</li>
+
+<li>
+<p>In the Finder (Mac) or My Computer (Windows) find the folder that you just created.</p>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_first_page">
 	
 
 		<h2>Creating an HTML page</h2>
 		
-<p>One of the nice things about HTML is you don’t need a lot to test it out on your laptop: all you need is a text editor and a web browser.</p>
+<p>One of the nice things about HTML is you don’t need any fancy software to test it out on your laptop: all you need is a text editor and a web browser.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
 <li>Inside your <code>coding_course</code> folder create another folder called <code>first_site</code>.</li>
@@ -299,44 +455,33 @@
 </div>
 <h3 id="why_indexhtml">Why index.html?</h3>
 
-<p>In the old days of the web, navigating a website was a lot more like moving around the folder system on your laptop. You’d go to a base site and there would just be a list of the files and folders available: an index. Because of this <code>index.html</code> is still the default file that a server will serve when you navigate to a folder in the web browser.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
+<p>In the old days of the web, navigating a website was a lot more like moving around the folder system on your laptop. You would go to a base site and there would just be a list of the files and folders available: an index. Because of this <code>index.html</code> is still the default file that a server will serve when you navigate to a folder in the web browser.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Go back to 'index.html' in Sublime Text.</li>
-<li> Change the text to
+<li>Go back to &#39;index.html&#39; in Sublime Text.</li>
 
+<li>Change the text to</li>
+</ol>
 <div class='highlight'><pre><code class='html'><span class='nt'>&lt;h1&gt;</span>Hello<span class='nt'>&lt;/h1&gt;</span>
 </code></pre></div>
 
-</li>
-<li>Go back to 'index.html' in Chrome and refresh the page (Cmd-R)</li>
+
+<ol>
+<li>Go back to &#39;index.html&#39; in Chrome and refresh the page (Cmd-R)</li>
 </ol>
+
 </div>
-<p>This is your first real html tag. It has an open and a close. It tells it to be a heading.</p>
+<p>This is your first line of HTML. It has an open tag and a close tag. They tell your browser to display the text in-between as a heading.</p>
 
 	</div>
 
 	
-	<div class="tab-pane " id="7_more_html">
+	<div class="tab-pane " id="5_more_html">
 	
 
 		<h2>More HTML</h2>
-		<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Go to the github repository for this session: <a href='https://github.com/code61/learning_html'>https://github.com/code61/learning_html</a></li>
-
-<li><em>Clone</em> the repository down into your <code>coding_course</code> folder (by clicking ‘Clone in Desktop’ in the bottom right).</li>
-
-<li>Open the whole folder in Sublime Text</li>
-
-<li>Open the file <code>example.html</code> in Chrome and look around with the developer tools</li>
-
-<li>Open the file <code>notes.html</code> in Sublime Text.</li>
-
-<li>Change <code>notes.html</code> into valid html so that it looks like <code>notes_solution.jpg</code></li>
-</ol>
-</div>
-<p>A few things to look out for</p>
+		
+<p>Now we will look at some slightly more interesting things you can do with HTML.</p>
 
 <h3 id="html_file_layout">HTML file layout</h3>
 <div class='highlight'><pre><code class='html'><span class='cp'>&lt;!DOCTYPE html&gt;</span>
@@ -354,11 +499,11 @@
 
 <li>Everything is wrapped in an <code>&lt;html&gt; ... &lt;/html&gt;</code> tag</li>
 
+<li>Things within the <code>&lt;head&gt; .. &lt;/head&gt;</code> are used to provide information about the page</li>
+
 <li>Only things within the <code>&lt;body&gt; ... &lt;/body&gt;</code> tags are displayed on the page</li>
 
-<li>Things within the <code>&lt;head&gt; .. &lt;/head&gt;</code> are used to provide more information about the page</li>
-
-<li>.. for exmple the thing within <code>&lt;title&gt; ... &lt;/title&gt;</code> will be displayed in the browser bar</li>
+<li>… for example the text within <code>&lt;title&gt; ... &lt;/title&gt;</code> will be displayed in the browser bar</li>
 </ul>
 
 <h3 id="headings">Headings</h3>
@@ -367,7 +512,7 @@
 <span class='nt'>&lt;h3&gt;</span>Lower level heading<span class='nt'>&lt;/h3&gt;</span>
 </code></pre></div>
 <ul>
-<li>There are six levels of heading <code>h1</code> .. <code>h6</code></li>
+<li>There are six levels of heading <code>h1</code> … <code>h6</code></li>
 
 <li>The higher numbers are more important</li>
 
@@ -420,7 +565,7 @@
 <ul>
 <li>The <code>href</code> property tells you where the link will point</li>
 
-<li>You can specify this link it different ways:
+<li>You can specify this link in different ways:
 <ul>
 <li>absolute external link e.g. “http://www.facebook.com”</li>
 
@@ -430,9 +575,9 @@
 </ul>
 </li>
 
-<li>You can also link to places in the same document using <code>href=&quot;#my_tag&quot;</code>. This</li>
+<li>You can also link to places in the same document using <code>href=&quot;#my_tag&quot;</code>. More on this later.</li>
 
-<li>You can get the link to open in a new tag like this: <code>&lt;a href=&quot;http://www.facebook.com&quot; target=&quot;_blank&quot;&gt;</code></li>
+<li>You can get the link to open in a new tab like this: <code>&lt;a href=&quot;http://www.facebook.com&quot; target=&quot;_blank&quot;&gt;</code></li>
 </ul>
 
 <h3 id="images">Images</h3>
@@ -468,10 +613,26 @@
     <span class='nt'>&lt;/tbody&gt;</span>
 <span class='nt'>&lt;/table&gt;</span>
 </code></pre></div>
+<p>Now you will use these ideas to create a richer web page.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Go to the github repository for this session: <a href='https://github.com/code61/learning_html'>https://github.com/code61/learning_html</a></li>
+
+<li>Download the code into your <code>coding_course</code> folder (by clicking &#39;Download ZIP&#39; in the bottom right).</li>
+
+<li>Open the whole folder in Sublime Text</li>
+
+<li>Open the file <code>example.html</code> in Chrome and look around with the developer tools</li>
+
+<li>Open the file <code>notes.html</code> in Sublime Text.</li>
+
+<li>Change <code>notes.html</code> into valid html so that it looks like <code>notes_solution.jpg</code></li>
+</ol>
+</div>
 	</div>
 
 	
-	<div class="tab-pane " id="8_homework">
+	<div class="tab-pane " id="6_homework">
 	
 
 		<h2>Homework</h2>
@@ -515,7 +676,7 @@
 <h3 id="make_a_start_on_your_own_site">Make a start on your own site</h3>
 <div class='exercise alert alert-info'><strong>Task:</strong> 
 
-<p>Use what you’ve learnt from the HTML exercise and the Dash projects to improve your <code>first_site/index.html</code>. Maybe add some content about yourself. Don’t worry if it doesn’t look great yet - we’ll be working on it more in the next few weeks. Just make sure it says something more than ‘Hello’!</p>
+<p>Use what you&#39;ve learnt from the HTML exercise and the Dash projects to improve your <code>first_site/index.html</code>. Maybe add some content about yourself. Don&#39;t worry if it doesn&#39;t look great yet - we&#39;ll be working on it more in the next few weeks. Just make sure it says something more than &#39;Hello&#39;!</p>
 
 </div>
 	</div>

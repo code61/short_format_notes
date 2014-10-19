@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Web Programming with Ruby 4</title>
+  <title>Introduction to Ruby</title>
 
   
 
@@ -33,7 +33,7 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Web Programming with Ruby 4 <small>Hashes and sending emails</small></h1>
+	<a href ="/contents/"><img src="/assets/code61_logo_66x66.png" ></a><h1>Introduction to Ruby <small>Hashes and sending emails</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
@@ -65,6 +65,10 @@
 	
 		
 		<li><a href="#8_hash_array_conversion" data-toggle="tab">(Ext) Arrays and back </a></li>
+		
+	
+		
+		<li><a href="#9_hash_array_conversion_solution" data-toggle="tab">(Ext) Exercise summary </a></li>
 		
 	
 </ul>
@@ -100,7 +104,7 @@
 <ul>
 <li>You write a <code>Hash</code> using the curly brackets <code>{ }</code>.</li>
 
-<li>Each element of the hash has a key e.g. <code>'name'</code> and a value e.g. <code>'Bart'</code>.</li>
+<li>Each element of the hash has a key e.g. <code>&#39;name&#39;</code> and a value e.g. <code>&#39;Bart&#39;</code>.</li>
 
 <li>When you write the hash you put the keys and values using the <code>=&gt;</code> symbol: <code>key =&gt; value</code>.</li>
 
@@ -110,7 +114,7 @@
 <ol>
 <li>With your partner work through the expressions below. See if you can guess what each expression will do, then test by pasting into irb.</li>
 
-<li>If you finish early, have a look at the ‘Arrays and back’ extension tab.</li>
+<li>If you finish early, have a look at the &#39;Arrays and back&#39; extension tab.</li>
 </ol>
 <div class='highlight'><pre><code class='ruby'><span class='n'>h</span> <span class='o'>=</span> <span class='p'>{</span><span class='s1'>&#39;one&#39;</span> <span class='o'>=&gt;</span> <span class='mi'>1</span><span class='p'>,</span> <span class='s1'>&#39;two&#39;</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>,</span> <span class='s1'>&#39;three&#39;</span> <span class='o'>=&gt;</span> <span class='mi'>3</span><span class='p'>}</span>
 
@@ -215,7 +219,7 @@
 <span class='n'>h</span> <span class='c1'>#=&gt; {&#39;one&#39; =&gt; 1.0, &#39;two&#39; =&gt; 2, &#39;three&#39; =&gt; 3, &#39;five&#39; =&gt; 5}</span>
 </code></pre></div>
 <ul>
-<li>You access an element via its key: <code>h['one']</code></li>
+<li>You access an element via its key: <code>h[&#39;one&#39;]</code></li>
 
 <li>If the key isn’t in the hash this will give <code>nil</code></li>
 
@@ -380,7 +384,7 @@
 </li>
 
 <li>
-<p>In irb type <code>require 'pony'</code>, then copy and paste in your updated options.</p>
+<p>In irb type <code>require &amp;#39;pony&amp;#39;</code>, then copy and paste in your updated options.</p>
 </li>
 
 <li>
@@ -392,7 +396,7 @@
 <ol>
 <li>Try running the sinatra app: <code>ruby app.rb</code>.</li>
 
-<li>The form submission doesn’t do anything at the moment. Can you work out what’s wrong, and fix it?</li>
+<li>The form submission doesn&#39;t do anything at the moment. Can you work out what&#39;s wrong, and fix it?</li>
 </ol>
 </div>
 	</div>
@@ -421,7 +425,7 @@ Best,
 The FruitApp team</code></pre>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Add the required line of code in the <code>post '/'</code> block, to send a welcome email to the new user.</li>
+<li>Add the required line of code in the <code>post &amp;#39;/&amp;#39;</code> block, to send a welcome email to the new user.</li>
 
 <li>Modify <code>views/email.erb</code> so that it (at least) contains the name of the person who just signed up.</li>
 
@@ -484,7 +488,7 @@ The FruitApp team</code></pre>
 
 <span class='n'>h1</span> <span class='o'>=</span> <span class='no'>Hash</span><span class='o'>[</span><span class='s1'>&#39;a&#39;</span><span class='p'>,</span> <span class='mi'>1</span><span class='p'>,</span> <span class='s1'>&#39;b&#39;</span><span class='p'>,</span> <span class='mi'>2</span><span class='p'>,</span> <span class='s1'>&#39;c&#39;</span><span class='p'>,</span> <span class='mi'>3</span><span class='o'>]</span>
 
-<span class='n'>h2</span> <span class='o'>=</span> <span class='no'>Hash</span><span class='o'>[[[</span><span class='s1'>&#39;a&#39;</span><span class='p'>,</span><span class='mi'>1</span><span class='o'>]</span><span class='p'>,</span><span class='o'>[</span><span class='s1'>&#39;b&#39;</span><span class='p'>,</span><span class='mi'>2</span><span class='o'>]</span><span class='p'>,</span><span class='o'>[</span><span class='s1'>&#39;c&#39;</span><span class='p'>,</span><span class='mi'>3</span><span class='o'>]]</span>
+<span class='n'>h2</span> <span class='o'>=</span> <span class='no'>Hash</span><span class='o'>[[[</span><span class='s1'>&#39;a&#39;</span><span class='p'>,</span><span class='mi'>1</span><span class='o'>]</span><span class='p'>,</span><span class='o'>[</span><span class='s1'>&#39;b&#39;</span><span class='p'>,</span><span class='mi'>2</span><span class='o'>]</span><span class='p'>,</span><span class='o'>[</span><span class='s1'>&#39;c&#39;</span><span class='p'>,</span><span class='mi'>3</span><span class='o'>]]]</span>
 
 
 <span class='c1'># Converting to arrays (and back?)</span>
@@ -505,6 +509,37 @@ The FruitApp team</code></pre>
 </code></pre></div>
 
 </div>
+	</div>
+
+	
+	<div class="tab-pane " id="9_hash_array_conversion_solution">
+	
+
+		<h2>(Ext) Exercise summary</h2>
+		
+<p>It’s easy to convert a <code>hash</code> into an <code>array</code>.</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>h</span> <span class='o'>=</span> <span class='p'>{</span><span class='s1'>&#39;a&#39;</span><span class='o'>=&gt;</span><span class='mi'>1</span><span class='p'>,</span> <span class='s1'>&#39;b&#39;</span><span class='o'>=&gt;</span><span class='mi'>2</span><span class='p'>,</span> <span class='s1'>&#39;c&#39;</span><span class='o'>=&gt;</span><span class='mi'>3</span><span class='p'>}</span>
+
+<span class='n'>a</span> <span class='o'>=</span> <span class='n'>h</span><span class='o'>.</span><span class='n'>to_a</span>
+<span class='c1'># =&gt; [[&quot;a&quot;, 1], [&quot;b&quot;, 2], [&quot;c&quot;, 3]] </span>
+</code></pre></div>
+<p>To convert back from an <code>array</code> to a <code>hash</code>, use</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>h</span><span class='o'>=</span><span class='no'>Hash</span><span class='o'>[</span><span class='n'>a</span><span class='o'>]</span>
+<span class='c1'># =&gt; {&quot;a&quot;=&gt;1, &quot;b&quot;=&gt;2, &quot;c&quot;=&gt;3} </span>
+</code></pre></div>
+<p>You can unpack a <code>hash</code> into its keys and values with the <code>.keys</code> and <code>.values</code> methods</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>h</span> <span class='o'>=</span> <span class='p'>{</span><span class='s1'>&#39;one&#39;</span><span class='o'>=&gt;</span><span class='mi'>1</span><span class='p'>,</span> <span class='s1'>&#39;two&#39;</span><span class='o'>=&gt;</span><span class='mi'>2</span><span class='p'>,</span> <span class='s1'>&#39;three&#39;</span><span class='o'>=&gt;</span><span class='mi'>3</span><span class='p'>}</span>
+
+<span class='n'>keys</span> <span class='o'>=</span> <span class='n'>h</span><span class='o'>.</span><span class='n'>keys</span>
+<span class='c1'>#=&gt; [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;] </span>
+<span class='n'>values</span> <span class='o'>=</span> <span class='n'>h</span><span class='o'>.</span><span class='n'>values</span>
+<span class='c1'>#=&gt; [1, 2, 3] </span>
+</code></pre></div>
+<p>and put it back together with</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>h</span> <span class='o'>=</span> <span class='no'>Hash</span><span class='o'>[</span><span class='n'>keys</span><span class='o'>.</span><span class='n'>zip</span><span class='p'>(</span><span class='n'>values</span><span class='p'>)</span><span class='o'>]</span>
+
+<span class='c1'># =&gt; {&quot;one&quot;=&gt;1, &quot;two&quot;=&gt;2, &quot;three&quot;=&gt;3} </span>
+</code></pre></div>
 	</div>
 
 </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Intro to Ruby 1</title>
+  <title>Introduction to Ruby</title>
 
   
 
@@ -33,7 +33,7 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Intro to Ruby 1 <small>The basics</small></h1>
+	<a href ="/contents/"><img src="/assets/code61_logo_66x66.png" ></a><h1>Introduction to Ruby <small>The basics</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
@@ -85,7 +85,7 @@
 
 <p>In this course, we’ll be leaning the basics of ruby, in a web development context. We won’t be using ruby on rails, instead focussing on a simpler framework (called sinatra), which will give you a better understanding of what’s going on behind the scenes and allow you to be far more productive with rails, when you come onto it later.</p>
 
-<h2 id="iteractive_ruby_irb">Iteractive ruby: irb</h2>
+<h2 id="interactive_ruby_irb">Interactive ruby: irb</h2>
 
 <p>Ruby is an <em>interpreted language</em>. One of the great things about an interpreted language is that it’s often possible to interact with the interpreter in real time. When you installed ruby, you also got a program called <code>irb</code> (interactive ruby), which allows you to interpret ruby on the command line. To start it you just type <code>irb</code> on the command line.</p>
 <div class='highlight'><pre><code class='irb'><span class='go'>001: &gt; 2 + 2</span>
@@ -118,7 +118,7 @@
 
 <li>Open <code>irb</code> on one of your laptops.</li>
 
-<li>For each of the following ruby expressions, try to agree what value you think they evaluate to. Check if you’re right in irb.</li>
+<li>For each of the following ruby expressions, try to agree what value you think they evaluate to. Check if you&#39;re right in irb.</li>
 </ol>
 <div class='highlight'><pre><code class='ruby'><span class='mi'>1</span> <span class='o'>+</span> <span class='mi'>2</span>
 
@@ -264,11 +264,11 @@
 
 <p>String interpolation is a way of taking a variable and putting it inside a string.</p>
 
-<p>To write a string in ruby you can either use <code>'</code> or <code>&quot;</code>.</p>
+<p>To write a string in ruby you can either use <code>&#39;</code> or <code>&quot;</code>.</p>
 <div class='highlight'><pre><code class='ruby'><span class='n'>string1</span> <span class='o'>=</span> <span class='s1'>&#39;hello&#39;</span>
 <span class='n'>string2</span> <span class='o'>=</span> <span class='s2'>&quot;hello&quot;</span>
 </code></pre></div>
-<p>In the code above, string1 and string2 are exactly the same. The difference between <code>'</code> and <code>&quot;</code> is that <code>&quot;</code> allows you to do <strong>string interpolation</strong>:</p>
+<p>In the code above, string1 and string2 are exactly the same. The difference between <code>&#39;</code> and <code>&quot;</code> is that <code>&quot;</code> allows you to do <strong>string interpolation</strong>:</p>
 <div class='highlight'><pre><code class='ruby'><span class='n'>age</span> <span class='o'>=</span> <span class='mi'>5</span>
 <span class='n'>age_description</span> <span class='o'>=</span> <span class='s2'>&quot;My age is </span><span class='si'>#{</span><span class='n'>age</span><span class='si'>}</span><span class='s2'>.&quot;</span>
 <span class='o'>=&gt;</span> <span class='s2'>&quot;My age is 5.&quot;</span>
@@ -277,7 +277,7 @@
 <div class='exercise alert alert-info'><strong>Task:</strong> 
 
 <ol>
-<li>With your partner, decide what each of the following instructions will do. Test to see if you’re right in irb.</li>
+<li>With your partner, decide what each of the following instructions will do. Test to see if you&#39;re right in irb.</li>
 </ol>
 
 
@@ -437,7 +437,7 @@
 </code></pre></div>
 <p>The above shows that <em>string interpolation happens when you write it down</em>. When you first write <code>f = &quot;Hello #{name}! &quot;</code> ruby immediately looks up <code>name</code> and bakes it straight into the string. Setting <code>name</code> to something differeny later on, won’t change this.</p>
 
-<p><small>In the extra challenge, the expression gave an iterative approximation to sqrt(2). You can tell by rearranging and solving the equation, that any fixed point must be a sqrt of 2. In the final part, by giving it <code>x=1</code> you forced ruby to do integer arithmetic. If you’re into that sort of thing, you might like to try and find the fixed points in this case!</small></p>
+<p><small>In the extra challenge, the expression gave an iterative approximation to sqrt(2). You can tell by rearranging and solving the equation, that any fixed point must be a sqrt of 2. In the final part, by giving it <code>x=1</code> you forced ruby to do integer arithmetic. If you&#39;re into that sort of thing, you might like to try and find the fixed points in this case!</small></p>
 
 	</div>
 

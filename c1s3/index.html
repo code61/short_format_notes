@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Web Fundamentals 3</title>
+  <title>Web Fundamentals 1</title>
 
   
 
@@ -33,14 +33,18 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Web Fundamentals 3 <small>Bootstrapping it up</small></h1>
+	<a href ="/contents/"><img src="/assets/code61_logo_66x66.png" ></a><h1>Web Fundamentals 1 <small>Bootstrapping it up</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#1_why_is_css_hard" data-toggle="tab">What's hard about CSS? </a></li>
+		<li class="active"><a href="#0_recap" data-toggle="tab">Recap from last time </a></li>
+		
+	
+		
+		<li><a href="#1_why_is_css_hard" data-toggle="tab">What's hard about CSS? </a></li>
 		
 	
 		
@@ -48,19 +52,19 @@
 		
 	
 		
-		<li><a href="#5_bootstrap_layout" data-toggle="tab">Bootstrap layout </a></li>
+		<li><a href="#3_bootstrap_layout" data-toggle="tab">Bootstrap layout </a></li>
 		
 	
 		
-		<li><a href="#6_more_bootstrap" data-toggle="tab">More Bootstrap </a></li>
+		<li><a href="#4_more_bootstrap" data-toggle="tab">More Bootstrap </a></li>
 		
 	
 		
-		<li><a href="#7_modifying_bootstrap" data-toggle="tab">Modifying Bootstrap </a></li>
+		<li><a href="#5_modifying_bootstrap" data-toggle="tab">Modifying Bootstrap </a></li>
 		
 	
 		
-		<li><a href="#8_homework" data-toggle="tab">Homework </a></li>
+		<li><a href="#6_homework" data-toggle="tab">Homework </a></li>
 		
 	
 </ul>
@@ -68,19 +72,75 @@
 <div class="tab-content">
 
 	
-	<div class="tab-pane active" id="1_why_is_css_hard">
+	<div class="tab-pane active" id="0_recap">
+	
+
+		<h2>Recap from last time</h2>
+		
+<h3 id="before_you_start_updating_gitgit">Before you start: updating gitgit</h3>
+
+<p>There have been some updates and improvements to gitgit! To get these improvements open the command line and run:</p>
+
+<pre><code>gem update gitgit</code></pre>
+
+<p>To check it worked run</p>
+
+<pre><code>gitgit version</code></pre>
+
+<p>it should say ‘0.0.5’ (or higher).</p>
+
+<h3 id="before_you_start_verifying_github_email_address">Before you start: verifying github email address</h3>
+
+<p>Today we’re going to be putting up your first site using <a href="https://pages.github.com/">GitHub Pages</a> - a free hosting solution provided by GitHub.</p>
+
+<p>In order for this to work you need to have <strong>verified your email address with GitHub</strong>.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+<ol>
+  <li>Log into GitHub.</li>
+  <li>If you see a warning at the top that you haven't verified your
+email address, follow the instructions to do that now.</li>
+  <li>If not, you're good to go!</li>
+</ol>
+</div>
+<h3 id="review_exercise">Review exercise</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+<ol>
+  <li>Open the comand line</li>
+  <li>Navigate to your 'first_site' folder (cd/ls)</li>
+  <li>Open 'first_site/index.html' in Sublime Text</li>
+  <li>Make a change to the file</li>
+  <li>Save the changes and push to github ("gitgit save", "gitgit
+push")</li>
+  <li>Log into github and check you can see your changes</li>
+</ol>
+
+</div>
+<h3 id="something_new_publishing_site_using_github_pages">Something new: publishing site using GitHub pages</h3>
+
+<p>You’re now going to publish your ‘first_site’ using <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+
+<p>To do this you need to push your website up to a branch called ‘gh-pages’. You don’t know about branches yet, but you can see them on github. Right now you’ll just see a single branch called ‘master’.</p>
+
+<p>You don’t actually need to understand anything about branches at the moment, as gitgit makes it really easy to publish as a github page. Just run</p>
+
+<pre><code>gitgit publish</code></pre>
+
+<p>When you go to github you should now see a ‘gh-pages’ option in the branches dropdown.</p>
+
+<p>The ‘gh-pages’ branch is a signal to github that you want your code to be deployed as a website. You can find the url of your website by looking in your repository settings on GitHub.</p>
+
+	</div>
+
+	
+	<div class="tab-pane " id="1_why_is_css_hard">
 	
 
 		<h2>What's hard about CSS?</h2>
 		
 <p>You’ve seen quite a bit of CSS now; it all seems quite straightforward - you write some css, tweak it ‘til it looks good and you’re done! In theory this is exactly how CSS works and is why CSS is brilliant.</p>
-
-<p><br /></p>
 <div style='display: block;margin-left: auto; margin-right: auto; width: 200px;'>
 <img class='img-polaroid' src='/assets/cat_pic.jpg' width='200px' />
 </div>
-<p><br /></p>
-
 <p>Unfortunately, the realities are not quite so straightforward. Different browsers will render CSS with subtle differences. Take a look at the cat picture above. The styling is relatively simple - all we’ve done is add a border and a shadow. The following CSS will probably do this in your browser:</p>
 <div class='highlight'><pre><code class='css'><span class='nc'>.img-polaroid</span> <span class='p'>{</span>
   <span class='k'>padding</span><span class='o'>:</span> <span class='m'>4px</span><span class='p'>;</span>
@@ -179,18 +239,16 @@
 <p>We’re not really going to cover responsive design in depth in class, but the Bootstrap docs do a good job of explaining what’s possible. Take a look at the <a href="http://getbootstrap.com/css/#grid">grid system</a> as an example.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong> 
 
-<p>The aim of the rest of this session will be to create the website for <a href='http://code61.github.io/bootstrap_exercise/'>&quot;Sam’s Sarnies&quot;</a> using Twitter Bootstrap.</p>
+<p>The aim of the rest of this session will be to create the website for <a href='http://code61.github.io/bootstrap_exercise/'>&quot;Sam&#39;s Sarnies&quot;</a> using Twitter Bootstrap.</p>
 
 
 <ol>
-<li>
-Clone down the repository for the bootstrap exercise: <a href='https://github.com/code61/bootstrap_exercise.git'>https://github.com/code61/bootstrap_exercise.git</a>
-</li>
+<li>Clone down the repository for the <a href='https://github.com/code61/bootstrap_exercise.git'>bootstrap exercise</a> <strong>into your coding_course folder</strong>: git clone https://github.com/code61/bootstrap_exercise.git</li>
 <li>
 Open <code>bootstrap_exercise/index.html</code> in your browser.
 </li>
 <li>
-Go to the <a href='http://getbootstrap.com'>Bootstrap</a> website (it’s hosted at github, like your <code>first_site</code>) and click the <code>Download Bootstrap</code> button (not the Download Source).
+Go to the <a href='http://getbootstrap.com'>Bootstrap</a> website (it&#39;s hosted at github, like your <code>first_site</code>) and click the <code>Download Bootstrap</code> button (not the Download Source).
 </li>
 <li>
 Unzip and copy the <code>dist</code> folder into the <code>bootstrap_exercise</code> folder.
@@ -205,7 +263,7 @@ Add a link to the twitter bootstrap stylesheet into <code>index.html</code>
 <div class='highlight'><pre><code class='html'><span class='nt'>&lt;link</span> <span class='na'>href=</span><span class='s'>&#39;dist/css/bootstrap.css&#39;</span> <span class='na'>rel=</span><span class='s'>&#39;stylesheet&#39;</span><span class='nt'>&gt;</span>
 </code></pre></div>
 
-Note that you’re using a document-relative link to a file two subfolders down.
+Note that you&#39;re using a document-relative link to a file two subfolders down.
 
 </li>
 <li>
@@ -225,7 +283,7 @@ as suggested in the <code>CSS / Overview</code> section of the <a href='http://g
 	</div>
 
 	
-	<div class="tab-pane " id="5_bootstrap_layout">
+	<div class="tab-pane " id="3_bootstrap_layout">
 	
 
 		<h2>Bootstrap layout</h2>
@@ -262,18 +320,14 @@ as suggested in the <code>CSS / Overview</code> section of the <a href='http://g
 </code></pre></div>
 <p>The number after the <code>col-sm-</code> determines how many of the 12 grid columns that page column takes up. The <code>sm</code> bit determines the width at which the columns will collapse on top of each other (which is useful when viewing your site on a phone). For more information see the <a href="http://getbootstrap.com/css/#grid">Grid system docs</a>.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Add a <code>div class='container'</code> around the page content.</li>
-
-<li>Create a row at the top of the page, with two columns, with the left twice as wide as the right. Put the <code>h1</code> in the left column and the <code>img src='images/sandwich.png' </code> on the right.</li>
-
-<li>Create a row with three equal colums to hold each of ‘The Buzz’ <code>div</code>s.</li>
-</ol>
+<pre><code>1. Add a `div class=&amp;#39;container&amp;#39;` around the page content.  
+2. Create a row at the top of the page, with two columns, with the left twice as wide as the right. Put the `h1` in the left column and the `img src=&amp;#39;images/sandwich.png&amp;#39;` on the right.  
+3. Create a row with three equal colums to hold each of &amp;#39;The Buzz&amp;#39; `div`s.</code></pre>
 </div>
 	</div>
 
 	
-	<div class="tab-pane " id="6_more_bootstrap">
+	<div class="tab-pane " id="4_more_bootstrap">
 	
 
 		<h2>More Bootstrap</h2>
@@ -283,38 +337,38 @@ as suggested in the <code>CSS / Overview</code> section of the <a href='http://g
 <p>Skim through the <a href="http://getbootstrap.com/css/#type">typography section</a> of the bootstrap docs.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Change the quotes in ‘The Buzz’ to use <a href='http://getbootstrap.com/css/#type-blockquotes'>blockquotes</a>. (Don’t worry about the vertical grey lines - we’ll remove those later.)</li>
+<li>Change the quotes in &#39;The Buzz&#39; to use <a href='http://getbootstrap.com/css/#type-blockquotes'>blockquotes</a>. (Don&#39;t worry about the vertical grey lines - we&#39;ll remove those later.)</li>
 
-<li>Change the paragraphs in ‘Our mission’ to be <a href='http://getbootstrap.com/css/#type-body-copy'>lead body copy</a>.</li>
+<li>Change the paragraphs in &#39;Our mission&#39; to be <a href='http://getbootstrap.com/css/#type-body-copy'>lead body copy</a>.</li>
 </ol>
 </div>
 <h3 id="badges_and_buttons">Badges and Buttons</h3>
 
 <p>Check out the <a href="http://getbootstrap.com/css/#buttons">buttons section</a> (CSS &gt; Buttons).</p>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
+<div class='exercise alert alert-info'><strong>Task:</strong>   
+
 <ol>
-<li>Change the ‘Send’ button to a success button:
-
-<div class='highlight'><pre><code class='html'><span class='nt'>&lt;button</span> <span class='na'>class=</span><span class='s'>&#39;btn btn-success&#39;</span> <span class='nt'>&gt;</span>Send<span class='nt'>&lt;/button&gt;</span>
-</code></pre></div>
-
-    You might also need <code>btn-small</code> in the Recent Activity section.
-</li>
-<li>
-2. Make the social links at the bottom in to large buttons (we’ll colour them later):
-
-<div class='highlight'><pre><code class='html'><span class='nt'>&lt;button</span> <span class='na'>class=</span><span class='s'>&#39;btn btn-lg&#39;</span> <span class='nt'>&gt;</span>Send<span class='nt'>&lt;/button&gt;</span>
-</code></pre></div>
-
-</li>
+<li>Change the &#39;Send&#39; button to a success button:</li>
 </ol>
+
+
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;button</span> <span class='na'>class=</span><span class='s'>&#39;btn btn-success&#39;</span><span class='nt'>&gt;</span>Send<span class='nt'>&lt;/button&gt;</span>
+</code></pre></div>
+<p>You might also need <code>btn-small</code> in the Recent Activity section.</p>
+
+<ol>
+<li>Make the social links at the bottom in to large buttons (we&#39;ll colour them later):</li>
+</ol>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;button</span> <span class='na'>class=</span><span class='s'>&#39;btn btn-lg&#39;</span><span class='nt'>&gt;</span>Send<span class='nt'>&lt;/button&gt;</span>
+</code></pre></div>
+
 </div>
 <h3 id="images">Images</h3>
 
 <p>Have a look at the <a href="http://getbootstrap.com/css/#images">image section</a> of the Bootstrap docs (CSS &gt; Images).</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>Make the images in ‘The Buzz’ round, by adding the <code>img-circle</code> class.</li>
+<li>Make the images in &#39;The Buzz&#39; round, by adding the <code>img-circle</code> class.</li>
 
 <li>You can center the image by adding the <a href='http://getbootstrap.com/css/#helper-classes-center'>helper class</a> <code>center-block</code>.</li>
 
@@ -324,7 +378,7 @@ as suggested in the <code>CSS / Overview</code> section of the <a href='http://g
 	</div>
 
 	
-	<div class="tab-pane " id="7_modifying_bootstrap">
+	<div class="tab-pane " id="5_modifying_bootstrap">
 	
 
 		<h2>Modifying Bootstrap</h2>
@@ -332,10 +386,12 @@ as suggested in the <code>CSS / Overview</code> section of the <a href='http://g
 <strong>Warning</strong>: Bootstrap has been designed and heavily tested for good cross-browser compatibility. Unless you know what you're doing or have a lot of time, it's probably best to stick with their layout and tweak small things e.g. fonts and colours. Just because it looks great in your browser doesn't mean it will look great in everyone's!
 </div>
 <p>If you’re going to modify Bootstrap <strong>don’t touch the Bootstrap files</strong>. Instead create a new css file of your own to overwrite anything you don’t want. This means when a new version of Bootstrap comes out you can upgrade by dragging the new version over the top of the old, without losing any modifications.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
+<div class='exercise alert alert-info'><strong>Task:</strong>   
+
 <ol>
-<li>
-Create a file called <code>main.css</code> and write the following CSS:
+<li>Create a file called <code>main.css</code> and write the following CSS:</li>
+</ol>
+
 
 <div class='highlight'><pre><code class='css'><span class='nf'>#social-buttons</span> <span class='nt'>button</span> <span class='p'>{</span>
   <span class='k'>color</span><span class='o'>:</span> <span class='nb'>white</span><span class='p'>;</span>
@@ -344,25 +400,19 @@ Create a file called <code>main.css</code> and write the following CSS:
   <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#00acee</span><span class='p'>;</span>
   <span class='k'>border-color</span><span class='o'>:</span> <span class='m'>#009ad5</span><span class='p'>;</span>
 <span class='p'>}</span>
-
 <span class='nc'>.btn-facebook</span> <span class='p'>{</span>
   <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#4868ac</span><span class='p'>;</span>
   <span class='k'>border-color</span><span class='o'>:</span> <span class='m'>#314776</span><span class='p'>;</span>
 <span class='p'>}</span>
-
 <span class='nc'>.btn-pinterest</span> <span class='p'>{</span>
   <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#b62f26</span><span class='p'>;</span>
   <span class='k'>border-color</span><span class='o'>:</span> <span class='m'>#b62f26</span><span class='p'>;</span>
 <span class='p'>}</span>
 </code></pre></div>
+<ol>
+<li>Link this file into the <code>head</code> of <code>index.html</code> <strong>underneath your link to bootstrap</strong>.</li>
 
-</li>
-<li>
-Link this file into the <code>head</code> of <code>index.html</code> <strong>underneath your link to bootstrap</strong>.
-</li>
-<li>
-What happens? Notice how in the first rule we’ve selected only those buttons that exist inside an element with <code>id=social-buttons</code>.
-</li>
+<li>What happens? Notice how in the first rule we&#39;ve selected only those buttons that exist inside an element with <code>id=social-buttons</code>.</li>
 </ol>
 </div>
 <h3 id="changing_the_background">Changing the background</h3>
@@ -382,7 +432,7 @@ Change the background of the <code>jumbotron</code> to be the image <code>fruit-
 </li>
 
 <li>
-This doesn’t look quite right. The problem is that the jumbotron is it is inside the <code>div class='container'</code>. You can change this by moving it inside:
+This doesn&#39;t look quite right. The problem is that the jumbotron is it is inside the <code>div class=&amp;#39;container&amp;#39;</code>. You can change this by moving it inside:
 
 <div class='highlight'><pre><code class='html'><span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;jumbotron&quot;</span><span class='nt'>&gt;</span>
   <span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;container&quot;</span><span class='nt'>&gt;</span>
@@ -391,7 +441,7 @@ This doesn’t look quite right. The problem is that the jumbotron is it is insi
 <span class='nt'>&lt;/div&gt;</span>
 </code></pre></div>
 
-Similarly you will now need to create new <code>container</code>s inside the <code>div id='buzz'</code> and <code>div id='mission'</code>.
+Similarly you will now need to create new <code>container</code>s inside the <code>div id=&amp;#39;buzz&amp;#39;</code> and <code>div id=&amp;#39;mission&amp;#39;</code>.
 </li>
 <li>
 Change the background color of the <code>mission</code> section to <code>rgba(32, 35, 41, 0.9)</code> and the font colour to <code>#ddd</code>
@@ -437,7 +487,7 @@ Change the background color of the <code>mission</code> section to <code>rgba(32
 	</div>
 
 	
-	<div class="tab-pane " id="8_homework">
+	<div class="tab-pane " id="6_homework">
 	
 
 		<h2>Homework</h2>
@@ -452,12 +502,6 @@ Change the background color of the <code>mission</code> section to <code>rgba(32
 <div class='exercise alert alert-info'><strong>Task:</strong> 
 
 <p>Continue work on your personal site. You might want to think about using Twitter Bootstrap!</p>
-
-</div>
-<h3 id="get_a_google_account">Get a Google Account</h3>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
-
-<p>If you don’t already have a google account (e.g. via a gmail address), you need to sign up for one: <a href='https://accounts.google.com/SignUp'>https://accounts.google.com/SignUp</a>. You’ll need it in class next week!</p>
 
 </div>
 <h3 id="further_reading_on_css">Further reading on CSS</h3>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Web Fundamentals 4</title>
+  <title>Web Fundamentals 2</title>
 
   
 
@@ -33,7 +33,7 @@
   <div class="container">
 
     <div class="page-header">
-  <h1>Web Fundamentals 4 <small>Collaborative Coding</small></h1>
+	<a href ="/contents/"><img src="/assets/code61_logo_66x66.png" ></a><h1>Web Fundamentals 2 <small>Collaborative Coding</small></h1>
 </div>
 
 <div class="tabbable tabs-left">
@@ -53,10 +53,6 @@
 	
 		
 		<li><a href="#4_joint_project" data-toggle="tab">Joint project </a></li>
-		
-	
-		
-		<li><a href="#5_command_line" data-toggle="tab">Meet the Command Line </a></li>
 		
 	
 		
@@ -125,7 +121,7 @@
 		<div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
 <li>
-<p>Open <code>toms_site/index.html</code> in your code editor, and change the page heading (inside <code>&amp;lt;h1&amp;gt;</code>) to something of your choosing. (At the same time I’ll also make a change). When you’re done, commit your change to the local repository:</p>
+<p>Open <code>toms_site/index.html</code> in your code editor, and change the page heading (inside <code>&amp;lt;h1&amp;gt;</code>) to something of your choosing. (At the same time I&#39;ll also make a change). When you&#39;re done, commit your change to the local repository:</p>
 
 <pre><code> $ git add --all
  $ git commit -m &amp;quot;Changed heading&amp;quot;</code></pre>
@@ -147,7 +143,7 @@
 <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
     &lt;h1 class=&quot;special&quot;&gt;My Page&lt;/h1&gt;
 =======
-    &lt;h1 class=&quot;special&quot;&gt;Tom C's page&lt;/h1&gt;
+    &lt;h1 class=&quot;special&quot;&gt;Tom C&#39;s page&lt;/h1&gt;
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; d76d5a62894057f9c5a4dce0fe5f25110eddd24f</code></pre>
 
 <p>To fix the merge conflict you need to edit this by hand, picking the version you want and then do:</p>
@@ -161,7 +157,7 @@ $ git commit -m &quot;Fixed conflicts&quot;</code></pre>
 </li>
 
 <li>
-<p>Delete the version of the heading that you don’t want.</p>
+<p>Delete the version of the heading that you don&#39;t want.</p>
 </li>
 
 <li>
@@ -172,7 +168,7 @@ $ git commit -m &quot;Fixed conflicts&quot;</code></pre>
 </li>
 
 <li>
-<p>To have a look at what you’ve just done:</p>
+<p>To have a look at what you&#39;ve just done:</p>
 
 <pre><code> $ gitk --all</code></pre>
 
@@ -261,7 +257,7 @@ $ git commit -m &amp;quot;Initial import&amp;quot;</code></pre>
 <li>
 <p>Person A should then push their code up to github following the instructions on github. You want to &quot;Push an existing repository from the command line&quot; - the instructions at the <strong>bottom</strong> of the page. You should end up pasting a command like</p>
 
-<pre><code># Warning: these commands won't work. You need copy the right ones from GitHub.
+<pre><code># Warning: these commands won&amp;#39;t work. You need copy the right ones from GitHub.
 git remote add origin https://github.com/username/blah.git
 git push -u origin master</code></pre>
 </li>
@@ -275,7 +271,7 @@ git push -u origin master</code></pre>
 
 <ol>
 <li>
-<p>Go to the repo’s github page</p>
+<p>Go to the repo&#39;s github page</p>
 </li>
 
 <li>
@@ -295,7 +291,7 @@ git push -u origin master</code></pre>
 </li>
 
 <li>
-<p>Meanwhile Person C should add more content to the page’s html</p>
+<p>Meanwhile Person C should add more content to the page&#39;s html</p>
 </li>
 
 <li>
@@ -315,7 +311,7 @@ git push -u origin master</code></pre>
 </li>
 
 <li>
-<p>This will probably fail, as C won’t have B’s changes. To fix this Person C needs to pull and merge (the merge will probably happen automatically if you haven’t changed the same files). They should then push again:</p>
+<p>This will probably fail, as C won&#39;t have B&#39;s changes. To fix this Person C needs to pull and merge (the merge will probably happen automatically if you haven&#39;t changed the same files). They should then push again:</p>
 
 <pre><code> git pull
 
@@ -332,108 +328,6 @@ git push -u origin master</code></pre>
 	</div>
 
 	
-	<div class="tab-pane " id="5_command_line">
-	
-
-		<h2>Meet the Command Line</h2>
-		
-<p>The command line is a way to interact with your computer programmatically. If you are doing any software development you will need to get to grips with using the command line, as many of the programs you will use will be run from the it, instead of by clicking an icon.</p>
-
-<p>Note: when giving you instructions for the command line we will precede them with a <code>$</code> to represent the command prompt e.g.</p>
-
-<pre><code>$ some_command</code></pre>
-
-<p><strong>You shouldn’t type the <code>$</code> sign - just the stuff after it.</strong> So for the above instruction you would just type <code>some_command</code> into the command line.</p>
-
-<h3 id="moving_around">Moving around</h3>
-
-<p>The first thing you will need to get used to is moving around. Start by printing the name of the directory you are in:</p>
-
-<pre><code>$ pwd</code></pre>
-
-<p>Then have a look at what’s in that directory ( <em>list</em> the contents):</p>
-
-<pre><code>$ ls</code></pre>
-
-<p>To move up a directory ( <em>change directory</em> ) do</p>
-
-<pre><code>$ cd ..</code></pre>
-
-<p>To move back into the folder you just left do</p>
-
-<pre><code>$ cd name_of_the_folder</code></pre>
-
-<p>Your commandline will help you: <kbd>tab</kbd> can often be used to auto-complete names of files, the up arrow can be used to cycle through previous commands that you have typed.</p>
-
-<h3 id="creating_a_directory">Creating a directory</h3>
-
-<p>You can do a lot more on the command line than just move around. We’ll be using the command line a lot over the course. For the time being we just need to create a folder:</p>
-
-<pre><code>$ mkdir coding_course</code></pre>
-
-<p>Note: choosing names without spaces makes command line navigation easier.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>
-<p>Open your command line:</p>
-
-<ul>
-<li>On a Mac open Terminal (Applications &gt; Terminal)</li>
-
-<li>On Windowns open Command Prompt with Ruby on Rails</li>
-</ul>
-</li>
-
-<li>
-<p>Find out where you are:</p>
-
-<pre><code> $ pwd</code></pre>
-</li>
-
-<li>
-<p>See what is in the same folder:</p>
-
-<pre><code> $ ls</code></pre>
-</li>
-
-<li>
-<p>If you are on a Mac move into <code>Documents</code>:</p>
-
-<pre><code> $ cd Documents</code></pre>
-</li>
-
-<li>
-<p>Create the folder for the coding course:</p>
-
-<pre><code> $ mkdir coding_course</code></pre>
-</li>
-
-<li>
-<p>Move into that folder:</p>
-
-<pre><code> $ cd coding_course</code></pre>
-</li>
-
-<li>
-<p>Move back up to the folder above</p>
-
-<pre><code> $ cd ..</code></pre>
-</li>
-
-<li>
-<p>Move back into the coding course folder. This time don’t type out coding_course - just type out the first few letters and hit <code>Tab</code>:</p>
-
-<pre><code>$ cd coding_course</code></pre>
-</li>
-
-<li>
-<p>In the Finder (Mac) or My Computer (Windows) find the folder that you just created.</p>
-</li>
-</ol>
-</div>
-	</div>
-
-	
 	<div class="tab-pane " id="5_homework">
 	
 
@@ -442,7 +336,7 @@ git push -u origin master</code></pre>
 <h3 id="tell_us_about_your_site">Tell us about your site</h3>
 <div class='exercise alert alert-info'><strong>Task:</strong> 
 
-<p>Tell us about your first site by filling in <a href='https://docs.google.com/forms/d/1V8wA--rmXQ8KvPmpooLZEZPwl7Vp64-XRPlOea9rRlU/viewform'>this form</a>. If you’re still having problems getting it to display online or pointing your url to it, ask in the forum!</p>
+<p>Tell us about your first site by filling in <a href='https://docs.google.com/forms/d/1V8wA--rmXQ8KvPmpooLZEZPwl7Vp64-XRPlOea9rRlU/viewform'>this form</a>. If you&#39;re still having problems getting it to display online or pointing your url to it, ask in the forum!</p>
 
 </div>
 <h3 id="work_on_your_group_cheatsheet">Work on your group cheatsheet</h3>
