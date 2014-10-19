@@ -16,4 +16,4 @@ In the first session we will be looking at HTML and the overall structure of the
     3. Do the project from "3 HTML Structure: Tables, Divs, and Spans".
 {% endexercise %}
 
-Look forward to seeing you on Tuesday!
+Look forward to seeing you at the first session!
