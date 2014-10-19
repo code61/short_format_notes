@@ -11,6 +11,7 @@ layout: default
 + Data submission to a google form
 + Basic analytics (through google analytics)
 + Deploying site to github pages
++ Familiarity with the command line
 
 ## Sessions
 
