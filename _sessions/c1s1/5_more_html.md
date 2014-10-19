@@ -1,7 +1,7 @@
 ---
 title: More HTML
 ---
-Now we will look at some slightly more interesting things you can do with HTML. 
+Now we will look at some slightly more interesting things you can do with HTML.
 
 ### HTML file layout
 
@@ -20,7 +20,7 @@ Now we will look at some slightly more interesting things you can do with HTML.
 * The doctype tells you what sort of html you're using (html5, html4 ...). With html5 it's simple - you just write `html`.
 * Everything is wrapped in an `<html> ... </html>` tag
 * Things within the `<head> .. </head>` are used to provide information about the page
-* Only things within the `<body> ... </body>` tags are displayed on the page 
+* Only things within the `<body> ... </body>` tags are displayed on the page
 * ... for example the text within `<title> ... </title>` will be displayed in the browser bar
 
 ### Headings
@@ -78,7 +78,7 @@ Now we will look at some slightly more interesting things you can do with HTML.
 {% endhighlight %}
 
 * The `href` property tells you where the link will point
-* You can specify this link it different ways:
+* You can specify this link in different ways:
     * absolute external link e.g. "http://www.facebook.com"
     * absolute local link e.g. "/about". This links to a file relative to the root of your webserver. For example if your site is at `www.example.com` the link will point to `www.example.com/about`
     * relative local link e.g. "about". This links to a file relative to the current html document. In this case it will link to the file called `about` in the same folder as your current html file.
@@ -91,7 +91,7 @@ Now we will look at some slightly more interesting things you can do with HTML.
 <img alt='my cat' src="my_cat.png">
 {% endhighlight %}
 
-* The `alt` tag is for providing a description of your image. This is useful for partially sighted people using screen readers, or in case the image doesn't load. 
+* The `alt` tag is for providing a description of your image. This is useful for partially sighted people using screen readers, or in case the image doesn't load.
 * The file can be linked to in the same way as href. In the example above we use a relative local link to a file called `my_cat.png` in the same folder as the html file.
 
 ### Tables
@@ -124,11 +124,11 @@ Now we will look at some slightly more interesting things you can do with HTML.
 
 Now you will use these ideas to create a richer web page.
 
-{% exercise %}  
-1. Go to the github repository for this session: [https://github.com/code61/learning_html](https://github.com/code61/learning_html)  
-2. *Clone* the repository down into your `coding_course` folder (by clicking 'Clone in Desktop' in the bottom right).  
-3. Open the whole folder in Sublime Text  
-4. Open the file `example.html` in Chrome and look around with the developer tools  
-5. Open the file `notes.html` in Sublime Text.  
+{% exercise %}
+1. Go to the github repository for this session: [https://github.com/code61/learning_html](https://github.com/code61/learning_html)
+2. Download the code into your `coding_course` folder (by clicking 'Download ZIP' in the bottom right).
+3. Open the whole folder in Sublime Text
+4. Open the file `example.html` in Chrome and look around with the developer tools
+5. Open the file `notes.html` in Sublime Text.
 6. Change `notes.html` into valid html so that it looks like `notes_solution.jpg`
 {% endexercise %}
