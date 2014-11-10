@@ -9,7 +9,7 @@ title: Modifying Bootstrap
 If you're going to modify Bootstrap **don't touch the Bootstrap files**. Instead create a new css file of your own to overwrite anything you don't want. This means when a new version of Bootstrap comes out you can upgrade by dragging the new version over the top of the old, without losing any modifications.
 
 
-{% exercise %}  
+{% exercise %}
 1. Create a file called `main.css` and write the following CSS:
 {% highlight css %}
 #social-buttons button {
@@ -28,7 +28,7 @@ If you're going to modify Bootstrap **don't touch the Bootstrap files**. Instead
   border-color: #b62f26;
 }
 {% endhighlight %}
-2. Link this file into the `head` of `index.html` **underneath your link to bootstrap**.  
+2. Link this file into the `head` of `index.html` **underneath your link to bootstrap**.
 3. What happens? Notice how in the first rule we've selected only those buttons that exist inside an element with `id=social-buttons`.
 {% endexercise %}
 
@@ -49,7 +49,7 @@ Change the background of the `jumbotron` to be the image `fruit-and-veg.png` by 
 </li>
 
 <li markdown="1">
-This doesn't look quite right. The problem is that the jumbotron is it is inside the `div class='container'`. You can change this by moving it inside:
+This doesn't look quite right. The problem is that the jumbotron is it is inside the <code>div class='container'</code>. You can change this by moving it inside:
 {% highlight html %}
 <div class="jumbotron">
   <div class="container">
@@ -57,7 +57,7 @@ This doesn't look quite right. The problem is that the jumbotron is it is inside
   </div>
 </div>
 {% endhighlight %}
-Similarly you will now need to create new `container`s inside the `div id='buzz'` and `div id='mission'`.
+Similarly you will now need to create new <code>container</code>s inside the <code>div id='buzz'</code> and <code>div id='mission'</code>.
 </li>
 <li markdown="1">
 Change the background color of the `mission` section to `rgba(32, 35, 41, 0.9)` and the font colour to `#ddd`
