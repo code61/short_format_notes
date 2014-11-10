@@ -34,6 +34,6 @@ Have a look at the [image section](http://getbootstrap.com/css/#images) of the B
 
 {% exercise %}  
 1. Make the images in 'The Buzz' round, by adding the `img-circle` class.  
-2. You can center the image by adding the [helper class](http://getbootstrap.com/css/#helper-classes-center) `center-block`.  
+2. You can center the image by adding the [alignment class](http://getbootstrap.com/css/#type-alignment) `text-center`.  
 2. Change the main sandwich image into a `img-responsive`, as described in the [responsive images section](http://getbootstrap.com/css/#overview-responsive-images). Try resizing your browser and see how it changes size.
 {% endexercise %}
