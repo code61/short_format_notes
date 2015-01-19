@@ -13,5 +13,4 @@ To use Google Analytics you need to place a snippet of javascript (that they pro
 1. Set up a [Google Analytics](http://www.google.com/analytics/) account. You want to choose the default 'Universal Analytics' option.
 2. In the Admin section, create a new account for your personal site.
 3. Following the instructions, install the analytics code on all the pages of your site.
-4. Push your changes up to the `gh-pages` branch on GitHub.
 {% endexercise %}

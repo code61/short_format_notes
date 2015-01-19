@@ -125,6 +125,7 @@ Now we will look at some slightly more interesting things you can do with HTML.
 Now you will use these ideas to create a richer web page.
 
 {% exercise %}
+1. Create a folder called `coding_course` to hold all your work for the course.
 1. Go to the github repository for this session: [https://github.com/code61/learning_html](https://github.com/code61/learning_html)
 2. Download the code into your `coding_course` folder (by clicking 'Download ZIP' in the bottom right).
 3. Open the whole folder in Sublime Text

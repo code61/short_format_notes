@@ -6,7 +6,7 @@ Welcome to the course preparation for the Introduction to Web Programming course
 
 The course will cover a basic introduction to web progamming, starting from scratch. You will develop your understanding of how the internet works, learn to code a basic site using HTML and CSS, and learn how to manage your code and get your site online using a tool called git. This course is a pre-requisite for all other courses offered by The Oxford Codelab.
 
-There are many excellent resources on the web for learning a lot of this material. We don't want to reinvent the wheel and will unashamedly point you towards better sources of information when they exist. Rather than teach you everything from scratch, we aim to guide and support your learning. 
+There are many excellent resources on the web for learning a lot of this material. We don't want to reinvent the wheel and will unashamedly point you towards better sources of information when they exist. Rather than teach you everything from scratch, we aim to guide and support your learning.
 
 ### Installing software
 
