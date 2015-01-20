@@ -163,20 +163,20 @@
 <li>
 <p>Type</p>
 
-<pre><code>gcc --version</code></pre>
+<p>gcc –version</p>
 </li>
 
 <li>
 <p>If this says something a bit like</p>
 
-<pre><code>i686-apple-darwin10-gcc-4.2.1 (GCC) 4.2.1 (Apple Inc. build 5666)</code></pre>
+<p>i686-apple-darwin10-gcc-4.2.1 (GCC) 4.2.1 (Apple Inc. build 5666)</p>
+</li>
+</ol>
 
 <p>you have a the gcc compiler installed and can skip to Step Two</p>
-</li>
 
-<li>
-<p>If it says nothing, you need to install it.</p>
-</li>
+<ol>
+<li>If it says nothing, you need to install it.</li>
 </ol>
 </div>
 <p>If you don’t have a compiler already you need to install Apple’s Command Line Tools - either directly or by installing XCode. The options for doing this are described in the <a href="http://installfest.railsbridge.org/installfest/install_xcode">Railsbridge Installfest</a>. Those options are also covered in <a href="http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/">Moncef’s post</a> as Step 1 - note the special instructions for those on Snow Leopard.</p>
@@ -190,18 +190,14 @@
 <p>Once you have the compiler installed it should be mostly plain sailing. To install Homebrew</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>
-<p>Go to the <a href='http://mxcl.github.io/homebrew/'>Homebrew homepage</a></p>
-</li>
+<li>Go to the <a href='http://mxcl.github.io/homebrew/'>Homebrew homepage</a></li>
 
-<li>
-<p>Scroll down until you find the &#39;Install Homebrew&#39; section and follow the instructions. It should be as simple as pasting</p>
-
-<pre><code> ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&amp;quot;</code></pre>
-
-<p>into the terminal.</p>
+<li>Scroll down until you find the &#39;Install Homebrew&#39; section and follow the instructions. It should be as simple as pasting
+<p>ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;</p>
 </li>
 </ol>
+
+<p>into the terminal.</p>
 </div>
 <p>If you run into any problems have a check in Step 3 of <a href="http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/">Moncef’s post</a>.</p>
 
@@ -211,8 +207,7 @@
 <li>
 <p>In the terminal type:</p>
 
-<pre><code> brew update
- brew install git</code></pre>
+<p>brew update brew install git</p>
 </li>
 
 <li>
@@ -222,13 +217,13 @@
 <li>
 <p>To check it worked, in the terminal type:</p>
 
-<pre><code>git --version</code></pre>
+<p>git –version</p>
 
 <p>It should look something like this</p>
 
 <pre><code> $ git --version
  git version 1.8.4
- $ </code></pre>
+ $</code></pre>
 
 <p>If it doesn&#39;t print out your git version you have a problem - ask in the forum!</p>
 </li>
@@ -236,12 +231,11 @@
 <li>
 <p>Configure your git details by typing</p>
 
-<pre><code>git config --global user.name &amp;quot;Your Full Name&amp;quot;
-git config --global user.email &amp;quot;Your Email Address&amp;quot;</code></pre>
-
-<p>(replacing &quot;Your Full Name&quot; and &quot;Your Email Address&quot;)</p>
+<p>git config –global user.name &quot;Your Full Name&quot; git config –global user.email &quot;Your Email Address&quot;</p>
 </li>
 </ol>
+
+<p>(replacing &quot;Your Full Name&quot; and &quot;Your Email Address&quot;)</p>
 </div>
 <h3 id="step_four_install_rbenv">Step Four: Install rbenv</h3>
 
@@ -253,9 +247,7 @@ git config --global user.email &amp;quot;Your Email Address&amp;quot;</code></pr
 <li>
 <p>In the terminal type:</p>
 
-<pre><code>brew install rbenv
-brew install ruby-build
-echo &amp;#39;eval &amp;quot;$(rbenv init -)&amp;quot;&amp;#39; &amp;gt;&amp;gt; ~/.bash_profile</code></pre>
+<p>brew install rbenv brew install ruby-build echo &#39;eval &quot;$(rbenv init -)&quot;&#39; &gt;&gt; ~/.bash_profile</p>
 </li>
 
 <li>
@@ -281,7 +273,7 @@ echo &amp;#39;eval &amp;quot;$(rbenv init -)&amp;quot;&amp;#39; &amp;gt;&amp;gt;
 <li>
 <p>In the terminal type:</p>
 
-<pre><code>rbenv install 1.9.3-p392</code></pre>
+<p>rbenv install 1.9.3-p392</p>
 
 <p>This will download and install ruby version 1.9.2-p392</p>
 </li>
@@ -289,12 +281,13 @@ echo &amp;#39;eval &amp;quot;$(rbenv init -)&amp;quot;&amp;#39; &amp;gt;&amp;gt;
 <li>
 <p>Then type:</p>
 
-<pre><code>rbenv global 1.9.3-p392
-rbenv rehash</code></pre>
+<p>rbenv global 1.9.3-p392 rbenv rehash</p>
+</li>
+</ol>
 
 <p>This will set your system to use the new version of ruby by default.</p>
-</li>
 
+<ol>
 <li>
 <p>To check it worked, in the terminal type:</p>
 
@@ -311,11 +304,8 @@ rbenv rehash</code></pre>
 <p>You won’t actually need rails this course, but now you’ve installed ruby it’s easy to get it using <em>Rubygems</em>. Rubygems is ruby’s excellent package manager, used for sharing projects written in ruby - more on this later in the course.</p>
 <div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-<li>
-<p>In the terminal type:</p>
-
-<pre><code>gem install rails
-gem install bundler</code></pre>
+<li>In the terminal type:
+<p>gem install rails gem install bundler</p>
 </li>
 </ol>
 </div>
