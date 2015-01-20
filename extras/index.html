@@ -40,7 +40,31 @@
 <ul class="nav nav-tabs" id="myTab">
 	
 		
-		<li class="active"><a href="#9_configuration_variables" data-toggle="tab">Configuration variables </a></li>
+		<li class="active"><a href="#0_recap" data-toggle="tab">Recap from last time </a></li>
+		
+	
+		
+		<li><a href="#2_domain_name" data-toggle="tab">Wiring up your domain </a></li>
+		
+	
+		
+		<li><a href="#3_github_account" data-toggle="tab">GitHub account </a></li>
+		
+	
+		
+		<li><a href="#4_command_line" data-toggle="tab">Meet the Command Line </a></li>
+		
+	
+		
+		<li><a href="#4_ruby_git" data-toggle="tab">Ruby and Git </a></li>
+		
+	
+		
+		<li><a href="#5_push_to_github" data-toggle="tab">Pushing to GitHub </a></li>
+		
+	
+		
+		<li><a href="#9_configuration_variables" data-toggle="tab">Configuration variables </a></li>
 		
 	
 </ul>
@@ -48,7 +72,398 @@
 <div class="tab-content">
 
 	
-	<div class="tab-pane active" id="9_configuration_variables">
+	<div class="tab-pane active" id="0_recap">
+	
+
+		<h2>Recap from last time</h2>
+		
+<h3 id="before_you_start_updating_gitgit">Before you start: updating gitgit</h3>
+
+<p>There have been some updates and improvements to gitgit! To get these improvements open the command line and run:</p>
+
+<pre><code>gem update gitgit</code></pre>
+
+<p>To check it worked run</p>
+
+<pre><code>gitgit version</code></pre>
+
+<p>it should say ‘0.0.5’ (or higher).</p>
+
+<h3 id="before_you_start_verifying_github_email_address">Before you start: verifying github email address</h3>
+
+<p>Today we’re going to be putting up your first site using <a href="https://pages.github.com/">GitHub Pages</a> - a free hosting solution provided by GitHub.</p>
+
+<p>In order for this to work you need to have <strong>verified your email address with GitHub</strong>.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+<ol>
+  <li>Log into GitHub.</li>
+  <li>If you see a warning at the top that you haven't verified your
+email address, follow the instructions to do that now.</li>
+  <li>If not, you're good to go!</li>
+</ol>
+</div>
+<h3 id="review_exercise">Review exercise</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+<ol>
+  <li>Open the comand line</li>
+  <li>Navigate to your 'first_site' folder (cd/ls)</li>
+  <li>Open 'first_site/index.html' in Sublime Text</li>
+  <li>Make a change to the file</li>
+  <li>Save the changes and push to github ("gitgit save", "gitgit
+push")</li>
+  <li>Log into github and check you can see your changes</li>
+</ol>
+
+</div>
+<h3 id="something_new_publishing_site_using_github_pages">Something new: publishing site using GitHub pages</h3>
+
+<p>You’re now going to publish your ‘first_site’ using <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+
+<p>To do this you need to push your website up to a branch called ‘gh-pages’. You don’t know about branches yet, but you can see them on github. Right now you’ll just see a single branch called ‘master’.</p>
+
+<p>You don’t actually need to understand anything about branches at the moment, as gitgit makes it really easy to publish as a github page. Just run</p>
+
+<pre><code>gitgit publish</code></pre>
+
+<p>When you go to github you should now see a ‘gh-pages’ option in the branches dropdown.</p>
+
+<p>The ‘gh-pages’ branch is a signal to github that you want your code to be deployed as a website. You can find the url of your website by looking in your repository settings on GitHub.</p>
+
+	</div>
+
+	
+	<div class="tab-pane " id="2_domain_name">
+	
+
+		<h2>Wiring up your domain</h2>
+		
+<h3 id="getting_your_domain_name_to_point_to_your_github_page">Getting your domain name to point to your GitHub Page</h3>
+
+<p>The point of this exercise is to set up your domain name to point towards your new GitHub pages site.</p>
+
+<p>As GitHub hosts many different pages at their IP address, it isn’t quite as simple as pointing your domain address towards that IP address. There are two things you need to do to get your domain name working with your GitHub pages site:</p>
+
+<ol>
+<li>Tell your domain registrar (e.g 123-reg or godaddy) to point your domain name towards GitHub’s IP address.</li>
+
+<li>Tell GitHub that requests to your domain name should come to your site.</li>
+</ol>
+
+<p>Github explains this <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">here</a>.</p>
+
+<h3 id="pointing_your_domain_name_towards_github">Pointing your domain name towards GitHub</h3>
+
+<p>For the first bit you need to log in to your domain registrar and change the DNS settings. You want an <em>A-record</em> pointing to <code>204.232.175.78</code> (which is github.com). Note that it can take up to a couple of days for DNS changes to propagate.</p>
+
+<p>If you’re using 123-reg, your should log in, select your domain from the list, and click “Manage”. You should then go to “Manage DNS”.</p>
+
+<p><img src="/assets/dns_settings.png" alt="123-reg DNS Settings" /></p>
+
+<p>(The @ dns entry stands for the root or bare domain.)</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Log in to your domain registrar and set an A-record to point towards GitHub.</p>
+
+</div>
+<p>Your changes won’t take effect immediately.</p>
+
+<h3 id="tell_github_to_expect_requests_for_your_domain_name">Tell github to expect requests for your domain name</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Open Sublime Text and create a new file.</p>
+</li>
+
+<li>
+<p>Write your domain name on the first line of the new file e.g:</p>
+
+<pre><code>  mydomain.com</code></pre>
+</li>
+
+<li>
+<p>Save that file as <code>CNAME</code> (uppercase, with no extension) in your <code>first_site</code> folder</p>
+</li>
+
+<li>
+<p>Commit your change and then push to github.</p>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="3_github_account">
+	
+
+		<h2>GitHub account</h2>
+		
+<p>Git is a program that helps with the management of code. It means that you completely avoid the situation where you end up with files called <code>team_contacts_v1</code>, <code>team_contacts_v2</code> etc. It also allows you to share your code with others and collaborate on code in an efficient way.</p>
+
+<p>GitHub is a site that makes sharing code part of git really easy. It is the go-to choice both for startups and open-source software projects. (There are several other sites that are similar to GitHub e.g. <a href="https://bitbucket.org">BitBucket</a>, but GitHub is the most widely used.)</p>
+
+<p>GitHub also allows you to put a static website online for free, using <a href="http://pages.github.com/">GitHub Pages</a>. We will be making use of this feature during the course.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Sign up for a GitHub account at <a href='https://github.com/'>https://github.com/</a>. Make sure you <strong>know your password</strong> to avoid awkward moments in class!</p>
+
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_command_line">
+	
+
+		<h2>Meet the Command Line</h2>
+		
+<p>The command line is a way to interact with your computer programmatically. If you are doing any software development you will need to get to grips with using the command line, as many of the programs you will use will be run from the it, instead of by clicking an icon.</p>
+
+<h3 id="opening_the_command_line">Opening the command line</h3>
+
+<ul>
+<li>On a Mac open Terminal (Applications &gt; Terminal)</li>
+
+<li>On Windowns open Command Prompt with Ruby on Rails</li>
+</ul>
+
+<h3 id="moving_around">Moving around</h3>
+
+<p>Note: when giving you instructions for the command line we will precede them with a <code>$</code> to represent the command prompt e.g.</p>
+
+<pre><code>$ some_command</code></pre>
+
+<p><strong>You shouldn’t type the <code>$</code> sign - just the stuff after it.</strong> So for the above instruction you would just type <code>some_command</code> into the command line.</p>
+
+<p>The first thing you will need to get used to is moving around. Start by printing the name of the directory you are in:</p>
+
+<pre><code>$ pwd</code></pre>
+
+<p>Then have a look at what’s in that directory ( <em>list</em> the contents):</p>
+
+<pre><code>$ ls</code></pre>
+
+<p>To move up a directory ( <em>change directory</em> ) do</p>
+
+<pre><code>$ cd ..</code></pre>
+
+<p>To move back into the folder you just left do</p>
+
+<pre><code>$ cd name_of_the_folder</code></pre>
+
+<p>Your commandline will help you: <kbd>tab</kbd> can often be used to auto-complete names of files, the up arrow can be used to cycle through previous commands that you have typed.</p>
+
+<h3 id="creating_a_directory">Creating a directory</h3>
+
+<p>You can do a lot more on the command line than just move around. We’ll be using the command line a lot over the course. For the time being we just need to create a folder:</p>
+
+<pre><code>$ mkdir coding_course</code></pre>
+
+<p>Note: choosing names without spaces makes command line navigation easier.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>
+<p>Open your command line:</p>
+
+<ul>
+<li>On a Mac open Terminal (Applications &gt; Terminal)</li>
+
+<li>On Windowns open Command Prompt with Ruby on Rails</li>
+</ul>
+</li>
+
+<li>
+<p>Find out where you are:</p>
+
+<pre><code> $ pwd</code></pre>
+</li>
+
+<li>
+<p>See what is in the same folder:</p>
+
+<pre><code> $ ls</code></pre>
+</li>
+
+<li>
+<p>If you are on a Mac move into <code>Documents</code>:</p>
+
+<pre><code> $ cd Documents</code></pre>
+</li>
+
+<li>
+<p>Create the folder for the coding course:</p>
+
+<pre><code> $ mkdir coding_course</code></pre>
+</li>
+
+<li>
+<p>Move into that folder:</p>
+
+<pre><code> $ cd coding_course</code></pre>
+</li>
+
+<li>
+<p>Move back up to the folder above</p>
+
+<pre><code> $ cd ..</code></pre>
+</li>
+
+<li>
+<p>Move back into the coding course folder. This time don&#39;t type out coding_course - just type out the first few letters and hit <code>Tab</code>:</p>
+
+<pre><code>$ cd coding_course</code></pre>
+</li>
+
+<li>
+<p>In the Finder (Mac) or My Computer (Windows) find the folder that you just created.</p>
+</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="4_ruby_git">
+	
+
+		<h2>Ruby and Git</h2>
+		
+<p>In order to save to github you’ll need a program called git on your laptop. To make git easier we’ll be using a program called gitgit. To run gitgit you need ruby installed, so in this step we’ll install that too.</p>
+
+<h3 id="on_windows">On Windows</h3>
+
+<p>On Windows the guys at <a href="http://railsinstaller.org/en">Rails Installer</a> have put together a single package that contains both ruby and git. We’re going to use that to get both on your laptop.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<p>If you are on Windows:</p>
+
+<ul>
+<li>Download and install <a href='http://railsinstaller.org/en'>Rails Installer</a></li>
+</ul>
+</div>
+<h3 id="on_a_mac">On a Mac</h3>
+
+<p>Macs come with ruby already installed, so you don’t have to worry about getting ruby!</p>
+
+<p>To install git we’re going to use a tool called <a href="http://brew.sh/">Homebrew</a>, which helps install open source software to a mac.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ul>
+<li>Open <code>Terminal</code> (Applications &gt; Utilities &gt; Terminal).</li>
+
+<li>Follow the installation instructions on the <a href='http://brew.sh/'>Homebrew site</a>. It will ask you to copy and paste something like</li>
+</ul>
+<pre><code>
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+</code></pre>
+<p>into the Terminal. (You should check this, as the precise instructions might have changed.)</p>
+
+<ul>
+<li>
+<p>Once homebrew in installed type the following into the Terminal:</p>
+
+<pre><code>  brew install git</code></pre>
+</li>
+</ul>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="5_push_to_github">
+	
+
+		<h2>Pushing to GitHub</h2>
+		
+<p>Git is a version control system. It allows you to keep the entire history of your code, and makes it easy to share and collaborate with others.</p>
+
+<h3 id="using_git">Using git</h3>
+
+<p>Using git is really easy:</p>
+
+<ol>
+<li>Set up a folder to be a <em>git repo</em>. This tells git to track all changes in that folder.</li>
+
+<li>After you’ve made some changes, save them into the repository.</li>
+
+<li>Once you’ve saved the changes push them up to github.</li>
+</ol>
+
+<p>The first point is important: <em>git works on a folder level</em>. It tracks all the changes you make to files within a given folder.</p>
+
+<h3 id="actually_using_git">Actually using git</h3>
+
+<p>Actually using git is a bit harder. It’s a very powerful tool and pretty complex to get started with. To make things simpler, we’re going to use a tool called <code>gitgit</code>.</p>
+
+<p>To install gitgit open the command line and type the following:</p>
+
+<pre><code>gem install gitgit</code></pre>
+
+<p>To see if this worked, type</p>
+
+<pre><code>gitgit</code></pre>
+
+<p>You should see a list of gitgit commands something like this:</p>
+
+<pre><code>$ gitgit
+Commands:
+  gitgit help [COMMAND]  # Describe available commands or one specific command
+  gitgit init            # Initialise a git repo
+  gitgit lg              # Show your recent saves
+  gitgit push            # Push your changes to github
+  gitgit save            # Save you changes to the repo
+  gitgit status          # See what changes you&#39;ve made since you last save</code></pre>
+
+<p>If it didn’t work, you might need to do</p>
+
+<pre><code>sudo gem install gitgit</code></pre>
+
+<p>and type your password.</p>
+
+<p>You also might need to do</p>
+
+<pre><code>rbenv rehash</code></pre>
+
+<p>If in doubt contact a teaching assistant!</p>
+
+<h3 id="using_gitgit">Using gitgit</h3>
+
+<p>To <strong>make a folder into a git repository</strong>:</p>
+
+<pre><code>gitgit init</code></pre>
+
+<p>then follow the instructions. You’ll only need to do this once for each folder you want to make into a repository.</p>
+
+<p>After you’ve made some changes to your files and saved them, you can <strong>save them into your repo</strong> by typing:</p>
+
+<pre><code>gitgit save</code></pre>
+
+<p>Finally, to push your code up to github you can do</p>
+
+<pre><code>gitgit push</code></pre>
+
+<p>Before you do this, you will need to setup your repo with github.</p>
+
+<h3 id="setting_up_your_repo_with_github">Setting up your repo with github</h3>
+
+<p>Go to github, login, and click “Create New Repo” in the top left hand corner.</p>
+
+<p><img src="/assets/create_repo.png" alt="Creating a repo on GitHub" /></p>
+
+<p>Follow the instructions, calling it something like <code>first_site</code>. <strong>Do not</strong> click the box which says ‘Create a readme with this repository’. You’ll get to a page when it’ll describe how to get your code online. You want to follow the instructions for “Pushing an existing repository to github”.</p>
+
+<h3 id="pushing_your_code_to_github">Pushing your code to github</h3>
+
+<p>We will now set up your <code>first_site</code> folder to use git and push it up to github.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+<ol>
+<li>Navigate to your first_site folder using cd and ls.</li>
+<li>Make it into a git repo: "gitgit init"</li>
+<li>Save all the work you've done so far: "gitgit save"</li>
+<li>Log in to GitHub.</li>
+<li>On github create a new repository called 'first_site'. DO NOT click the box which says 'Create a readme'.</li>
+<li>Copy and paste the instructions it gives you into the command line. You are 'Pushing an existing repository to github'.</li>
+<li>Go back to github and refresh the page. You should see your code.</li>
+</ol>
+</div>
+	</div>
+
+	
+	<div class="tab-pane " id="9_configuration_variables">
 	
 
 		<h2>Configuration variables</h2>

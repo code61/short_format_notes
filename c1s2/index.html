@@ -56,10 +56,6 @@
 		
 	
 		
-		<li><a href="#5_push_to_github" data-toggle="tab">Pushing to GitHub </a></li>
-		
-	
-		
 		<li><a href="#6_homework" data-toggle="tab">Homework </a></li>
 		
 	
@@ -83,32 +79,28 @@
 <li>We can create them locally (using a text editor) and view then in a browser.</li>
 </ul>
 
-<h3 id="command_line">Command line</h3>
+<h3 id="putting_your_site_online">Putting your site online</h3>
 
-<ul>
-<li><code>ls</code> - list the files in the current directory</li>
-
-<li><code>cd coding_course</code> - move into the ‘coding_course’ directory</li>
-
-<li><code>cd ..</code> - move up a level</li>
-</ul>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
+<p>We’re going to use <a href="https://www.bitballoon.com/">BitBalloon</a> to host our site - BitBalloon will provide the server where the files for our site is stored.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
- <li>Open the command line ('Terminal' on a mac, 'Command prompt with Ruby on Rails' on windows)</li>
- <li>Use cd and ls to navigate to your coding_course folder.</li>
+<li>Create an account on <a href='https://www.bitballoon.com/'>BitBalloon</a>.</li>
+
+<li>Upload your site by dragging and dropping your <code>first_site</code> folder onto the BitBalloon website.</li>
+
+<li>Visit your site online!</li>
 </ol>
 </div>
-<h3 id="something_new">Something new</h3>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
+<p>Your site will currently show up with a url something like <a href="teller-balances-48402.bitballoon.com">teller-balances-48402.bitballoon.com</a>. Part of your homework will be to buy your own domain name to point towards BitBalloon. (You will need to upgrade to the $5/month BitBalloon account to make this possible.)</p>
+
+<h3 id="preparation">Preparation</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong>
 <ol>
-  <li>Make sure you're in your coding_course folder.</li>
-  <li>Do an ls.</li>
-  <li>Type git clone https://github.com/code61/html2.git</li>
-  <li>Do an ls.</li>
+<li>Go to the github repository for this session: <a href='https://github.com/code61/html2'>https://github.com/code61/html2</a></li>
+
+<li>Download the code into your <code>coding_course</code> folder (by clicking &#39;Download ZIP&#39; in the bottom right).</li>
 </ol>
 </div>
-<p>You just used git to get the code for the next exercise onto your laptop!</p>
-
 	</div>
 
 	
@@ -356,105 +348,6 @@
 	</div>
 
 	
-	<div class="tab-pane " id="5_push_to_github">
-	
-
-		<h2>Pushing to GitHub</h2>
-		
-<p>Git is a version control system. It allows you to keep the entire history of your code, and makes it easy to share and collaborate with others.</p>
-
-<h3 id="using_git">Using git</h3>
-
-<p>Using git is really easy:</p>
-
-<ol>
-<li>Set up a folder to be a <em>git repo</em>. This tells git to track all changes in that folder.</li>
-
-<li>After you’ve made some changes, save them into the repository.</li>
-
-<li>Once you’ve saved the changes push them up to github.</li>
-</ol>
-
-<p>The first point is important: <em>git works on a folder level</em>. It tracks all the changes you make to files within a given folder.</p>
-
-<h3 id="actually_using_git">Actually using git</h3>
-
-<p>Actually using git is a bit harder. It’s a very powerful tool and pretty complex to get started with. To make things simpler, we’re going to use a tool called <code>gitgit</code>.</p>
-
-<p>To install gitgit open the command line and type the following:</p>
-
-<pre><code>gem install gitgit</code></pre>
-
-<p>To see if this worked, type</p>
-
-<pre><code>gitgit</code></pre>
-
-<p>You should see a list of gitgit commands something like this:</p>
-
-<pre><code>$ gitgit
-Commands:
-  gitgit help [COMMAND]  # Describe available commands or one specific command
-  gitgit init            # Initialise a git repo
-  gitgit lg              # Show your recent saves
-  gitgit push            # Push your changes to github
-  gitgit save            # Save you changes to the repo
-  gitgit status          # See what changes you&#39;ve made since you last save</code></pre>
-
-<p>If it didn’t work, you might need to do</p>
-
-<pre><code>sudo gem install gitgit</code></pre>
-
-<p>and type your password.</p>
-
-<p>You also might need to do</p>
-
-<pre><code>rbenv rehash</code></pre>
-
-<p>If in doubt contact a teaching assistant!</p>
-
-<h3 id="using_gitgit">Using gitgit</h3>
-
-<p>To <strong>make a folder into a git repository</strong>:</p>
-
-<pre><code>gitgit init</code></pre>
-
-<p>then follow the instructions. You’ll only need to do this once for each folder you want to make into a repository.</p>
-
-<p>After you’ve made some changes to your files and saved them, you can <strong>save them into your repo</strong> by typing:</p>
-
-<pre><code>gitgit save</code></pre>
-
-<p>Finally, to push your code up to github you can do</p>
-
-<pre><code>gitgit push</code></pre>
-
-<p>Before you do this, you will need to setup your repo with github.</p>
-
-<h3 id="setting_up_your_repo_with_github">Setting up your repo with github</h3>
-
-<p>Go to github, login, and click “Create New Repo” in the top left hand corner.</p>
-
-<p><img src="/assets/create_repo.png" alt="Creating a repo on GitHub" /></p>
-
-<p>Follow the instructions, calling it something like <code>first_site</code>. <strong>Do not</strong> click the box which says ‘Create a readme with this repository’. You’ll get to a page when it’ll describe how to get your code online. You want to follow the instructions for “Pushing an existing repository to github”.</p>
-
-<h3 id="pushing_your_code_to_github">Pushing your code to github</h3>
-
-<p>We will now set up your <code>first_site</code> folder to use git and push it up to github.</p>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
-<ol>
-<li>Navigate to your first_site folder using cd and ls.</li>
-<li>Make it into a git repo: "gitgit init"</li>
-<li>Save all the work you've done so far: "gitgit save"</li>
-<li>Log in to GitHub.</li>
-<li>On github create a new repository called 'first_site'. DO NOT click the box which says 'Create a readme'.</li>
-<li>Copy and paste the instructions it gives you into the command line. You are 'Pushing an existing repository to github'.</li>
-<li>Go back to github and refresh the page. You should see your code.</li>
-</ol>
-</div>
-	</div>
-
-	
 	<div class="tab-pane " id="6_homework">
 	
 
@@ -470,6 +363,36 @@ Commands:
 <li>In the `branch` dropdown (just above the list of files) select the `solution` branch.</li>
 <li>Click on the files below to see the solution</li>
 </ul>
+</div>
+<h3 id="review">Review</h3>
+<div class='exercise alert alert-info'><strong>Task:</strong> 
+
+<p>Watch <a href='http://generalassembly.wistia.com/medias/qzig8mp4mv'>this video</a> from General Assembly, which recaps developing locally and deploying to BitBalloon.</p>
+
+</div>
+<h3 id="buy_a_domain_name">Buy a domain name</h3>
+
+<p>Your domain name will be used to point towards your personal website for the course - it’s up to you exactly what this will be about. You might want to use this opportunity to create a basic ‘personal landing page’ saying a bit about yourself and where to find more information. Or you might want to put up a blog. Alternatively if you want you can put up a page about something you are interested in (or <a href="http://jamfly.info/">your dog</a>). You will need to pick a domain name accordingly!</p>
+
+<p>To buy a domain name you need to visit a domain registrar. Examples are:</p>
+
+<ul>
+<li><a href="http://www.123-reg.co.uk/">123-reg</a></li>
+
+<li><a href="http://www.godaddy.com/">Godaddy</a></li>
+
+<li><a href="http://www.namecheap.com/">Namecheap</a></li>
+
+<li><a href="http://www.dot.tk/en/index.html?lang=en">dot.tk</a> (.tk domains are completely free!)</li>
+</ul>
+
+<p>There probably won’t be a huge difference in price between these sites. You might be able to find a special offer on one of them if you shop around a bit though. Ultimately the domain you choose isn’t that important for the course - the whole point is to practice pointing a domain name towards a server.</p>
+<div class='exercise alert alert-info'><strong>Task:</strong>
+<ol>
+<li>Buy your own domain name.</li>
+
+<li>Follow <a href='https://www.bitballoon.com/docs/custom_domains/'>these instructions</a> to point your custom domain towards your code on BitBalloon.</li>
+</ol>
 </div>
 <h3 id="more_htmlcss">More HTML/CSS</h3>
 <div class='exercise alert alert-info'><strong>Task:</strong> 

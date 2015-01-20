@@ -44,10 +44,6 @@
 		
 	
 		
-		<li><a href="#2_domain_name" data-toggle="tab">Wiring up your domain </a></li>
-		
-	
-		
 		<li><a href="#4_google_analytics" data-toggle="tab">Google Analytics </a></li>
 		
 	
@@ -64,21 +60,7 @@
 	
 
 		<h2>Recap</h2>
-		<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>Open the command line.</li>
-
-<li>Navigate to your <code>first_site</code> folder.</li>
-
-<li>Make a change to index.html.</li>
-
-<li>Save the change.</li>
-
-<li>Push it to github.</li>
-
-<li>Deploy it to github pages.</li>
-</ol>
-</div>
+		
 <h3 id="css">CSS</h3>
 
 <p>We’re now going to add a separate CSS file to your first_site. (If you already have one, that’s fine - just add another one.)</p>
@@ -91,68 +73,6 @@
 <li>Put a link to the file from the head section of your index.html file.</li>
 
 <li>Make sure you can see the style when you open index.html in chrome.</li>
-
-<li>Save, push and deploy your changes.</li>
-</ol>
-</div>
-	</div>
-
-	
-	<div class="tab-pane " id="2_domain_name">
-	
-
-		<h2>Wiring up your domain</h2>
-		
-<h3 id="getting_your_domain_name_to_point_to_your_github_page">Getting your domain name to point to your GitHub Page</h3>
-
-<p>The point of this exercise is to set up your domain name to point towards your new GitHub pages site.</p>
-
-<p>As GitHub hosts many different pages at their IP address, it isn’t quite as simple as pointing your domain address towards that IP address. There are two things you need to do to get your domain name working with your GitHub pages site:</p>
-
-<ol>
-<li>Tell your domain registrar (e.g 123-reg or godaddy) to point your domain name towards GitHub’s IP address.</li>
-
-<li>Tell GitHub that requests to your domain name should come to your site.</li>
-</ol>
-
-<p>Github explains this <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">here</a>.</p>
-
-<h3 id="pointing_your_domain_name_towards_github">Pointing your domain name towards GitHub</h3>
-
-<p>For the first bit you need to log in to your domain registrar and change the DNS settings. You want an <em>A-record</em> pointing to <code>204.232.175.78</code> (which is github.com). Note that it can take up to a couple of days for DNS changes to propagate.</p>
-
-<p>If you’re using 123-reg, your should log in, select your domain from the list, and click “Manage”. You should then go to “Manage DNS”.</p>
-
-<p><img src="/assets/dns_settings.png" alt="123-reg DNS Settings" /></p>
-
-<p>(The @ dns entry stands for the root or bare domain.)</p>
-<div class='exercise alert alert-info'><strong>Task:</strong> 
-
-<p>Log in to your domain registrar and set an A-record to point towards GitHub.</p>
-
-</div>
-<p>Your changes won’t take effect immediately.</p>
-
-<h3 id="tell_github_to_expect_requests_for_your_domain_name">Tell github to expect requests for your domain name</h3>
-<div class='exercise alert alert-info'><strong>Task:</strong>
-<ol>
-<li>
-<p>Open Sublime Text and create a new file.</p>
-</li>
-
-<li>
-<p>Write your domain name on the first line of the new file e.g:</p>
-
-<pre><code>  mydomain.com</code></pre>
-</li>
-
-<li>
-<p>Save that file as <code>CNAME</code> (uppercase, with no extension) in your <code>first_site</code> folder</p>
-</li>
-
-<li>
-<p>Commit your change and then push to github.</p>
-</li>
 </ol>
 </div>
 	</div>
@@ -175,8 +95,6 @@
 <li>In the Admin section, create a new account for your personal site.</li>
 
 <li>Following the instructions, install the analytics code on all the pages of your site.</li>
-
-<li>Push your changes up to the <code>gh-pages</code> branch on GitHub.</li>
 </ol>
 </div>
 	</div>
